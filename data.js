@@ -140,7 +140,10 @@ window.SITE_DATA = {
       "form.submit": "제출하기",
       "form.error": "이름, 올바른 이메일, 회사명, 회사 소개를 입력해 주세요.",
       "form.errorV101": "사업 제안은 Venture 101 수료 후 가능합니다. 수료 기수를 입력하고 확인란을 선택해 주세요.",
-      "form.ok": "메일 앱이 열립니다. 내용을 확인 후 전송해 주세요. 감사합니다!"
+      "form.ok": "제안서가 준비되었습니다. 아래 내용을 다음 주소로 보내 주세요:",
+      "form.openMail": "메일 앱으로 열기",
+      "form.copy": "내용 복사",
+      "form.copied": "복사됨"
     },
     en: {
       "nav.philosophy": "Philosophy",
@@ -247,7 +250,10 @@ window.SITE_DATA = {
       "form.submit": "Submit",
       "form.error": "Please enter your name, a valid email, company, and description.",
       "form.errorV101": "Pitches open after completing Venture 101. Please enter your cohort and check the box.",
-      "form.ok": "Your email app will open. Please review and send. Thank you!"
+      "form.ok": "Your pitch is ready. Please send the text below to:",
+      "form.openMail": "Open in mail app",
+      "form.copy": "Copy text",
+      "form.copied": "Copied"
     }
   }
 };

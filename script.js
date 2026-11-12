@@ -114,8 +114,20 @@
       "",
       f.desc
     ].join("\n");
-    window.location.href = `mailto:${PITCH_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    status.textContent = t("form.ok");
+    const full = `Subject: ${subject}\n\n${body}`;
+    const mailLink = el("a", { class: "btn btn-light", href: `mailto:${PITCH_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, text: t("form.openMail") });
+    const copyBtn = el("button", { type: "button", class: "btn btn-outline-light", text: t("form.copy") });
+    copyBtn.addEventListener("click", () => {
+      const done = () => { copyBtn.textContent = t("form.copied"); };
+      navigator.clipboard?.writeText(full).then(done, () => { pre.focus(); window.getSelection().selectAllChildren(pre); });
+    });
+    const pre = el("pre", { class: "pitch-preview", tabindex: "0", text: full });
+    status.replaceChildren(
+      el("span", { text: t("form.ok") + " " }),
+      el("strong", { class: "pitch-email", text: PITCH_EMAIL }),
+      pre,
+      el("span", { class: "pitch-actions" }, [mailLink, copyBtn])
+    );
     status.className = "form-status full ok";
   });
 
