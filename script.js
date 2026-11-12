@@ -160,46 +160,52 @@
     add(svg, "text", { x: C, y: C + 28, class: "fw-center-sub", "text-anchor": "middle" }, t("fw.centerSub"));
   }
 
-  // River scene: water flows, chaff scatters onto the bank, is planted, and grows.
-  // Some seeds stay small grass, some become trees. Line art in the brand ink.
+  // River scene: one wide tree stands in the middle by the water.
+  // Its seeds fall and drift to either side, are planted, and grow into new trees and grass.
   function initField() {
     const canvas = document.getElementById("field-canvas");
     if (!canvas || !canvas.getContext) return;
     const ctx = canvas.getContext("2d");
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const ink = getComputedStyle(document.documentElement).getPropertyValue("--ink").trim() || "#111";
-    let w = 0, h = 0, bankY = 0, plants = [], seeds = [], floaters = [], nextSeed = 0, visible = true, raf = 0;
+    let w = 0, h = 0, bankY = 0, mother = null, plants = [], seeds = [], floaters = [], nextSeed = 0, visible = true, raf = 0;
     const rnd = (a, b) => a + Math.random() * (b - a);
     const clamp = (v) => Math.max(0, Math.min(1, v));
     const ease = (v) => 1 - Math.pow(1 - v, 3);
 
-    function makeTree(scale) {
-      const segs = [], leaves = [], maxD = 5;
+    // Branching tree. `wide` pushes the first forks outward for a broad crown.
+    function makeTree(trunk, maxD, wide) {
+      const segs = [], leaves = [];
       const grow = (x, y, ang, len, d) => {
         const x2 = x + Math.cos(ang) * len, y2 = y + Math.sin(ang) * len;
-        segs.push({ x, y, x2, y2, d, wdt: Math.max(0.6, (maxD - d) * 0.55) });
+        segs.push({ x, y, x2, y2, d, wdt: Math.max(0.6, (maxD - d) * (wide ? 0.75 : 0.55)) });
         if (d === maxD) { leaves.push({ x: x2, y: y2, ang: ang + Math.PI / 2 }); return; }
         const n = d > 1 && Math.random() < 0.3 ? 3 : 2;
         for (let i = 0; i < n; i++) {
-          const spread = (i - (n - 1) / 2) * rnd(0.38, 0.6);
-          grow(x2, y2, ang + spread + rnd(-0.08, 0.08), len * rnd(0.68, 0.78), d + 1);
+          const base = wide && d < 3 ? rnd(0.62, 0.9) : rnd(0.34, 0.56);
+          const spread = (i - (n - 1) / 2) * base;
+          const ratio = wide && d < 2 ? rnd(0.74, 0.82) : rnd(0.68, 0.78);
+          grow(x2, y2, ang + spread + rnd(-0.08, 0.08), len * ratio, d + 1);
         }
       };
-      grow(0, 0, -Math.PI / 2 + rnd(-0.06, 0.06), bankY * 0.2 * scale, 0);
+      grow(0, 0, -Math.PI / 2 + rnd(-0.03, 0.03), trunk, 0);
       return { segs, leaves, maxD };
     }
     function makeGrass() {
       const n = Math.round(rnd(3, 6));
-      return Array.from({ length: n }, (_, i) => ({ lean: (i - (n - 1) / 2) * rnd(0.15, 0.3), len: rnd(8, 24), phase: rnd(0, 6) }));
+      return Array.from({ length: n }, (_, i) => ({ lean: (i - (n - 1) / 2) * rnd(0.15, 0.3), len: rnd(8, 22), phase: rnd(0, 6) }));
     }
     function addPlant(x, now, kind, age) {
       const tree = kind === "tree";
-      plants.push({
-        x, kind, born: now - (age || 0), dur: tree ? rnd(14000, 22000) : rnd(4000, 7000), dying: 0,
-        shape: tree ? makeTree(rnd(0.6, 1)) : makeGrass()
-      });
+      const p = {
+        x, kind, born: now - (age || 0), dur: tree ? rnd(16000, 26000) : rnd(4000, 7000), dying: 0,
+        shape: tree ? makeTree((bankY - 14) / 3.6 * rnd(0.32, 0.6), 5, false) : makeGrass()
+      };
+      plants.push(p);
+      return p;
     }
-    function treeCount() { return plants.filter((p) => p.kind === "tree" && !p.dying).length; }
+    const childTrees = () => plants.filter((p) => p.kind === "tree" && !p.dying).length;
+    const clearOfMother = (x) => Math.abs(x - w / 2) > Math.max(70, w * 0.13);
 
     function setup(now) {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -208,30 +214,28 @@
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       bankY = h * 0.68;
       plants = []; seeds = [];
-      // Start with a living field so the first frame already tells the story
-      const trees = Math.max(2, Math.round(w / 360));
-      for (let i = 0; i < trees; i++) addPlant((i + 0.5) * (w / trees) + rnd(-40, 40), now, "tree", rnd(6000, 30000));
-      const grass = Math.round(w / 50);
-      for (let i = 0; i < grass; i++) addPlant(rnd(10, w - 10), now, "grass", rnd(0, 9000));
-      floaters = Array.from({ length: Math.round(w / 70) }, () => ({ x: rnd(0, w), lane: Math.floor(rnd(0, 3)), v: rnd(0.25, 0.6), rot: rnd(0, 6) }));
+      const trunk = (bankY - 14) / (w < 600 ? 4.4 : 3.7);
+      mother = { x: w / 2, born: now - 1e9, dur: 1, shape: makeTree(trunk, 6, true) };
+      // A few offspring already on their way, so the story is visible on the first frame
+      [-1, 1].forEach((side) => {
+        addPlant(w / 2 + side * rnd(w * 0.2, w * 0.3), now, "tree", rnd(9000, 20000));
+        if (w > 700) addPlant(w / 2 + side * rnd(w * 0.34, w * 0.44), now, "tree", rnd(2000, 8000));
+      });
+      const grass = Math.round(w / 55);
+      for (let i = 0; i < grass; i++) { const x = rnd(10, w - 10); if (clearOfMother(x)) addPlant(x, now, "grass", rnd(0, 9000)); }
+      floaters = Array.from({ length: Math.round(w / 80) }, () => ({ x: rnd(0, w), lane: Math.floor(rnd(0, 3)), v: rnd(0.25, 0.6), rot: rnd(0, 6) }));
     }
 
     function riverY(x, lane, t) { return bankY + 16 + lane * 13 + Math.sin(x * 0.018 + t / 900 + lane * 1.7) * 3.2; }
-
     function drawRiver(t) {
       ctx.strokeStyle = ink;
       for (let lane = 0; lane < 4; lane++) {
-        ctx.globalAlpha = 0.55 - lane * 0.12;
-        ctx.lineWidth = 1;
+        ctx.globalAlpha = 0.55 - lane * 0.12; ctx.lineWidth = 1;
         ctx.beginPath();
-        for (let x = 0; x <= w; x += 8) {
-          const y = riverY(x, lane, t);
-          x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-        }
+        for (let x = 0; x <= w; x += 8) { const y = riverY(x, lane, t); x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); }
         ctx.stroke();
       }
-      ctx.globalAlpha = 1;
-      ctx.lineWidth = 1;
+      ctx.globalAlpha = 1; ctx.lineWidth = 1;
       ctx.beginPath(); ctx.moveTo(0, bankY); ctx.lineTo(w, bankY); ctx.stroke();
     }
     function grain(x, y, rx, ry, rot, fill, alpha) {
@@ -240,75 +244,85 @@
       if (fill) { ctx.fillStyle = ink; ctx.fill(); } else { ctx.strokeStyle = ink; ctx.stroke(); }
       ctx.restore();
     }
-    function drawPlant(p, t) {
+    function drawTree(p, t, leafScale) {
       const g = ease(clamp((t - p.born) / p.dur));
       const alpha = p.dying ? clamp(1 - (t - p.dying) / 2000) : 1;
       if (alpha <= 0) return;
+      const { segs, leaves, maxD } = p.shape;
+      const step = 0.8 / (maxD + 1);
+      const sway = reduce ? 0 : Math.sin(t / 2600 + p.x) * 0.012;
+      ctx.save(); ctx.translate(p.x, bankY); ctx.rotate(sway);
       ctx.strokeStyle = ink; ctx.globalAlpha = alpha;
-      if (p.kind === "grass") {
-        p.shape.forEach((b) => {
-          const sway = reduce ? 0 : Math.sin(t / 1300 + b.phase) * 0.12;
-          const len = b.len * g, a = -Math.PI / 2 + b.lean + sway;
-          ctx.lineWidth = 1;
-          ctx.beginPath(); ctx.moveTo(p.x, bankY);
-          ctx.quadraticCurveTo(p.x + Math.cos(a) * len * 0.3, bankY - len * 0.6, p.x + Math.cos(a) * len, bankY + Math.sin(a) * len);
-          ctx.stroke();
-        });
-      } else {
-        const { segs, leaves, maxD } = p.shape;
-        const step = 0.8 / (maxD + 1);
-        const sway = reduce ? 0 : Math.sin(t / 2400 + p.x) * 0.015;
-        ctx.save(); ctx.translate(p.x, bankY); ctx.rotate(sway);
-        segs.forEach((sg) => {
-          const f = clamp((g - sg.d * step) / step);
-          if (f <= 0) return;
-          ctx.lineWidth = sg.wdt;
-          ctx.beginPath(); ctx.moveTo(sg.x, sg.y); ctx.lineTo(sg.x + (sg.x2 - sg.x) * f, sg.y + (sg.y2 - sg.y) * f); ctx.stroke();
-        });
-        const lf = clamp((g - 0.8) / 0.2);
-        if (lf > 0) leaves.forEach((l, i) => {
-          const flutter = reduce ? 0 : Math.sin(t / 700 + i) * 0.15;
-          grain(l.x, l.y, 2.4 * lf, 5.8 * lf, l.ang + flutter, i % 3 !== 0, alpha);
-        });
-        ctx.restore();
-      }
+      segs.forEach((sg) => {
+        const f = clamp((g - sg.d * step) / step);
+        if (f <= 0) return;
+        ctx.lineWidth = sg.wdt;
+        ctx.beginPath(); ctx.moveTo(sg.x, sg.y); ctx.lineTo(sg.x + (sg.x2 - sg.x) * f, sg.y + (sg.y2 - sg.y) * f); ctx.stroke();
+      });
+      const lf = clamp((g - 0.8) / 0.2);
+      if (lf > 0) leaves.forEach((l, i) => {
+        const flutter = reduce ? 0 : Math.sin(t / 700 + i) * 0.15;
+        grain(l.x, l.y, 2.4 * lf * leafScale, 5.8 * lf * leafScale, l.ang + flutter, i % 3 !== 0, alpha);
+      });
+      ctx.restore(); ctx.globalAlpha = 1;
+    }
+    function drawGrass(p, t) {
+      const g = ease(clamp((t - p.born) / p.dur));
+      const alpha = p.dying ? clamp(1 - (t - p.dying) / 2000) : 1;
+      if (alpha <= 0) return;
+      ctx.strokeStyle = ink; ctx.globalAlpha = alpha; ctx.lineWidth = 1;
+      p.shape.forEach((b) => {
+        const sway = reduce ? 0 : Math.sin(t / 1300 + b.phase) * 0.12;
+        const len = b.len * g, a = -Math.PI / 2 + b.lean + sway;
+        ctx.beginPath(); ctx.moveTo(p.x, bankY);
+        ctx.quadraticCurveTo(p.x + Math.cos(a) * len * 0.3, bankY - len * 0.6, p.x + Math.cos(a) * len, bankY + Math.sin(a) * len);
+        ctx.stroke();
+      });
       ctx.globalAlpha = 1;
     }
+    // A seed leaves a leaf of the big tree and drifts out to one side
     function spawnSeed(t) {
-      const fx = rnd(0, w);
-      const tx = Math.max(12, Math.min(w - 12, fx + rnd(-w * 0.25, w * 0.25)));
-      seeds.push({ x0: fx, y0: riverY(fx, 0, t), x1: tx, peak: rnd(bankY * 0.15, bankY * 0.55), start: t, dur: rnd(2600, 4200), spin: rnd(-6, 6) });
+      const leaf = mother.shape.leaves[Math.floor(Math.random() * mother.shape.leaves.length)];
+      const x0 = mother.x + leaf.x, y0 = bankY + leaf.y;
+      const side = leaf.x === 0 ? (Math.random() < 0.5 ? -1 : 1) : Math.sign(leaf.x);
+      let x1 = w / 2 + side * rnd(Math.max(70, w * 0.14), w * 0.48);
+      x1 = Math.max(12, Math.min(w - 12, x1));
+      seeds.push({ x0, y0, x1, peak: y0 - rnd(6, 30), start: t, dur: rnd(3200, 5200), spin: rnd(-6, 6) });
     }
     function drawSeeds(t) {
       seeds = seeds.filter((s) => {
         const u = (t - s.start) / s.dur;
         if (u >= 1) {
           const living = plants.filter((p) => !p.dying);
-          if (living.length > w / 20) { const old = living.find((p) => p.kind === "grass"); if (old) old.dying = t; }
-          const canTree = treeCount() < Math.max(3, Math.round(w / 240));
-          addPlant(s.x1, t, canTree && Math.random() < 0.28 ? "tree" : "grass", 0);
+          if (living.length > w / 22) {
+            const old = living.find((p) => p.kind === "grass") || living.find((p) => p.kind === "tree");
+            if (old) old.dying = t;
+          }
+          const canTree = childTrees() < Math.max(3, Math.round(w / 220));
+          addPlant(s.x1, t, canTree && Math.random() < 0.45 ? "tree" : "grass", 0);
           return false;
         }
-        const x = s.x0 + (s.x1 - s.x0) * u + Math.sin(u * Math.PI * 3) * 14;
+        const x = s.x0 + (s.x1 - s.x0) * u + Math.sin(u * Math.PI * 3) * 12;
         const y = (1 - u) * (1 - u) * s.y0 + 2 * (1 - u) * u * s.peak + u * u * bankY;
         grain(x, y, 2, 4.6, s.spin * u, true, 0.9);
         return true;
       });
     }
-    function drawFloaters() {
+    function drawFloaters(t) {
       floaters.forEach((f) => {
         if (!reduce) { f.x += f.v; f.rot += 0.01; if (f.x > w + 10) f.x = -10; }
-        grain(f.x, riverY(f.x, f.lane, performance.now()) - 2, 1.8, 4, Math.PI / 2 + Math.sin(f.rot) * 0.4, false, 0.7);
+        grain(f.x, riverY(f.x, f.lane, t) - 2, 1.8, 4, Math.PI / 2 + Math.sin(f.rot) * 0.4, false, 0.6);
       });
     }
     function frame(t) {
       ctx.clearRect(0, 0, w, h);
       drawRiver(t);
       plants = plants.filter((p) => !(p.dying && t - p.dying > 2000));
-      plants.forEach((p) => drawPlant(p, t));
-      drawFloaters();
+      plants.forEach((p) => (p.kind === "tree" ? drawTree(p, t, 1) : drawGrass(p, t)));
+      drawTree(mother, t, 1.15);
+      drawFloaters(t);
       if (!reduce) {
-        if (t > nextSeed) { spawnSeed(t); nextSeed = t + rnd(600, 1300); }
+        if (t > nextSeed) { spawnSeed(t); nextSeed = t + rnd(900, 1700); }
         drawSeeds(t);
         if (visible) raf = requestAnimationFrame(frame);
       }
@@ -342,30 +356,30 @@
       w = canvas.clientWidth; h = canvas.clientHeight;
       canvas.width = w * dpr; canvas.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const n = Math.round((w * h) / 15000);
+      const n = Math.round((w * h) / 34000);
       seeds = Array.from({ length: n }, () => {
         const right = Math.random() < 0.7;
         const rx = rnd(1.5, 3.1);
-        return { x: right ? rnd(w * 0.42, w) : rnd(0, w), y: rnd(0, h), rx, ry: rx * 2.4, rot: rnd(0, Math.PI), phase: rnd(0, 20), period: rnd(2600, 5200), bob: rnd(2, 6) };
+        return { x: right ? rnd(w * 0.42, w) : rnd(0, w), y: rnd(0, h), rx, ry: rx * 2.4, rot: rnd(0, Math.PI), phase: rnd(0, 20), period: rnd(5000, 11000), bob: rnd(2, 6) };
       });
     }
     function frame(t) {
       ctx.clearRect(0, 0, w, h);
       seeds.forEach((s) => {
         const wave = Math.sin(t / s.period * Math.PI * 2 + s.phase);
-        const glow = reduce ? 0 : Math.pow(Math.max(0, wave), 6);
+        const glow = reduce ? 0 : Math.pow(Math.max(0, wave), 14);
         const y = s.y + (reduce ? 0 : Math.sin(t / 3000 + s.phase) * s.bob);
         const rot = s.rot + (reduce ? 0 : Math.sin(t / 4000 + s.phase) * 0.2);
         ctx.save();
         ctx.translate(s.x, y);
         ctx.rotate(rot);
-        ctx.globalAlpha = 0.1 + 0.75 * glow;
+        ctx.globalAlpha = 0.07 + 0.45 * glow;
         ctx.fillStyle = ink;
         ctx.beginPath(); ctx.ellipse(0, 0, s.rx, s.ry, 0, 0, Math.PI * 2); ctx.fill();
         ctx.restore();
-        if (glow > 0.35) { // upright four-point glint at the seed's tip
-          const d = s.ry + 3, gx = s.x + Math.sin(rot) * d, gy = y - Math.cos(rot) * d, L = 3 + 7 * glow;
-          ctx.globalAlpha = glow;
+        if (glow > 0.6) { // upright four-point glint at the seed's tip
+          const d = s.ry + 3, gx = s.x + Math.sin(rot) * d, gy = y - Math.cos(rot) * d, L = 2 + 4 * glow;
+          ctx.globalAlpha = glow * 0.6;
           ctx.fillStyle = ink;
           ctx.beginPath();
           ctx.moveTo(gx, gy - L); ctx.lineTo(gx + L * 0.16, gy - L * 0.16); ctx.lineTo(gx + L, gy);
