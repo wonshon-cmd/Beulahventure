@@ -398,51 +398,97 @@
     }
   });
 
-  // Pitch form: static site, so it composes an email. Swap for Formspree/Netlify Forms/etc. to collect submissions server-side.
-  document.getElementById("pitch-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const f = Object.fromEntries(new FormData(form).entries());
-    const status = document.getElementById("form-status");
-    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email || "");
-    if (!f.name?.trim() || !emailOk || !f.company?.trim() || !f.desc?.trim()) {
-      status.textContent = t("form.error");
-      status.className = "form-status full error";
-      return;
+  // Application: 1) name + email  2) email code  3) the business. Server hooks live in SITE_DATA.apply.
+  (function initApply() {
+    const cfg = data.apply || {};
+    const preview = !cfg.sendCodeUrl;
+    const $ = (id) => document.getElementById(id);
+    const steps = { 1: $("step-1"), 2: $("step-2"), 3: $("pitch-form") };
+    const state = { name: "", email: "", code: "", token: "" };
+    const emailOk = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v || "");
+    const say = (node, key, kind) => { node.textContent = key ? t(key) : ""; node.className = "form-status full" + (kind ? " " + kind : ""); };
+    const post = async (url, body) => {
+      const r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+      if (!r.ok) throw new Error(String(r.status));
+      return r.json().catch(() => ({}));
+    };
+    function show(n) {
+      Object.entries(steps).forEach(([k, el]) => (el.hidden = Number(k) !== n));
+      document.querySelectorAll("#apply-steps li").forEach((li) => {
+        const k = Number(li.dataset.step);
+        li.classList.toggle("on", k === n);
+        li.classList.toggle("done", k < n);
+      });
+      const first = steps[n].querySelector("input, textarea");
+      if (first) first.focus({ preventScroll: true });
     }
-    if (!f.cohort?.trim() || !f.completed) {
-      status.textContent = t("form.errorV101");
-      status.className = "form-status full error";
-      return;
+    async function sendCode() {
+      if (preview) {
+        state.code = String(Math.floor(100000 + Math.random() * 900000));
+        const demo = $("ap-demo");
+        demo.textContent = t("apply.demo") + " " + state.code;
+        demo.hidden = false;
+        return;
+      }
+      await post(cfg.sendCodeUrl, { email: state.email, name: state.name, cohort: cfg.cohort });
     }
-    const subject = `[Pitch] ${f.company} (${f.stage})`;
-    const body = [
-      `Name: ${f.name}`,
-      `Email: ${f.email}`,
-      `Company: ${f.company}`,
-      `Track: ${f.track}`,
-      `Stage: ${f.stage}`,
-      `Deck: ${f.deck || "-"}`,
-      `Venture 101 cohort: ${f.cohort}`,
-      "",
-      f.desc
-    ].join("\n");
-    const full = `Subject: ${subject}\n\n${body}`;
-    const mailLink = el("a", { class: "btn btn-light", href: `mailto:${PITCH_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, text: t("form.openMail") });
-    const copyBtn = el("button", { type: "button", class: "btn btn-outline-light", text: t("form.copy") });
-    copyBtn.addEventListener("click", () => {
-      const done = () => { copyBtn.textContent = t("form.copied"); };
-      navigator.clipboard?.writeText(full).then(done, () => { pre.focus(); window.getSelection().selectAllChildren(pre); });
+    $("apply-start").addEventListener("click", () => {
+      document.getElementById("apply").classList.add("open");
+      show(1);
     });
-    const pre = el("pre", { class: "pitch-preview", tabindex: "0", text: full });
-    status.replaceChildren(
-      el("span", { text: t("form.ok") + " " }),
-      el("strong", { class: "pitch-email", text: PITCH_EMAIL }),
-      pre,
-      el("span", { class: "pitch-actions" }, [mailLink, copyBtn])
-    );
-    status.className = "form-status full ok";
-  });
+    steps[1].addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = $("ap-name").value.trim(), email = $("ap-email").value.trim();
+      if (!name || !emailOk(email)) return say($("s1-status"), "apply.badEmail", "error");
+      state.name = name; state.email = email;
+      say($("s1-status"), "");
+      try { await sendCode(); } catch (_) { return say($("s1-status"), "apply.sendFail", "error"); }
+      $("ap-email-show").textContent = email;
+      $("ap-code").value = "";
+      show(2);
+    });
+    steps[2].addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const code = $("ap-code").value.trim();
+      let ok = false;
+      if (preview) ok = code === state.code;
+      else {
+        try { const res = await post(cfg.verifyCodeUrl, { email: state.email, code }); state.token = res.token || ""; ok = true; } catch (_) { ok = false; }
+      }
+      if (!ok) return say($("s2-status"), "apply.badCode", "error");
+      say($("s2-status"), "");
+      $("ap-who").textContent = `${state.name} · ${state.email}`;
+      show(3);
+    });
+    $("ap-resend").addEventListener("click", async () => {
+      try { await sendCode(); say($("s2-status"), ""); } catch (_) { say($("s2-status"), "apply.sendFail", "error"); }
+    });
+    $("ap-change").addEventListener("click", () => { $("ap-demo").hidden = true; show(1); });
+
+    steps[3].addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const status = $("form-status");
+      const f = { company: $("ap-company").value.trim(), track: $("ap-track").value, stage: $("ap-stage").value, deck: $("ap-deck").value.trim(), desc: $("ap-desc").value.trim() };
+      if (!f.company || !f.desc) return say(status, "form.error", "error");
+      if (cfg.submitUrl) {
+        try { await post(cfg.submitUrl, { token: state.token, name: state.name, email: state.email, cohort: cfg.cohort, ...f }); }
+        catch (_) { return say(status, "apply.submitFail", "error"); }
+        return say(status, "apply.thanks", "ok");
+      }
+      // No server yet: hand the applicant a ready-made email
+      const subject = `[Beulah · First Track ${cfg.cohort || ""}] ${f.company}`;
+      const body = [`Name: ${state.name}`, `Email: ${state.email} (verified)`, `Company: ${f.company}`, `Track: ${f.track}`, `Stage: ${f.stage}`, `Deck: ${f.deck || "-"}`, "", f.desc].join("\n");
+      const full = `Subject: ${subject}\n\n${body}`;
+      const pre = el("pre", { class: "pitch-preview", tabindex: "0", text: full });
+      const mailLink = el("a", { class: "btn btn-ghost", href: `mailto:${PITCH_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, text: t("form.openMail") });
+      const copyBtn = el("button", { type: "button", class: "btn btn-ghost", text: t("form.copy") });
+      copyBtn.addEventListener("click", () => {
+        navigator.clipboard?.writeText(full).then(() => { copyBtn.textContent = t("form.copied"); }, () => { pre.focus(); window.getSelection().selectAllChildren(pre); });
+      });
+      status.replaceChildren(el("span", { text: t("form.ok") + " " }), el("strong", { class: "pitch-email", text: PITCH_EMAIL }), pre, el("span", { class: "pitch-actions" }, [mailLink, copyBtn]));
+      status.className = "form-status full ok";
+    });
+  })();
 
   document.getElementById("year").textContent = new Date().getFullYear();
   applyLang();

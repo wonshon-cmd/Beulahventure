@@ -420,3 +420,26 @@ h3.block-top { padding-top: 56px; margin-bottom: 24px; }
 .vn-arrowhead { fill: var(--water); }
 .fw-center-text { font-size: 22px; }
 @media (prefers-reduced-motion: reduce) { .vn-grape { animation: none; } }
+
+/* Application flow */
+.section-pitch { background: var(--bg); }
+.section-pitch .muted { margin: 18px 0 0; font-size: 1.1rem; }
+.cohort-card { margin-top: 40px; padding: 28px; border: 1px solid var(--ink); border-radius: 22px; display: grid; gap: 6px; justify-items: start; }
+.cohort-badge { margin: 0; font-size: .74rem; font-weight: 800; letter-spacing: .16em; color: var(--water); }
+.cohort-when { margin: 0 0 18px; font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 200; letter-spacing: -0.05em; }
+.apply-steps { list-style: none; padding: 0; margin: 0 0 28px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--hair); }
+.apply-steps li { display: flex; gap: 10px; align-items: baseline; padding: 16px 0; font-weight: 300; color: var(--muted); border-top: 2px solid transparent; margin-top: -1px; transition: color .3s, border-color .3s; }
+.apply-steps li.on { color: var(--ink); font-weight: 800; border-top-color: var(--ink); }
+.apply-steps li.done { color: var(--ink); border-top-color: var(--water); }
+.apply-steps li.done .num::after { content: " ✓"; color: var(--water); }
+.apply-panel { animation: rise .5s var(--ease) both; }
+.apply-note { margin: 0; font-size: 1rem; font-weight: 300; letter-spacing: normal; text-transform: none; color: var(--ink); }
+.apply-note strong { font-weight: 800; }
+.apply-demo { margin: 0; padding: 12px 14px; border-radius: 12px; background: var(--soft); font-size: .92rem; font-weight: 400; letter-spacing: normal; color: var(--ink); }
+.apply-links { margin: 0; font-size: .9rem; color: var(--muted); letter-spacing: normal; font-weight: 400; }
+.link-btn { background: none; border: 0; padding: 0; font: inherit; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.verified-chip { display: inline-block; padding: 3px 10px; border-radius: 999px; background: var(--water); color: #fff; font-size: .75rem; font-weight: 800; margin-right: 6px; }
+#ap-code { font-size: 1.6rem; letter-spacing: .4em; font-weight: 300; }
+@media (max-width: 640px) { .apply-steps li { font-size: .85rem; } }
+
+[hidden] { display: none !important; }

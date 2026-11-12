@@ -433,6 +433,29 @@ h3.block-top { padding-top: 56px; margin-bottom: 24px; }
 .fw-center-text { font-size: 22px; }
 @media (prefers-reduced-motion: reduce) { .vn-grape { animation: none; } }
 
+/* Application flow */
+.section-pitch { background: var(--bg); }
+.section-pitch .muted { margin: 18px 0 0; font-size: 1.1rem; }
+.cohort-card { margin-top: 40px; padding: 28px; border: 1px solid var(--ink); border-radius: 22px; display: grid; gap: 6px; justify-items: start; }
+.cohort-badge { margin: 0; font-size: .74rem; font-weight: 800; letter-spacing: .16em; color: var(--water); }
+.cohort-when { margin: 0 0 18px; font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 200; letter-spacing: -0.05em; }
+.apply-steps { list-style: none; padding: 0; margin: 0 0 28px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--hair); }
+.apply-steps li { display: flex; gap: 10px; align-items: baseline; padding: 16px 0; font-weight: 300; color: var(--muted); border-top: 2px solid transparent; margin-top: -1px; transition: color .3s, border-color .3s; }
+.apply-steps li.on { color: var(--ink); font-weight: 800; border-top-color: var(--ink); }
+.apply-steps li.done { color: var(--ink); border-top-color: var(--water); }
+.apply-steps li.done .num::after { content: " ✓"; color: var(--water); }
+.apply-panel { animation: rise .5s var(--ease) both; }
+.apply-note { margin: 0; font-size: 1rem; font-weight: 300; letter-spacing: normal; text-transform: none; color: var(--ink); }
+.apply-note strong { font-weight: 800; }
+.apply-demo { margin: 0; padding: 12px 14px; border-radius: 12px; background: var(--soft); font-size: .92rem; font-weight: 400; letter-spacing: normal; color: var(--ink); }
+.apply-links { margin: 0; font-size: .9rem; color: var(--muted); letter-spacing: normal; font-weight: 400; }
+.link-btn { background: none; border: 0; padding: 0; font: inherit; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.verified-chip { display: inline-block; padding: 3px 10px; border-radius: 999px; background: var(--water); color: #fff; font-size: .75rem; font-weight: 800; margin-right: 6px; }
+#ap-code { font-size: 1.6rem; letter-spacing: .4em; font-weight: 300; }
+@media (max-width: 640px) { .apply-steps li { font-size: .85rem; } }
+
+[hidden] { display: none !important; }
+
 </style>
 </head>
 <body>
@@ -717,53 +740,53 @@ h3.block-top { padding-top: 56px; margin-bottom: 24px; }
       </div>
     </section>
 
-    <!-- Pitch -->
-    <section id="pitch" class="section section-dark section-pitch">
+    <!-- Pitch: apply in three steps -->
+    <section id="pitch" class="section section-pitch">
       <div class="container two-col">
         <div>
           <p class="eyebrow" data-i18n="pitch.eyebrow">PITCH US</p>
           <h2 data-i18n-html="pitch.title">당신의 사업을 <em>들려주세요.</em></h2>
-          <p class="muted-dark" data-i18n="pitch.lead">Venture 101 수료자만 제안할 수 있습니다. 모든 제안서를 직접 검토하며, 2주 이내에 회신드립니다.</p>
+          <p class="muted" data-i18n="pitch.lead">Venture 101 수료자만. 2주 안에 답합니다.</p>
+          <div class="cohort-card">
+            <p class="cohort-badge" data-i18n="apply.badge">FIRST TRACK · 1기</p>
+            <p class="cohort-when" data-i18n="apply.when">2027년 시작</p>
+            <button type="button" class="btn" id="apply-start"><span data-i18n="apply.start">신청하기</span> <span class="arrow">↗</span></button>
+          </div>
         </div>
-        <form class="pitch-form" id="pitch-form" novalidate>
-          <label><span data-i18n="form.name">이름</span>
-            <input name="name" required autocomplete="name">
-          </label>
-          <label><span data-i18n="form.email">이메일</span>
-            <input name="email" type="email" required autocomplete="email">
-          </label>
-          <label><span data-i18n="form.company">회사명</span>
-            <input name="company" required>
-          </label>
-          <label><span data-i18n="form.track">트랙</span>
-            <select name="track">
-              <option value="Market Bridge" data-i18n="form.track.t1">Market Bridge · 판로 연결</option>
-              <option value="Mission Field Ventures" data-i18n="form.track.t2">Mission Field Ventures · 선교지 공동 벤처</option>
-              <option value="Business Partnership" data-i18n="form.track.t3">Business Partnership · 사업 투자</option>
-              <option value="Idea Launch" data-i18n="form.track.t4">Idea Launch · 아이디어 창업</option>
-            </select>
-          </label>
-          <label><span data-i18n="form.stage">투자 단계</span>
-            <select name="stage">
-              <option value="Idea" data-i18n="form.stage.idea">아이디어</option>
-              <option value="Seedstrap">Seedstrap</option>
-              <option value="Bootstrap" data-i18n="form.stage.boot">Bootstrap (매출 발생)</option>
-              <option value="Growth">Growth</option>
-            </select>
-          </label>
-          <label class="full"><span data-i18n="form.deck">피치 덱 링크</span>
-            <input name="deck" type="url" placeholder="https://">
-          </label>
-          <label class="full"><span data-i18n="form.desc">회사 소개와 사명 (이 사업이 누구를 섬기나요?)</span>
-            <textarea name="desc" rows="4" required></textarea>
-          </label>
-          <label class="full"><span data-i18n="form.cohort">Venture 101 수료 기수</span>
-            <input name="cohort" required>
-          </label>
-          <label class="full check"><input type="checkbox" name="completed" required> <span data-i18n="form.completed">Venture 101 과정을 수료했습니다.</span></label>
-          <button type="submit" class="btn btn-light full"><span data-i18n="form.submit">제출하기</span> <span class="arrow">↗</span></button>
-          <p class="form-status full" id="form-status" role="status"></p>
-        </form>
+        <div class="apply" id="apply">
+          <ol class="apply-steps" id="apply-steps">
+            <li data-step="1"><span class="num">01</span><span data-i18n="apply.s1">이름 · 이메일</span></li>
+            <li data-step="2"><span class="num">02</span><span data-i18n="apply.s2">이메일 인증</span></li>
+            <li data-step="3"><span class="num">03</span><span data-i18n="apply.s3">사업 소개</span></li>
+          </ol>
+
+          <form class="apply-panel pitch-form" id="step-1" hidden novalidate>
+            <label class="full"><span data-i18n="form.name">이름</span><input id="ap-name" name="name" required autocomplete="name"></label>
+            <label class="full"><span data-i18n="form.email">이메일</span><input id="ap-email" name="email" type="email" required autocomplete="email"></label>
+            <button type="submit" class="btn full"><span data-i18n="apply.send">인증 코드 보내기</span> <span class="arrow">↗</span></button>
+            <p class="form-status full" id="s1-status" role="status"></p>
+          </form>
+
+          <form class="apply-panel pitch-form" id="step-2" hidden novalidate>
+            <p class="full apply-note"><span data-i18n="apply.sent">아래 주소로 6자리 코드를 보냈습니다.</span> <strong id="ap-email-show"></strong></p>
+            <label class="full"><span data-i18n="apply.code">인증 코드</span><input id="ap-code" name="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" required></label>
+            <p class="full apply-demo" id="ap-demo" hidden></p>
+            <button type="submit" class="btn full"><span data-i18n="apply.verify">확인</span></button>
+            <p class="full apply-links"><button type="button" class="link-btn" id="ap-resend" data-i18n="apply.resend">다시 보내기</button> · <button type="button" class="link-btn" id="ap-change" data-i18n="apply.change">이메일 바꾸기</button></p>
+            <p class="form-status full" id="s2-status" role="status"></p>
+          </form>
+
+          <form class="apply-panel pitch-form" id="pitch-form" hidden novalidate>
+            <p class="full apply-note"><span class="verified-chip" data-i18n="apply.verified">인증됨</span> <strong id="ap-who"></strong></p>
+            <label class="full"><span data-i18n="form.company">회사명</span><input id="ap-company" name="company" required></label>
+            <label><span data-i18n="form.track">트랙</span><select id="ap-track" name="track"><option value="Market Bridge" data-i18n="form.track.t1">Market Bridge · 판로 연결</option><option value="Mission Field Ventures" data-i18n="form.track.t2">Mission Field Ventures · 선교지 벤처</option><option value="Business Partnership" data-i18n="form.track.t3">Business Partnership · 사업 투자</option><option value="Idea Launch" data-i18n="form.track.t4">Idea Launch · 아이디어 창업</option></select></label>
+            <label><span data-i18n="form.stage">단계</span><select id="ap-stage" name="stage"><option value="Idea" data-i18n="form.stage.idea">아이디어</option><option value="Seedstrap">Seedstrap</option><option value="Bootstrap" data-i18n="form.stage.boot">Bootstrap (매출 발생)</option><option value="Growth">Growth</option></select></label>
+            <label class="full"><span data-i18n="form.deck">피치 덱 링크</span><input id="ap-deck" name="deck" type="url" placeholder="https://"></label>
+            <label class="full"><span data-i18n="form.desc">어떤 가치를 만들고, 누구를 섬기나요?</span><textarea id="ap-desc" name="desc" rows="5" required></textarea></label>
+            <button type="submit" class="btn full"><span data-i18n="form.submit">제출하기</span> <span class="arrow">↗</span></button>
+            <p class="form-status full" id="form-status" role="status"></p>
+          </form>
+        </div>
       </div>
     </section>
   </main>
@@ -786,6 +809,12 @@ h3.block-top { padding-top: 56px; margin-bottom: 24px; }
 window.SITE_DATA = {
   // Add portfolio companies here. Leave empty to show the "open slot" card only.
   // Example: { name: "Acme", sector: { ko: "제조", en: "Manufacturing" }, desc: { ko: "...", en: "..." }, url: "https://..." }
+  // Application flow. Leave the URLs empty to run in preview mode (code shown on screen).
+  // sendCodeUrl:   POST {email, name}          -> 200 when a 6-digit code was emailed
+  // verifyCodeUrl: POST {email, code}          -> 200 {token} when the code is right
+  // submitUrl:     POST {token, ...application} -> 200 when saved
+  apply: { cohort: "2027", sendCodeUrl: "", verifyCodeUrl: "", submitUrl: "" },
+
   portfolio: [],
 
   // Replace placeholders with real team members.
@@ -818,6 +847,26 @@ window.SITE_DATA = {
 
   i18n: {
     ko: {
+      "apply.badge": "FIRST TRACK · 1기",
+      "apply.when": "2027년 시작",
+      "apply.start": "신청하기",
+      "apply.s1": "이름 · 이메일",
+      "apply.s2": "이메일 인증",
+      "apply.s3": "사업 소개",
+      "apply.send": "인증 코드 보내기",
+      "apply.sent": "아래 주소로 6자리 코드를 보냈습니다.",
+      "apply.code": "인증 코드",
+      "apply.verify": "확인",
+      "apply.resend": "다시 보내기",
+      "apply.change": "이메일 바꾸기",
+      "apply.demo": "미리보기: 메일 서버가 아직 연결되지 않아 코드를 여기에 표시합니다.",
+      "apply.badCode": "코드가 맞지 않습니다. 다시 확인해 주세요.",
+      "apply.badEmail": "이름과 올바른 이메일을 입력해 주세요.",
+      "apply.sendFail": "코드를 보내지 못했습니다. 잠시 후 다시 시도해 주세요.",
+      "apply.verified": "인증됨",
+      "apply.next": "다음",
+      "apply.submitFail": "제출하지 못했습니다. 잠시 후 다시 시도해 주세요.",
+      "apply.thanks": "신청이 접수되었습니다. 2주 안에 답합니다.",
       "ch.1": "왜",
       "ch.2": "약속",
       "ch.3": "성장",
@@ -1030,6 +1079,26 @@ window.SITE_DATA = {
       "footer.scripture": "성경 본문: 개역개정"
     },
     en: {
+      "apply.badge": "FIRST TRACK · COHORT 1",
+      "apply.when": "Starts 2027",
+      "apply.start": "Apply",
+      "apply.s1": "Name & email",
+      "apply.s2": "Verify email",
+      "apply.s3": "Your business",
+      "apply.send": "Send code",
+      "apply.sent": "We sent a 6-digit code to:",
+      "apply.code": "Verification code",
+      "apply.verify": "Verify",
+      "apply.resend": "Resend",
+      "apply.change": "Change email",
+      "apply.demo": "Preview: no mail server is connected yet, so the code is shown here.",
+      "apply.badCode": "That code doesn't match. Please check it.",
+      "apply.badEmail": "Enter your name and a valid email.",
+      "apply.sendFail": "Couldn't send the code. Please try again shortly.",
+      "apply.verified": "Verified",
+      "apply.next": "Next",
+      "apply.submitFail": "Couldn't submit. Please try again shortly.",
+      "apply.thanks": "Your application is in. We reply within two weeks.",
       "ch.1": "Why",
       "ch.2": "Promise",
       "ch.3": "Growth",
@@ -1646,51 +1715,97 @@ window.SITE_DATA = {
     }
   });
 
-  // Pitch form: static site, so it composes an email. Swap for Formspree/Netlify Forms/etc. to collect submissions server-side.
-  document.getElementById("pitch-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const f = Object.fromEntries(new FormData(form).entries());
-    const status = document.getElementById("form-status");
-    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email || "");
-    if (!f.name?.trim() || !emailOk || !f.company?.trim() || !f.desc?.trim()) {
-      status.textContent = t("form.error");
-      status.className = "form-status full error";
-      return;
+  // Application: 1) name + email  2) email code  3) the business. Server hooks live in SITE_DATA.apply.
+  (function initApply() {
+    const cfg = data.apply || {};
+    const preview = !cfg.sendCodeUrl;
+    const $ = (id) => document.getElementById(id);
+    const steps = { 1: $("step-1"), 2: $("step-2"), 3: $("pitch-form") };
+    const state = { name: "", email: "", code: "", token: "" };
+    const emailOk = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v || "");
+    const say = (node, key, kind) => { node.textContent = key ? t(key) : ""; node.className = "form-status full" + (kind ? " " + kind : ""); };
+    const post = async (url, body) => {
+      const r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+      if (!r.ok) throw new Error(String(r.status));
+      return r.json().catch(() => ({}));
+    };
+    function show(n) {
+      Object.entries(steps).forEach(([k, el]) => (el.hidden = Number(k) !== n));
+      document.querySelectorAll("#apply-steps li").forEach((li) => {
+        const k = Number(li.dataset.step);
+        li.classList.toggle("on", k === n);
+        li.classList.toggle("done", k < n);
+      });
+      const first = steps[n].querySelector("input, textarea");
+      if (first) first.focus({ preventScroll: true });
     }
-    if (!f.cohort?.trim() || !f.completed) {
-      status.textContent = t("form.errorV101");
-      status.className = "form-status full error";
-      return;
+    async function sendCode() {
+      if (preview) {
+        state.code = String(Math.floor(100000 + Math.random() * 900000));
+        const demo = $("ap-demo");
+        demo.textContent = t("apply.demo") + " " + state.code;
+        demo.hidden = false;
+        return;
+      }
+      await post(cfg.sendCodeUrl, { email: state.email, name: state.name, cohort: cfg.cohort });
     }
-    const subject = `[Pitch] ${f.company} (${f.stage})`;
-    const body = [
-      `Name: ${f.name}`,
-      `Email: ${f.email}`,
-      `Company: ${f.company}`,
-      `Track: ${f.track}`,
-      `Stage: ${f.stage}`,
-      `Deck: ${f.deck || "-"}`,
-      `Venture 101 cohort: ${f.cohort}`,
-      "",
-      f.desc
-    ].join("\n");
-    const full = `Subject: ${subject}\n\n${body}`;
-    const mailLink = el("a", { class: "btn btn-light", href: `mailto:${PITCH_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, text: t("form.openMail") });
-    const copyBtn = el("button", { type: "button", class: "btn btn-outline-light", text: t("form.copy") });
-    copyBtn.addEventListener("click", () => {
-      const done = () => { copyBtn.textContent = t("form.copied"); };
-      navigator.clipboard?.writeText(full).then(done, () => { pre.focus(); window.getSelection().selectAllChildren(pre); });
+    $("apply-start").addEventListener("click", () => {
+      document.getElementById("apply").classList.add("open");
+      show(1);
     });
-    const pre = el("pre", { class: "pitch-preview", tabindex: "0", text: full });
-    status.replaceChildren(
-      el("span", { text: t("form.ok") + " " }),
-      el("strong", { class: "pitch-email", text: PITCH_EMAIL }),
-      pre,
-      el("span", { class: "pitch-actions" }, [mailLink, copyBtn])
-    );
-    status.className = "form-status full ok";
-  });
+    steps[1].addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = $("ap-name").value.trim(), email = $("ap-email").value.trim();
+      if (!name || !emailOk(email)) return say($("s1-status"), "apply.badEmail", "error");
+      state.name = name; state.email = email;
+      say($("s1-status"), "");
+      try { await sendCode(); } catch (_) { return say($("s1-status"), "apply.sendFail", "error"); }
+      $("ap-email-show").textContent = email;
+      $("ap-code").value = "";
+      show(2);
+    });
+    steps[2].addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const code = $("ap-code").value.trim();
+      let ok = false;
+      if (preview) ok = code === state.code;
+      else {
+        try { const res = await post(cfg.verifyCodeUrl, { email: state.email, code }); state.token = res.token || ""; ok = true; } catch (_) { ok = false; }
+      }
+      if (!ok) return say($("s2-status"), "apply.badCode", "error");
+      say($("s2-status"), "");
+      $("ap-who").textContent = `${state.name} · ${state.email}`;
+      show(3);
+    });
+    $("ap-resend").addEventListener("click", async () => {
+      try { await sendCode(); say($("s2-status"), ""); } catch (_) { say($("s2-status"), "apply.sendFail", "error"); }
+    });
+    $("ap-change").addEventListener("click", () => { $("ap-demo").hidden = true; show(1); });
+
+    steps[3].addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const status = $("form-status");
+      const f = { company: $("ap-company").value.trim(), track: $("ap-track").value, stage: $("ap-stage").value, deck: $("ap-deck").value.trim(), desc: $("ap-desc").value.trim() };
+      if (!f.company || !f.desc) return say(status, "form.error", "error");
+      if (cfg.submitUrl) {
+        try { await post(cfg.submitUrl, { token: state.token, name: state.name, email: state.email, cohort: cfg.cohort, ...f }); }
+        catch (_) { return say(status, "apply.submitFail", "error"); }
+        return say(status, "apply.thanks", "ok");
+      }
+      // No server yet: hand the applicant a ready-made email
+      const subject = `[Beulah · First Track ${cfg.cohort || ""}] ${f.company}`;
+      const body = [`Name: ${state.name}`, `Email: ${state.email} (verified)`, `Company: ${f.company}`, `Track: ${f.track}`, `Stage: ${f.stage}`, `Deck: ${f.deck || "-"}`, "", f.desc].join("\n");
+      const full = `Subject: ${subject}\n\n${body}`;
+      const pre = el("pre", { class: "pitch-preview", tabindex: "0", text: full });
+      const mailLink = el("a", { class: "btn btn-ghost", href: `mailto:${PITCH_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, text: t("form.openMail") });
+      const copyBtn = el("button", { type: "button", class: "btn btn-ghost", text: t("form.copy") });
+      copyBtn.addEventListener("click", () => {
+        navigator.clipboard?.writeText(full).then(() => { copyBtn.textContent = t("form.copied"); }, () => { pre.focus(); window.getSelection().selectAllChildren(pre); });
+      });
+      status.replaceChildren(el("span", { text: t("form.ok") + " " }), el("strong", { class: "pitch-email", text: PITCH_EMAIL }), pre, el("span", { class: "pitch-actions" }, [mailLink, copyBtn]));
+      status.className = "form-status full ok";
+    });
+  })();
 
   document.getElementById("year").textContent = new Date().getFullYear();
   applyLang();

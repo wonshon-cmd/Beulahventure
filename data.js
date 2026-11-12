@@ -4,6 +4,12 @@
 window.SITE_DATA = {
   // Add portfolio companies here. Leave empty to show the "open slot" card only.
   // Example: { name: "Acme", sector: { ko: "제조", en: "Manufacturing" }, desc: { ko: "...", en: "..." }, url: "https://..." }
+  // Application flow. Leave the URLs empty to run in preview mode (code shown on screen).
+  // sendCodeUrl:   POST {email, name}          -> 200 when a 6-digit code was emailed
+  // verifyCodeUrl: POST {email, code}          -> 200 {token} when the code is right
+  // submitUrl:     POST {token, ...application} -> 200 when saved
+  apply: { cohort: "2027", sendCodeUrl: "", verifyCodeUrl: "", submitUrl: "" },
+
   portfolio: [],
 
   // Replace placeholders with real team members.
@@ -36,6 +42,26 @@ window.SITE_DATA = {
 
   i18n: {
     ko: {
+      "apply.badge": "FIRST TRACK · 1기",
+      "apply.when": "2027년 시작",
+      "apply.start": "신청하기",
+      "apply.s1": "이름 · 이메일",
+      "apply.s2": "이메일 인증",
+      "apply.s3": "사업 소개",
+      "apply.send": "인증 코드 보내기",
+      "apply.sent": "아래 주소로 6자리 코드를 보냈습니다.",
+      "apply.code": "인증 코드",
+      "apply.verify": "확인",
+      "apply.resend": "다시 보내기",
+      "apply.change": "이메일 바꾸기",
+      "apply.demo": "미리보기: 메일 서버가 아직 연결되지 않아 코드를 여기에 표시합니다.",
+      "apply.badCode": "코드가 맞지 않습니다. 다시 확인해 주세요.",
+      "apply.badEmail": "이름과 올바른 이메일을 입력해 주세요.",
+      "apply.sendFail": "코드를 보내지 못했습니다. 잠시 후 다시 시도해 주세요.",
+      "apply.verified": "인증됨",
+      "apply.next": "다음",
+      "apply.submitFail": "제출하지 못했습니다. 잠시 후 다시 시도해 주세요.",
+      "apply.thanks": "신청이 접수되었습니다. 2주 안에 답합니다.",
       "ch.1": "왜",
       "ch.2": "약속",
       "ch.3": "성장",
@@ -248,6 +274,26 @@ window.SITE_DATA = {
       "footer.scripture": "성경 본문: 개역개정"
     },
     en: {
+      "apply.badge": "FIRST TRACK · COHORT 1",
+      "apply.when": "Starts 2027",
+      "apply.start": "Apply",
+      "apply.s1": "Name & email",
+      "apply.s2": "Verify email",
+      "apply.s3": "Your business",
+      "apply.send": "Send code",
+      "apply.sent": "We sent a 6-digit code to:",
+      "apply.code": "Verification code",
+      "apply.verify": "Verify",
+      "apply.resend": "Resend",
+      "apply.change": "Change email",
+      "apply.demo": "Preview: no mail server is connected yet, so the code is shown here.",
+      "apply.badCode": "That code doesn't match. Please check it.",
+      "apply.badEmail": "Enter your name and a valid email.",
+      "apply.sendFail": "Couldn't send the code. Please try again shortly.",
+      "apply.verified": "Verified",
+      "apply.next": "Next",
+      "apply.submitFail": "Couldn't submit. Please try again shortly.",
+      "apply.thanks": "Your application is in. We reply within two weeks.",
       "ch.1": "Why",
       "ch.2": "Promise",
       "ch.3": "Growth",

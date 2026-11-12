@@ -293,53 +293,53 @@
       </div>
     </section>
 
-    <!-- Pitch -->
-    <section id="pitch" class="section section-dark section-pitch">
+    <!-- Pitch: apply in three steps -->
+    <section id="pitch" class="section section-pitch">
       <div class="container two-col">
         <div>
           <p class="eyebrow" data-i18n="pitch.eyebrow">PITCH US</p>
           <h2 data-i18n-html="pitch.title">당신의 사업을 <em>들려주세요.</em></h2>
-          <p class="muted-dark" data-i18n="pitch.lead">Venture 101 수료자만 제안할 수 있습니다. 모든 제안서를 직접 검토하며, 2주 이내에 회신드립니다.</p>
+          <p class="muted" data-i18n="pitch.lead">Venture 101 수료자만. 2주 안에 답합니다.</p>
+          <div class="cohort-card">
+            <p class="cohort-badge" data-i18n="apply.badge">FIRST TRACK · 1기</p>
+            <p class="cohort-when" data-i18n="apply.when">2027년 시작</p>
+            <button type="button" class="btn" id="apply-start"><span data-i18n="apply.start">신청하기</span> <span class="arrow">↗</span></button>
+          </div>
         </div>
-        <form class="pitch-form" id="pitch-form" novalidate>
-          <label><span data-i18n="form.name">이름</span>
-            <input name="name" required autocomplete="name">
-          </label>
-          <label><span data-i18n="form.email">이메일</span>
-            <input name="email" type="email" required autocomplete="email">
-          </label>
-          <label><span data-i18n="form.company">회사명</span>
-            <input name="company" required>
-          </label>
-          <label><span data-i18n="form.track">트랙</span>
-            <select name="track">
-              <option value="Market Bridge" data-i18n="form.track.t1">Market Bridge · 판로 연결</option>
-              <option value="Mission Field Ventures" data-i18n="form.track.t2">Mission Field Ventures · 선교지 공동 벤처</option>
-              <option value="Business Partnership" data-i18n="form.track.t3">Business Partnership · 사업 투자</option>
-              <option value="Idea Launch" data-i18n="form.track.t4">Idea Launch · 아이디어 창업</option>
-            </select>
-          </label>
-          <label><span data-i18n="form.stage">투자 단계</span>
-            <select name="stage">
-              <option value="Idea" data-i18n="form.stage.idea">아이디어</option>
-              <option value="Seedstrap">Seedstrap</option>
-              <option value="Bootstrap" data-i18n="form.stage.boot">Bootstrap (매출 발생)</option>
-              <option value="Growth">Growth</option>
-            </select>
-          </label>
-          <label class="full"><span data-i18n="form.deck">피치 덱 링크</span>
-            <input name="deck" type="url" placeholder="https://">
-          </label>
-          <label class="full"><span data-i18n="form.desc">회사 소개와 사명 (이 사업이 누구를 섬기나요?)</span>
-            <textarea name="desc" rows="4" required></textarea>
-          </label>
-          <label class="full"><span data-i18n="form.cohort">Venture 101 수료 기수</span>
-            <input name="cohort" required>
-          </label>
-          <label class="full check"><input type="checkbox" name="completed" required> <span data-i18n="form.completed">Venture 101 과정을 수료했습니다.</span></label>
-          <button type="submit" class="btn btn-light full"><span data-i18n="form.submit">제출하기</span> <span class="arrow">↗</span></button>
-          <p class="form-status full" id="form-status" role="status"></p>
-        </form>
+        <div class="apply" id="apply">
+          <ol class="apply-steps" id="apply-steps">
+            <li data-step="1"><span class="num">01</span><span data-i18n="apply.s1">이름 · 이메일</span></li>
+            <li data-step="2"><span class="num">02</span><span data-i18n="apply.s2">이메일 인증</span></li>
+            <li data-step="3"><span class="num">03</span><span data-i18n="apply.s3">사업 소개</span></li>
+          </ol>
+
+          <form class="apply-panel pitch-form" id="step-1" hidden novalidate>
+            <label class="full"><span data-i18n="form.name">이름</span><input id="ap-name" name="name" required autocomplete="name"></label>
+            <label class="full"><span data-i18n="form.email">이메일</span><input id="ap-email" name="email" type="email" required autocomplete="email"></label>
+            <button type="submit" class="btn full"><span data-i18n="apply.send">인증 코드 보내기</span> <span class="arrow">↗</span></button>
+            <p class="form-status full" id="s1-status" role="status"></p>
+          </form>
+
+          <form class="apply-panel pitch-form" id="step-2" hidden novalidate>
+            <p class="full apply-note"><span data-i18n="apply.sent">아래 주소로 6자리 코드를 보냈습니다.</span> <strong id="ap-email-show"></strong></p>
+            <label class="full"><span data-i18n="apply.code">인증 코드</span><input id="ap-code" name="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" required></label>
+            <p class="full apply-demo" id="ap-demo" hidden></p>
+            <button type="submit" class="btn full"><span data-i18n="apply.verify">확인</span></button>
+            <p class="full apply-links"><button type="button" class="link-btn" id="ap-resend" data-i18n="apply.resend">다시 보내기</button> · <button type="button" class="link-btn" id="ap-change" data-i18n="apply.change">이메일 바꾸기</button></p>
+            <p class="form-status full" id="s2-status" role="status"></p>
+          </form>
+
+          <form class="apply-panel pitch-form" id="pitch-form" hidden novalidate>
+            <p class="full apply-note"><span class="verified-chip" data-i18n="apply.verified">인증됨</span> <strong id="ap-who"></strong></p>
+            <label class="full"><span data-i18n="form.company">회사명</span><input id="ap-company" name="company" required></label>
+            <label><span data-i18n="form.track">트랙</span><select id="ap-track" name="track"><option value="Market Bridge" data-i18n="form.track.t1">Market Bridge · 판로 연결</option><option value="Mission Field Ventures" data-i18n="form.track.t2">Mission Field Ventures · 선교지 벤처</option><option value="Business Partnership" data-i18n="form.track.t3">Business Partnership · 사업 투자</option><option value="Idea Launch" data-i18n="form.track.t4">Idea Launch · 아이디어 창업</option></select></label>
+            <label><span data-i18n="form.stage">단계</span><select id="ap-stage" name="stage"><option value="Idea" data-i18n="form.stage.idea">아이디어</option><option value="Seedstrap">Seedstrap</option><option value="Bootstrap" data-i18n="form.stage.boot">Bootstrap (매출 발생)</option><option value="Growth">Growth</option></select></label>
+            <label class="full"><span data-i18n="form.deck">피치 덱 링크</span><input id="ap-deck" name="deck" type="url" placeholder="https://"></label>
+            <label class="full"><span data-i18n="form.desc">어떤 가치를 만들고, 누구를 섬기나요?</span><textarea id="ap-desc" name="desc" rows="5" required></textarea></label>
+            <button type="submit" class="btn full"><span data-i18n="form.submit">제출하기</span> <span class="arrow">↗</span></button>
+            <p class="form-status full" id="form-status" role="status"></p>
+          </form>
+        </div>
       </div>
     </section>
   </main>
