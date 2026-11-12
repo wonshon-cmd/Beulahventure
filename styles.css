@@ -12,6 +12,7 @@
   --faint: #bdbdbd;
   --hair: #ececec;
   --soft: #f6f6f5;
+  --water: #3b8fc4;
   --font: "Gothic A1", "Noto Sans KR", system-ui, -apple-system, sans-serif;
   --track: 0.16em;
   --gutter: max(16px, env(safe-area-inset-left, 0px));
@@ -344,3 +345,12 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .why-close { margin: 0 0 14px; max-width: 760px; font-size: clamp(1.15rem, 2vw, 1.5rem); font-weight: 200; letter-spacing: -0.03em; }
 .why-source { margin: 0; font-size: .72rem; font-weight: 800; letter-spacing: var(--track); color: var(--muted); }
 @media (max-width: 860px) { .models { grid-template-columns: 1fr; gap: 24px; } }
+
+/* Water blue: used sparingly, the same color as the river */
+.eyebrow::before { background: var(--water); }
+.section-verse { border-left-color: var(--water); }
+.gifts li::before { background: var(--water); }
+.fw-seed { fill: var(--water); }
+.why-list li::before { background: var(--water); }
+.values li::before, .values li:hover::before { background: var(--water); }
+.field-cap cite, .section-verse cite { color: var(--water); }

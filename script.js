@@ -168,6 +168,7 @@
     const ctx = canvas.getContext("2d");
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const ink = getComputedStyle(document.documentElement).getPropertyValue("--ink").trim() || "#111";
+    const water = getComputedStyle(document.documentElement).getPropertyValue("--water").trim() || "#3b8fc4";
     let w = 0, h = 0, bankY = 0, mother = null, plants = [], seeds = [], floaters = [], nextSeed = 0, visible = true, raf = 0;
     const rnd = (a, b) => a + Math.random() * (b - a);
     const clamp = (v) => Math.max(0, Math.min(1, v));
@@ -228,14 +229,18 @@
 
     function riverY(x, lane, t) { return bankY + 16 + lane * 13 + Math.sin(x * 0.018 + t / 900 + lane * 1.7) * 3.2; }
     function drawRiver(t) {
-      ctx.strokeStyle = ink;
+      // a faint wash of water under the lines
+      const grad = ctx.createLinearGradient(0, bankY, 0, bankY + 64);
+      grad.addColorStop(0, water); grad.addColorStop(1, "rgba(255,255,255,0)");
+      ctx.globalAlpha = 0.1; ctx.fillStyle = grad; ctx.fillRect(0, bankY, w, 64);
+      ctx.strokeStyle = water;
       for (let lane = 0; lane < 4; lane++) {
-        ctx.globalAlpha = 0.55 - lane * 0.12; ctx.lineWidth = 1;
+        ctx.globalAlpha = 0.85 - lane * 0.17; ctx.lineWidth = lane === 0 ? 1.4 : 1;
         ctx.beginPath();
         for (let x = 0; x <= w; x += 8) { const y = riverY(x, lane, t); x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); }
         ctx.stroke();
       }
-      ctx.globalAlpha = 1; ctx.lineWidth = 1;
+      ctx.globalAlpha = 1; ctx.lineWidth = 1; ctx.strokeStyle = ink;
       ctx.beginPath(); ctx.moveTo(0, bankY); ctx.lineTo(w, bankY); ctx.stroke();
     }
     function grain(x, y, rx, ry, rot, fill, alpha) {
@@ -379,8 +384,8 @@
         ctx.restore();
         if (glow > 0.6) { // upright four-point glint at the seed's tip
           const d = s.ry + 3, gx = s.x + Math.sin(rot) * d, gy = y - Math.cos(rot) * d, L = 2 + 4 * glow;
-          ctx.globalAlpha = glow * 0.6;
-          ctx.fillStyle = ink;
+          ctx.globalAlpha = glow * 0.85;
+          ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue("--water").trim() || "#3b8fc4";
           ctx.beginPath();
           ctx.moveTo(gx, gy - L); ctx.lineTo(gx + L * 0.16, gy - L * 0.16); ctx.lineTo(gx + L, gy);
           ctx.lineTo(gx + L * 0.16, gy + L * 0.16); ctx.lineTo(gx, gy + L); ctx.lineTo(gx - L * 0.16, gy + L * 0.16);
