@@ -354,3 +354,69 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .why-list li::before { background: var(--water); }
 .values li::before, .values li:hover::before { background: var(--water); }
 .field-cap cite, .section-verse cite { color: var(--water); }
+
+/* =========================================================
+   REDESIGN v2 — chapters with a left rail, river in the hero
+   ========================================================= */
+/* Hero: type first, river scene as its floor */
+.hero { padding-top: clamp(64px, 10vw, 140px); }
+.hero h1 { font-size: clamp(2.8rem, 7.6vw, 7.2rem); }
+.hero-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; margin-top: 36px; }
+.hero-row .hero-sub { margin: 0; }
+.hero .field-band { margin-top: clamp(40px, 6vw, 80px); }
+.hero .field-band canvas { height: clamp(300px, 34vw, 500px); }
+
+/* Chapters */
+.chapter { padding-block: clamp(88px, 11vw, 160px); border-top: 1px solid var(--hair); }
+.chapter-grid { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 56px; }
+.rail { position: sticky; top: 112px; align-self: start; display: flex; flex-direction: column; gap: 10px; }
+.rail-num { font-size: 4.2rem; font-weight: 200; letter-spacing: -0.07em; line-height: .9; }
+.rail-label { display: flex; align-items: center; gap: 8px; font-size: .78rem; font-weight: 800; letter-spacing: .16em; }
+.rail-label::before { content: ""; width: 5px; height: 11px; border-radius: 50%; background: var(--water); transform: rotate(28deg); }
+.chapter-body { min-width: 0; }
+.chapter .section-head { max-width: 760px; }
+.chapter .section-head .eyebrow { display: none; } /* the rail already names the chapter */
+.chapter .promise-head .eyebrow { display: none; }
+
+.sub-title { margin: 72px 0 28px; font-size: clamp(1.5rem, 2.8vw, 2.2rem); font-weight: 200; letter-spacing: -0.05em; }
+.sub-title em { font-style: normal; font-weight: 800; }
+.block-top { margin-top: 96px; padding-top: 64px; border-top: 1px solid var(--hair); }
+h3.block-top { padding-top: 56px; margin-bottom: 24px; }
+.block-card { margin-top: 72px; background: var(--soft); border-radius: 28px; padding: clamp(28px, 4vw, 56px); }
+.block-card .section-head { margin-bottom: 32px; }
+
+/* Denser grids inside the narrower body column */
+.chapter .values { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.chapter .gifts { margin-top: 8px; }
+.chapter .models { margin-bottom: 40px; }
+.why-answer { margin-bottom: 64px; }
+
+/* Pitch closes the page as its own chapter */
+.section-pitch { border-top: 1px solid var(--ink); }
+
+@media (max-width: 1100px) {
+  .chapter .values { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  .chapter-grid { grid-template-columns: 1fr; gap: 24px; }
+  .rail { position: static; flex-direction: row; align-items: baseline; gap: 14px; }
+  .rail-num { font-size: 2.6rem; }
+}
+@media (max-width: 640px) {
+  .chapter .values { grid-template-columns: 1fr; }
+  .hero-row { flex-direction: column; align-items: flex-start; }
+}
+
+/* The vine (replaces the flower flywheel) */
+.flywheel { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+#flywheel.vine { max-height: 760px; }
+.vn-stem { fill: none; stroke: var(--ink); stroke-width: 3.2; stroke-linecap: round; }
+.vn-branch { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linecap: round; }
+.vn-leaf { fill: var(--bg); stroke: var(--ink); stroke-width: 1.1; }
+.vn-grape { fill: var(--bg); stroke: var(--ink); stroke-width: 1.1; animation: grape 14s linear infinite; animation-delay: calc(0.9s + var(--i) * 0.95s); }
+.vn-node .vn-grape { animation-delay: calc(0.9s + var(--i, 0) * 0.95s); }
+@keyframes grape { 0% { fill: var(--ink); } 14%, 100% { fill: var(--bg); } }
+.vn-return { fill: none; stroke: var(--water); stroke-width: 1.2; stroke-dasharray: 4 6; }
+.vn-arrowhead { fill: var(--water); }
+.fw-center-text { font-size: 22px; }
+@media (prefers-reduced-motion: reduce) { .vn-grape { animation: none; } }

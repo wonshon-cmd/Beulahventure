@@ -122,14 +122,14 @@
     add("text", { x: W - right - 90, y: H - 14, class: "yc-legend" }, t("joseph.harvest"));
   }
 
-  // Flywheel = the brand mark, enlarged: seven grains around the gospel
+  // The vine: the gospel is the root and stem; seven branches bear fruit from bottom to top,
+  // and a dashed return line carries the fruit back to the root as seed.
   function renderFlywheel() {
     const svg = document.getElementById("flywheel");
     if (!svg) return;
     const NS = "http://www.w3.org/2000/svg";
-    const C = 280, R = 150, N = 7;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    svg.setAttribute("viewBox", "-80 -10 720 580");
+    svg.setAttribute("viewBox", "-40 0 600 740");
     svg.replaceChildren();
     const add = (parent, tag, attrs, text) => {
       const n = document.createElementNS(NS, tag);
@@ -138,26 +138,41 @@
       parent.appendChild(n);
       return n;
     };
-    const deg = (i) => -90 + (i * 360) / N;
-    const pt = (a, r) => [C + r * Math.cos(a * Math.PI / 180), C + r * Math.sin(a * Math.PI / 180)];
-    add(svg, "circle", { cx: C, cy: C, r: R, class: "fw-ring" });
+    const defs = add(svg, "defs", {});
+    const mk = add(defs, "marker", { id: "vine-arrow", viewBox: "0 0 10 10", refX: "8", refY: "5", markerWidth: "7", markerHeight: "7", orient: "auto-start-reverse" });
+    add(mk, "path", { d: "M0 0 L10 5 L0 10 z", class: "vn-arrowhead" });
+    const X = 250, rootY = 676, topY = 56;
+    const stem = `M${X} ${rootY} C ${X - 34} 590, ${X + 34} 520, ${X} 440 S ${X - 34} 290, ${X} 210 S ${X + 30} 96, ${X} ${topY}`;
+    const back = `M${X} ${topY} C 560 ${topY - 10}, 560 ${rootY + 40}, ${X + 46} ${rootY + 6}`;
+    add(svg, "path", { d: back, class: "vn-return", "marker-end": "url(#vine-arrow)" });
+    add(svg, "path", { d: stem, class: "vn-stem" });
+    // probe points on the stem for each branch
+    const probe = add(svg, "path", { d: stem, fill: "none", stroke: "none" });
+    const L = probe.getTotalLength();
+    for (let i = 0; i < 7; i++) {
+      const pt = probe.getPointAtLength(L * (0.13 + i * 0.125));
+      const side = i % 2 === 0 ? 1 : -1;
+      const ex = pt.x + side * 96, ey = pt.y - 34;
+      const g = add(svg, "g", { class: "vn-node", style: `--i:${i}` });
+      add(g, "path", { d: `M${pt.x} ${pt.y} Q ${pt.x + side * 46} ${pt.y - 4}, ${ex} ${ey}`, class: "vn-branch" });
+      // leaf: one grain on the branch
+      const lx = pt.x + side * 44, ly = pt.y - 18;
+      add(g, "ellipse", { cx: lx, cy: ly, rx: 7, ry: 15, transform: `rotate(${side * 58} ${lx} ${ly})`, class: "vn-leaf" });
+      // grape cluster hanging from the branch tip
+      const grapes = [[0, 0], [-9, 9], [9, 9], [-4.5, 18], [4.5, 18], [0, 27]];
+      grapes.forEach(([dx, dy]) => add(g, "circle", { cx: ex + dx, cy: ey + 10 + dy, r: 6, class: "vn-grape" }));
+      const tx = ex + side * 24, anchor = side > 0 ? "start" : "end";
+      add(g, "text", { x: tx, y: ey + 14, class: "fw-num", "text-anchor": anchor }, "0" + (i + 1));
+      add(g, "text", { x: tx, y: ey + 34, class: "fw-label", "text-anchor": anchor }, t("fw.n" + (i + 1)));
+    }
+    probe.remove();
+    // root: the gospel
+    add(svg, "ellipse", { cx: X, cy: rootY + 24, rx: 74, ry: 30, class: "fw-center" });
+    add(svg, "text", { x: X, y: rootY + 30, class: "fw-center-text", "text-anchor": "middle" }, t("fw.center"));
     if (!reduce) {
       const dot = add(svg, "circle", { r: 5, class: "fw-seed" });
-      add(dot, "animateMotion", { dur: "14s", repeatCount: "indefinite", path: `M ${C} ${C - R} A ${R} ${R} 0 1 1 ${C - 0.01} ${C - R}` });
+      add(dot, "animateMotion", { dur: "14s", repeatCount: "indefinite", path: stem + " " + back.replace(/^M[^C]+/, "") });
     }
-    for (let i = 0; i < N; i++) {
-      const a = deg(i);
-      const [x, y] = pt(a, R);
-      const g = add(svg, "g", { class: "fw-node", style: `--i:${i}` });
-      add(g, "ellipse", { cx: x, cy: y, rx: 22, ry: 48, transform: `rotate(${a + 90} ${x} ${y})` });
-      const [lx, ly] = pt(a, R + 86);
-      const anchor = Math.abs(lx - C) < 30 ? "middle" : lx > C ? "start" : "end";
-      add(g, "text", { x: lx, y: ly - 6, class: "fw-num", "text-anchor": anchor }, "0" + (i + 1));
-      add(g, "text", { x: lx, y: ly + 16, class: "fw-label", "text-anchor": anchor }, t("fw.n" + (i + 1)));
-    }
-    add(svg, "circle", { cx: C, cy: C, r: 62, class: "fw-center" });
-    add(svg, "text", { x: C, y: C + 6, class: "fw-center-text", "text-anchor": "middle" }, t("fw.center"));
-    add(svg, "text", { x: C, y: C + 28, class: "fw-center-sub", "text-anchor": "middle" }, t("fw.centerSub"));
   }
 
   // River scene: one wide tree stands in the middle by the water.
