@@ -72,23 +72,18 @@
     status.className = "form-status full";
   }
 
-  // Seven years of plenty and famine: harvest per year and storehouse level, drawn to one scale.
+  // Seven years of plenty and famine, drawn with grains. Same scale for every year.
   function renderYears() {
     const svg = document.getElementById("years-chart");
     if (!svg) return;
     const NS = "http://www.w3.org/2000/svg";
     const W = 980, H = 300, left = 40, right = 20, top = 34, base = 230;
     const cols = 14, colW = (W - left - right) / cols;
-    // Plenty: harvest 10, store 4 each year. Famine: harvest 2, draw 4 from store.
-    const harvest = [], store = [];
+    // Plenty: store 4 units a year. Famine: draw 3.6 a year. Never reaches zero.
+    const store = [];
     let level = 0;
-    for (let y = 0; y < cols; y++) {
-      const plenty = y < 7;
-      harvest.push(plenty ? 10 : 2);
-      level += plenty ? 4 : -3.6;
-      store.push(Math.max(level, 0));
-    }
-    const maxStore = 28, maxH = 10;
+    for (let y = 0; y < cols; y++) { level += y < 7 ? 4 : -3.6; store.push(Math.max(level, 0)); }
+    const maxStore = 28;
     const sy = (v) => base - (v / maxStore) * (base - top - 20);
     svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
     svg.replaceChildren();
@@ -99,47 +94,42 @@
       svg.appendChild(n);
       return n;
     };
-    // Era bands
-    add("rect", { x: left, y: top - 24, width: colW * 7, height: base - top + 24, class: "yc-plenty" });
-    add("rect", { x: left + colW * 7, y: top - 24, width: colW * 7, height: base - top + 24, class: "yc-famine" });
-    add("text", { x: left + 8, y: top - 8, class: "yc-era" }, t("joseph.plenty"));
-    add("text", { x: left + colW * 7 + 8, y: top - 8, class: "yc-era" }, t("joseph.famine"));
-    // Storehouse area
+    add("text", { x: left, y: top - 10, class: "yc-era" }, t("joseph.plenty"));
+    add("text", { x: left + colW * 7, y: top - 10, class: "yc-era" }, t("joseph.famine"));
+    add("line", { x1: left + colW * 7, y1: top - 4, x2: left + colW * 7, y2: base, class: "yc-divider" });
     let d = `M ${left} ${base}`;
     store.forEach((v, i) => { d += ` L ${left + colW * i} ${sy(v)} L ${left + colW * (i + 1)} ${sy(v)}`; });
     d += ` L ${left + colW * cols} ${base} Z`;
     add("path", { d, class: "yc-store" });
-    // Sheaves: stalk count and height follow the harvest
-    harvest.forEach((h, i) => {
-      const cx = left + colW * (i + 0.5);
-      const stalks = h >= 10 ? 5 : 2;
-      const len = (h / maxH) * 70 + 18;
-      for (let s = 0; s < stalks; s++) {
-        const off = (s - (stalks - 1) / 2) * 7;
-        const tipX = cx + off * 1.6, tipY = base - len - (h >= 10 ? 40 : 0);
-        add("line", { x1: cx + off * 0.3, y1: base, x2: tipX, y2: tipY, class: h >= 10 ? "yc-stalk" : "yc-stalk-thin" });
-        if (h >= 10) add("ellipse", { cx: tipX, cy: tipY - 7, rx: 3.2, ry: 9, transform: `rotate(${off * 2.2} ${tipX} ${tipY - 7})`, class: "yc-ear" });
-      }
-    });
-    add("line", { x1: left, y1: base, x2: W - right, y2: base, class: "yc-axis" });
     for (let i = 0; i < cols; i++) {
-      add("text", { x: left + colW * (i + 0.5), y: base + 20, class: "yc-tick", "text-anchor": "middle" }, String(i + 1));
+      const cx = left + colW * (i + 0.5);
+      const plenty = i < 7;
+      const n = plenty ? 5 : 2;
+      for (let k = 0; k < n; k++) {
+        const ang = (k - (n - 1) / 2) * (plenty ? 16 : 22);
+        const r = plenty ? 26 : 12;
+        const gx = cx + Math.sin(ang * Math.PI / 180) * r;
+        const gy = base - 16 - Math.cos(ang * Math.PI / 180) * r - (plenty ? 24 : 0);
+        add("ellipse", { cx: gx, cy: gy, rx: plenty ? 4.6 : 3.4, ry: plenty ? 12 : 8, transform: `rotate(${ang} ${gx} ${gy})`, class: plenty ? "yc-grain" : "yc-grain-thin" });
+      }
+      add("text", { x: cx, y: base + 22, class: "yc-tick", "text-anchor": "middle" }, String(i + 1));
     }
-    add("text", { x: left, y: base + 44, class: "yc-axis-label" }, t("joseph.year"));
-    // Legend
-    add("rect", { x: W - right - 250, y: H - 22, width: 14, height: 10, class: "yc-store" });
-    add("text", { x: W - right - 230, y: H - 13, class: "yc-legend" }, t("joseph.store"));
-    add("ellipse", { cx: W - right - 110, cy: H - 17, rx: 3, ry: 7, class: "yc-ear" });
-    add("text", { x: W - right - 100, y: H - 13, class: "yc-legend" }, t("joseph.harvest"));
+    add("line", { x1: left, y1: base, x2: W - right, y2: base, class: "yc-axis" });
+    add("text", { x: left, y: base + 46, class: "yc-axis-label" }, t("joseph.year"));
+    add("rect", { x: W - right - 230, y: H - 23, width: 14, height: 10, class: "yc-store" });
+    add("text", { x: W - right - 210, y: H - 14, class: "yc-legend" }, t("joseph.store"));
+    add("ellipse", { cx: W - right - 100, cy: H - 18, rx: 3.2, ry: 7, class: "yc-grain" });
+    add("text", { x: W - right - 90, y: H - 14, class: "yc-legend" }, t("joseph.harvest"));
   }
 
-  // Flywheel: gospel at the center, seven steps turning clockwise
+  // Flywheel = the brand mark, enlarged: seven grains around the gospel
   function renderFlywheel() {
     const svg = document.getElementById("flywheel");
     if (!svg) return;
     const NS = "http://www.w3.org/2000/svg";
-    const C = 280, R = 205, NR = 50, N = 7;
+    const C = 280, R = 150, N = 7;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    svg.setAttribute("viewBox", "-80 -10 720 580");
     svg.replaceChildren();
     const add = (parent, tag, attrs, text) => {
       const n = document.createElementNS(NS, tag);
@@ -148,109 +138,80 @@
       parent.appendChild(n);
       return n;
     };
-    const defs = add(svg, "defs", {});
-    const marker = add(defs, "marker", { id: "fw-arrow", viewBox: "0 0 10 10", refX: "8", refY: "5", markerWidth: "7", markerHeight: "7", orient: "auto-start-reverse" });
-    add(marker, "path", { d: "M0 0 L10 5 L0 10 z", class: "fw-arrowhead" });
-    const ang = (i) => -Math.PI / 2 + (i * 2 * Math.PI) / N;
-    const pt = (a, r = R) => [C + r * Math.cos(a), C + r * Math.sin(a)];
-    // Ring guide
+    const deg = (i) => -90 + (i * 360) / N;
+    const pt = (a, r) => [C + r * Math.cos(a * Math.PI / 180), C + r * Math.sin(a * Math.PI / 180)];
     add(svg, "circle", { cx: C, cy: C, r: R, class: "fw-ring" });
-    // Arrows between nodes, along the ring
-    const gap = (NR + 10) / R;
-    for (let i = 0; i < N; i++) {
-      const [x1, y1] = pt(ang(i) + gap), [x2, y2] = pt(ang(i + 1) - gap);
-      add(svg, "path", { d: `M ${x1} ${y1} A ${R} ${R} 0 0 1 ${x2} ${y2}`, class: "fw-arc", "marker-end": "url(#fw-arrow)" });
-    }
-    // Spokes to the center: everything rests on the gospel
-    for (let i = 0; i < N; i++) {
-      const [x1, y1] = pt(ang(i), 92), [x2, y2] = pt(ang(i), R - NR - 4);
-      add(svg, "line", { x1, y1, x2, y2, class: "fw-spoke" });
-    }
-    // Moving seed travelling the ring
     if (!reduce) {
-      const dot = add(svg, "circle", { r: 7, class: "fw-seed" });
-      const motion = add(dot, "animateMotion", { dur: "14s", repeatCount: "indefinite", path: `M ${C} ${C - R} A ${R} ${R} 0 1 1 ${C - 0.01} ${C - R}` });
-      motion.setAttribute("rotate", "auto");
+      const dot = add(svg, "circle", { r: 5, class: "fw-seed" });
+      add(dot, "animateMotion", { dur: "14s", repeatCount: "indefinite", path: `M ${C} ${C - R} A ${R} ${R} 0 1 1 ${C - 0.01} ${C - R}` });
     }
-    // Center
-    add(svg, "circle", { cx: C, cy: C, r: 84, class: "fw-center" });
-    add(svg, "text", { x: C, y: C + 4, class: "fw-center-text", "text-anchor": "middle" }, t("fw.center"));
-    add(svg, "text", { x: C, y: C + 30, class: "fw-center-sub", "text-anchor": "middle" }, t("fw.centerSub"));
-    // Nodes
     for (let i = 0; i < N; i++) {
-      const [x, y] = pt(ang(i));
+      const a = deg(i);
+      const [x, y] = pt(a, R);
       const g = add(svg, "g", { class: "fw-node", style: `--i:${i}` });
-      add(g, "circle", { cx: x, cy: y, r: NR });
-      add(g, "text", { x, y: y - 14, class: "fw-num", "text-anchor": "middle" }, "0" + (i + 1));
-      const words = t("fw.n" + (i + 1)).split(" ");
-      const lines = words.length > 2 ? [words.slice(0, -1).join(" "), words.at(-1)] : (words.length === 2 && words.join(" ").length > 8 ? words : [words.join(" ")]);
-      lines.forEach((line, k) => add(g, "text", { x, y: y + 8 + k * 17 - (lines.length - 1) * 6, class: "fw-label", "text-anchor": "middle" }, line));
+      add(g, "ellipse", { cx: x, cy: y, rx: 22, ry: 48, transform: `rotate(${a + 90} ${x} ${y})` });
+      const [lx, ly] = pt(a, R + 86);
+      const anchor = Math.abs(lx - C) < 30 ? "middle" : lx > C ? "start" : "end";
+      add(g, "text", { x: lx, y: ly - 6, class: "fw-num", "text-anchor": anchor }, "0" + (i + 1));
+      add(g, "text", { x: lx, y: ly + 16, class: "fw-label", "text-anchor": anchor }, t("fw.n" + (i + 1)));
     }
+    add(svg, "circle", { cx: C, cy: C, r: 62, class: "fw-center" });
+    add(svg, "text", { x: C, y: C + 6, class: "fw-center-text", "text-anchor": "middle" }, t("fw.center"));
+    add(svg, "text", { x: C, y: C + 28, class: "fw-center-sub", "text-anchor": "middle" }, t("fw.centerSub"));
   }
 
-  // Wheat field band
+  // Storehouse band: rows of grains that fill, one by one, as the band enters view
   function initField() {
     const canvas = document.getElementById("field-canvas");
     if (!canvas || !canvas.getContext) return;
     const ctx = canvas.getContext("2d");
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let stalks = [], w = 0, h = 0, raf = 0;
-    const css = getComputedStyle(document.documentElement);
-    const ink = css.getPropertyValue("--ink").trim() || "#0f1a2e";
-    const grain = css.getPropertyValue("--grain").trim() || "#a87b2f";
-    let seed = 7;
-    const rand = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const ink = getComputedStyle(document.documentElement).getPropertyValue("--ink").trim() || "#111";
+    let w = 0, h = 0, grains = [], progress = reduce ? 1 : 0, started = reduce, startTime = 0;
     function setup() {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       w = canvas.clientWidth; h = canvas.clientHeight;
       canvas.width = w * dpr; canvas.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      seed = 7;
-      const n = Math.round(w / 9);
-      stalks = Array.from({ length: n }, (_, i) => ({
-        x: (i + rand()) * (w / n),
-        len: h * (0.45 + rand() * 0.5),
-        lean: (rand() - 0.5) * 0.25,
-        phase: rand() * Math.PI * 2,
-        gold: rand() < 0.22,
-        alpha: 0.35 + rand() * 0.65
-      }));
+      const gx = 26, gy = 38;
+      const cols = Math.floor(w / gx), rows = Math.floor(h / gy);
+      const ox = (w - (cols - 1) * gx) / 2, oy = (h - (rows - 1) * gy) / 2;
+      grains = [];
+      for (let c = 0; c < cols; c++) for (let r = 0; r < rows; r++) {
+        grains.push({ x: ox + c * gx, y: oy + r * gy, tilt: ((c * 7 + r * 3) % 5 - 2) * 6, order: c + r * 0.6 + ((c * 13 + r * 7) % 9) * 0.35 });
+      }
+      const max = Math.max(...grains.map((g) => g.order));
+      grains.forEach((g) => (g.order /= max));
     }
-    function draw(time) {
+    function draw() {
       ctx.clearRect(0, 0, w, h);
-      stalks.forEach((s) => {
-        const sway = reduce ? 0 : Math.sin(time / 1800 + s.phase) * 0.04;
-        const bend = s.lean + sway;
-        const tipX = s.x + bend * s.len, tipY = h - s.len;
-        ctx.globalAlpha = s.gold && !reduce ? Math.min(1, s.alpha * (0.75 + 0.35 * Math.sin(time / 600 + s.phase * 3))) : s.alpha;
-        ctx.strokeStyle = s.gold ? grain : ink;
-        ctx.fillStyle = s.gold ? grain : ink;
-        ctx.lineWidth = 1;
+      grains.forEach((g) => {
+        const filled = g.order <= progress;
+        ctx.save();
+        ctx.translate(g.x, g.y);
+        ctx.rotate((g.tilt * Math.PI) / 180);
         ctx.beginPath();
-        ctx.moveTo(s.x, h);
-        ctx.quadraticCurveTo(s.x + bend * s.len * 0.2, h - s.len * 0.6, tipX, tipY);
-        ctx.stroke();
-        // Ear: kernels along the top of the stalk
-        const angle = Math.atan2(tipY - (h - s.len * 0.6), tipX - (s.x + bend * s.len * 0.2));
-        for (let k = 0; k < 7; k++) {
-          const tt = k * 4.2;
-          const kx = tipX - Math.cos(angle) * tt, ky = tipY - Math.sin(angle) * tt;
-          for (const side of [-1, 1]) {
-            ctx.beginPath();
-            ctx.ellipse(kx + side * 2.2, ky, 1.6, 3.6, angle + Math.PI / 2 + side * 0.5, 0, Math.PI * 2);
-            ctx.fill();
-          }
-        }
-        ctx.beginPath();
-        ctx.moveTo(tipX, tipY);
-        ctx.lineTo(tipX + Math.cos(angle) * 14, tipY + Math.sin(angle) * 14);
-        ctx.stroke();
+        ctx.ellipse(0, 0, 3.2, 8, 0, 0, Math.PI * 2);
+        if (filled) { ctx.fillStyle = ink; ctx.globalAlpha = 1; ctx.fill(); }
+        else { ctx.strokeStyle = ink; ctx.globalAlpha = 0.18; ctx.lineWidth = 1; ctx.stroke(); }
+        ctx.restore();
       });
       ctx.globalAlpha = 1;
-      if (!reduce) raf = requestAnimationFrame(draw);
     }
-    setup(); draw(0);
-    window.addEventListener("resize", () => { cancelAnimationFrame(raf); setup(); draw(performance.now()); });
+    function frame(now) {
+      if (!startTime) startTime = now;
+      progress = Math.min(1, (now - startTime) / 4200);
+      draw();
+      if (progress < 1) requestAnimationFrame(frame);
+    }
+    setup(); draw();
+    if (!reduce && "IntersectionObserver" in window) {
+      const io = new IntersectionObserver((es) => {
+        if (es.some((e) => e.isIntersecting) && !started) { started = true; requestAnimationFrame(frame); io.disconnect(); }
+      }, { threshold: 0.3 });
+      io.observe(canvas);
+    } else { progress = 1; draw(); }
+    window.addEventListener("resize", () => { setup(); draw(); });
   }
   initField();
 
@@ -296,7 +257,6 @@
     setup(); frame(0);
     window.addEventListener("resize", setup);
   }
-  initSparkles();
 
   // Reveal on scroll. Content is visible by default; the animation only plays as it enters view.
   if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
