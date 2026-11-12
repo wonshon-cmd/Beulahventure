@@ -328,48 +328,65 @@
   }
   initField();
 
-  // Hero sparkles: gold motes drifting up like grain dust in light
+  // Hero: rice seeds scattered across the opening screen, each one glinting now and then
   function initSparkles() {
     const canvas = document.getElementById("sparkle-canvas");
     if (!canvas || !canvas.getContext) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const ctx = canvas.getContext("2d");
-    const gold = getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#5f7d6b";
-    let w = 0, h = 0, motes = [];
+    const ink = getComputedStyle(document.documentElement).getPropertyValue("--ink").trim() || "#111";
+    let w = 0, h = 0, seeds = [], visible = true;
+    const rnd = (a, b) => a + Math.random() * (b - a);
     function setup() {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       w = canvas.clientWidth; h = canvas.clientHeight;
       canvas.width = w * dpr; canvas.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const n = Math.round((w * h) / 14000);
-      motes = Array.from({ length: n }, () => ({
-        x: Math.random() * w, y: Math.random() * h,
-        r: 0.6 + Math.random() * 1.8, v: 0.08 + Math.random() * 0.25,
-        p: Math.random() * Math.PI * 2, star: false
-      }));
+      const n = Math.round((w * h) / 15000);
+      seeds = Array.from({ length: n }, () => {
+        const right = Math.random() < 0.7;
+        const rx = rnd(1.5, 3.1);
+        return { x: right ? rnd(w * 0.42, w) : rnd(0, w), y: rnd(0, h), rx, ry: rx * 2.4, rot: rnd(0, Math.PI), phase: rnd(0, 20), period: rnd(2600, 5200), bob: rnd(2, 6) };
+      });
     }
-    function star(x, y, r, a) {
-      ctx.globalAlpha = a;
-      ctx.beginPath();
-      ctx.moveTo(x, y - r * 4); ctx.lineTo(x + r * 0.7, y - r * 0.7); ctx.lineTo(x + r * 4, y);
-      ctx.lineTo(x + r * 0.7, y + r * 0.7); ctx.lineTo(x, y + r * 4); ctx.lineTo(x - r * 0.7, y + r * 0.7);
-      ctx.lineTo(x - r * 4, y); ctx.lineTo(x - r * 0.7, y - r * 0.7); ctx.closePath(); ctx.fill();
-    }
-    function frame(time) {
+    function frame(t) {
       ctx.clearRect(0, 0, w, h);
-      ctx.fillStyle = gold;
-      motes.forEach((m) => {
-        if (!reduce) { m.y -= m.v; m.x += Math.sin(time / 2000 + m.p) * 0.15; if (m.y < -10) { m.y = h + 10; m.x = Math.random() * w; } }
-        const a = 0.25 + 0.6 * Math.abs(Math.sin(time / 900 + m.p));
-        if (m.star) star(m.x, m.y, m.r, a);
-        else { ctx.globalAlpha = a * 0.8; ctx.beginPath(); ctx.arc(m.x, m.y, m.r, 0, Math.PI * 2); ctx.fill(); }
+      seeds.forEach((s) => {
+        const wave = Math.sin(t / s.period * Math.PI * 2 + s.phase);
+        const glow = reduce ? 0 : Math.pow(Math.max(0, wave), 6);
+        const y = s.y + (reduce ? 0 : Math.sin(t / 3000 + s.phase) * s.bob);
+        const rot = s.rot + (reduce ? 0 : Math.sin(t / 4000 + s.phase) * 0.2);
+        ctx.save();
+        ctx.translate(s.x, y);
+        ctx.rotate(rot);
+        ctx.globalAlpha = 0.1 + 0.75 * glow;
+        ctx.fillStyle = ink;
+        ctx.beginPath(); ctx.ellipse(0, 0, s.rx, s.ry, 0, 0, Math.PI * 2); ctx.fill();
+        ctx.restore();
+        if (glow > 0.35) { // upright four-point glint at the seed's tip
+          const d = s.ry + 3, gx = s.x + Math.sin(rot) * d, gy = y - Math.cos(rot) * d, L = 3 + 7 * glow;
+          ctx.globalAlpha = glow;
+          ctx.fillStyle = ink;
+          ctx.beginPath();
+          ctx.moveTo(gx, gy - L); ctx.lineTo(gx + L * 0.16, gy - L * 0.16); ctx.lineTo(gx + L, gy);
+          ctx.lineTo(gx + L * 0.16, gy + L * 0.16); ctx.lineTo(gx, gy + L); ctx.lineTo(gx - L * 0.16, gy + L * 0.16);
+          ctx.lineTo(gx - L, gy); ctx.lineTo(gx - L * 0.16, gy - L * 0.16); ctx.closePath(); ctx.fill();
+        }
       });
       ctx.globalAlpha = 1;
-      if (!reduce) requestAnimationFrame(frame);
+      if (!reduce && visible) requestAnimationFrame(frame);
     }
-    setup(); frame(0);
-    window.addEventListener("resize", setup);
+    setup(); frame(performance.now());
+    if (!reduce && "IntersectionObserver" in window) {
+      new IntersectionObserver((es) => {
+        const v = es.some((e) => e.isIntersecting);
+        if (v && !visible) { visible = true; requestAnimationFrame(frame); }
+        visible = v;
+      }).observe(canvas);
+    }
+    window.addEventListener("resize", () => { setup(); if (reduce) frame(0); });
   }
+  initSparkles();
 
   // Reveal on scroll. Content is visible by default; the animation only plays as it enters view.
   if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
