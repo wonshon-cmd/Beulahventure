@@ -260,7 +260,7 @@
     if (!canvas || !canvas.getContext) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const ctx = canvas.getContext("2d");
-    const gold = getComputedStyle(document.documentElement).getPropertyValue("--gold").trim() || "#c9993a";
+    const gold = getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#5f7d6b";
     let w = 0, h = 0, motes = [];
     function setup() {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -271,7 +271,7 @@
       motes = Array.from({ length: n }, () => ({
         x: Math.random() * w, y: Math.random() * h,
         r: 0.6 + Math.random() * 1.8, v: 0.08 + Math.random() * 0.25,
-        p: Math.random() * Math.PI * 2, star: Math.random() < 0.12
+        p: Math.random() * Math.PI * 2, star: false
       }));
     }
     function star(x, y, r, a) {
