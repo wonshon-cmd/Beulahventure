@@ -5,6 +5,9 @@
   --muted: #5a6273;
   --line: #0f1a2e;
   --line-soft: #d9d7d1;
+  --grain: #a87b2f;
+  --grain-soft: #ead9b6;
+  --grain-on-ink: #d9b26a;
   --on-ink: #f6f5f2;
   --on-ink-muted: #a9b0bf;
   --font: "Plus Jakarta Sans", "Noto Sans KR", system-ui, -apple-system, sans-serif;
@@ -305,3 +308,100 @@ html[lang="ko"] .track-meta dt,
 html[lang="ko"] .facts dt,
 html[lang="ko"] .member .role,
 html[lang="ko"] .pitch-form label { letter-spacing: .02em; }
+
+
+/* ---------- Field band (wheat illustration) ---------- */
+.field-band { margin: 0; position: relative; border-top: 1px solid var(--line); }
+.field-band canvas { display: block; width: 100%; height: clamp(180px, 22vw, 300px); }
+.field-cap {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 24px; flex-wrap: wrap;
+  padding-block: 20px 28px; border-top: 1px solid var(--line-soft);
+}
+.field-quote { font-size: clamp(1rem, 1.6vw, 1.25rem); font-weight: 500; max-width: 60ch; }
+.field-cap cite, .scripture cite {
+  font-style: normal; font-size: .78rem; font-weight: 600; letter-spacing: var(--track);
+  text-transform: uppercase; color: var(--grain);
+}
+
+/* ---------- Seven years chart ---------- */
+.years { margin: 0 0 88px; }
+.years-scroll { overflow-x: auto; }
+#years-chart { display: block; width: 100%; min-width: 640px; height: auto; }
+.yc-plenty { fill: var(--grain-soft); opacity: .45; }
+.yc-famine { fill: var(--line-soft); opacity: .35; }
+.yc-store { fill: var(--ink); opacity: .14; }
+.yc-stalk { stroke: var(--grain); stroke-width: 1.6; }
+.yc-stalk-thin { stroke: var(--muted); stroke-width: 1.2; opacity: .6; }
+.yc-ear { fill: var(--grain); }
+.yc-axis { stroke: var(--ink); stroke-width: 1; }
+.yc-tick, .yc-axis-label, .yc-legend { fill: var(--muted); font-size: 12px; font-family: var(--font); }
+.yc-era { fill: var(--ink); font-size: 13px; font-weight: 700; letter-spacing: .08em; font-family: var(--font); }
+.years-cap { margin-top: 16px; color: var(--muted); max-width: 70ch; font-size: .95rem; }
+
+/* ---------- Joseph timeline ---------- */
+.joseph-timeline { list-style: none; padding: 0; margin: 0; position: relative; }
+.jt-item {
+  display: grid; grid-template-columns: 72px minmax(0, 1.35fr) minmax(0, 1fr); gap: 40px;
+  padding: 40px 0; border-top: 1px solid var(--line);
+}
+.jt-marker .num {
+  display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%;
+  border: 1px solid var(--grain); color: var(--grain); letter-spacing: .05em;
+}
+.jt-story h3 { font-size: 1.5rem; letter-spacing: -0.02em; margin: 8px 0 16px; }
+.scripture { margin: 0; padding-left: 20px; border-left: 2px solid var(--grain); }
+.scripture p { margin: 0 0 10px; font-size: 1.02rem; line-height: 1.8; }
+.jt-apply { background: var(--bg); border: 1px solid var(--line-soft); border-radius: 4px; padding: 24px; align-self: start; }
+.apply-label { margin: 0 0 8px; font-size: .72rem; font-weight: 700; letter-spacing: var(--track); color: var(--grain); }
+.jt-apply h4 { margin: 0 0 8px; font-size: 1.15rem; letter-spacing: -0.01em; }
+.jt-apply p:last-child { margin: 0; color: var(--muted); }
+.translation-note { margin: 24px 0 0; font-size: .8rem; color: var(--muted); }
+
+/* ---------- Ethos ---------- */
+.section-ethos { background: var(--bg); }
+.ethos { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 64px; }
+.ethos li { display: flex; gap: 20px; align-items: baseline; padding: 28px 0; border-top: 1px solid var(--line); }
+.ethos p { margin: 0; font-size: clamp(1.25rem, 2.3vw, 1.85rem); font-weight: 600; line-height: 1.35; letter-spacing: -0.02em; text-wrap: balance; }
+.ethos-mark { flex: none; width: 10px; height: 18px; border-radius: 50%; background: var(--grain); transform: rotate(18deg); }
+
+/* ---------- Structure flow ---------- */
+.flow {
+  list-style: none; padding: 0; margin: 0;
+  display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0;
+  counter-reset: none;
+}
+.flow-node { position: relative; padding: 24px 28px 24px 0; border-top: 2px solid var(--ink); }
+.flow-node:not(:last-child)::after {
+  content: "→"; position: absolute; right: 6px; top: 18px; font-size: 1.2rem; color: var(--grain);
+}
+.flow-node h3 { margin: 12px 0 6px; font-size: 1.1rem; }
+.flow-node p { margin: 0; color: var(--muted); font-size: .9rem; }
+.flow-node-key { background: var(--ink); color: var(--on-ink); padding-left: 16px; border-top-color: var(--ink); }
+.flow-node-key p { color: var(--on-ink-muted); }
+.flow-node-key::after { color: var(--grain-on-ink) !important; }
+.flow-return { display: flex; align-items: center; gap: 16px; margin: 28px 0 0; font-weight: 600; }
+.flow-return-line {
+  flex: 1; height: 18px; border: 1.5px dashed var(--grain); border-top: 0; border-radius: 0 0 12px 12px;
+  max-width: 100%; position: relative;
+}
+.flow-return-line::before { content: "↑"; position: absolute; left: -7px; top: -14px; color: var(--grain); font-size: 1rem; }
+
+@media (max-width: 1024px) {
+  .flow { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 24px; }
+  .jt-item { grid-template-columns: 56px minmax(0, 1fr); }
+  .jt-apply { grid-column: 2; }
+}
+@media (max-width: 640px) {
+  .flow { grid-template-columns: 1fr; }
+  .flow-node::after { content: "↓" !important; right: 0; }
+  .flow-node:last-child::after { content: "" !important; }
+  .flow-return { flex-direction: column-reverse; align-items: flex-start; }
+  .flow-return-line { width: 100%; flex: none; }
+  .ethos { grid-template-columns: 1fr; }
+  .jt-item { grid-template-columns: 1fr; gap: 16px; padding: 28px 0; }
+  .jt-apply { grid-column: auto; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+.flow-node + .flow-node { padding-left: 16px; }
+@media (max-width: 1024px) { .flow-node:nth-child(3n+1) { padding-left: 0; } .flow-node-key { padding-left: 16px !important; } }
+@media (max-width: 640px) { .flow-node + .flow-node { padding-left: 0; } }

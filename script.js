@@ -61,10 +61,138 @@
     document.querySelector(".lang-toggle").textContent = lang === "ko" ? "EN" : "한국어";
     renderPortfolio();
     renderTeam();
+    renderYears();
     const status = document.getElementById("form-status");
     status.textContent = "";
     status.className = "form-status full";
   }
+
+  // Seven years of plenty and famine: harvest per year and storehouse level, drawn to one scale.
+  function renderYears() {
+    const svg = document.getElementById("years-chart");
+    if (!svg) return;
+    const NS = "http://www.w3.org/2000/svg";
+    const W = 980, H = 300, left = 40, right = 20, top = 34, base = 230;
+    const cols = 14, colW = (W - left - right) / cols;
+    // Plenty: harvest 10, store 4 each year. Famine: harvest 2, draw 4 from store.
+    const harvest = [], store = [];
+    let level = 0;
+    for (let y = 0; y < cols; y++) {
+      const plenty = y < 7;
+      harvest.push(plenty ? 10 : 2);
+      level += plenty ? 4 : -3.6;
+      store.push(Math.max(level, 0));
+    }
+    const maxStore = 28, maxH = 10;
+    const sy = (v) => base - (v / maxStore) * (base - top - 20);
+    svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+    svg.replaceChildren();
+    const add = (tag, attrs, text) => {
+      const n = document.createElementNS(NS, tag);
+      Object.entries(attrs).forEach(([k, v]) => n.setAttribute(k, v));
+      if (text != null) n.textContent = text;
+      svg.appendChild(n);
+      return n;
+    };
+    // Era bands
+    add("rect", { x: left, y: top - 24, width: colW * 7, height: base - top + 24, class: "yc-plenty" });
+    add("rect", { x: left + colW * 7, y: top - 24, width: colW * 7, height: base - top + 24, class: "yc-famine" });
+    add("text", { x: left + 8, y: top - 8, class: "yc-era" }, t("joseph.plenty"));
+    add("text", { x: left + colW * 7 + 8, y: top - 8, class: "yc-era" }, t("joseph.famine"));
+    // Storehouse area
+    let d = `M ${left} ${base}`;
+    store.forEach((v, i) => { d += ` L ${left + colW * i} ${sy(v)} L ${left + colW * (i + 1)} ${sy(v)}`; });
+    d += ` L ${left + colW * cols} ${base} Z`;
+    add("path", { d, class: "yc-store" });
+    // Sheaves: stalk count and height follow the harvest
+    harvest.forEach((h, i) => {
+      const cx = left + colW * (i + 0.5);
+      const stalks = h >= 10 ? 5 : 2;
+      const len = (h / maxH) * 70 + 18;
+      for (let s = 0; s < stalks; s++) {
+        const off = (s - (stalks - 1) / 2) * 7;
+        const tipX = cx + off * 1.6, tipY = base - len - (h >= 10 ? 40 : 0);
+        add("line", { x1: cx + off * 0.3, y1: base, x2: tipX, y2: tipY, class: h >= 10 ? "yc-stalk" : "yc-stalk-thin" });
+        if (h >= 10) add("ellipse", { cx: tipX, cy: tipY - 7, rx: 3.2, ry: 9, transform: `rotate(${off * 2.2} ${tipX} ${tipY - 7})`, class: "yc-ear" });
+      }
+    });
+    add("line", { x1: left, y1: base, x2: W - right, y2: base, class: "yc-axis" });
+    for (let i = 0; i < cols; i++) {
+      add("text", { x: left + colW * (i + 0.5), y: base + 20, class: "yc-tick", "text-anchor": "middle" }, String(i + 1));
+    }
+    add("text", { x: left, y: base + 44, class: "yc-axis-label" }, t("joseph.year"));
+    // Legend
+    add("rect", { x: W - right - 250, y: H - 22, width: 14, height: 10, class: "yc-store" });
+    add("text", { x: W - right - 230, y: H - 13, class: "yc-legend" }, t("joseph.store"));
+    add("ellipse", { cx: W - right - 110, cy: H - 17, rx: 3, ry: 7, class: "yc-ear" });
+    add("text", { x: W - right - 100, y: H - 13, class: "yc-legend" }, t("joseph.harvest"));
+  }
+
+  // Wheat field band
+  function initField() {
+    const canvas = document.getElementById("field-canvas");
+    if (!canvas || !canvas.getContext) return;
+    const ctx = canvas.getContext("2d");
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let stalks = [], w = 0, h = 0, raf = 0;
+    const css = getComputedStyle(document.documentElement);
+    const ink = css.getPropertyValue("--ink").trim() || "#0f1a2e";
+    const grain = css.getPropertyValue("--grain").trim() || "#a87b2f";
+    let seed = 7;
+    const rand = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    function setup() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.clientWidth; h = canvas.clientHeight;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      seed = 7;
+      const n = Math.round(w / 9);
+      stalks = Array.from({ length: n }, (_, i) => ({
+        x: (i + rand()) * (w / n),
+        len: h * (0.45 + rand() * 0.5),
+        lean: (rand() - 0.5) * 0.25,
+        phase: rand() * Math.PI * 2,
+        gold: rand() < 0.22,
+        alpha: 0.35 + rand() * 0.65
+      }));
+    }
+    function draw(time) {
+      ctx.clearRect(0, 0, w, h);
+      stalks.forEach((s) => {
+        const sway = reduce ? 0 : Math.sin(time / 1800 + s.phase) * 0.04;
+        const bend = s.lean + sway;
+        const tipX = s.x + bend * s.len, tipY = h - s.len;
+        ctx.globalAlpha = s.alpha;
+        ctx.strokeStyle = s.gold ? grain : ink;
+        ctx.fillStyle = s.gold ? grain : ink;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(s.x, h);
+        ctx.quadraticCurveTo(s.x + bend * s.len * 0.2, h - s.len * 0.6, tipX, tipY);
+        ctx.stroke();
+        // Ear: kernels along the top of the stalk
+        const angle = Math.atan2(tipY - (h - s.len * 0.6), tipX - (s.x + bend * s.len * 0.2));
+        for (let k = 0; k < 7; k++) {
+          const tt = k * 4.2;
+          const kx = tipX - Math.cos(angle) * tt, ky = tipY - Math.sin(angle) * tt;
+          for (const side of [-1, 1]) {
+            ctx.beginPath();
+            ctx.ellipse(kx + side * 2.2, ky, 1.6, 3.6, angle + Math.PI / 2 + side * 0.5, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+        ctx.beginPath();
+        ctx.moveTo(tipX, tipY);
+        ctx.lineTo(tipX + Math.cos(angle) * 14, tipY + Math.sin(angle) * 14);
+        ctx.stroke();
+      });
+      ctx.globalAlpha = 1;
+      if (!reduce) raf = requestAnimationFrame(draw);
+    }
+    setup(); draw(0);
+    window.addEventListener("resize", () => { cancelAnimationFrame(raf); setup(); draw(performance.now()); });
+  }
+  initField();
 
   document.querySelector(".lang-toggle").addEventListener("click", () => {
     lang = lang === "ko" ? "en" : "ko";

@@ -64,6 +64,15 @@
       </div>
     </section>
 
+    <!-- Field band -->
+    <figure class="field-band" aria-labelledby="field-cap">
+      <canvas id="field-canvas" aria-hidden="true"></canvas>
+      <figcaption id="field-cap" class="container field-cap">
+        <span class="field-quote" data-i18n="field.quote"></span>
+        <cite data-i18n="field.ref"></cite>
+      </figcaption>
+    </figure>
+
     <!-- Philosophy -->
     <section id="philosophy" class="section">
       <div class="container">
@@ -74,7 +83,6 @@
         <div class="two-col">
           <div>
             <p class="large" data-i18n="philosophy.p1">요셉은 풍년의 일곱 해 동안 곡식을 창고에 모아 흉년의 일곱 해를 대비했고, 그 준비로 애굽과 이웃 나라, 그리고 훗날 자기 가족까지 살렸습니다.</p>
-            <p class="verse"><span data-i18n="philosophy.verse">“당신들은 나를 해하려 하였으나 하나님은 그것을 선으로 바꾸사 … 많은 백성의 생명을 구원하게 하시려 하셨나니”</span> <cite data-i18n="philosophy.verseRef">창세기 50:20</cite></p>
           </div>
           <div>
             <p data-i18n="philosophy.p2">Beulah Venture Capital은 그 청지기 정신으로 투자합니다. 자본은 우리의 것이 아니라 맡겨진 것이며, 그 열매는 창업자, 직원, 고객, 투자자, 지역사회 등 관련된 모든 이에게 돌아가야 한다고 믿습니다.</p>
@@ -102,6 +110,114 @@
       </div>
     </section>
 
+    <!-- Joseph's Storehouse -->
+    <section id="joseph" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow" data-i18n="joseph.eyebrow"></p>
+          <h2 data-i18n="joseph.title"></h2>
+          <p class="muted" data-i18n="joseph.lead"></p>
+        </div>
+        <figure class="years">
+          <div class="years-scroll"><svg id="years-chart" role="img" aria-labelledby="years-cap"></svg></div>
+          <figcaption id="years-cap" class="years-cap" data-i18n="joseph.chartCap"></figcaption>
+        </figure>
+        <ol class="joseph-timeline">
+          <li class="jt-item">
+            <div class="jt-marker"><span class="num">01</span></div>
+            <div class="jt-story">
+              <h3 data-i18n="joseph.j1.t"></h3>
+              <blockquote class="scripture"><p data-i18n="joseph.j1.v"></p><cite><span data-i18n="joseph.book"></span> 41:35–36</cite></blockquote>
+            </div>
+            <div class="jt-apply">
+              <p class="apply-label" data-i18n="joseph.apply"></p>
+              <h4 data-i18n="joseph.j1.a.t"></h4>
+              <p data-i18n="joseph.j1.a.d"></p>
+            </div>
+          </li>
+          <li class="jt-item">
+            <div class="jt-marker"><span class="num">02</span></div>
+            <div class="jt-story">
+              <h3 data-i18n="joseph.j2.t"></h3>
+              <blockquote class="scripture"><p data-i18n="joseph.j2.v"></p><cite><span data-i18n="joseph.book"></span> 41:49</cite></blockquote>
+            </div>
+            <div class="jt-apply">
+              <p class="apply-label" data-i18n="joseph.apply"></p>
+              <h4 data-i18n="joseph.j2.a.t"></h4>
+              <p data-i18n="joseph.j2.a.d"></p>
+            </div>
+          </li>
+          <li class="jt-item">
+            <div class="jt-marker"><span class="num">03</span></div>
+            <div class="jt-story">
+              <h3 data-i18n="joseph.j3.t"></h3>
+              <blockquote class="scripture"><p data-i18n="joseph.j3.v"></p><cite><span data-i18n="joseph.book"></span> 41:56–57</cite></blockquote>
+            </div>
+            <div class="jt-apply">
+              <p class="apply-label" data-i18n="joseph.apply"></p>
+              <h4 data-i18n="joseph.j3.a.t"></h4>
+              <p data-i18n="joseph.j3.a.d"></p>
+            </div>
+          </li>
+          <li class="jt-item">
+            <div class="jt-marker"><span class="num">04</span></div>
+            <div class="jt-story">
+              <h3 data-i18n="joseph.j4.t"></h3>
+              <blockquote class="scripture"><p data-i18n="joseph.j4.v"></p><cite><span data-i18n="joseph.book"></span> 45:5, 7</cite></blockquote>
+            </div>
+            <div class="jt-apply">
+              <p class="apply-label" data-i18n="joseph.apply"></p>
+              <h4 data-i18n="joseph.j4.a.t"></h4>
+              <p data-i18n="joseph.j4.a.d"></p>
+            </div>
+          </li>
+          <li class="jt-item">
+            <div class="jt-marker"><span class="num">05</span></div>
+            <div class="jt-story">
+              <h3 data-i18n="joseph.j5.t"></h3>
+              <blockquote class="scripture"><p data-i18n="joseph.j5.v"></p><cite><span data-i18n="joseph.book"></span> 47:12</cite></blockquote>
+            </div>
+            <div class="jt-apply">
+              <p class="apply-label" data-i18n="joseph.apply"></p>
+              <h4 data-i18n="joseph.j5.a.t"></h4>
+              <p data-i18n="joseph.j5.a.d"></p>
+            </div>
+          </li>
+          <li class="jt-item">
+            <div class="jt-marker"><span class="num">06</span></div>
+            <div class="jt-story">
+              <h3 data-i18n="joseph.j6.t"></h3>
+              <blockquote class="scripture"><p data-i18n="joseph.j6.v"></p><cite><span data-i18n="joseph.book"></span> 50:20–21</cite></blockquote>
+            </div>
+            <div class="jt-apply">
+              <p class="apply-label" data-i18n="joseph.apply"></p>
+              <h4 data-i18n="joseph.j6.a.t"></h4>
+              <p data-i18n="joseph.j6.a.d"></p>
+            </div>
+          </li>
+        </ol>
+        <p class="translation-note" data-i18n="joseph.translation"></p>
+      </div>
+    </section>
+
+    <!-- Ethos -->
+    <section id="ethos" class="section section-ethos">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow" data-i18n="ethos.eyebrow"></p>
+          <h2 data-i18n="ethos.title"></h2>
+        </div>
+        <ol class="ethos">
+          <li><span class="ethos-mark" aria-hidden="true"></span><p data-i18n="ethos.e1"></p></li>
+          <li><span class="ethos-mark" aria-hidden="true"></span><p data-i18n="ethos.e2"></p></li>
+          <li><span class="ethos-mark" aria-hidden="true"></span><p data-i18n="ethos.e3"></p></li>
+          <li><span class="ethos-mark" aria-hidden="true"></span><p data-i18n="ethos.e4"></p></li>
+          <li><span class="ethos-mark" aria-hidden="true"></span><p data-i18n="ethos.e5"></p></li>
+          <li><span class="ethos-mark" aria-hidden="true"></span><p data-i18n="ethos.e6"></p></li>
+        </ol>
+      </div>
+    </section>
+
     <!-- Impact equation -->
     <section class="section section-alt">
       <div class="container">
@@ -121,6 +237,26 @@
           <li class="op" aria-hidden="true">→</li>
           <li class="result"><span class="num">=</span><h3>Greater Impact</h3><p data-i18n="eq.impact.d">더 많은 일자리, 더 많은 가정, 더 큰 하나님의 목적</p></li>
         </ol>
+      </div>
+    </section>
+
+    <!-- Structure -->
+    <section id="structure" class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow" data-i18n="structure.eyebrow"></p>
+          <h2 data-i18n="structure.title"></h2>
+          <p class="muted" data-i18n="structure.lead"></p>
+        </div>
+        <ol class="flow">
+          <li class="flow-node"><span class="num">01</span><h3 data-i18n="structure.lp.t"></h3><p data-i18n="structure.lp.d"></p></li>
+          <li class="flow-node flow-node-key"><span class="num">02</span><h3 data-i18n="structure.fund.t"></h3><p data-i18n="structure.fund.d"></p></li>
+          <li class="flow-node"><span class="num">03</span><h3 data-i18n="structure.v101.t"></h3><p data-i18n="structure.v101.d"></p></li>
+          <li class="flow-node"><span class="num">04</span><h3 data-i18n="structure.tracks.t"></h3><p data-i18n="structure.tracks.d"></p></li>
+          <li class="flow-node"><span class="num">05</span><h3 data-i18n="structure.co.t"></h3><p data-i18n="structure.co.d"></p></li>
+          <li class="flow-node"><span class="num">06</span><h3 data-i18n="structure.store.t"></h3><p data-i18n="structure.store.d"></p></li>
+        </ol>
+        <p class="flow-return"><span class="flow-return-line" aria-hidden="true"></span><span data-i18n="structure.return"></span></p>
       </div>
     </section>
 
