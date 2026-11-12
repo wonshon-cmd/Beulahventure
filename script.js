@@ -26,7 +26,7 @@
     const grid = document.getElementById("portfolio-grid");
     grid.replaceChildren();
     data.portfolio.forEach((co) => {
-      const name = el(co.url ? "a" : "h3", co.url ? { href: co.url, target: "_blank", rel: "noopener", text: co.name } : { text: co.name });
+      const name = el(co.url ? "a" : "h3", co.url ? { class: "name", href: co.url, target: "_blank", rel: "noopener", text: co.name } : { text: co.name });
       grid.appendChild(el("article", { class: "portfolio-item" }, [
         el("span", { class: "tag", text: pick(co.sector) }),
         el("div", {}, [name, el("p", { class: "muted", text: pick(co.desc) })])
@@ -98,6 +98,11 @@
       status.className = "form-status full error";
       return;
     }
+    if (!f.cohort?.trim() || !f.completed) {
+      status.textContent = t("form.errorV101");
+      status.className = "form-status full error";
+      return;
+    }
     const subject = `[Pitch] ${f.company} (${f.stage})`;
     const body = [
       `Name: ${f.name}`,
@@ -105,6 +110,7 @@
       `Company: ${f.company}`,
       `Stage: ${f.stage}`,
       `Deck: ${f.deck || "-"}`,
+      `Venture 101 cohort: ${f.cohort}`,
       "",
       f.desc
     ].join("\n");
