@@ -515,7 +515,7 @@ h1 em, h2 em {
 
 /* Hero */
 .hero { position: relative; overflow: hidden; background:
-  radial-gradient(900px 420px at 78% 18%, rgba(95,125,107,.16), transparent 65%), var(--bg); }
+  radial-gradient(900px 420px at 78% 18%, rgba(10,159,216,.16), transparent 65%), var(--bg); }
 .sparkle-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .hero > .container { position: relative; }
 .hero .eyebrow { color: var(--ink); }
@@ -548,7 +548,7 @@ h1 em, h2 em {
 @keyframes marquee { to { transform: translateX(-50%); } }
 
 /* Dark sections: deep navy with a gold glow */
-.section-dark { background: radial-gradient(1100px 480px at 88% -8%, rgba(95,125,107,.20), transparent 62%), radial-gradient(800px 400px at -10% 110%, rgba(19,36,77,.9), transparent 70%), var(--ink); }
+.section-dark { background: radial-gradient(1100px 480px at 88% -8%, rgba(10,159,216,.20), transparent 62%), radial-gradient(800px 400px at -10% 110%, rgba(19,36,77,.9), transparent 70%), var(--ink); }
 .section-dark .eyebrow { color: var(--grain-on-ink); }
 .section-dark h2 { color: var(--on-ink); }
 
@@ -571,7 +571,7 @@ h1 em, h2 em {
 
 /* Tracks on navy */
 .section-dark .track { border-top-color: var(--line-on-ink); padding: 26px 22px 18px; border-radius: 6px; background: rgba(255,255,255,.02); border: 1px solid var(--line-on-ink); transition: border-color .3s ease, transform .3s ease, box-shadow .3s ease; }
-.section-dark .track:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: 0 10px 40px -12px rgba(95,125,107,.45); }
+.section-dark .track:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: 0 10px 40px -12px rgba(10,159,216,.45); }
 .section-dark .track h3 { color: var(--on-ink); }
 .section-dark .track .num { color: var(--grain-on-ink); }
 .section-dark .stage-tag { color: var(--grain-on-ink); }
@@ -583,15 +583,15 @@ h1 em, h2 em {
 /* Flywheel motion */
 .eq-chip { transition: transform .25s ease, box-shadow .25s ease; }
 .eq-chip:hover { transform: translateY(-2px); box-shadow: 0 6px 18px -8px rgba(10,21,48,.35); }
-.eq-result { background: var(--ink); color: var(--grain-on-ink); box-shadow: 0 0 0 0 rgba(95,125,107,.5); animation: glow 2.6s ease-in-out infinite; }
-@keyframes glow { 50% { box-shadow: 0 0 0 8px rgba(95,125,107,0); } 0%, 100% { box-shadow: 0 0 0 0 rgba(95,125,107,.45); } }
+.eq-result { background: var(--ink); color: var(--grain-on-ink); box-shadow: 0 0 0 0 rgba(10,159,216,.5); animation: glow 2.6s ease-in-out infinite; }
+@keyframes glow { 50% { box-shadow: 0 0 0 8px rgba(10,159,216,0); } 0%, 100% { box-shadow: 0 0 0 0 rgba(10,159,216,.45); } }
 .fw-node circle { animation: fwpulse 14s linear infinite; animation-delay: calc(var(--i) * 2s); }
 @keyframes fwpulse {
-  0% { fill: var(--grain-soft); stroke: var(--gold); stroke-width: 2.5; filter: drop-shadow(0 0 12px rgba(95,125,107,.7)); }
+  0% { fill: var(--grain-soft); stroke: var(--gold); stroke-width: 2.5; filter: drop-shadow(0 0 12px rgba(10,159,216,.7)); }
   12%, 100% { fill: var(--bg); stroke: var(--ink); stroke-width: 1.5; filter: none; }
 }
-.fw-center { filter: drop-shadow(0 0 18px rgba(95,125,107,.35)); }
-.fw-seed { filter: drop-shadow(0 0 6px rgba(159,191,169,.9)); }
+.fw-center { filter: drop-shadow(0 0 18px rgba(10,159,216,.35)); }
+.fw-seed { filter: drop-shadow(0 0 6px rgba(94,200,242,.9)); }
 .fw-list li { transition: transform .25s ease; }
 .fw-list li:hover { transform: translateX(6px); }
 .fw-list h3 { font-size: 1.15rem; }
@@ -636,7 +636,7 @@ h1 em, h2 em {
 }
 .section-dark h2 em { color: var(--grain-on-ink); }
 .eyebrow::before { content: ""; width: 22px; height: 1px; background: currentColor; vertical-align: middle; margin-right: 12px; animation: none; transform: none; opacity: 1; }
-.hero { background: radial-gradient(900px 420px at 80% 15%, rgba(95,125,107,.10), transparent 65%), var(--bg); }
+.hero { background: radial-gradient(900px 420px at 80% 15%, rgba(10,159,216,.10), transparent 65%), var(--bg); }
 .section-dark .btn-light, .pitch-form .btn-light { background: var(--on-ink); color: var(--ink); }
 .btn .arrow { color: currentColor; }
 .btn-shine::after, .section-dark .btn-light::after, .pitch-form .btn::after { background: linear-gradient(100deg, transparent, rgba(255,255,255,.22), transparent); }
@@ -666,3 +666,26 @@ h1 em, h2 em {
 @keyframes giftline { 0%, 30%, 100% { width: 0; } 8%, 22% { width: 100%; } }
 @media (max-width: 860px) { .gifts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (prefers-reduced-motion: reduce) { .gift-word { animation: none; opacity: 1; } .gifts li::before { animation: none; width: 40px; } }
+
+/* =========================================================
+   BRAND v7 — white · deep navy · sky blue
+   ========================================================= */
+:root {
+  --bg: #ffffff;
+  --bg-alt: #f3f8fc;
+  --accent: #0a9fd8;
+  --gold: #0a9fd8;
+  --grain: #0a9fd8;
+  --grain-soft: #dff1fa;
+  --grain-on-ink: #5ec8f2;
+  --line-soft: #e2e9ef;
+  --muted: #586273;
+}
+.btn-shine { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn-shine .arrow { color: #fff; }
+.nav-cta { color: var(--accent); }
+.hero { background: radial-gradient(900px 420px at 80% 15%, rgba(10,159,216,.08), transparent 65%), var(--bg); }
+.section-dark .btn-light, .pitch-form .btn-light { background: var(--accent); color: #fff; }
+.section-dark .btn-light .arrow { color: #fff; }
+.eyebrow::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: currentColor; margin-right: 12px; vertical-align: 1px; }
+.hero .eyebrow { color: var(--accent); }
