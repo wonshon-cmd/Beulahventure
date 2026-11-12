@@ -59,8 +59,7 @@ h1 em, h2 em { font-style: normal; font-weight: 800; }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 21; background: #fff; }
 .nav { display: flex; align-items: center; justify-content: space-between; height: 76px; }
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-.brand-mark { width: 34px; height: 34px; fill: var(--ink); transition: transform .8s var(--ease); }
-.brand:hover .brand-mark { transform: rotate(51.43deg); }
+.brand-mark { width: 30px; height: 35px; color: var(--ink); }
 .brand-text { display: flex; flex-direction: column; line-height: 1; }
 .brand-name { font-size: 1.45rem; font-weight: 800; letter-spacing: -0.05em; }
 .brand-sub { font-size: .58rem; font-weight: 400; letter-spacing: .24em; margin-top: 5px; color: var(--muted); }
@@ -92,7 +91,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
 /* ---------- Hero ---------- */
 .hero { padding-top: clamp(56px, 9vw, 120px); }
-.hero-grid { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+.hero-grid { display: block; }
 .hero-sub { margin: 30px 0 40px; font-size: clamp(1.05rem, 1.7vw, 1.3rem); color: var(--ink-2); max-width: 34ch; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 .hero-mark { display: flex; justify-content: center; }
@@ -261,7 +260,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .site-footer { padding-block: 44px 52px; border-top: 1px solid var(--ink); }
 .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
 .footer-brand { display: flex; align-items: center; gap: 14px; }
-.footer-mark { width: 28px; height: 28px; fill: var(--ink); }
+.footer-mark { width: 24px; height: 28px; color: var(--ink); }
 .tagline { margin: 0; font-weight: 200; font-size: 1.05rem; letter-spacing: -0.02em; }
 .footer-meta { display: flex; gap: 24px; flex-wrap: wrap; margin: 0; font-size: .75rem; color: var(--muted); }
 
