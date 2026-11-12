@@ -450,3 +450,6 @@ html[lang="ko"] .pitch-form label { letter-spacing: .02em; }
   .values, .v101-grid .path-steps { grid-template-columns: 1fr; }
   .v101-grid .path-steps li + li { padding-left: 0; }
 }
+.values { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 40px; }
+@media (max-width: 1024px) { .values { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .values { grid-template-columns: 1fr; } }
