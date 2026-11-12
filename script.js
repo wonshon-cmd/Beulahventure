@@ -58,6 +58,10 @@
     document.querySelectorAll("[data-i18n]").forEach((node) => {
       node.textContent = t(node.dataset.i18n);
     });
+    // Trusted, site-authored strings that carry <em>/<br> emphasis
+    document.querySelectorAll("[data-i18n-html]").forEach((node) => {
+      node.innerHTML = t(node.dataset.i18nHtml);
+    });
     document.querySelector(".lang-toggle").textContent = lang === "ko" ? "EN" : "한국어";
     renderPortfolio();
     renderTeam();
@@ -175,7 +179,7 @@
     // Nodes
     for (let i = 0; i < N; i++) {
       const [x, y] = pt(ang(i));
-      const g = add(svg, "g", { class: "fw-node" + (i === 0 ? " fw-node-start" : "") });
+      const g = add(svg, "g", { class: "fw-node", style: `--i:${i}` });
       add(g, "circle", { cx: x, cy: y, r: NR });
       add(g, "text", { x, y: y - 14, class: "fw-num", "text-anchor": "middle" }, "0" + (i + 1));
       const words = t("fw.n" + (i + 1)).split(" ");
@@ -218,7 +222,7 @@
         const sway = reduce ? 0 : Math.sin(time / 1800 + s.phase) * 0.04;
         const bend = s.lean + sway;
         const tipX = s.x + bend * s.len, tipY = h - s.len;
-        ctx.globalAlpha = s.alpha;
+        ctx.globalAlpha = s.gold && !reduce ? Math.min(1, s.alpha * (0.75 + 0.35 * Math.sin(time / 600 + s.phase * 3))) : s.alpha;
         ctx.strokeStyle = s.gold ? grain : ink;
         ctx.fillStyle = s.gold ? grain : ink;
         ctx.lineWidth = 1;
@@ -249,6 +253,66 @@
     window.addEventListener("resize", () => { cancelAnimationFrame(raf); setup(); draw(performance.now()); });
   }
   initField();
+
+  // Hero sparkles: gold motes drifting up like grain dust in light
+  function initSparkles() {
+    const canvas = document.getElementById("sparkle-canvas");
+    if (!canvas || !canvas.getContext) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const ctx = canvas.getContext("2d");
+    const gold = getComputedStyle(document.documentElement).getPropertyValue("--gold").trim() || "#c9993a";
+    let w = 0, h = 0, motes = [];
+    function setup() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.clientWidth; h = canvas.clientHeight;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const n = Math.round((w * h) / 14000);
+      motes = Array.from({ length: n }, () => ({
+        x: Math.random() * w, y: Math.random() * h,
+        r: 0.6 + Math.random() * 1.8, v: 0.08 + Math.random() * 0.25,
+        p: Math.random() * Math.PI * 2, star: Math.random() < 0.12
+      }));
+    }
+    function star(x, y, r, a) {
+      ctx.globalAlpha = a;
+      ctx.beginPath();
+      ctx.moveTo(x, y - r * 4); ctx.lineTo(x + r * 0.7, y - r * 0.7); ctx.lineTo(x + r * 4, y);
+      ctx.lineTo(x + r * 0.7, y + r * 0.7); ctx.lineTo(x, y + r * 4); ctx.lineTo(x - r * 0.7, y + r * 0.7);
+      ctx.lineTo(x - r * 4, y); ctx.lineTo(x - r * 0.7, y - r * 0.7); ctx.closePath(); ctx.fill();
+    }
+    function frame(time) {
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = gold;
+      motes.forEach((m) => {
+        if (!reduce) { m.y -= m.v; m.x += Math.sin(time / 2000 + m.p) * 0.15; if (m.y < -10) { m.y = h + 10; m.x = Math.random() * w; } }
+        const a = 0.25 + 0.6 * Math.abs(Math.sin(time / 900 + m.p));
+        if (m.star) star(m.x, m.y, m.r, a);
+        else { ctx.globalAlpha = a * 0.8; ctx.beginPath(); ctx.arc(m.x, m.y, m.r, 0, Math.PI * 2); ctx.fill(); }
+      });
+      ctx.globalAlpha = 1;
+      if (!reduce) requestAnimationFrame(frame);
+    }
+    setup(); frame(0);
+    window.addEventListener("resize", setup);
+  }
+  initSparkles();
+
+  // Reveal on scroll. Content is visible by default; the animation only plays as it enters view.
+  if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const targets = document.querySelectorAll(".reveal, .values > li, .stages > li, .tracks > li, .fw-list > li, .modules > li, .facts > div, .years, .equation-line");
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const idx = el.parentElement ? Array.prototype.indexOf.call(el.parentElement.children, el) : 0;
+        el.style.animationDelay = `${Math.min(idx, 7) * 70}ms`;
+        el.classList.add("is-in");
+        io.unobserve(el);
+      });
+    }, { threshold: 0.12 });
+    targets.forEach((el) => io.observe(el));
+  }
 
   document.querySelector(".lang-toggle").addEventListener("click", () => {
     lang = lang === "ko" ? "en" : "ko";
