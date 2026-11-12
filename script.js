@@ -160,58 +160,171 @@
     add(svg, "text", { x: C, y: C + 28, class: "fw-center-sub", "text-anchor": "middle" }, t("fw.centerSub"));
   }
 
-  // Storehouse band: rows of grains that fill, one by one, as the band enters view
+  // River scene: water flows, chaff scatters onto the bank, is planted, and grows.
+  // Some seeds stay small grass, some become trees. Line art in the brand ink.
   function initField() {
     const canvas = document.getElementById("field-canvas");
     if (!canvas || !canvas.getContext) return;
     const ctx = canvas.getContext("2d");
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const ink = getComputedStyle(document.documentElement).getPropertyValue("--ink").trim() || "#111";
-    let w = 0, h = 0, grains = [], progress = reduce ? 1 : 0, started = reduce, startTime = 0;
-    function setup() {
+    let w = 0, h = 0, bankY = 0, plants = [], seeds = [], floaters = [], nextSeed = 0, visible = true, raf = 0;
+    const rnd = (a, b) => a + Math.random() * (b - a);
+    const clamp = (v) => Math.max(0, Math.min(1, v));
+    const ease = (v) => 1 - Math.pow(1 - v, 3);
+
+    function makeTree(scale) {
+      const segs = [], leaves = [], maxD = 5;
+      const grow = (x, y, ang, len, d) => {
+        const x2 = x + Math.cos(ang) * len, y2 = y + Math.sin(ang) * len;
+        segs.push({ x, y, x2, y2, d, wdt: Math.max(0.6, (maxD - d) * 0.55) });
+        if (d === maxD) { leaves.push({ x: x2, y: y2, ang: ang + Math.PI / 2 }); return; }
+        const n = d > 1 && Math.random() < 0.3 ? 3 : 2;
+        for (let i = 0; i < n; i++) {
+          const spread = (i - (n - 1) / 2) * rnd(0.38, 0.6);
+          grow(x2, y2, ang + spread + rnd(-0.08, 0.08), len * rnd(0.68, 0.78), d + 1);
+        }
+      };
+      grow(0, 0, -Math.PI / 2 + rnd(-0.06, 0.06), bankY * 0.2 * scale, 0);
+      return { segs, leaves, maxD };
+    }
+    function makeGrass() {
+      const n = Math.round(rnd(3, 6));
+      return Array.from({ length: n }, (_, i) => ({ lean: (i - (n - 1) / 2) * rnd(0.15, 0.3), len: rnd(8, 24), phase: rnd(0, 6) }));
+    }
+    function addPlant(x, now, kind, age) {
+      const tree = kind === "tree";
+      plants.push({
+        x, kind, born: now - (age || 0), dur: tree ? rnd(14000, 22000) : rnd(4000, 7000), dying: 0,
+        shape: tree ? makeTree(rnd(0.6, 1)) : makeGrass()
+      });
+    }
+    function treeCount() { return plants.filter((p) => p.kind === "tree" && !p.dying).length; }
+
+    function setup(now) {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       w = canvas.clientWidth; h = canvas.clientHeight;
       canvas.width = w * dpr; canvas.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const gx = 26, gy = 38;
-      const cols = Math.floor(w / gx), rows = Math.floor(h / gy);
-      const ox = (w - (cols - 1) * gx) / 2, oy = (h - (rows - 1) * gy) / 2;
-      grains = [];
-      for (let c = 0; c < cols; c++) for (let r = 0; r < rows; r++) {
-        grains.push({ x: ox + c * gx, y: oy + r * gy, tilt: ((c * 7 + r * 3) % 5 - 2) * 6, order: c + r * 0.6 + ((c * 13 + r * 7) % 9) * 0.35 });
-      }
-      const max = Math.max(...grains.map((g) => g.order));
-      grains.forEach((g) => (g.order /= max));
+      bankY = h * 0.68;
+      plants = []; seeds = [];
+      // Start with a living field so the first frame already tells the story
+      const trees = Math.max(2, Math.round(w / 360));
+      for (let i = 0; i < trees; i++) addPlant((i + 0.5) * (w / trees) + rnd(-40, 40), now, "tree", rnd(6000, 30000));
+      const grass = Math.round(w / 50);
+      for (let i = 0; i < grass; i++) addPlant(rnd(10, w - 10), now, "grass", rnd(0, 9000));
+      floaters = Array.from({ length: Math.round(w / 70) }, () => ({ x: rnd(0, w), lane: Math.floor(rnd(0, 3)), v: rnd(0.25, 0.6), rot: rnd(0, 6) }));
     }
-    function draw() {
-      ctx.clearRect(0, 0, w, h);
-      grains.forEach((g) => {
-        const filled = g.order <= progress;
-        ctx.save();
-        ctx.translate(g.x, g.y);
-        ctx.rotate((g.tilt * Math.PI) / 180);
+
+    function riverY(x, lane, t) { return bankY + 16 + lane * 13 + Math.sin(x * 0.018 + t / 900 + lane * 1.7) * 3.2; }
+
+    function drawRiver(t) {
+      ctx.strokeStyle = ink;
+      for (let lane = 0; lane < 4; lane++) {
+        ctx.globalAlpha = 0.55 - lane * 0.12;
+        ctx.lineWidth = 1;
         ctx.beginPath();
-        ctx.ellipse(0, 0, 3.2, 8, 0, 0, Math.PI * 2);
-        if (filled) { ctx.fillStyle = ink; ctx.globalAlpha = 1; ctx.fill(); }
-        else { ctx.strokeStyle = ink; ctx.globalAlpha = 0.18; ctx.lineWidth = 1; ctx.stroke(); }
+        for (let x = 0; x <= w; x += 8) {
+          const y = riverY(x, lane, t);
+          x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(0, bankY); ctx.lineTo(w, bankY); ctx.stroke();
+    }
+    function grain(x, y, rx, ry, rot, fill, alpha) {
+      ctx.save(); ctx.translate(x, y); ctx.rotate(rot); ctx.globalAlpha = alpha;
+      ctx.beginPath(); ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI * 2);
+      if (fill) { ctx.fillStyle = ink; ctx.fill(); } else { ctx.strokeStyle = ink; ctx.stroke(); }
+      ctx.restore();
+    }
+    function drawPlant(p, t) {
+      const g = ease(clamp((t - p.born) / p.dur));
+      const alpha = p.dying ? clamp(1 - (t - p.dying) / 2000) : 1;
+      if (alpha <= 0) return;
+      ctx.strokeStyle = ink; ctx.globalAlpha = alpha;
+      if (p.kind === "grass") {
+        p.shape.forEach((b) => {
+          const sway = reduce ? 0 : Math.sin(t / 1300 + b.phase) * 0.12;
+          const len = b.len * g, a = -Math.PI / 2 + b.lean + sway;
+          ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(p.x, bankY);
+          ctx.quadraticCurveTo(p.x + Math.cos(a) * len * 0.3, bankY - len * 0.6, p.x + Math.cos(a) * len, bankY + Math.sin(a) * len);
+          ctx.stroke();
+        });
+      } else {
+        const { segs, leaves, maxD } = p.shape;
+        const step = 0.8 / (maxD + 1);
+        const sway = reduce ? 0 : Math.sin(t / 2400 + p.x) * 0.015;
+        ctx.save(); ctx.translate(p.x, bankY); ctx.rotate(sway);
+        segs.forEach((sg) => {
+          const f = clamp((g - sg.d * step) / step);
+          if (f <= 0) return;
+          ctx.lineWidth = sg.wdt;
+          ctx.beginPath(); ctx.moveTo(sg.x, sg.y); ctx.lineTo(sg.x + (sg.x2 - sg.x) * f, sg.y + (sg.y2 - sg.y) * f); ctx.stroke();
+        });
+        const lf = clamp((g - 0.8) / 0.2);
+        if (lf > 0) leaves.forEach((l, i) => {
+          const flutter = reduce ? 0 : Math.sin(t / 700 + i) * 0.15;
+          grain(l.x, l.y, 2.4 * lf, 5.8 * lf, l.ang + flutter, i % 3 !== 0, alpha);
+        });
         ctx.restore();
-      });
+      }
       ctx.globalAlpha = 1;
     }
-    function frame(now) {
-      if (!startTime) startTime = now;
-      progress = Math.min(1, (now - startTime) / 4200);
-      draw();
-      if (progress < 1) requestAnimationFrame(frame);
+    function spawnSeed(t) {
+      const fx = rnd(0, w);
+      const tx = Math.max(12, Math.min(w - 12, fx + rnd(-w * 0.25, w * 0.25)));
+      seeds.push({ x0: fx, y0: riverY(fx, 0, t), x1: tx, peak: rnd(bankY * 0.15, bankY * 0.55), start: t, dur: rnd(2600, 4200), spin: rnd(-6, 6) });
     }
-    setup(); draw();
+    function drawSeeds(t) {
+      seeds = seeds.filter((s) => {
+        const u = (t - s.start) / s.dur;
+        if (u >= 1) {
+          const living = plants.filter((p) => !p.dying);
+          if (living.length > w / 20) { const old = living.find((p) => p.kind === "grass"); if (old) old.dying = t; }
+          const canTree = treeCount() < Math.max(3, Math.round(w / 240));
+          addPlant(s.x1, t, canTree && Math.random() < 0.28 ? "tree" : "grass", 0);
+          return false;
+        }
+        const x = s.x0 + (s.x1 - s.x0) * u + Math.sin(u * Math.PI * 3) * 14;
+        const y = (1 - u) * (1 - u) * s.y0 + 2 * (1 - u) * u * s.peak + u * u * bankY;
+        grain(x, y, 2, 4.6, s.spin * u, true, 0.9);
+        return true;
+      });
+    }
+    function drawFloaters() {
+      floaters.forEach((f) => {
+        if (!reduce) { f.x += f.v; f.rot += 0.01; if (f.x > w + 10) f.x = -10; }
+        grain(f.x, riverY(f.x, f.lane, performance.now()) - 2, 1.8, 4, Math.PI / 2 + Math.sin(f.rot) * 0.4, false, 0.7);
+      });
+    }
+    function frame(t) {
+      ctx.clearRect(0, 0, w, h);
+      drawRiver(t);
+      plants = plants.filter((p) => !(p.dying && t - p.dying > 2000));
+      plants.forEach((p) => drawPlant(p, t));
+      drawFloaters();
+      if (!reduce) {
+        if (t > nextSeed) { spawnSeed(t); nextSeed = t + rnd(600, 1300); }
+        drawSeeds(t);
+        if (visible) raf = requestAnimationFrame(frame);
+      }
+    }
+    const now0 = performance.now();
+    setup(reduce ? now0 + 1e6 : now0);
+    frame(reduce ? now0 + 1e6 : now0);
     if (!reduce && "IntersectionObserver" in window) {
-      const io = new IntersectionObserver((es) => {
-        if (es.some((e) => e.isIntersecting) && !started) { started = true; requestAnimationFrame(frame); io.disconnect(); }
-      }, { threshold: 0.3 });
-      io.observe(canvas);
-    } else { progress = 1; draw(); }
-    window.addEventListener("resize", () => { setup(); draw(); });
+      new IntersectionObserver((es) => {
+        const v = es.some((e) => e.isIntersecting);
+        if (v && !visible) { visible = true; raf = requestAnimationFrame(frame); }
+        visible = v;
+      }).observe(canvas);
+    }
+    let rz = 0;
+    window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => { cancelAnimationFrame(raf); const n = performance.now(); setup(reduce ? n + 1e6 : n); visible = true; frame(reduce ? n + 1e6 : n); }, 150); });
   }
   initField();
 
