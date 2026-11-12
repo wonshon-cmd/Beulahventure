@@ -159,6 +159,16 @@ h3 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 
 .stage-tag { font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
 .stages p:last-child { margin: 0; color: var(--muted); }
 
+/* Tracks */
+.tracks { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 56px 48px; }
+.track { border-top: 1px solid var(--line); padding-top: 24px; display: flex; flex-direction: column; }
+.track h3 { font-size: 1.6rem; margin: 16px 0 4px; letter-spacing: -0.02em; }
+.track-desc { margin: 0 0 24px; color: var(--muted); }
+.track-meta { margin: auto 0 0; display: grid; gap: 0; }
+.track-meta div { display: grid; grid-template-columns: 112px 1fr; gap: 16px; padding: 12px 0; border-top: 1px solid var(--line-soft); }
+.track-meta dt { font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); padding-top: 2px; }
+.track-meta dd { margin: 0; font-weight: 600; }
+
 /* Venture 101 */
 .section-dark .eyebrow { color: var(--on-ink); }
 .curriculum {
@@ -255,6 +265,7 @@ h3 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 
   .equation .op { padding: 0; font-size: 1.5rem; }
   .equation .result { margin-top: 8px; }
   .stages, .curriculum { grid-template-columns: repeat(2, 1fr); }
+  .tracks { grid-template-columns: 1fr; }
 }
 @media (max-width: 860px) {
   .nav { height: 76px; }
@@ -282,7 +293,15 @@ h3 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 
   .facts div:last-child { border-bottom: 0; }
   .focus-list, .stages, .curriculum, .path-steps { grid-template-columns: 1fr; }
   .path-steps li + li { padding-left: 0; }
+  .track-meta div { grid-template-columns: 1fr; gap: 4px; }
   .pitch-form { grid-template-columns: 1fr; }
   .btn { width: 100%; }
   .hero .btn { width: auto; }
 }
+
+/* Korean labels read better without wide tracking */
+html[lang="ko"] .stage-tag,
+html[lang="ko"] .track-meta dt,
+html[lang="ko"] .facts dt,
+html[lang="ko"] .member .role,
+html[lang="ko"] .pitch-form label { letter-spacing: .02em; }

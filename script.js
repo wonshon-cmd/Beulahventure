@@ -108,6 +108,7 @@
       `Name: ${f.name}`,
       `Email: ${f.email}`,
       `Company: ${f.company}`,
+      `Track: ${f.track}`,
       `Stage: ${f.stage}`,
       `Deck: ${f.deck || "-"}`,
       `Venture 101 cohort: ${f.cohort}`,

@@ -28,7 +28,7 @@
       </button>
       <nav class="nav-links">
         <a href="#philosophy" data-i18n="nav.philosophy">철학</a>
-        <a href="#stages" data-i18n="nav.stages">성장 방식</a>
+        <a href="#tracks" data-i18n="nav.tracks">투자 트랙</a>
         <a href="#venture101">Venture 101</a>
         <a href="#portfolio" data-i18n="nav.portfolio">포트폴리오</a>
         <a href="#about" data-i18n="nav.about">소개</a>
@@ -120,6 +120,59 @@
           <li><span class="num">04</span><h3>Help</h3><p data-i18n="eq.help.d">팀, 마케팅, 운영의 실행 지원</p></li>
           <li class="op" aria-hidden="true">→</li>
           <li class="result"><span class="num">=</span><h3>Greater Impact</h3><p data-i18n="eq.impact.d">더 많은 일자리, 더 많은 가정, 더 큰 하나님의 목적</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Tracks -->
+    <section id="tracks" class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow" data-i18n="tracks.eyebrow">INVESTMENT TRACKS</p>
+          <h2 data-i18n="tracks.title">선교지에서 미국까지, 네 가지 길로 함께합니다.</h2>
+          <p class="muted" data-i18n="tracks.lead">사업의 위치와 단계에 따라 판로를 열거나, 지분을 함께 갖고 운영하거나, 아이디어부터 같이 세웁니다.</p>
+        </div>
+        <ol class="tracks">
+          <li class="track">
+            <span class="num">01</span>
+            <h3>Market Bridge</h3>
+            <p class="stage-tag" data-i18n="tracks.t1.tag"></p>
+            <p class="track-desc" data-i18n="tracks.t1.d"></p>
+            <dl class="track-meta">
+              <div><dt data-i18n="tracks.role">우리의 역할</dt><dd data-i18n="tracks.t1.role"></dd></div>
+              <div><dt data-i18n="tracks.form">참여 방식</dt><dd data-i18n="tracks.t1.form"></dd></div>
+            </dl>
+          </li>
+          <li class="track">
+            <span class="num">02</span>
+            <h3>Mission Field Ventures</h3>
+            <p class="stage-tag" data-i18n="tracks.t2.tag"></p>
+            <p class="track-desc" data-i18n="tracks.t2.d"></p>
+            <dl class="track-meta">
+              <div><dt data-i18n="tracks.role">우리의 역할</dt><dd data-i18n="tracks.t2.role"></dd></div>
+              <div><dt data-i18n="tracks.form">참여 방식</dt><dd data-i18n="tracks.t2.form"></dd></div>
+            </dl>
+          </li>
+          <li class="track">
+            <span class="num">03</span>
+            <h3>US Business Partnership</h3>
+            <p class="stage-tag" data-i18n="tracks.t3.tag"></p>
+            <p class="track-desc" data-i18n="tracks.t3.d"></p>
+            <dl class="track-meta">
+              <div><dt data-i18n="tracks.role">우리의 역할</dt><dd data-i18n="tracks.t3.role"></dd></div>
+              <div><dt data-i18n="tracks.form">참여 방식</dt><dd data-i18n="tracks.t3.form"></dd></div>
+            </dl>
+          </li>
+          <li class="track">
+            <span class="num">04</span>
+            <h3>US Idea Launch</h3>
+            <p class="stage-tag" data-i18n="tracks.t4.tag"></p>
+            <p class="track-desc" data-i18n="tracks.t4.d"></p>
+            <dl class="track-meta">
+              <div><dt data-i18n="tracks.role">우리의 역할</dt><dd data-i18n="tracks.t4.role"></dd></div>
+              <div><dt data-i18n="tracks.form">참여 방식</dt><dd data-i18n="tracks.t4.form"></dd></div>
+            </dl>
+          </li>
         </ol>
       </div>
     </section>
@@ -246,6 +299,14 @@
           </label>
           <label><span data-i18n="form.company">회사명</span>
             <input name="company" required>
+          </label>
+          <label><span data-i18n="form.track">트랙</span>
+            <select name="track">
+              <option value="Market Bridge" data-i18n="form.track.t1">Market Bridge · 판로 연결</option>
+              <option value="Mission Field Ventures" data-i18n="form.track.t2">Mission Field Ventures · 선교지 공동 벤처</option>
+              <option value="US Business Partnership" data-i18n="form.track.t3">US Business Partnership · 미국 사업 투자</option>
+              <option value="US Idea Launch" data-i18n="form.track.t4">US Idea Launch · 미국 아이디어 창업</option>
+            </select>
           </label>
           <label><span data-i18n="form.stage">투자 단계</span>
             <select name="stage">
