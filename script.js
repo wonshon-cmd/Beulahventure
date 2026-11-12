@@ -62,6 +62,7 @@
     renderPortfolio();
     renderTeam();
     renderYears();
+    renderFlywheel();
     const status = document.getElementById("form-status");
     status.textContent = "";
     status.className = "form-status full";
@@ -126,6 +127,61 @@
     add("text", { x: W - right - 230, y: H - 13, class: "yc-legend" }, t("joseph.store"));
     add("ellipse", { cx: W - right - 110, cy: H - 17, rx: 3, ry: 7, class: "yc-ear" });
     add("text", { x: W - right - 100, y: H - 13, class: "yc-legend" }, t("joseph.harvest"));
+  }
+
+  // Flywheel: gospel at the center, seven steps turning clockwise
+  function renderFlywheel() {
+    const svg = document.getElementById("flywheel");
+    if (!svg) return;
+    const NS = "http://www.w3.org/2000/svg";
+    const C = 280, R = 205, NR = 50, N = 7;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    svg.replaceChildren();
+    const add = (parent, tag, attrs, text) => {
+      const n = document.createElementNS(NS, tag);
+      Object.entries(attrs).forEach(([k, v]) => n.setAttribute(k, v));
+      if (text != null) n.textContent = text;
+      parent.appendChild(n);
+      return n;
+    };
+    const defs = add(svg, "defs", {});
+    const marker = add(defs, "marker", { id: "fw-arrow", viewBox: "0 0 10 10", refX: "8", refY: "5", markerWidth: "7", markerHeight: "7", orient: "auto-start-reverse" });
+    add(marker, "path", { d: "M0 0 L10 5 L0 10 z", class: "fw-arrowhead" });
+    const ang = (i) => -Math.PI / 2 + (i * 2 * Math.PI) / N;
+    const pt = (a, r = R) => [C + r * Math.cos(a), C + r * Math.sin(a)];
+    // Ring guide
+    add(svg, "circle", { cx: C, cy: C, r: R, class: "fw-ring" });
+    // Arrows between nodes, along the ring
+    const gap = (NR + 10) / R;
+    for (let i = 0; i < N; i++) {
+      const [x1, y1] = pt(ang(i) + gap), [x2, y2] = pt(ang(i + 1) - gap);
+      add(svg, "path", { d: `M ${x1} ${y1} A ${R} ${R} 0 0 1 ${x2} ${y2}`, class: "fw-arc", "marker-end": "url(#fw-arrow)" });
+    }
+    // Spokes to the center: everything rests on the gospel
+    for (let i = 0; i < N; i++) {
+      const [x1, y1] = pt(ang(i), 92), [x2, y2] = pt(ang(i), R - NR - 4);
+      add(svg, "line", { x1, y1, x2, y2, class: "fw-spoke" });
+    }
+    // Moving seed travelling the ring
+    if (!reduce) {
+      const dot = add(svg, "circle", { r: 7, class: "fw-seed" });
+      const motion = add(dot, "animateMotion", { dur: "14s", repeatCount: "indefinite", path: `M ${C} ${C - R} A ${R} ${R} 0 1 1 ${C - 0.01} ${C - R}` });
+      motion.setAttribute("rotate", "auto");
+    }
+    // Center
+    add(svg, "circle", { cx: C, cy: C, r: 84, class: "fw-center" });
+    add(svg, "text", { x: C, y: C + 4, class: "fw-center-text", "text-anchor": "middle" }, t("fw.center"));
+    add(svg, "text", { x: C, y: C + 30, class: "fw-center-sub", "text-anchor": "middle" }, t("fw.centerSub"));
+    // Nodes
+    for (let i = 0; i < N; i++) {
+      const [x, y] = pt(ang(i));
+      const g = add(svg, "g", { class: "fw-node" + (i === 0 ? " fw-node-start" : "") });
+      add(g, "circle", { cx: x, cy: y, r: NR });
+      add(g, "text", { x, y: y - 14, class: "fw-num", "text-anchor": "middle" }, "0" + (i + 1));
+      const words = t("fw.n" + (i + 1)).split(" ");
+      const lines = words.length > 2 ? [words.slice(0, -1).join(" "), words.at(-1)] : (words.length === 2 && words.join(" ").length > 8 ? words : [words.join(" ")]);
+      lines.forEach((line, k) => add(g, "text", { x, y: y + 8 + k * 17 - (lines.length - 1) * 6, class: "fw-label", "text-anchor": "middle" }, line));
+    }
   }
 
   // Wheat field band

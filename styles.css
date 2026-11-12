@@ -453,3 +453,27 @@ html[lang="ko"] .pitch-form label { letter-spacing: .02em; }
 .values { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 40px; }
 @media (max-width: 1024px) { .values { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 640px) { .values { grid-template-columns: 1fr; } }
+
+/* ---------- Flywheel ---------- */
+.flywheel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; margin-top: 8px; }
+#flywheel { width: 100%; max-width: 560px; height: auto; display: block; margin-inline: auto; overflow: visible; }
+.fw-ring { fill: none; stroke: var(--line-soft); stroke-width: 1; stroke-dasharray: 3 6; }
+.fw-arc { fill: none; stroke: var(--grain); stroke-width: 2.2; }
+.fw-arrowhead { fill: var(--grain); }
+.fw-spoke { stroke: var(--line-soft); stroke-width: 1; }
+.fw-seed { fill: var(--grain); }
+.fw-center { fill: var(--ink); }
+.fw-center-text { fill: var(--on-ink); font: 700 30px var(--font); letter-spacing: -0.02em; }
+.fw-center-sub { fill: var(--grain-on-ink); font: 700 11px var(--font); letter-spacing: .22em; }
+.fw-node circle { fill: var(--bg); stroke: var(--ink); stroke-width: 1.5; }
+.fw-node-start circle { fill: var(--grain-soft); stroke: var(--grain); }
+.fw-num { fill: var(--grain); font: 700 11px var(--font); letter-spacing: .12em; }
+.fw-label { fill: var(--ink); font: 700 14.5px var(--font); }
+.fw-list { list-style: none; padding: 0; margin: 0; }
+.fw-list li { display: flex; gap: 18px; align-items: baseline; padding: 14px 0; border-top: 1px solid var(--line-soft); }
+.fw-list li:first-child { border-top-color: var(--line); }
+.fw-list .num { color: var(--grain); flex: none; }
+.fw-list h3 { margin: 0 0 2px; font-size: 1.1rem; }
+.fw-list p { margin: 0; color: var(--muted); font-size: .95rem; }
+.fw-caption { margin: 40px 0 0; padding-top: 20px; border-top: 1px solid var(--line); font-size: clamp(1.1rem, 1.8vw, 1.35rem); font-weight: 600; letter-spacing: -0.01em; max-width: 60ch; }
+@media (max-width: 1024px) { .flywheel { grid-template-columns: 1fr; gap: 32px; } }
