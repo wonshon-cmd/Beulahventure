@@ -304,3 +304,25 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   .mark-spin, .hero-mark-svg .g, .marquee-track, .gift-word, .gifts li::before, .fw-node ellipse, .is-in { animation: none !important; }
   .gift-word { color: var(--ink); }
 }
+
+/* Family: Hephzibah Academy + Beulah Venture Capital (Isaiah 62:4) */
+.fam-grid { display: grid; grid-template-columns: minmax(0, 1fr) 80px minmax(0, 1fr); align-items: stretch; }
+.fam-card { border: 1px solid var(--hair); border-radius: 18px; padding: 34px 32px 28px; display: flex; flex-direction: column; gap: 10px; transition: border-color .3s, transform .35s var(--ease); }
+.fam-card:hover { border-color: var(--ink); transform: translateY(-4px); }
+.fam-logo { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; color: var(--ink); }
+.fam-mark { width: 44px; height: 52px; }
+.fam-word { display: flex; flex-direction: column; line-height: 1; }
+.fam-word b { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.04em; }
+.fam-word small { font-size: .66rem; font-weight: 600; letter-spacing: .24em; margin-top: 6px; }
+.fam-mean { margin: 0; font-size: clamp(1.25rem, 2vw, 1.6rem); font-weight: 200; letter-spacing: -0.04em; line-height: 1.3; }
+.fam-tag { margin: 0; font-weight: 800; letter-spacing: -0.01em; }
+.fam-role { margin: auto 0 0; padding-top: 16px; border-top: 1px solid var(--hair); font-size: .74rem; font-weight: 800; letter-spacing: var(--track); color: var(--muted); }
+.fam-link { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+.fam-link span { flex: 1; width: 1px; background: var(--hair); }
+.fam-link i { font-style: normal; font-size: 1.6rem; font-weight: 200; }
+.fam-bridge { margin: 44px 0 0; font-size: clamp(1.4rem, 2.6vw, 2rem); font-weight: 200; letter-spacing: -0.05em; }
+@media (max-width: 860px) {
+  .fam-grid { grid-template-columns: 1fr; }
+  .fam-link { flex-direction: row; height: 56px; }
+  .fam-link span { height: 1px; width: auto; }
+}
