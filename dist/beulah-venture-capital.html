@@ -1,0 +1,1627 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beulah Venture Capital</title>
+  <meta name="description" content="Beulah Venture Capital — 복음 위에 지속 가능한 회사를 세워, 가격이 아닌 가치로 영혼을 살리는 벤처캐피털. A gospel-based VC building sustainable companies that create value, not price.">
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA1NiIgZmlsbD0iIzExMSI+PHBhdGggZD0iTTAgMGgzNGwxMCA5djE0bC02IDUgOCA3djE1bC04IDZIMHogTTE3IDEydjEwaDEydi0xMHogTTE3IDMzdjExaDE0di0xMXoiIGZpbGw9ImN1cnJlbnRDb2xvciIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+Cg==" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@200;300;400;600;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+/* =========================================================
+   Beulah Venture Capital — "Seven Grains" identity
+   Layout: white page, one column of chapters separated by hairlines.
+   Type does the work: Gothic A1 200 for voice, 800 for the word that matters.
+   One graphic language: the grain (an ellipse), seven around a center.
+   ========================================================= */
+:root {
+  --bg: #ffffff;
+  --ink: #111111;
+  --ink-2: #3b3b3b;
+  --muted: #707070;
+  --faint: #bdbdbd;
+  --hair: #ececec;
+  --soft: #f6f6f5;
+  --water: #3b8fc4;
+  --font: "Gothic A1", "Noto Sans KR", system-ui, -apple-system, sans-serif;
+  --track: 0.16em;
+  --gutter: max(16px, env(safe-area-inset-left, 0px));
+  --ease: cubic-bezier(.2, .7, .2, 1);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--font); font-weight: 400; line-height: 1.65;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+html[lang="ko"] body { word-break: keep-all; }
+a { color: inherit; }
+img { max-width: 100%; }
+::selection { background: var(--ink); color: #fff; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+.container { width: min(1240px, 100% - 32px); margin-inline: auto; }
+@media (min-width: 720px) { .container { width: min(1240px, 100% - 96px); } }
+
+/* ---------- Type scale ---------- */
+h1, h2, h3 { margin: 0; color: var(--ink); }
+h1 { font-size: clamp(2.6rem, 6.2vw, 5.8rem); font-weight: 200; line-height: 1.02; letter-spacing: -0.065em; }
+h2 { font-size: clamp(2rem, 4.4vw, 3.6rem); font-weight: 200; line-height: 1.12; letter-spacing: -0.055em; text-wrap: balance; }
+h3 { font-size: 1.15rem; font-weight: 800; letter-spacing: -0.02em; }
+h1 em, h2 em { font-style: normal; font-weight: 800; }
+.eyebrow {
+  display: flex; align-items: center; gap: 10px; margin: 0 0 22px;
+  font-size: .74rem; font-weight: 800; letter-spacing: var(--track); text-transform: uppercase;
+}
+.eyebrow::before { /* a single grain */
+  content: ""; width: 5px; height: 11px; border-radius: 50%; background: currentColor; transform: rotate(28deg);
+}
+.muted, .muted-dark { color: var(--muted); }
+.num { font-size: .78rem; font-weight: 400; letter-spacing: .08em; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: rgba(255,255,255,.88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--hair);
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 21; background: #fff; }
+.nav { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.brand-mark { width: 30px; height: 35px; color: var(--ink); }
+.brand-text { display: flex; flex-direction: column; line-height: 1; }
+.brand-name { font-size: 1.45rem; font-weight: 800; letter-spacing: -0.05em; }
+.brand-sub { font-size: .58rem; font-weight: 400; letter-spacing: .24em; margin-top: 5px; color: var(--muted); }
+.nav-links { display: flex; align-items: center; gap: 34px; }
+.nav-links a { text-decoration: none; font-size: .95rem; font-weight: 400; color: var(--ink-2); transition: color .2s; }
+.nav-links a:hover { color: var(--ink); font-weight: 800; }
+.nav-divider { width: 1px; height: 22px; background: var(--hair); }
+.nav-cta { font-weight: 800 !important; color: var(--ink) !important; }
+.lang-toggle {
+  border: 1px solid var(--ink); background: transparent; color: var(--ink); border-radius: 999px;
+  padding: 4px 12px; font: inherit; font-size: .74rem; font-weight: 800; letter-spacing: .06em; cursor: pointer;
+}
+.lang-toggle:hover { background: var(--ink); color: #fff; }
+.nav-toggle { display: none; width: 40px; height: 40px; background: none; border: 0; cursor: pointer; flex-direction: column; justify-content: center; gap: 7px; padding: 8px; }
+.nav-toggle span { display: block; height: 1.5px; background: var(--ink); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; text-decoration: none; cursor: pointer;
+  font: inherit; font-size: 1rem; font-weight: 800; letter-spacing: -0.01em;
+  padding: 15px 26px; border-radius: 999px; border: 1px solid var(--ink); background: var(--ink); color: #fff;
+  transition: background .25s, color .25s, transform .25s var(--ease);
+}
+.btn:hover { background: #fff; color: var(--ink); }
+.btn .arrow { transition: transform .25s var(--ease); }
+.btn:hover .arrow { transform: translate(3px, -3px); }
+.btn-ghost, .btn-light, .btn-outline-light { background: transparent; color: var(--ink); }
+.btn-ghost:hover, .btn-light:hover, .btn-outline-light:hover { background: var(--ink); color: #fff; }
+
+/* ---------- Hero ---------- */
+.hero { position: relative; padding-top: clamp(56px, 9vw, 120px); }
+.sparkle-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.hero > .container { position: relative; }
+.hero-grid { display: block; }
+.hero-sub { margin: 30px 0 40px; font-size: clamp(1.05rem, 1.7vw, 1.3rem); color: var(--ink-2); max-width: 34ch; }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-mark { display: flex; justify-content: center; }
+.hero-mark-svg { width: min(100%, 440px); height: auto; overflow: visible; }
+.hero-mark-svg .mark-core { fill: var(--ink); }
+.hero-mark-svg .g { fill: var(--bg); stroke: var(--ink); stroke-width: .6; }
+.mark-spin { transform-origin: 50px 50px; transform-box: view-box; animation: spin 90s linear infinite; }
+.hero-mark-svg .g { animation: grainIn .9s var(--ease) both, grainFill 7s linear infinite; animation-delay: calc(var(--i) * 120ms), calc(1.2s + var(--i) * 1s); }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes grainIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes grainFill { 0% { fill: var(--ink); } 14%, 100% { fill: var(--bg); } }
+.pillars {
+  list-style: none; padding: 0; margin: clamp(64px, 9vw, 112px) 0 0;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--ink);
+}
+.pillars li { display: flex; align-items: baseline; gap: 18px; padding: 24px 0 28px; }
+.pillar-name { font-size: clamp(1.4rem, 2.6vw, 2.1rem); font-weight: 200; letter-spacing: -0.05em; transition: font-weight .3s; }
+.pillars li:hover .pillar-name { font-weight: 800; }
+
+/* ---------- Ticker ---------- */
+.marquee { overflow: hidden; border-block: 1px solid var(--hair); }
+.marquee-track { display: flex; width: max-content; animation: marquee 44s linear infinite; }
+.marquee-track span { white-space: pre; padding-block: 18px; font-size: clamp(.95rem, 1.5vw, 1.1rem); font-weight: 200; letter-spacing: .32em; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ---------- Storehouse band ---------- */
+.field-band { margin: 0; }
+.field-band canvas { display: block; width: 100%; height: clamp(300px, 34vw, 480px); }
+.field-cap { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; flex-wrap: wrap; padding-block: 18px 30px; border-top: 1px solid var(--hair); }
+.field-quote { font-size: clamp(1rem, 1.5vw, 1.15rem); font-weight: 300; max-width: 62ch; }
+.field-cap cite, .section-verse cite { font-style: normal; font-size: .72rem; font-weight: 800; letter-spacing: var(--track); color: var(--muted); }
+
+/* ---------- Sections ---------- */
+.section { padding-block: clamp(88px, 11vw, 150px); border-top: 1px solid var(--hair); }
+.section-head { max-width: 820px; margin-bottom: clamp(48px, 6vw, 72px); }
+.section-head > p:last-child { margin: 0; font-size: 1.1rem; color: var(--muted); }
+.section-verse { margin: 26px 0 22px; padding-left: 18px; border-left: 1px solid var(--ink); max-width: 64ch; }
+.section-verse p { margin: 0 0 8px; font-size: 1.02rem; font-weight: 300; line-height: 1.8; color: var(--ink-2); }
+
+/* Values */
+.values { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 32px; }
+.values li { padding: 24px 0 34px; border-top: 1px solid var(--hair); position: relative; }
+.values li::before { content: ""; position: absolute; top: -1px; left: 0; width: 28px; height: 1px; background: var(--ink); transition: width .5s var(--ease); }
+.values li:hover::before { width: 100%; }
+.values h3 { margin: 14px 0 10px; font-size: .7rem; font-weight: 800; letter-spacing: var(--track); text-transform: uppercase; color: var(--muted); }
+.values p { margin: 0; font-size: clamp(1.25rem, 2vw, 1.6rem); font-weight: 200; line-height: 1.3; letter-spacing: -0.045em; transition: font-weight .3s; }
+.values li:hover p { font-weight: 800; }
+
+/* Promise */
+.promise-head { max-width: 820px; margin-bottom: 48px; }
+.promise-head h2 { font-size: clamp(2.3rem, 5.4vw, 4.4rem); }
+.promise-lead { margin: 18px 0 0; color: var(--muted); font-size: 1.1rem; }
+.gifts { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--ink); }
+.gifts li { display: flex; flex-direction: column; gap: 12px; padding: 30px 20px 6px 0; position: relative; }
+.gift-word { font-size: clamp(2.6rem, 6.6vw, 5.6rem); line-height: 1; letter-spacing: -0.06em; font-weight: 200; color: var(--faint); animation: giftword 8s ease-in-out infinite; animation-delay: calc(var(--i) * 2s); }
+.gift-sub { color: var(--muted); font-size: .98rem; }
+.gifts li::before { content: ""; position: absolute; top: -1px; left: 0; height: 3px; width: 0; background: var(--ink); animation: giftline 8s ease-in-out infinite; animation-delay: calc(var(--i) * 2s); }
+@keyframes giftword { 0%, 30%, 100% { font-weight: 200; color: var(--faint); } 6%, 22% { font-weight: 800; color: var(--ink); } }
+@keyframes giftline { 0%, 30%, 100% { width: 0; } 8%, 22% { width: 100%; } }
+
+/* Seven years chart + stages */
+.years { margin: 0 0 64px; }
+.years-scroll { overflow-x: auto; }
+#years-chart { display: block; width: 100%; min-width: 640px; height: auto; }
+.yc-store { fill: var(--soft); }
+.yc-grain { fill: var(--ink); }
+.yc-grain-thin { fill: none; stroke: var(--ink); stroke-width: 1; opacity: .5; }
+.yc-axis { stroke: var(--ink); stroke-width: 1; }
+.yc-divider { stroke: var(--hair); stroke-width: 1; stroke-dasharray: 3 4; }
+.yc-tick, .yc-axis-label, .yc-legend { fill: var(--muted); font-size: 12px; font-family: var(--font); }
+.yc-era { fill: var(--ink); font-size: 13px; font-weight: 800; letter-spacing: .06em; font-family: var(--font); }
+.years-cap { margin-top: 18px; font-size: 1.1rem; font-weight: 300; letter-spacing: -0.02em; max-width: 60ch; }
+.stages { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; }
+.stages li { padding-top: 22px; border-top: 1px solid var(--ink); }
+.stages h3 { margin: 14px 0 4px; font-size: 1.45rem; letter-spacing: -0.04em; }
+.stage-tag { margin: 0 0 10px; font-size: .72rem; font-weight: 800; letter-spacing: var(--track); text-transform: uppercase; color: var(--muted); }
+.stages p:last-child { margin: 0; font-weight: 300; font-size: 1.05rem; }
+
+/* Tracks */
+.tracks { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.track {
+  display: flex; flex-direction: column; padding: 28px 28px 20px; border: 1px solid var(--hair); border-radius: 18px;
+  transition: border-color .3s, transform .35s var(--ease);
+}
+.track:hover { border-color: var(--ink); transform: translateY(-4px); }
+.track h3 { margin: 14px 0 4px; font-size: 1.55rem; letter-spacing: -0.04em; }
+.track-desc { margin: 0 0 22px; font-size: 1.12rem; font-weight: 300; letter-spacing: -0.02em; }
+.track-meta { margin: auto 0 0; }
+.track-meta div { display: grid; grid-template-columns: 72px 1fr; gap: 14px; padding: 12px 0; border-top: 1px solid var(--hair); }
+.track-meta dt { font-size: .72rem; font-weight: 800; letter-spacing: var(--track); color: var(--muted); padding-top: 2px; }
+.track-meta dd { margin: 0; font-weight: 800; }
+
+/* Flywheel */
+.equation-line { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 0 0 40px; }
+.eq-chip { border: 1px solid var(--ink); border-radius: 999px; padding: 8px 16px; font-weight: 300; }
+.eq-result { background: var(--ink); color: #fff; font-weight: 800; }
+.eq-op { font-weight: 200; font-size: 1.3rem; color: var(--muted); }
+.flywheel { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+#flywheel { width: 100%; height: auto; display: block; overflow: visible; }
+.fw-ring { fill: none; stroke: var(--hair); stroke-width: 1; }
+.fw-seed { fill: var(--ink); }
+.fw-node ellipse { fill: var(--bg); stroke: var(--ink); stroke-width: 1.2; animation: fwpulse 14s linear infinite; animation-delay: calc(var(--i) * 2s); }
+@keyframes fwpulse { 0% { fill: var(--ink); } 12%, 100% { fill: var(--bg); } }
+.fw-num { fill: var(--muted); font: 400 12px var(--font); letter-spacing: .1em; }
+.fw-label { fill: var(--ink); font: 800 17px var(--font); letter-spacing: -0.02em; }
+.fw-center { fill: var(--ink); }
+.fw-center-text { fill: #fff; font: 800 26px var(--font); letter-spacing: -0.03em; }
+.fw-center-sub { fill: var(--faint); font: 800 9px var(--font); letter-spacing: .24em; }
+.fw-list { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--ink); }
+.fw-list li { display: flex; gap: 18px; align-items: baseline; padding: 15px 0; border-bottom: 1px solid var(--hair); transition: padding-left .3s var(--ease); }
+.fw-list li:hover { padding-left: 8px; }
+.fw-list h3 { margin: 0 0 2px; font-size: 1.08rem; }
+.fw-list p { margin: 0; color: var(--muted); font-weight: 300; }
+.fw-caption { margin: 48px 0 0; font-size: clamp(1.4rem, 2.6vw, 2rem); font-weight: 200; letter-spacing: -0.05em; }
+
+/* Venture 101 */
+.v101-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 64px; align-items: start; }
+.path-steps { list-style: none; padding: 0; margin: 8px 0 34px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.path-steps li { display: flex; gap: 10px; align-items: baseline; padding: 16px 0; border-top: 1px solid var(--ink); font-weight: 200; font-size: 1.15rem; letter-spacing: -0.03em; }
+.path-steps li + li { padding-left: 12px; }
+.modules { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--ink); }
+.modules li { display: flex; gap: 20px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid var(--hair); font-size: 1.15rem; font-weight: 300; letter-spacing: -0.02em; transition: font-weight .25s; }
+.modules li:hover { font-weight: 800; }
+
+/* About */
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0 0 64px; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--hair); }
+.facts div { padding: 24px 0; }
+.facts dt { font-size: .72rem; font-weight: 800; letter-spacing: var(--track); color: var(--muted); }
+.facts dd { margin: 8px 0 0; font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 200; letter-spacing: -0.04em; }
+.about-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 64px; }
+.sub-head { margin: 0 0 24px; font-size: .72rem; font-weight: 800; letter-spacing: var(--track); text-transform: uppercase; }
+.team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 32px; }
+.member .avatar { width: 56px; height: 56px; border-radius: 50%; border: 1px solid var(--ink); display: grid; place-items: center; font-weight: 800; font-size: 1.2rem; margin-bottom: 16px; }
+.member h3 { font-size: 1.1rem; margin: 0 0 2px; }
+.member .role { margin: 0 0 8px; font-size: .72rem; font-weight: 800; letter-spacing: var(--track); color: var(--muted); }
+.member p { margin: 0; font-weight: 300; }
+#portfolio .muted { margin: 0 0 16px; }
+.portfolio-grid { display: grid; gap: 12px; }
+.portfolio-item { border: 1px dashed var(--faint); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 14px; min-height: 140px; justify-content: space-between; }
+.portfolio-item .tag { font-size: .72rem; font-weight: 800; letter-spacing: var(--track); color: var(--muted); }
+.portfolio-item a, .portfolio-item h3 { font-size: 1.4rem; font-weight: 800; text-decoration: none; letter-spacing: -0.03em; }
+
+/* Pitch */
+.two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: start; }
+.section-pitch h2 { margin-bottom: 18px; }
+.pitch-form { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.pitch-form .full { grid-column: 1 / -1; }
+.pitch-form label { display: flex; flex-direction: column; gap: 6px; font-size: .72rem; font-weight: 800; letter-spacing: var(--track); color: var(--muted); }
+.pitch-form input, .pitch-form select, .pitch-form textarea {
+  font: inherit; font-size: 1rem; font-weight: 400; letter-spacing: normal; color: var(--ink);
+  background: transparent; border: 0; border-bottom: 1px solid var(--faint); border-radius: 0; padding: 10px 0; width: 100%;
+}
+.pitch-form textarea { border: 1px solid var(--faint); border-radius: 12px; padding: 12px; resize: vertical; }
+.pitch-form input:focus, .pitch-form select:focus, .pitch-form textarea:focus { outline: none; border-color: var(--ink); }
+.pitch-form label.check { flex-direction: row; align-items: center; gap: 12px; font-size: 1rem; font-weight: 400; letter-spacing: normal; color: var(--ink); }
+.pitch-form label.check input { width: 18px; height: 18px; accent-color: var(--ink); }
+.pitch-form .btn { justify-content: center; margin-top: 6px; }
+.form-status { margin: 0; min-height: 1.5em; font-size: .95rem; font-weight: 400; letter-spacing: normal; }
+.form-status.error { color: #b42318; }
+.pitch-email { user-select: all; font-weight: 800; }
+.pitch-preview { white-space: pre-wrap; word-break: break-word; font: inherit; font-size: .9rem; background: var(--soft); border-radius: 12px; padding: 14px; margin: 12px 0; max-height: 220px; overflow: auto; }
+.pitch-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.pitch-actions .btn { font-size: .92rem; padding: 10px 18px; }
+
+/* Footer */
+.site-footer { padding-block: 44px 52px; border-top: 1px solid var(--ink); }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+.footer-brand { display: flex; align-items: center; gap: 14px; }
+.footer-mark { width: 24px; height: 28px; color: var(--ink); }
+.tagline { margin: 0; font-weight: 200; font-size: 1.05rem; letter-spacing: -0.02em; }
+.footer-meta { display: flex; gap: 24px; flex-wrap: wrap; margin: 0; font-size: .75rem; color: var(--muted); }
+
+/* Reveal on scroll (content is visible without JS) */
+.is-in { animation: rise .8s var(--ease) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+  .values { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stages { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .flywheel, .v101-grid, .about-grid, .two-col { grid-template-columns: 1fr; gap: 40px; }
+  .nav-links { gap: 22px; }
+}
+@media (max-width: 860px) {
+  .nav { height: 64px; }
+  .nav-toggle { display: flex; }
+  .nav-links {
+    display: none; position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; align-items: flex-start; gap: 18px;
+    background: #fff; padding: 22px var(--gutter) 26px; border-bottom: 1px solid var(--hair);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { font-size: 1.15rem; }
+  .nav-divider { display: none; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-mark { order: -1; justify-content: flex-start; }
+  .hero-mark-svg { width: 120px; }
+  .tracks { grid-template-columns: 1fr; }
+  .gifts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .pillars, .facts, .values, .stages, .path-steps, .pitch-form { grid-template-columns: 1fr; }
+  .pillars li { padding: 16px 0; border-bottom: 1px solid var(--hair); }
+  .path-steps li + li { padding-left: 0; }
+  .facts div { border-bottom: 1px solid var(--hair); }
+  .track-meta div { grid-template-columns: 1fr; gap: 2px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .mark-spin, .hero-mark-svg .g, .marquee-track, .gift-word, .gifts li::before, .fw-node ellipse, .is-in { animation: none !important; }
+  .gift-word { color: var(--ink); }
+}
+
+/* Family: Hephzibah Academy + Beulah Venture Capital (Isaiah 62:4) */
+.fam-grid { display: grid; grid-template-columns: minmax(0, 1fr) 80px minmax(0, 1fr); align-items: stretch; }
+.fam-card { border: 1px solid var(--hair); border-radius: 18px; padding: 34px 32px 28px; display: flex; flex-direction: column; gap: 10px; transition: border-color .3s, transform .35s var(--ease); }
+.fam-card:hover { border-color: var(--ink); transform: translateY(-4px); }
+.fam-logo { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; color: var(--ink); }
+.fam-mark { width: 44px; height: 52px; }
+.fam-word { display: flex; flex-direction: column; line-height: 1; }
+.fam-word b { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.04em; }
+.fam-word small { font-size: .66rem; font-weight: 600; letter-spacing: .24em; margin-top: 6px; }
+.fam-mean { margin: 0; font-size: clamp(1.25rem, 2vw, 1.6rem); font-weight: 200; letter-spacing: -0.04em; line-height: 1.3; }
+.fam-tag { margin: 0; font-weight: 800; letter-spacing: -0.01em; }
+.fam-role { margin: auto 0 0; padding-top: 16px; border-top: 1px solid var(--hair); font-size: .74rem; font-weight: 800; letter-spacing: var(--track); color: var(--muted); }
+.fam-link { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+.fam-link span { flex: 1; width: 1px; background: var(--hair); }
+.fam-link i { font-style: normal; font-size: 1.6rem; font-weight: 200; }
+.fam-bridge { margin: 44px 0 0; font-size: clamp(1.4rem, 2.6vw, 2rem); font-weight: 200; letter-spacing: -0.05em; }
+@media (max-width: 860px) {
+  .fam-grid { grid-template-columns: 1fr; }
+  .fam-link { flex-direction: row; height: 56px; }
+  .fam-link span { height: 1px; width: auto; }
+}
+
+/* Why we started */
+.why-list { list-style: none; padding: 0; margin: 0 0 56px; border-top: 1px solid var(--ink); max-width: 900px; }
+.why-list li { display: flex; gap: 16px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid var(--hair); font-size: clamp(1.05rem, 1.7vw, 1.3rem); font-weight: 300; letter-spacing: -0.02em; }
+.why-list li::before { content: ""; flex: none; width: 14px; height: 1px; background: var(--ink); transform: translateY(-5px); }
+.why-quote { margin: 0 0 40px; max-width: 760px; }
+.why-quote p { margin: 0 0 8px; font-size: clamp(1.3rem, 2.4vw, 1.9rem); font-weight: 200; letter-spacing: -0.04em; line-height: 1.35; }
+.why-quote cite { font-style: normal; font-size: .72rem; font-weight: 800; letter-spacing: var(--track); color: var(--muted); }
+.why-answer { margin: 0 0 72px; max-width: 820px; font-size: clamp(1.3rem, 2.4vw, 1.9rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1.4; }
+.models { list-style: none; padding: 0; margin: 0 0 56px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+.models li { padding-top: 20px; border-top: 1px solid var(--ink); }
+.models h3 { margin: 12px 0 10px; font-size: 1.4rem; letter-spacing: -0.04em; }
+.model-d { margin: 0 0 14px; font-weight: 300; color: var(--ink-2); }
+.model-b { margin: 0; font-weight: 800; }
+.why-close { margin: 0 0 14px; max-width: 760px; font-size: clamp(1.15rem, 2vw, 1.5rem); font-weight: 200; letter-spacing: -0.03em; }
+.why-source { margin: 0; font-size: .72rem; font-weight: 800; letter-spacing: var(--track); color: var(--muted); }
+@media (max-width: 860px) { .models { grid-template-columns: 1fr; gap: 24px; } }
+
+/* Water blue: used sparingly, the same color as the river */
+.eyebrow::before { background: var(--water); }
+.section-verse { border-left-color: var(--water); }
+.gifts li::before { background: var(--water); }
+.fw-seed { fill: var(--water); }
+.why-list li::before { background: var(--water); }
+.values li::before, .values li:hover::before { background: var(--water); }
+.field-cap cite, .section-verse cite { color: var(--water); }
+
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="#top" class="brand" aria-label="Beulah Venture Capital">
+        <svg class="brand-mark" viewBox="0 0 48 56" aria-hidden="true"><path d="M0 0h34l10 9v14l-6 5 8 7v15l-8 6H0z M17 12v10h12v-10z M17 33v11h14v-11z" fill="currentColor" fill-rule="evenodd"/></svg>
+        <span class="brand-text">
+          <span class="brand-name">Beulah</span>
+          <span class="brand-sub">VENTURE CAPITAL</span>
+        </span>
+      </a>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+      <nav class="nav-links">
+        <a href="#why" data-i18n="nav.why">왜</a>
+        <a href="#philosophy" data-i18n="nav.philosophy">철학</a>
+        <a href="#stages" data-i18n="nav.stages">성장 방식</a>
+        <a href="#tracks" data-i18n="nav.tracks">투자 트랙</a>
+        <a href="#venture101">Venture 101</a>
+        <a href="#about" data-i18n="nav.about">소개</a>
+        <span class="nav-divider" aria-hidden="true"></span>
+        <a href="#pitch" class="nav-cta"><span data-i18n="nav.pitch">사업 제안하기</span> <span class="arrow">↗</span></a>
+        <button class="lang-toggle" type="button" aria-label="Switch language">EN</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-main">
+          <p class="eyebrow">BEULAH VENTURE CAPITAL</p>
+          <h1 data-i18n-html="hero.h1"><em>목적</em> 위에 세우고,<br><em>인도하심</em>으로 키운다.</h1>
+          <p class="hero-sub" data-i18n="hero.sub">복음 위에, 복음의 가치로.</p>
+          <div class="hero-actions">
+            <a href="#venture101" class="btn btn-shine"><span data-i18n="hero.cta">Venture 101 시작</span> <span class="arrow">↗</span></a>
+            <a href="#why" class="btn btn-ghost"><span data-i18n="hero.cta2">우리의 이야기</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <ol class="pillars">
+          <li><span class="num">01</span><span class="pillar-name" data-i18n="pillar.1">자본</span></li>
+          <li><span class="num">02</span><span class="pillar-name" data-i18n="pillar.2">동역</span></li>
+          <li><span class="num">03</span><span class="pillar-name" data-i18n="pillar.3">성장</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Ticker -->
+    <div class="marquee" aria-hidden="true"><div class="marquee-track"><span data-i18n="marquee">복음  ·  가치  ·  희망  ·  사랑  ·  신실  ·  청지기  ·  지속  ·  </span><span data-i18n="marquee">복음  ·  가치  ·  희망  ·  사랑  ·  신실  ·  청지기  ·  지속  ·  </span><span data-i18n="marquee">복음  ·  가치  ·  희망  ·  사랑  ·  신실  ·  청지기  ·  지속  ·  </span><span data-i18n="marquee">복음  ·  가치  ·  희망  ·  사랑  ·  신실  ·  청지기  ·  지속  ·  </span></div></div>
+
+    <!-- Field image -->
+    <figure class="field-band" aria-labelledby="field-cap">
+      <canvas id="field-canvas" aria-hidden="true"></canvas>
+      <figcaption id="field-cap" class="container field-cap">
+        <span class="field-quote" data-i18n="field.quote">“그는 시냇물 가에 심은 나무가 철을 따라 열매를 맺으며 그 잎사귀가 마르지 아니함 같으니”</span>
+        <cite data-i18n="field.ref">시편 1:3</cite>
+      </figcaption>
+    </figure>
+
+    <!-- 0. Why we started: Matthew 5:13-14 -->
+    <section id="why" class="section why">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow" data-i18n="why.eyebrow">WHY WE STARTED</p>
+          <h2 data-i18n-html="why.title">바벨론 한가운데서, <em>작게, 신실하게.</em></h2>
+          <blockquote class="section-verse"><p data-i18n="why.verse">“너희는 세상의 소금이니 … 너희는 세상의 빛이라”</p><cite data-i18n="why.ref">마태복음 5:13–14</cite></blockquote>
+          <p class="muted" data-i18n="why.lead">우리는 비정상이 ‘정상’이 된 시대를 산다.</p>
+        </div>
+        <ul class="why-list">
+          <li><span data-i18n="why.n1">세계 인구의 3분의 2가 가난한데, 일부의 풍요는 당연해졌다.</span></li>
+          <li><span data-i18n="why.n2">과잉 소비와 생태계 파괴가 성장이라는 이름으로 계속된다.</span></li>
+          <li><span data-i18n="why.n3">월급으로 겨우 버티는 삶이 일상이 되었다.</span></li>
+          <li><span data-i18n="why.n4">탐욕이 자원을 빠르게 고갈시킨다.</span></li>
+        </ul>
+        <blockquote class="why-quote"><p data-i18n="why.quote">바벨론의 방식과 우선순위가 우리를 다스리게 두지 말라.</p><cite data-i18n="why.cite">Brian Walsh의 말에서</cite></blockquote>
+        <p class="why-answer" data-i18n="why.answer">그래서 회사를 세운다. 세상의 논리 대신 복음의 가치로 일하고, 무너져 가는 가치를 다시 세우는 회사. 그 자리에서 빛과 소금으로.</p>
+        <h3 class="sub-head" data-i18n="why.models">세 사람에게 배운다</h3>
+        <ol class="models">
+          <li><span class="num">01</span><h3 data-i18n="why.m1.t">예레미야</h3><p class="model-d" data-i18n="why.m1.d">익숙한 틀에 갇히지 않고, 시대의 비정상을 물었다.</p><p class="model-b" data-i18n="why.m1.b">다르게 상상한다.</p></li>
+          <li><span class="num">02</span><h3 data-i18n="why.m2.t">바울과 빌레몬</h3><p class="model-d" data-i18n="why.m2.d">한 세대에 모든 것을 바꾸려 하지 않았다. 자기 몫을 다하고 다음 세대에 이었다.</p><p class="model-b" data-i18n="why.m2.b">우리 몫에 집중한다.</p></li>
+          <li><span class="num">03</span><h3 data-i18n="why.m3.t">요셉</h3><p class="model-d" data-i18n="why.m3.d">풍년에 준비해 흉년에 온 땅을 먹였다. 경제를 사람을 살리는 쪽으로 다뤘다.</p><p class="model-b" data-i18n="why.m3.b">경제를 사람 편에 둔다.</p></li>
+        </ol>
+        <p class="why-close" data-i18n="why.close">세상 전체를 바꾸겠다는 만용 대신, 주어진 몇 가지에 신실하게. 우정과 연대 안에서, 오래.</p>
+      </div>
+    </section>
+
+    <!-- 1. Story: Genesis 50:20 -->
+    <section id="philosophy" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow" data-i18n="story.eyebrow">OUR STORY</p>
+          <h2 data-i18n-html="story.title">풍년에 쌓고, <em>흉년에 살린다.</em></h2>
+          <blockquote class="section-verse"><p data-i18n="story.verse">“당신들은 나를 해하려 하였으나 하나님은 그것을 선으로 바꾸사 오늘과 같이 많은 백성의 생명을 구원하게 하시려 하셨나니”</p><cite data-i18n="story.ref">창세기 50:20</cite></blockquote>
+          <p class="muted" data-i18n="story.lead">요셉의 창고처럼. 풍년에 준비해, 어려운 때에도 사람을 지키는 회사를 세운다.</p>
+        </div>
+        <ol class="values">
+          <li><span class="num">01</span><h3 data-i18n="v1.t">Gospel-Based</h3><p data-i18n="v1.d">사업은 복음의 통로.</p></li>
+          <li><span class="num">02</span><h3 data-i18n="v2.t">Souls First</h3><p data-i18n="v2.d">사람은 사랑할 영혼.</p></li>
+          <li><span class="num">03</span><h3 data-i18n="v3.t">Value over Price</h3><p data-i18n="v3.d">한 곳에서 맺은 열매를 다른 곳으로.</p></li>
+          <li><span class="num">04</span><h3 data-i18n="v4.t">Sustainable</h3><p data-i18n="v4.d">오래 가는 회사가 이긴다.</p></li>
+          <li><span class="num">05</span><h3 data-i18n="v5.t">Scalable</h3><p data-i18n="v5.d">한 곳의 열매를 열방으로.</p></li>
+          <li><span class="num">06</span><h3 data-i18n="v6.t">Stewardship</h3><p data-i18n="v6.d">자본은 맡겨진 것.</p></li>
+          <li><span class="num">07</span><h3 data-i18n="v7.t">All Aligned</h3><p data-i18n="v7.d">모두가 이겨야 투자한다.</p></li>
+          <li><span class="num">08</span><h3 data-i18n="v8.t">Jobs Protected</h3><p data-i18n="v8.d">일자리는 곧 가정.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Promise band -->
+    <section id="promise" class="section section-dark promise">
+      <div class="container">
+        <div class="promise-head reveal">
+          <p class="eyebrow" data-i18n="promise.eyebrow">우리의 약속</p>
+          <h2 data-i18n-html="promise.title">가격이 아닌 <em>가치</em>를 만든다.</h2>
+          <p class="promise-lead" data-i18n="promise.lead">함께하는 모든 이에게</p>
+        </div>
+        <ul class="gifts">
+          <li style="--i:0"><span class="gift-word" data-i18n="g1.t">희망</span><span class="gift-sub" data-i18n="g1.d">내일을 기대하게</span></li>
+          <li style="--i:1"><span class="gift-word" data-i18n="g2.t">가치</span><span class="gift-sub" data-i18n="g2.d">돈보다 오래 남는 것</span></li>
+          <li style="--i:2"><span class="gift-word" data-i18n="g3.t">사랑</span><span class="gift-sub" data-i18n="g3.d">사람을 귀하게</span></li>
+          <li style="--i:3"><span class="gift-word" data-i18n="g4.t">복음</span><span class="gift-sub" data-i18n="g4.d">모든 것의 기초</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 2. How we grow: Genesis 41:36 -->
+    <section id="stages" class="section section-alt">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow" data-i18n="grow.eyebrow">HOW WE GROW</p>
+          <h2 data-i18n-html="grow.title">작게 심고, 스스로 서고, <em>함께 자란다.</em></h2>
+          
+        </div>
+        <figure class="years">
+          <div class="years-scroll"><svg id="years-chart" role="img" aria-labelledby="years-cap"></svg></div>
+          <figcaption class="years-cap" data-i18n="joseph.chartCap">풍년에 쌓으면, 흉년에도 창고는 비지 않는다.</figcaption>
+        </figure>
+        <ol class="stages">
+          <li><span class="num">01</span><h3>Seedstrap</h3><p class="stage-tag" data-i18n="s1.tag">심기</p><p data-i18n="s1.d">작은 자본, 검증된 고객.</p></li>
+          <li><span class="num">02</span><h3>Bootstrap</h3><p class="stage-tag" data-i18n="s2.tag">자립</p><p data-i18n="s2.d">매출과 이익으로 선다.</p></li>
+          <li><span class="num">03</span><h3>Grow Together</h3><p class="stage-tag" data-i18n="s3.tag">동역</p><p data-i18n="s3.d">어드바이저 · 팀 · 마케터가 합류.</p></li>
+          <li><span class="num">04</span><h3>Storehouse</h3><p class="stage-tag" data-i18n="s4.tag">비축과 확장</p><p data-i18n="s4.d">비축하고, 복제하고, 확장한다.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 3. Tracks: Genesis 41:56-57 -->
+    <section id="tracks" class="section section-dark">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow" data-i18n="tracks.eyebrow">INVESTMENT TRACKS</p>
+          <h2 data-i18n-html="tracks.title">선교지에서 미국까지, <em>네 가지 길.</em></h2>
+          
+        </div>
+        <ol class="tracks">
+          <li class="track">
+            <span class="num">01</span>
+            <h3>Market Bridge</h3>
+            <p class="stage-tag" data-i18n="t1.tag">선교지 판로 연결</p>
+            <p class="track-desc" data-i18n="t1.d">선교지 제품을 한국 · 미국 시장으로.</p>
+            <dl class="track-meta">
+              <div><dt data-i18n="tracks.role">역할</dt><dd data-i18n="t1.role">판로 · 네트워크</dd></div>
+              <div><dt data-i18n="tracks.form">방식</dt><dd data-i18n="t1.form">판매 연동 (지분 없이 시작)</dd></div>
+            </dl>
+          </li>
+          <li class="track">
+            <span class="num">02</span>
+            <h3>Mission Field Ventures</h3>
+            <p class="stage-tag" data-i18n="t2.tag">선교지 공동 벤처</p>
+            <p class="track-desc" data-i18n="t2.d">함께 소유하고 운영하다, 현지 리더에게 넘긴다.</p>
+            <dl class="track-meta">
+              <div><dt data-i18n="tracks.role">역할</dt><dd data-i18n="t2.role">지분 · 공동 운영</dd></div>
+              <div><dt data-i18n="tracks.form">방식</dt><dd data-i18n="t2.form">소수 지분 → 현지 이양</dd></div>
+            </dl>
+          </li>
+          <li class="track">
+            <span class="num">03</span>
+            <h3>US Business Partnership</h3>
+            <p class="stage-tag" data-i18n="t3.tag">미국 사업 투자</p>
+            <p class="track-desc" data-i18n="t3.d">자본과 경영을 함께 넣는다.</p>
+            <dl class="track-meta">
+              <div><dt data-i18n="tracks.role">역할</dt><dd data-i18n="t3.role">자본 · 경영 참여</dd></div>
+              <div><dt data-i18n="tracks.form">방식</dt><dd data-i18n="t3.form">투자 지분 + 경영 지분</dd></div>
+            </dl>
+          </li>
+          <li class="track">
+            <span class="num">04</span>
+            <h3>US Idea Launch</h3>
+            <p class="stage-tag" data-i18n="t4.tag">미국 아이디어 창업</p>
+            <p class="track-desc" data-i18n="t4.d">아이디어에서 회사까지, 함께 세운다.</p>
+            <dl class="track-meta">
+              <div><dt data-i18n="tracks.role">역할</dt><dd data-i18n="t4.role">공동 창업</dd></div>
+              <div><dt data-i18n="tracks.form">방식</dt><dd data-i18n="t4.form">시드 자본 + 창업 지분</dd></div>
+            </dl>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 4. Structure: Genesis 50:21 -->
+    <section id="structure" class="section section-alt">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow" data-i18n="structure.eyebrow">THE BEULAH FLYWHEEL</p>
+          <h2 data-i18n-html="structure.title">복음 위에서 <em>도는 바퀴.</em></h2>
+          <blockquote class="section-verse"><p data-i18n="structure.verse">“한 알의 밀이 땅에 떨어져 죽지 아니하면 한 알 그대로 있고 죽으면 많은 열매를 맺느니라”</p><cite data-i18n="structure.ref">요한복음 12:24</cite></blockquote>
+        </div>
+        <p class="equation-line">
+          <span class="eq-chip eq-lead" data-i18n="eq.leader">복음 위에 선 리더</span><span class="eq-op">+</span><span class="eq-chip" data-i18n="eq.capital">자본</span><span class="eq-op">+</span><span class="eq-chip" data-i18n="eq.advice">조언</span><span class="eq-op">+</span><span class="eq-chip" data-i18n="eq.help">실행</span><span class="eq-op">=</span><span class="eq-chip eq-result" data-i18n="eq.impact">더 많은 열매</span>
+        </p>
+        <div class="flywheel">
+          <svg id="flywheel" role="img" aria-labelledby="fw-cap" viewBox="0 0 560 560"></svg>
+          <ol class="fw-list">
+            <li><span class="num">01</span><div><h3 data-i18n="fw.n1">투자</h3><p data-i18n="fw.d1">복음 위에 선 창업자에게 심는다.</p></div></li>
+            <li><span class="num">02</span><div><h3 data-i18n="fw.n2">조언</h3><p data-i18n="fw.d2">경영과 신앙의 지혜.</p></div></li>
+            <li><span class="num">03</span><div><h3 data-i18n="fw.n3">성장</h3><p data-i18n="fw.d3">팀과 함께 시장을 넓힌다.</p></div></li>
+            <li><span class="num">04</span><div><h3 data-i18n="fw.n4">더 많은 일자리</h3><p data-i18n="fw.d4">일자리가 늘고, 가정이 선다.</p></div></li>
+            <li><span class="num">05</span><div><h3 data-i18n="fw.n5">더 많은 이익</h3><p data-i18n="fw.d5">정직하게 벌고, 나누고, 비축한다.</p></div></li>
+            <li><span class="num">06</span><div><h3 data-i18n="fw.n6">더 많은 투자</h3><p data-i18n="fw.d6">열매가 다시 펀드로.</p></div></li>
+            <li><span class="num">07</span><div><h3 data-i18n="fw.n7">더 많은 회사</h3><p data-i18n="fw.d7">새 도시, 새 선교지에 또 하나.</p></div></li>
+          </ol>
+        </div>
+        <p id="fw-cap" class="fw-caption" data-i18n="structure.return">바퀴는 멈추지 않는다. 돌 때마다, 더 많은 열매.</p>
+      </div>
+    </section>
+
+    <!-- 5. Venture 101: Genesis 41:33 -->
+    <section id="venture101" class="section section-dark">
+      <div class="container v101-grid">
+        <div>
+        <div class="section-head reveal">
+          <p class="eyebrow" data-i18n="v101.eyebrow">VENTURE 101 · GOD'S STEWARDSHIP</p>
+          <h2 data-i18n-html="v101.title">투자는 <em>수업에서</em> 시작된다.</h2>
+          
+          <p class="muted-dark" data-i18n="v101.lead">수료자만 제안할 수 있다. 같은 가치로 시작해야 끝까지 간다.</p>
+        </div>
+          <ol class="path-steps">
+            <li><span class="num">01</span><span data-i18n="v101.p1">수강</span></li>
+            <li><span class="num">02</span><span data-i18n="v101.p2">수료</span></li>
+            <li><span class="num">03</span><span data-i18n="v101.p3">제안</span></li>
+            <li><span class="num">04</span><span>Seedstrap</span></li>
+          </ol>
+          <a class="btn btn-light" id="v101-apply" href="mailto:hello@beulahventures.com?subject=Venture%20101%20Application"><span data-i18n="v101.cta">수강 신청</span> <span class="arrow">↗</span></a>
+        </div>
+        <ol class="modules">
+          <li><span class="num">01</span><span data-i18n="m1">복음과 청지기 리더십</span></li>
+          <li><span class="num">02</span><span data-i18n="m2">요셉의 창고: 현금과 비축</span></li>
+          <li><span class="num">03</span><span data-i18n="m3">Seedstrap & Bootstrap</span></li>
+          <li><span class="num">04</span><span data-i18n="m4">정렬된 인센티브</span></li>
+          <li><span class="num">05</span><span data-i18n="m5">함께 자라기</span></li>
+          <li><span class="num">06</span><span data-i18n="m6">사업 제안 준비</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 6. About: Genesis 45:7 -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow" data-i18n="about.eyebrow">ABOUT</p>
+          <h2 data-i18n-html="about.title">함께 <em>오래</em> 일하는 사람들.</h2>
+          
+        </div>
+        <dl class="facts">
+          <div><dt data-i18n="facts.stage">단계</dt><dd>Seedstrap → Growth</dd></div>
+          <div><dt data-i18n="facts.support">지원</dt><dd data-i18n="facts.supportVal">자본 · 조언 · 실행</dd></div>
+          <div><dt data-i18n="facts.region">지역</dt><dd data-i18n="facts.regionVal">선교지 · 한국 · 미국</dd></div>
+        </dl>
+        <div class="about-grid">
+          <div>
+            <h3 class="sub-head" data-i18n="about.team">팀</h3>
+            <div class="team-grid" id="team-grid"></div>
+          </div>
+          <div id="portfolio">
+            <h3 class="sub-head" data-i18n="about.portfolio">포트폴리오</h3>
+            <p class="muted" data-i18n="portfolio.note">첫 번째 회사를 기다린다. Venture 101에서 시작하라.</p>
+            <div class="portfolio-grid" id="portfolio-grid"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Family: Isaiah 62:4 -->
+    <section id="family" class="section family">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow" data-i18n="family.eyebrow">FAMILY</p>
+          <h2 data-i18n-html="family.title">한 약속, <em>두 이름.</em></h2>
+          <blockquote class="section-verse"><p data-i18n="family.verse">“오직 너를 헵시바라 하며 네 땅을 쁄라라 하리니 이는 여호와께서 너를 기뻐하실 것이며 네 땅이 결혼한 것처럼 될 것임이라”</p><cite data-i18n="family.ref">이사야 62:4</cite></blockquote>
+          <p class="muted" data-i18n="family.lead">바벨론 이후, 버림받은 듯했던 백성에게 하나님이 주신 두 새 이름. 회복과 사랑의 약속이다. 헵시바는 사람을 세우고, 쁄라는 땅을 일군다.</p>
+        </div>
+        <div class="fam-grid">
+          <article class="fam-card">
+            <div class="fam-logo"><svg class="fam-mark" viewBox="0 0 48 56" aria-hidden="true"><path d="M0 0h12l4 4v18h16V0h16v56H32V34H16v22H0z" fill="currentColor"/></svg><span class="fam-word"><b>Hephzibah</b><small>ACADEMY</small></span></div>
+            <p class="fam-mean" data-i18n="fam.h.mean">헵시바 · 나의 기쁨이 그녀에게 있다</p>
+            <p class="fam-tag" data-i18n="fam.h.tag">Faith for life. Learning for the world.</p>
+            <p class="fam-role" data-i18n="fam.h.role">사람을 세운다 · 교육</p>
+          </article>
+          <div class="fam-link" aria-hidden="true"><span></span><i>+</i><span></span></div>
+          <article class="fam-card">
+            <div class="fam-logo"><svg class="fam-mark" viewBox="0 0 48 56" aria-hidden="true"><path d="M0 0h34l10 9v14l-6 5 8 7v15l-8 6H0z M17 12v10h12v-10z M17 33v11h14v-11z" fill="currentColor" fill-rule="evenodd"/></svg><span class="fam-word"><b>Beulah</b><small>VENTURE CAPITAL</small></span></div>
+            <p class="fam-mean" data-i18n="fam.b.mean">쁄라 · 결혼한 땅, 풍성한 땅</p>
+            <p class="fam-tag" data-i18n="fam.b.tag">Rooted in purpose. Invested in growth.</p>
+            <p class="fam-role" data-i18n="fam.b.role">사업을 세운다 · 투자</p>
+          </article>
+        </div>
+        <p class="fam-bridge" data-i18n="family.bridge">헵시바에서 배우고, 쁄라에서 세운다.</p>
+      </div>
+    </section>
+
+    <!-- Pitch -->
+    <section id="pitch" class="section section-dark section-pitch">
+      <div class="container two-col">
+        <div>
+          <p class="eyebrow" data-i18n="pitch.eyebrow">PITCH US</p>
+          <h2 data-i18n-html="pitch.title">당신의 사업을 <em>들려주세요.</em></h2>
+          <p class="muted-dark" data-i18n="pitch.lead">Venture 101 수료자만 제안할 수 있습니다. 모든 제안서를 직접 검토하며, 2주 이내에 회신드립니다.</p>
+        </div>
+        <form class="pitch-form" id="pitch-form" novalidate>
+          <label><span data-i18n="form.name">이름</span>
+            <input name="name" required autocomplete="name">
+          </label>
+          <label><span data-i18n="form.email">이메일</span>
+            <input name="email" type="email" required autocomplete="email">
+          </label>
+          <label><span data-i18n="form.company">회사명</span>
+            <input name="company" required>
+          </label>
+          <label><span data-i18n="form.track">트랙</span>
+            <select name="track">
+              <option value="Market Bridge" data-i18n="form.track.t1">Market Bridge · 판로 연결</option>
+              <option value="Mission Field Ventures" data-i18n="form.track.t2">Mission Field Ventures · 선교지 공동 벤처</option>
+              <option value="US Business Partnership" data-i18n="form.track.t3">US Business Partnership · 미국 사업 투자</option>
+              <option value="US Idea Launch" data-i18n="form.track.t4">US Idea Launch · 미국 아이디어 창업</option>
+            </select>
+          </label>
+          <label><span data-i18n="form.stage">투자 단계</span>
+            <select name="stage">
+              <option value="Idea" data-i18n="form.stage.idea">아이디어</option>
+              <option value="Seedstrap">Seedstrap</option>
+              <option value="Bootstrap" data-i18n="form.stage.boot">Bootstrap (매출 발생)</option>
+              <option value="Growth">Growth</option>
+            </select>
+          </label>
+          <label class="full"><span data-i18n="form.deck">피치 덱 링크</span>
+            <input name="deck" type="url" placeholder="https://">
+          </label>
+          <label class="full"><span data-i18n="form.desc">회사 소개와 사명 (이 사업이 누구를 섬기나요?)</span>
+            <textarea name="desc" rows="4" required></textarea>
+          </label>
+          <label class="full"><span data-i18n="form.cohort">Venture 101 수료 기수</span>
+            <input name="cohort" required>
+          </label>
+          <label class="full check"><input type="checkbox" name="completed" required> <span data-i18n="form.completed">Venture 101 과정을 수료했습니다.</span></label>
+          <button type="submit" class="btn btn-light full"><span data-i18n="form.submit">제출하기</span> <span class="arrow">↗</span></button>
+          <p class="form-status full" id="form-status" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand"><svg class="footer-mark" viewBox="0 0 48 56" aria-hidden="true"><path d="M0 0h34l10 9v14l-6 5 8 7v15l-8 6H0z M17 12v10h12v-10z M17 33v11h14v-11z" fill="currentColor" fill-rule="evenodd"/></svg><p class="tagline" data-i18n="tagline">목적에 뿌리내리고, 성장에 투자한다.</p></div>
+      <p class="footer-meta">
+        <a href="mailto:hello@beulahventures.com">hello@beulahventures.com</a>
+        <span data-i18n="footer.scripture">성경 본문: 개역한글</span>
+        <span>© <span id="year"></span> Beulah Venture Capital</span>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+// Site content that changes often: portfolio, team, and all translated strings.
+// Edit this file to update the site — no build step required.
+
+window.SITE_DATA = {
+  // Add portfolio companies here. Leave empty to show the "open slot" card only.
+  // Example: { name: "Acme", sector: { ko: "제조", en: "Manufacturing" }, desc: { ko: "...", en: "..." }, url: "https://..." }
+  portfolio: [],
+
+  // Replace placeholders with real team members.
+  team: [
+    {
+      name: { ko: "홍길동", en: "Gil-dong Hong" },
+      role: { ko: "매니징 파트너", en: "Managing Partner" },
+      bio: {
+        ko: "청지기 정신으로 창업자를 세우고, Venture 101을 이끕니다. (예시 프로필)",
+        en: "Raises up founders with a steward's heart and leads Venture 101. (Placeholder profile)"
+      }
+    },
+    {
+      name: { ko: "어드바이저 네트워크", en: "Advisor Network" },
+      role: { ko: "모집 중", en: "Recruiting" },
+      bio: {
+        ko: "경영, 재무, 법률, 신앙의 지혜를 나눌 어드바이저를 찾고 있습니다.",
+        en: "We're looking for advisors to share wisdom in operations, finance, law, and faith."
+      }
+    },
+    {
+      name: { ko: "그로스 & 마케팅 파트너", en: "Growth & Marketing Partners" },
+      role: { ko: "모집 중", en: "Recruiting" },
+      bio: {
+        ko: "자립한 회사가 시장을 넓히도록 함께 뛸 마케터와 운영 전문가를 찾고 있습니다.",
+        en: "We're looking for marketers and operators to help bootstrapped companies reach more people."
+      }
+    }
+  ],
+
+  i18n: {
+    ko: {
+      "nav.philosophy": "철학",
+      "nav.why": "왜",
+      "nav.stages": "성장",
+      "nav.tracks": "트랙",
+      "nav.about": "소개",
+      "nav.pitch": "사업 제안",
+      "hero.h1": "<em>목적</em> 위에 세우고,<br><em>인도하심</em>으로 키운다.",
+      "hero.sub": "복음 위에, 복음의 가치로.",
+      "hero.cta": "Venture 101 시작",
+      "hero.cta2": "우리의 이야기",
+      "hero.vertical": "복음 / 영혼 / 확장",
+      "pillar.1": "자본",
+      "pillar.2": "동역",
+      "pillar.3": "성장",
+      "tagline": "목적에 뿌리내리고, 성장에 투자한다.",
+      "marquee": "복음  ·  가치  ·  희망  ·  사랑  ·  신실  ·  청지기  ·  지속  ·  ",
+      "field.quote": "“그는 시냇물 가에 심은 나무가 철을 따라 열매를 맺으며 그 잎사귀가 마르지 아니함 같으니”",
+      "field.ref": "시편 1:3",
+      "why.eyebrow": "WHY WE STARTED",
+      "why.title": "바벨론 한가운데서, <em>작게, 신실하게.</em>",
+      "why.verse": "너희는 세상의 소금이니 … 너희는 세상의 빛이라",
+      "why.ref": "마태복음 5:13–14",
+      "why.lead": "우리는 비정상이 ‘정상’이 된 시대를 산다.",
+      "why.n1": "세계 인구의 3분의 2가 가난한데, 일부의 풍요는 당연해졌다.",
+      "why.n2": "과잉 소비와 생태계 파괴가 성장이라는 이름으로 계속된다.",
+      "why.n3": "월급으로 겨우 버티는 삶이 일상이 되었다.",
+      "why.n4": "탐욕이 자원을 빠르게 고갈시킨다.",
+      "why.quote": "바벨론의 방식과 우선순위가 우리를 다스리게 두지 말라.",
+      "why.cite": "Brian Walsh의 말에서",
+      "why.answer": "그래서 회사를 세운다. 세상의 논리 대신 복음의 가치로 일하고, 무너져 가는 가치를 다시 세우는 회사. 그 자리에서 빛과 소금으로.",
+      "why.models": "세 사람에게 배운다",
+      "why.m1.t": "예레미야",
+      "why.m1.d": "익숙한 틀에 갇히지 않고, 시대의 비정상을 물었다.",
+      "why.m1.b": "다르게 상상한다.",
+      "why.m2.t": "바울과 빌레몬",
+      "why.m2.d": "한 세대에 모든 것을 바꾸려 하지 않았다. 자기 몫을 다하고 다음 세대에 이었다.",
+      "why.m2.b": "우리 몫에 집중한다.",
+      "why.m3.t": "요셉",
+      "why.m3.d": "풍년에 준비해 흉년에 온 땅을 먹였다. 경제를 사람을 살리는 쪽으로 다뤘다.",
+      "why.m3.b": "경제를 사람 편에 둔다.",
+      "why.close": "세상 전체를 바꾸겠다는 만용 대신, 주어진 몇 가지에 신실하게. 우정과 연대 안에서, 오래.",
+      "story.eyebrow": "OUR STORY",
+      "story.title": "풍년에 쌓고, <em>흉년에 살린다.</em>",
+      "story.verse": "당신들은 나를 해하려 하였으나 하나님은 그것을 선으로 바꾸사 오늘과 같이 많은 백성의 생명을 구원하게 하시려 하셨나니",
+      "story.ref": "창세기 50:20",
+      "story.lead": "요셉의 창고처럼. 풍년에 준비해, 어려운 때에도 사람을 지키는 회사를 세운다.",
+      "v1.t": "Gospel-Based",
+      "v1.d": "사업은 복음의 통로.",
+      "v2.t": "Souls First",
+      "v2.d": "사람은 사랑할 영혼.",
+      "v3.t": "Value over Price",
+      "v3.d": "한 곳에서 맺은 열매를 다른 곳으로.",
+      "v4.t": "Sustainable",
+      "v4.d": "오래 가는 회사가 이긴다.",
+      "v5.t": "Scalable",
+      "v5.d": "한 곳의 열매를 열방으로.",
+      "v6.t": "Stewardship",
+      "v6.d": "자본은 맡겨진 것.",
+      "v7.t": "All Aligned",
+      "v7.d": "모두가 이겨야 투자한다.",
+      "v8.t": "Jobs Protected",
+      "v8.d": "일자리는 곧 가정.",
+      "promise.eyebrow": "우리의 약속",
+      "promise.title": "가격이 아닌 <em>가치</em>를 만든다.",
+      "promise.lead": "함께하는 모든 이에게",
+      "g1.t": "희망",
+      "g1.d": "내일을 기대하게",
+      "g2.t": "가치",
+      "g2.d": "돈보다 오래 남는 것",
+      "g3.t": "사랑",
+      "g3.d": "사람을 귀하게",
+      "g4.t": "복음",
+      "g4.d": "모든 것의 기초",
+      "grow.eyebrow": "HOW WE GROW",
+      "grow.title": "작게 심고, 스스로 서고, <em>함께 자란다.</em>",
+      "joseph.chartCap": "풍년에 쌓으면, 흉년에도 창고는 비지 않는다.",
+      "joseph.plenty": "풍년 7년",
+      "joseph.famine": "흉년 7년",
+      "joseph.store": "창고",
+      "joseph.harvest": "수확",
+      "joseph.year": "년",
+      "s1.tag": "심기",
+      "s1.d": "작은 자본, 검증된 고객.",
+      "s2.tag": "자립",
+      "s2.d": "매출과 이익으로 선다.",
+      "s3.tag": "동역",
+      "s3.d": "어드바이저 · 팀 · 마케터가 합류.",
+      "s4.tag": "비축과 확장",
+      "s4.d": "비축하고, 복제하고, 확장한다.",
+      "tracks.eyebrow": "INVESTMENT TRACKS",
+      "tracks.title": "선교지에서 미국까지, <em>네 가지 길.</em>",
+      "tracks.role": "역할",
+      "tracks.form": "방식",
+      "t1.tag": "선교지 판로 연결",
+      "t1.d": "선교지 제품을 한국 · 미국 시장으로.",
+      "t1.role": "판로 · 네트워크",
+      "t1.form": "판매 연동 (지분 없이 시작)",
+      "t2.tag": "선교지 공동 벤처",
+      "t2.d": "함께 소유하고 운영하다, 현지 리더에게 넘긴다.",
+      "t2.role": "지분 · 공동 운영",
+      "t2.form": "소수 지분 → 현지 이양",
+      "t3.tag": "미국 사업 투자",
+      "t3.d": "자본과 경영을 함께 넣는다.",
+      "t3.role": "자본 · 경영 참여",
+      "t3.form": "투자 지분 + 경영 지분",
+      "t4.tag": "미국 아이디어 창업",
+      "t4.d": "아이디어에서 회사까지, 함께 세운다.",
+      "t4.role": "공동 창업",
+      "t4.form": "시드 자본 + 창업 지분",
+      "structure.eyebrow": "THE BEULAH FLYWHEEL",
+      "structure.title": "복음 위에서 <em>도는 바퀴.</em>",
+      "structure.verse": "한 알의 밀이 땅에 떨어져 죽지 아니하면 한 알 그대로 있고 죽으면 많은 열매를 맺느니라",
+      "structure.ref": "요한복음 12:24",
+      "eq.leader": "복음 위에 선 리더",
+      "eq.capital": "자본",
+      "eq.advice": "조언",
+      "eq.help": "실행",
+      "eq.impact": "더 많은 열매",
+      "fw.center": "복음",
+      "fw.centerSub": "GOSPEL",
+      "fw.n1": "투자",
+      "fw.d1": "복음 위에 선 창업자에게 심는다.",
+      "fw.n2": "조언",
+      "fw.d2": "경영과 신앙의 지혜.",
+      "fw.n3": "성장",
+      "fw.d3": "팀과 함께 시장을 넓힌다.",
+      "fw.n4": "더 많은 일자리",
+      "fw.d4": "일자리가 늘고, 가정이 선다.",
+      "fw.n5": "더 많은 이익",
+      "fw.d5": "정직하게 벌고, 나누고, 비축한다.",
+      "fw.n6": "더 많은 투자",
+      "fw.d6": "열매가 다시 펀드로.",
+      "fw.n7": "더 많은 회사",
+      "fw.d7": "새 도시, 새 선교지에 또 하나.",
+      "structure.return": "바퀴는 멈추지 않는다. 돌 때마다, 더 많은 열매.",
+      "v101.eyebrow": "VENTURE 101 · GOD'S STEWARDSHIP",
+      "v101.title": "투자는 <em>수업에서</em> 시작된다.",
+      "v101.lead": "수료자만 제안할 수 있다. 같은 가치로 시작해야 끝까지 간다.",
+      "m1": "복음과 청지기 리더십",
+      "m2": "요셉의 창고: 현금과 비축",
+      "m3": "Seedstrap & Bootstrap",
+      "m4": "정렬된 인센티브",
+      "m5": "함께 자라기",
+      "m6": "사업 제안 준비",
+      "v101.p1": "수강",
+      "v101.p2": "수료",
+      "v101.p3": "제안",
+      "v101.cta": "수강 신청",
+      "about.eyebrow": "ABOUT",
+      "about.title": "함께 <em>오래</em> 일하는 사람들.",
+      "facts.stage": "단계",
+      "facts.support": "지원",
+      "facts.supportVal": "자본 · 조언 · 실행",
+      "facts.region": "지역",
+      "facts.regionVal": "선교지 · 한국 · 미국",
+      "about.team": "팀",
+      "about.portfolio": "포트폴리오",
+      "portfolio.note": "첫 번째 회사를 기다린다. Venture 101에서 시작하라.",
+      "portfolio.open": "NEXT",
+      "portfolio.openCta": "당신의 회사 ↗",
+      "family.eyebrow": "FAMILY",
+      "family.title": "한 약속, <em>두 이름.</em>",
+      "family.verse": "오직 너를 헵시바라 하며 네 땅을 쁄라라 하리니 이는 여호와께서 너를 기뻐하실 것이며 네 땅이 결혼한 것처럼 될 것임이라",
+      "family.ref": "이사야 62:4",
+      "family.lead": "바벨론 이후, 버림받은 듯했던 백성에게 하나님이 주신 두 새 이름. 회복과 사랑의 약속이다. 헵시바는 사람을 세우고, 쁄라는 땅을 일군다.",
+      "fam.h.mean": "헵시바 · 나의 기쁨이 그녀에게 있다",
+      "fam.h.tag": "Faith for life. Learning for the world.",
+      "fam.h.role": "사람을 세운다 · 교육",
+      "fam.b.mean": "쁄라 · 결혼한 땅, 풍성한 땅",
+      "fam.b.tag": "Rooted in purpose. Invested in growth.",
+      "fam.b.role": "사업을 세운다 · 투자",
+      "family.bridge": "헵시바에서 배우고, 쁄라에서 세운다.",
+      "pitch.eyebrow": "PITCH US",
+      "pitch.title": "당신의 사업을 <em>들려주세요.</em>",
+      "pitch.lead": "Venture 101 수료자만. 2주 안에 답합니다.",
+      "form.name": "이름",
+      "form.email": "이메일",
+      "form.company": "회사명",
+      "form.track": "트랙",
+      "form.track.t1": "Market Bridge · 판로 연결",
+      "form.track.t2": "Mission Field Ventures · 선교지 벤처",
+      "form.track.t3": "US Business Partnership · 미국 사업",
+      "form.track.t4": "US Idea Launch · 미국 창업",
+      "form.stage": "단계",
+      "form.stage.idea": "아이디어",
+      "form.stage.boot": "Bootstrap (매출 발생)",
+      "form.deck": "피치 덱 링크",
+      "form.desc": "어떤 가치를 만들고, 누구를 섬기나요?",
+      "form.cohort": "Venture 101 수료 기수",
+      "form.completed": "Venture 101을 수료했습니다.",
+      "form.submit": "제출하기",
+      "form.error": "이름, 이메일, 회사명, 소개를 입력해 주세요.",
+      "form.errorV101": "Venture 101 수료 후 제안할 수 있습니다. 기수를 입력하고 확인란을 선택해 주세요.",
+      "form.ok": "준비되었습니다. 아래 내용을 이 주소로 보내 주세요:",
+      "form.openMail": "메일 앱으로 열기",
+      "form.copy": "내용 복사",
+      "form.copied": "복사됨",
+      "footer.scripture": "성경 본문: 개역개정"
+    },
+    en: {
+      "nav.philosophy": "Philosophy",
+      "nav.why": "Why",
+      "nav.stages": "Growth",
+      "nav.tracks": "Tracks",
+      "nav.about": "About",
+      "nav.pitch": "Pitch us",
+      "hero.h1": "Built on <em>purpose.</em><br>Grown by <em>His leading.</em>",
+      "hero.sub": "On the gospel, by the gospel's values.",
+      "hero.cta": "Start Venture 101",
+      "hero.cta2": "Our story",
+      "hero.vertical": "GOSPEL / SOULS / SCALE",
+      "pillar.1": "Capital",
+      "pillar.2": "Partnership",
+      "pillar.3": "Growth",
+      "tagline": "Rooted in purpose. Invested in growth.",
+      "marquee": "GOSPEL  ·  VALUE  ·  HOPE  ·  LOVE  ·  FAITHFUL  ·  STEWARDSHIP  ·  SUSTAIN  ·  ",
+      "field.quote": "“And he shall be like a tree planted by the rivers of water, that bringeth forth his fruit in his season.”",
+      "field.ref": "Psalm 1:3",
+      "why.eyebrow": "WHY WE STARTED",
+      "why.title": "In the middle of Babylon. <em>Small. Faithful.</em>",
+      "why.verse": "Ye are the salt of the earth … Ye are the light of the world.",
+      "why.ref": "Matthew 5:13–14",
+      "why.lead": "We live in a time when the abnormal has become ‘normal’.",
+      "why.n1": "Two-thirds of the world is poor, while the abundance of a few is taken for granted.",
+      "why.n2": "Overconsumption and ecological damage go on in the name of growth.",
+      "why.n3": "Living paycheck to paycheck has become ordinary.",
+      "why.n4": "Greed is draining the earth's resources fast.",
+      "why.quote": "Do not let Babylon's ways and priorities rule over us.",
+      "why.cite": "After Brian Walsh",
+      "why.answer": "So we build a company that works by the gospel's values instead of the world's logic, and rebuilds values the world has let fall. Salt and light, right where we are.",
+      "why.models": "We learn from three people",
+      "why.m1.t": "Jeremiah",
+      "why.m1.d": "Not bound by old frames, he questioned the abnormal of his day.",
+      "why.m1.b": "Imagine differently.",
+      "why.m2.t": "Paul & Philemon",
+      "why.m2.d": "They did not try to change everything in one generation. They did their part and passed it on.",
+      "why.m2.b": "Focus on our part.",
+      "why.m3.t": "Joseph",
+      "why.m3.d": "He prepared in the good years and fed the land in famine. He used the economy to keep people alive.",
+      "why.m3.b": "Keep the economy on people's side.",
+      "why.close": "Not the hubris of changing the whole world, but faithfulness in the few things given. In friendship and solidarity, for the long run.",
+      "story.eyebrow": "OUR STORY",
+      "story.title": "Store in plenty. <em>Save lives in famine.</em>",
+      "story.verse": "Ye thought evil against me; but God meant it unto good, to bring to pass, as it is this day, to save much people alive.",
+      "story.ref": "Genesis 50:20",
+      "story.lead": "Like Joseph's storehouse: prepare in good years, and keep people safe in hard ones.",
+      "v1.t": "Gospel-Based",
+      "v1.d": "Business carries the gospel.",
+      "v2.t": "Souls First",
+      "v2.d": "People are souls to love.",
+      "v3.t": "Value over Price",
+      "v3.d": "Fruit from one place, carried to the next.",
+      "v4.t": "Sustainable",
+      "v4.d": "Built to last, not to flip.",
+      "v5.t": "Scalable",
+      "v5.d": "From one field to the nations.",
+      "v6.t": "Stewardship",
+      "v6.d": "Capital is entrusted.",
+      "v7.t": "All Aligned",
+      "v7.d": "Everyone wins, or we don't invest.",
+      "v8.t": "Jobs Protected",
+      "v8.d": "A job is a household.",
+      "promise.eyebrow": "OUR PROMISE",
+      "promise.title": "We create <em>value</em>, not price.",
+      "promise.lead": "To everyone who walks with us",
+      "g1.t": "Hope",
+      "g1.d": "A tomorrow worth waiting for",
+      "g2.t": "Value",
+      "g2.d": "What outlasts money",
+      "g3.t": "Love",
+      "g3.d": "Treat people as precious",
+      "g4.t": "Gospel",
+      "g4.d": "The foundation of all",
+      "grow.eyebrow": "HOW WE GROW",
+      "grow.title": "Plant small. Stand alone. <em>Grow together.</em>",
+      "joseph.chartCap": "Store in plenty, and the storehouse never runs dry.",
+      "joseph.plenty": "7 years of plenty",
+      "joseph.famine": "7 years of famine",
+      "joseph.store": "Storehouse",
+      "joseph.harvest": "Harvest",
+      "joseph.year": "Yr",
+      "s1.tag": "Plant",
+      "s1.d": "Small capital. Proven customers.",
+      "s2.tag": "Stand",
+      "s2.d": "Run on revenue and profit.",
+      "s3.tag": "Join forces",
+      "s3.d": "Advisors, team, marketers join.",
+      "s4.tag": "Store & scale",
+      "s4.d": "Store. Replicate. Scale.",
+      "tracks.eyebrow": "INVESTMENT TRACKS",
+      "tracks.title": "Mission field to the US. <em>Four paths.</em>",
+      "tracks.role": "Role",
+      "tracks.form": "Structure",
+      "t1.tag": "Markets for the mission field",
+      "t1.d": "Mission-field products to Korean and US markets.",
+      "t1.role": "Markets · Network",
+      "t1.form": "Sales-linked (no equity to start)",
+      "t2.tag": "Co-owned mission ventures",
+      "t2.d": "Own and run it together, then hand it to local leaders.",
+      "t2.role": "Equity · Co-operation",
+      "t2.form": "Minority stake → local transfer",
+      "t3.tag": "Investing in US businesses",
+      "t3.d": "Capital and operating work, together.",
+      "t3.role": "Capital · Operating role",
+      "t3.form": "Capital equity + operating equity",
+      "t4.tag": "Launching from an idea",
+      "t4.d": "From idea to company, built together.",
+      "t4.role": "Co-founding",
+      "t4.form": "Seed capital + founder equity",
+      "structure.eyebrow": "THE BEULAH FLYWHEEL",
+      "structure.title": "A wheel that <em>turns on the gospel.</em>",
+      "structure.verse": "Except a corn of wheat fall into the ground and die, it abideth alone: but if it die, it bringeth forth much fruit.",
+      "structure.ref": "John 12:24",
+      "eq.leader": "A leader grounded in the gospel",
+      "eq.capital": "Capital",
+      "eq.advice": "Advice",
+      "eq.help": "Help",
+      "eq.impact": "More fruit",
+      "fw.center": "Gospel",
+      "fw.centerSub": "FOUNDATION",
+      "fw.n1": "Invest",
+      "fw.d1": "Plant in founders grounded in the gospel.",
+      "fw.n2": "Advise",
+      "fw.d2": "Wisdom for business and faith.",
+      "fw.n3": "Grow",
+      "fw.d3": "Widen the market, together.",
+      "fw.n4": "More jobs",
+      "fw.d4": "More jobs, steadier families.",
+      "fw.n5": "More profit",
+      "fw.d5": "Earn honestly. Share. Store.",
+      "fw.n6": "More investment",
+      "fw.d6": "Fruit returns to the fund.",
+      "fw.n7": "More companies",
+      "fw.d7": "One more, in a new city or field.",
+      "structure.return": "The wheel keeps turning. Every turn, more fruit.",
+      "v101.eyebrow": "VENTURE 101 · GOD'S STEWARDSHIP",
+      "v101.title": "Investment begins <em>in the classroom.</em>",
+      "v101.lead": "Only graduates may pitch. Start with the same values, finish together.",
+      "m1": "The gospel and steward leadership",
+      "m2": "Joseph's storehouse: cash and reserves",
+      "m3": "Seedstrap & Bootstrap",
+      "m4": "Aligned incentives",
+      "m5": "Growing together",
+      "m6": "Preparing your pitch",
+      "v101.p1": "Take",
+      "v101.p2": "Complete",
+      "v101.p3": "Pitch",
+      "v101.cta": "Apply now",
+      "about.eyebrow": "ABOUT",
+      "about.title": "People who work together <em>for the long run.</em>",
+      "facts.stage": "Stage",
+      "facts.support": "Support",
+      "facts.supportVal": "Capital · Advice · Help",
+      "facts.region": "Geography",
+      "facts.regionVal": "Mission field · Korea · US",
+      "about.team": "Team",
+      "about.portfolio": "Portfolio",
+      "portfolio.note": "Waiting for our first company. Start with Venture 101.",
+      "portfolio.open": "NEXT",
+      "portfolio.openCta": "Your company ↗",
+      "family.eyebrow": "FAMILY",
+      "family.title": "One promise, <em>two names.</em>",
+      "family.verse": "But thou shalt be called Hephzibah, and thy land Beulah: for the LORD delighteth in thee.",
+      "family.ref": "Isaiah 62:4",
+      "family.lead": "After Babylon, God gave a people who felt forsaken two new names: a promise of restoration and love. Hephzibah raises people. Beulah cultivates the land.",
+      "fam.h.mean": "Hephzibah · My delight is in her",
+      "fam.h.tag": "Faith for life. Learning for the world.",
+      "fam.h.role": "Raising people · Education",
+      "fam.b.mean": "Beulah · The married land, the abundant land",
+      "fam.b.tag": "Rooted in purpose. Invested in growth.",
+      "fam.b.role": "Building businesses · Investment",
+      "family.bridge": "Learn at Hephzibah. Build at Beulah.",
+      "pitch.eyebrow": "PITCH US",
+      "pitch.title": "Tell us <em>what you're building.</em>",
+      "pitch.lead": "Venture 101 graduates only. Reply within two weeks.",
+      "form.name": "Name",
+      "form.email": "Email",
+      "form.company": "Company",
+      "form.track": "Track",
+      "form.track.t1": "Market Bridge",
+      "form.track.t2": "Mission Field Ventures",
+      "form.track.t3": "US Business Partnership",
+      "form.track.t4": "US Idea Launch",
+      "form.stage": "Stage",
+      "form.stage.idea": "Idea",
+      "form.stage.boot": "Bootstrap (revenue)",
+      "form.deck": "Pitch deck link",
+      "form.desc": "What value does it create, and whom does it serve?",
+      "form.cohort": "Venture 101 cohort",
+      "form.completed": "I have completed Venture 101.",
+      "form.submit": "Submit",
+      "form.error": "Please enter your name, email, company, and description.",
+      "form.errorV101": "Pitches open after Venture 101. Enter your cohort and check the box.",
+      "form.ok": "Ready. Please send the text below to:",
+      "form.openMail": "Open in mail app",
+      "form.copy": "Copy text",
+      "form.copied": "Copied",
+      "footer.scripture": "Scripture: King James Version"
+    }
+  }
+};
+
+</script>
+  <script>
+(function () {
+  const data = window.SITE_DATA;
+  const PITCH_EMAIL = "hello@beulahventures.com";
+  let lang = "ko";
+
+  try {
+    const saved = localStorage.getItem("lang");
+    if (saved === "ko" || saved === "en") lang = saved;
+    else if (!navigator.language.toLowerCase().startsWith("ko")) lang = "en";
+  } catch (_) { /* storage unavailable */ }
+
+  const t = (key) => data.i18n[lang][key] ?? data.i18n.ko[key] ?? key;
+  const pick = (obj) => (obj && typeof obj === "object" ? obj[lang] ?? obj.ko : obj);
+
+  function el(tag, attrs, children) {
+    const node = document.createElement(tag);
+    Object.entries(attrs || {}).forEach(([k, v]) => {
+      if (k === "text") node.textContent = v;
+      else node.setAttribute(k, v);
+    });
+    (children || []).forEach((c) => node.appendChild(c));
+    return node;
+  }
+
+  function renderPortfolio() {
+    const grid = document.getElementById("portfolio-grid");
+    grid.replaceChildren();
+    data.portfolio.forEach((co) => {
+      const name = el(co.url ? "a" : "h3", co.url ? { class: "name", href: co.url, target: "_blank", rel: "noopener", text: co.name } : { text: co.name });
+      grid.appendChild(el("article", { class: "portfolio-item" }, [
+        el("span", { class: "tag", text: pick(co.sector) }),
+        el("div", {}, [name, el("p", { class: "muted", text: pick(co.desc) })])
+      ]));
+    });
+    grid.appendChild(el("article", { class: "portfolio-item open" }, [
+      el("span", { class: "tag", text: t("portfolio.open") }),
+      el("a", { href: "#pitch", text: t("portfolio.openCta") })
+    ]));
+    document.querySelector('[data-i18n="portfolio.note"]').hidden = data.portfolio.length > 0;
+  }
+
+  function renderTeam() {
+    const grid = document.getElementById("team-grid");
+    grid.replaceChildren();
+    data.team.forEach((m) => {
+      const name = pick(m.name);
+      grid.appendChild(el("article", { class: "member" }, [
+        el("div", { class: "avatar", text: name.trim().charAt(0) }),
+        el("h3", { text: name }),
+        el("p", { class: "role", text: pick(m.role) }),
+        el("p", { text: pick(m.bio) })
+      ]));
+    });
+  }
+
+  function applyLang() {
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-i18n]").forEach((node) => {
+      node.textContent = t(node.dataset.i18n);
+    });
+    // Trusted, site-authored strings that carry <em>/<br> emphasis
+    document.querySelectorAll("[data-i18n-html]").forEach((node) => {
+      node.innerHTML = t(node.dataset.i18nHtml);
+    });
+    document.querySelector(".lang-toggle").textContent = lang === "ko" ? "EN" : "한국어";
+    renderPortfolio();
+    renderTeam();
+    renderYears();
+    renderFlywheel();
+    const status = document.getElementById("form-status");
+    status.textContent = "";
+    status.className = "form-status full";
+  }
+
+  // Seven years of plenty and famine, drawn with grains. Same scale for every year.
+  function renderYears() {
+    const svg = document.getElementById("years-chart");
+    if (!svg) return;
+    const NS = "http://www.w3.org/2000/svg";
+    const W = 980, H = 300, left = 40, right = 20, top = 34, base = 230;
+    const cols = 14, colW = (W - left - right) / cols;
+    // Plenty: store 4 units a year. Famine: draw 3.6 a year. Never reaches zero.
+    const store = [];
+    let level = 0;
+    for (let y = 0; y < cols; y++) { level += y < 7 ? 4 : -3.6; store.push(Math.max(level, 0)); }
+    const maxStore = 28;
+    const sy = (v) => base - (v / maxStore) * (base - top - 20);
+    svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+    svg.replaceChildren();
+    const add = (tag, attrs, text) => {
+      const n = document.createElementNS(NS, tag);
+      Object.entries(attrs).forEach(([k, v]) => n.setAttribute(k, v));
+      if (text != null) n.textContent = text;
+      svg.appendChild(n);
+      return n;
+    };
+    add("text", { x: left, y: top - 10, class: "yc-era" }, t("joseph.plenty"));
+    add("text", { x: left + colW * 7, y: top - 10, class: "yc-era" }, t("joseph.famine"));
+    add("line", { x1: left + colW * 7, y1: top - 4, x2: left + colW * 7, y2: base, class: "yc-divider" });
+    let d = `M ${left} ${base}`;
+    store.forEach((v, i) => { d += ` L ${left + colW * i} ${sy(v)} L ${left + colW * (i + 1)} ${sy(v)}`; });
+    d += ` L ${left + colW * cols} ${base} Z`;
+    add("path", { d, class: "yc-store" });
+    for (let i = 0; i < cols; i++) {
+      const cx = left + colW * (i + 0.5);
+      const plenty = i < 7;
+      const n = plenty ? 5 : 2;
+      for (let k = 0; k < n; k++) {
+        const ang = (k - (n - 1) / 2) * (plenty ? 16 : 22);
+        const r = plenty ? 26 : 12;
+        const gx = cx + Math.sin(ang * Math.PI / 180) * r;
+        const gy = base - 16 - Math.cos(ang * Math.PI / 180) * r - (plenty ? 24 : 0);
+        add("ellipse", { cx: gx, cy: gy, rx: plenty ? 4.6 : 3.4, ry: plenty ? 12 : 8, transform: `rotate(${ang} ${gx} ${gy})`, class: plenty ? "yc-grain" : "yc-grain-thin" });
+      }
+      add("text", { x: cx, y: base + 22, class: "yc-tick", "text-anchor": "middle" }, String(i + 1));
+    }
+    add("line", { x1: left, y1: base, x2: W - right, y2: base, class: "yc-axis" });
+    add("text", { x: left, y: base + 46, class: "yc-axis-label" }, t("joseph.year"));
+    add("rect", { x: W - right - 230, y: H - 23, width: 14, height: 10, class: "yc-store" });
+    add("text", { x: W - right - 210, y: H - 14, class: "yc-legend" }, t("joseph.store"));
+    add("ellipse", { cx: W - right - 100, cy: H - 18, rx: 3.2, ry: 7, class: "yc-grain" });
+    add("text", { x: W - right - 90, y: H - 14, class: "yc-legend" }, t("joseph.harvest"));
+  }
+
+  // Flywheel = the brand mark, enlarged: seven grains around the gospel
+  function renderFlywheel() {
+    const svg = document.getElementById("flywheel");
+    if (!svg) return;
+    const NS = "http://www.w3.org/2000/svg";
+    const C = 280, R = 150, N = 7;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    svg.setAttribute("viewBox", "-80 -10 720 580");
+    svg.replaceChildren();
+    const add = (parent, tag, attrs, text) => {
+      const n = document.createElementNS(NS, tag);
+      Object.entries(attrs).forEach(([k, v]) => n.setAttribute(k, v));
+      if (text != null) n.textContent = text;
+      parent.appendChild(n);
+      return n;
+    };
+    const deg = (i) => -90 + (i * 360) / N;
+    const pt = (a, r) => [C + r * Math.cos(a * Math.PI / 180), C + r * Math.sin(a * Math.PI / 180)];
+    add(svg, "circle", { cx: C, cy: C, r: R, class: "fw-ring" });
+    if (!reduce) {
+      const dot = add(svg, "circle", { r: 5, class: "fw-seed" });
+      add(dot, "animateMotion", { dur: "14s", repeatCount: "indefinite", path: `M ${C} ${C - R} A ${R} ${R} 0 1 1 ${C - 0.01} ${C - R}` });
+    }
+    for (let i = 0; i < N; i++) {
+      const a = deg(i);
+      const [x, y] = pt(a, R);
+      const g = add(svg, "g", { class: "fw-node", style: `--i:${i}` });
+      add(g, "ellipse", { cx: x, cy: y, rx: 22, ry: 48, transform: `rotate(${a + 90} ${x} ${y})` });
+      const [lx, ly] = pt(a, R + 86);
+      const anchor = Math.abs(lx - C) < 30 ? "middle" : lx > C ? "start" : "end";
+      add(g, "text", { x: lx, y: ly - 6, class: "fw-num", "text-anchor": anchor }, "0" + (i + 1));
+      add(g, "text", { x: lx, y: ly + 16, class: "fw-label", "text-anchor": anchor }, t("fw.n" + (i + 1)));
+    }
+    add(svg, "circle", { cx: C, cy: C, r: 62, class: "fw-center" });
+    add(svg, "text", { x: C, y: C + 6, class: "fw-center-text", "text-anchor": "middle" }, t("fw.center"));
+    add(svg, "text", { x: C, y: C + 28, class: "fw-center-sub", "text-anchor": "middle" }, t("fw.centerSub"));
+  }
+
+  // River scene: one wide tree stands in the middle by the water.
+  // Its seeds fall and drift to either side, are planted, and grow into new trees and grass.
+  function initField() {
+    const canvas = document.getElementById("field-canvas");
+    if (!canvas || !canvas.getContext) return;
+    const ctx = canvas.getContext("2d");
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const ink = getComputedStyle(document.documentElement).getPropertyValue("--ink").trim() || "#111";
+    const water = getComputedStyle(document.documentElement).getPropertyValue("--water").trim() || "#3b8fc4";
+    let w = 0, h = 0, bankY = 0, mother = null, plants = [], seeds = [], floaters = [], nextSeed = 0, visible = true, raf = 0;
+    const rnd = (a, b) => a + Math.random() * (b - a);
+    const clamp = (v) => Math.max(0, Math.min(1, v));
+    const ease = (v) => 1 - Math.pow(1 - v, 3);
+
+    // Branching tree. `wide` pushes the first forks outward for a broad crown.
+    function makeTree(trunk, maxD, wide) {
+      const segs = [], leaves = [];
+      const grow = (x, y, ang, len, d) => {
+        const x2 = x + Math.cos(ang) * len, y2 = y + Math.sin(ang) * len;
+        segs.push({ x, y, x2, y2, d, wdt: Math.max(0.6, (maxD - d) * (wide ? 0.75 : 0.55)) });
+        if (d === maxD) { leaves.push({ x: x2, y: y2, ang: ang + Math.PI / 2 }); return; }
+        const n = d > 1 && Math.random() < 0.3 ? 3 : 2;
+        for (let i = 0; i < n; i++) {
+          const base = wide && d < 3 ? rnd(0.62, 0.9) : rnd(0.34, 0.56);
+          const spread = (i - (n - 1) / 2) * base;
+          const ratio = wide && d < 2 ? rnd(0.74, 0.82) : rnd(0.68, 0.78);
+          grow(x2, y2, ang + spread + rnd(-0.08, 0.08), len * ratio, d + 1);
+        }
+      };
+      grow(0, 0, -Math.PI / 2 + rnd(-0.03, 0.03), trunk, 0);
+      return { segs, leaves, maxD };
+    }
+    function makeGrass() {
+      const n = Math.round(rnd(3, 6));
+      return Array.from({ length: n }, (_, i) => ({ lean: (i - (n - 1) / 2) * rnd(0.15, 0.3), len: rnd(8, 22), phase: rnd(0, 6) }));
+    }
+    function addPlant(x, now, kind, age) {
+      const tree = kind === "tree";
+      const p = {
+        x, kind, born: now - (age || 0), dur: tree ? rnd(16000, 26000) : rnd(4000, 7000), dying: 0,
+        shape: tree ? makeTree((bankY - 14) / 3.6 * rnd(0.32, 0.6), 5, false) : makeGrass()
+      };
+      plants.push(p);
+      return p;
+    }
+    const childTrees = () => plants.filter((p) => p.kind === "tree" && !p.dying).length;
+    const clearOfMother = (x) => Math.abs(x - w / 2) > Math.max(70, w * 0.13);
+
+    function setup(now) {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.clientWidth; h = canvas.clientHeight;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      bankY = h * 0.68;
+      plants = []; seeds = [];
+      const trunk = (bankY - 14) / (w < 600 ? 4.4 : 3.7);
+      mother = { x: w / 2, born: now - 1e9, dur: 1, shape: makeTree(trunk, 6, true) };
+      // A few offspring already on their way, so the story is visible on the first frame
+      [-1, 1].forEach((side) => {
+        addPlant(w / 2 + side * rnd(w * 0.2, w * 0.3), now, "tree", rnd(9000, 20000));
+        if (w > 700) addPlant(w / 2 + side * rnd(w * 0.34, w * 0.44), now, "tree", rnd(2000, 8000));
+      });
+      const grass = Math.round(w / 55);
+      for (let i = 0; i < grass; i++) { const x = rnd(10, w - 10); if (clearOfMother(x)) addPlant(x, now, "grass", rnd(0, 9000)); }
+      floaters = Array.from({ length: Math.round(w / 80) }, () => ({ x: rnd(0, w), lane: Math.floor(rnd(0, 3)), v: rnd(0.25, 0.6), rot: rnd(0, 6) }));
+    }
+
+    function riverY(x, lane, t) { return bankY + 16 + lane * 13 + Math.sin(x * 0.018 + t / 900 + lane * 1.7) * 3.2; }
+    function drawRiver(t) {
+      // a faint wash of water under the lines
+      const grad = ctx.createLinearGradient(0, bankY, 0, bankY + 64);
+      grad.addColorStop(0, water); grad.addColorStop(1, "rgba(255,255,255,0)");
+      ctx.globalAlpha = 0.1; ctx.fillStyle = grad; ctx.fillRect(0, bankY, w, 64);
+      ctx.strokeStyle = water;
+      for (let lane = 0; lane < 4; lane++) {
+        ctx.globalAlpha = 0.85 - lane * 0.17; ctx.lineWidth = lane === 0 ? 1.4 : 1;
+        ctx.beginPath();
+        for (let x = 0; x <= w; x += 8) { const y = riverY(x, lane, t); x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); }
+        ctx.stroke();
+      }
+      ctx.globalAlpha = 1; ctx.lineWidth = 1; ctx.strokeStyle = ink;
+      ctx.beginPath(); ctx.moveTo(0, bankY); ctx.lineTo(w, bankY); ctx.stroke();
+    }
+    function grain(x, y, rx, ry, rot, fill, alpha) {
+      ctx.save(); ctx.translate(x, y); ctx.rotate(rot); ctx.globalAlpha = alpha;
+      ctx.beginPath(); ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI * 2);
+      if (fill) { ctx.fillStyle = ink; ctx.fill(); } else { ctx.strokeStyle = ink; ctx.stroke(); }
+      ctx.restore();
+    }
+    function drawTree(p, t, leafScale) {
+      const g = ease(clamp((t - p.born) / p.dur));
+      const alpha = p.dying ? clamp(1 - (t - p.dying) / 2000) : 1;
+      if (alpha <= 0) return;
+      const { segs, leaves, maxD } = p.shape;
+      const step = 0.8 / (maxD + 1);
+      const sway = reduce ? 0 : Math.sin(t / 2600 + p.x) * 0.012;
+      ctx.save(); ctx.translate(p.x, bankY); ctx.rotate(sway);
+      ctx.strokeStyle = ink; ctx.globalAlpha = alpha;
+      segs.forEach((sg) => {
+        const f = clamp((g - sg.d * step) / step);
+        if (f <= 0) return;
+        ctx.lineWidth = sg.wdt;
+        ctx.beginPath(); ctx.moveTo(sg.x, sg.y); ctx.lineTo(sg.x + (sg.x2 - sg.x) * f, sg.y + (sg.y2 - sg.y) * f); ctx.stroke();
+      });
+      const lf = clamp((g - 0.8) / 0.2);
+      if (lf > 0) leaves.forEach((l, i) => {
+        const flutter = reduce ? 0 : Math.sin(t / 700 + i) * 0.15;
+        grain(l.x, l.y, 2.4 * lf * leafScale, 5.8 * lf * leafScale, l.ang + flutter, i % 3 !== 0, alpha);
+      });
+      ctx.restore(); ctx.globalAlpha = 1;
+    }
+    function drawGrass(p, t) {
+      const g = ease(clamp((t - p.born) / p.dur));
+      const alpha = p.dying ? clamp(1 - (t - p.dying) / 2000) : 1;
+      if (alpha <= 0) return;
+      ctx.strokeStyle = ink; ctx.globalAlpha = alpha; ctx.lineWidth = 1;
+      p.shape.forEach((b) => {
+        const sway = reduce ? 0 : Math.sin(t / 1300 + b.phase) * 0.12;
+        const len = b.len * g, a = -Math.PI / 2 + b.lean + sway;
+        ctx.beginPath(); ctx.moveTo(p.x, bankY);
+        ctx.quadraticCurveTo(p.x + Math.cos(a) * len * 0.3, bankY - len * 0.6, p.x + Math.cos(a) * len, bankY + Math.sin(a) * len);
+        ctx.stroke();
+      });
+      ctx.globalAlpha = 1;
+    }
+    // A seed leaves a leaf of the big tree and drifts out to one side
+    function spawnSeed(t) {
+      const leaf = mother.shape.leaves[Math.floor(Math.random() * mother.shape.leaves.length)];
+      const x0 = mother.x + leaf.x, y0 = bankY + leaf.y;
+      const side = leaf.x === 0 ? (Math.random() < 0.5 ? -1 : 1) : Math.sign(leaf.x);
+      let x1 = w / 2 + side * rnd(Math.max(70, w * 0.14), w * 0.48);
+      x1 = Math.max(12, Math.min(w - 12, x1));
+      seeds.push({ x0, y0, x1, peak: y0 - rnd(6, 30), start: t, dur: rnd(3200, 5200), spin: rnd(-6, 6) });
+    }
+    function drawSeeds(t) {
+      seeds = seeds.filter((s) => {
+        const u = (t - s.start) / s.dur;
+        if (u >= 1) {
+          const living = plants.filter((p) => !p.dying);
+          if (living.length > w / 22) {
+            const old = living.find((p) => p.kind === "grass") || living.find((p) => p.kind === "tree");
+            if (old) old.dying = t;
+          }
+          const canTree = childTrees() < Math.max(3, Math.round(w / 220));
+          addPlant(s.x1, t, canTree && Math.random() < 0.45 ? "tree" : "grass", 0);
+          return false;
+        }
+        const x = s.x0 + (s.x1 - s.x0) * u + Math.sin(u * Math.PI * 3) * 12;
+        const y = (1 - u) * (1 - u) * s.y0 + 2 * (1 - u) * u * s.peak + u * u * bankY;
+        grain(x, y, 2, 4.6, s.spin * u, true, 0.9);
+        return true;
+      });
+    }
+    function drawFloaters(t) {
+      floaters.forEach((f) => {
+        if (!reduce) { f.x += f.v; f.rot += 0.01; if (f.x > w + 10) f.x = -10; }
+        grain(f.x, riverY(f.x, f.lane, t) - 2, 1.8, 4, Math.PI / 2 + Math.sin(f.rot) * 0.4, false, 0.6);
+      });
+    }
+    function frame(t) {
+      ctx.clearRect(0, 0, w, h);
+      drawRiver(t);
+      plants = plants.filter((p) => !(p.dying && t - p.dying > 2000));
+      plants.forEach((p) => (p.kind === "tree" ? drawTree(p, t, 1) : drawGrass(p, t)));
+      drawTree(mother, t, 1.15);
+      drawFloaters(t);
+      if (!reduce) {
+        if (t > nextSeed) { spawnSeed(t); nextSeed = t + rnd(900, 1700); }
+        drawSeeds(t);
+        if (visible) raf = requestAnimationFrame(frame);
+      }
+    }
+    const now0 = performance.now();
+    setup(reduce ? now0 + 1e6 : now0);
+    frame(reduce ? now0 + 1e6 : now0);
+    if (!reduce && "IntersectionObserver" in window) {
+      new IntersectionObserver((es) => {
+        const v = es.some((e) => e.isIntersecting);
+        if (v && !visible) { visible = true; raf = requestAnimationFrame(frame); }
+        visible = v;
+      }).observe(canvas);
+    }
+    let rz = 0;
+    window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => { cancelAnimationFrame(raf); const n = performance.now(); setup(reduce ? n + 1e6 : n); visible = true; frame(reduce ? n + 1e6 : n); }, 150); });
+  }
+  initField();
+
+  // Reveal on scroll. Content is visible by default; the animation only plays as it enters view.
+  if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const targets = document.querySelectorAll(".reveal, .values > li, .stages > li, .tracks > li, .fw-list > li, .modules > li, .facts > div, .years, .equation-line");
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const idx = el.parentElement ? Array.prototype.indexOf.call(el.parentElement.children, el) : 0;
+        el.style.animationDelay = `${Math.min(idx, 7) * 70}ms`;
+        el.classList.add("is-in");
+        io.unobserve(el);
+      });
+    }, { threshold: 0.12 });
+    targets.forEach((el) => io.observe(el));
+  }
+
+  document.querySelector(".lang-toggle").addEventListener("click", () => {
+    lang = lang === "ko" ? "en" : "ko";
+    try { localStorage.setItem("lang", lang); } catch (_) { /* ignore */ }
+    applyLang();
+  });
+
+  // Mobile nav
+  const toggle = document.querySelector(".nav-toggle");
+  const links = document.querySelector(".nav-links");
+  toggle.addEventListener("click", () => {
+    const open = links.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", String(open));
+  });
+  links.addEventListener("click", (e) => {
+    if (e.target.tagName === "A") {
+      links.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  // Pitch form: static site, so it composes an email. Swap for Formspree/Netlify Forms/etc. to collect submissions server-side.
+  document.getElementById("pitch-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const f = Object.fromEntries(new FormData(form).entries());
+    const status = document.getElementById("form-status");
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email || "");
+    if (!f.name?.trim() || !emailOk || !f.company?.trim() || !f.desc?.trim()) {
+      status.textContent = t("form.error");
+      status.className = "form-status full error";
+      return;
+    }
+    if (!f.cohort?.trim() || !f.completed) {
+      status.textContent = t("form.errorV101");
+      status.className = "form-status full error";
+      return;
+    }
+    const subject = `[Pitch] ${f.company} (${f.stage})`;
+    const body = [
+      `Name: ${f.name}`,
+      `Email: ${f.email}`,
+      `Company: ${f.company}`,
+      `Track: ${f.track}`,
+      `Stage: ${f.stage}`,
+      `Deck: ${f.deck || "-"}`,
+      `Venture 101 cohort: ${f.cohort}`,
+      "",
+      f.desc
+    ].join("\n");
+    const full = `Subject: ${subject}\n\n${body}`;
+    const mailLink = el("a", { class: "btn btn-light", href: `mailto:${PITCH_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, text: t("form.openMail") });
+    const copyBtn = el("button", { type: "button", class: "btn btn-outline-light", text: t("form.copy") });
+    copyBtn.addEventListener("click", () => {
+      const done = () => { copyBtn.textContent = t("form.copied"); };
+      navigator.clipboard?.writeText(full).then(done, () => { pre.focus(); window.getSelection().selectAllChildren(pre); });
+    });
+    const pre = el("pre", { class: "pitch-preview", tabindex: "0", text: full });
+    status.replaceChildren(
+      el("span", { text: t("form.ok") + " " }),
+      el("strong", { class: "pitch-email", text: PITCH_EMAIL }),
+      pre,
+      el("span", { class: "pitch-actions" }, [mailLink, copyBtn])
+    );
+    status.className = "form-status full ok";
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+  applyLang();
+})();
+
+</script>
+</body>
+</html>
