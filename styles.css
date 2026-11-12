@@ -646,3 +646,23 @@ h1 em, h2 em {
 .member .avatar { color: var(--on-ink); }
 .section-verse { border-image: none; border-left: 2px solid var(--accent); }
 .section-dark .section-verse { border-left-color: var(--grain-on-ink); }
+
+/* Values: 8 in a 4-column grid */
+.values { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 1024px) { .values { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .values { grid-template-columns: 1fr; } }
+
+/* Promise band: four gifts light up in turn */
+.promise { padding-block: clamp(72px, 9vw, 120px); }
+.promise-head { max-width: 760px; margin-bottom: 48px; }
+.promise-head h2 { font-size: clamp(2.2rem, 5vw, 4rem); margin-bottom: 16px; }
+.promise-lead { margin: 0; color: var(--on-ink-muted); font-size: 1.15rem; }
+.gifts { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line-on-ink); }
+.gifts li { display: flex; flex-direction: column; gap: 10px; padding: 32px 24px 8px 0; position: relative; }
+.gifts li::before { content: ""; position: absolute; top: -1px; left: 0; height: 2px; width: 0; background: var(--grain-on-ink); animation: giftline 8s ease-in-out infinite; animation-delay: calc(var(--i) * 2s); }
+.gift-word { font-size: clamp(2.4rem, 6vw, 5rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1; color: var(--on-ink); opacity: .35; animation: giftword 8s ease-in-out infinite; animation-delay: calc(var(--i) * 2s); }
+.gift-sub { color: var(--on-ink-muted); font-size: 1rem; }
+@keyframes giftword { 0%, 30%, 100% { opacity: .35; color: var(--on-ink); } 6%, 22% { opacity: 1; color: var(--grain-on-ink); } }
+@keyframes giftline { 0%, 30%, 100% { width: 0; } 8%, 22% { width: 100%; } }
+@media (max-width: 860px) { .gifts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (prefers-reduced-motion: reduce) { .gift-word { animation: none; opacity: 1; } .gifts li::before { animation: none; width: 40px; } }
