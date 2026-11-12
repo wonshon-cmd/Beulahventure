@@ -312,7 +312,7 @@ window.SITE_DATA = {
       "nav.tracks": "Tracks",
       "nav.about": "About",
       "nav.pitch": "Pitch us",
-      "hero.h1": "Built on <em>purpose.</em><br>Grown by <em>His leading.</em>",
+      "hero.h1": "Built on <em>purpose.</em><br>Grown <em>as He leads.</em>",
       "hero.sub": "On the gospel, by the gospel's values.",
       "hero.cta": "Start Venture 101",
       "hero.cta2": "Our story",
