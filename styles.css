@@ -462,3 +462,5 @@ a.fam-logo:hover .fam-word b { text-decoration: underline; text-underline-offset
 #step-2 .apply-links { margin-top: 14px; }
 .apply-note .link-btn { margin-left: 8px; font-size: .85rem; }
 #auth-not-ready { margin: 0 0 14px; }
+.modules li.mod-done { justify-content: flex-start; gap: 12px; font-weight: 800; color: var(--water); border-bottom-color: var(--water); }
+.modules li.mod-done::before { content: ""; width: 5px; height: 11px; border-radius: 50%; background: var(--water); transform: rotate(28deg); }

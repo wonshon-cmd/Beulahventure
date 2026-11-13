@@ -474,6 +474,8 @@ a.fam-logo:hover .fam-word b { text-decoration: underline; text-underline-offset
 #step-2 .apply-links { margin-top: 14px; }
 .apply-note .link-btn { margin-left: 8px; font-size: .85rem; }
 #auth-not-ready { margin: 0 0 14px; }
+.modules li.mod-done { justify-content: flex-start; gap: 12px; font-weight: 800; color: var(--water); border-bottom-color: var(--water); }
+.modules li.mod-done::before { content: ""; width: 5px; height: 11px; border-radius: 50%; background: var(--water); transform: rotate(28deg); }
 
 </style>
 </head>
@@ -688,17 +690,22 @@ a.fam-logo:hover .fam-word b { text-decoration: underline; text-underline-offset
                   <li><span class="num">01</span><span data-i18n="v101.p1">수강</span></li>
                   <li><span class="num">02</span><span data-i18n="v101.p2">수료</span></li>
                   <li><span class="num">03</span><span data-i18n="v101.p3">제안</span></li>
-                  <li><span class="num">04</span><span>Seedstrap</span></li>
+                  <li><span class="num">04</span><span data-i18n="v101.p4">투자</span></li>
                 </ol>
                 <a class="btn" id="v101-apply" href="mailto:hello@beulahventures.com?subject=Venture%20101%20Application"><span data-i18n="v101.cta">수강 신청</span> <span class="arrow">↗</span></a>
               </div>
               <ol class="modules">
           <li><span class="num">01</span><span data-i18n="m1">복음과 청지기 리더십</span></li>
-          <li><span class="num">02</span><span data-i18n="m2">요셉의 창고: 현금과 비축</span></li>
-          <li><span class="num">03</span><span data-i18n="m3">Seedstrap & Bootstrap</span></li>
-          <li><span class="num">04</span><span data-i18n="m4">정렬된 인센티브</span></li>
-          <li><span class="num">05</span><span data-i18n="m5">함께 자라기</span></li>
-          <li><span class="num">06</span><span data-i18n="m6">사업 제안 준비</span></li>
+          <li><span class="num">02</span><span data-i18n="m2">요셉의 창고</span></li>
+          <li><span class="num">03</span><span data-i18n="m3">함께하는 영혼</span></li>
+          <li><span class="num">04</span><span data-i18n="m4">자생적 비즈니스 모델</span></li>
+          <li><span class="num">05</span><span data-i18n="m5">Seedstrap & Bootstrap</span></li>
+          <li><span class="num">06</span><span data-i18n="m6">정렬된 인센티브</span></li>
+          <li><span class="num">07</span><span data-i18n="m7">시스템의 중요성</span></li>
+          <li class="mod-done"><span data-i18n="mdone">수료</span></li>
+          <li><span class="num">08</span><span data-i18n="m8">사업 제안</span></li>
+          <li><span class="num">09</span><span data-i18n="m9">모임</span></li>
+          <li><span class="num">10</span><span data-i18n="m10">투자 및 함께 자라기</span></li>
               </ol>
             </div>
           </div>
@@ -1090,11 +1097,17 @@ window.SITE_DATA = {
       "v101.title": "투자는 수업을 통해, <em>같은 가치를 추구하는 분들에게.</em>",
       "v101.lead": "같은 곳을 바라보고 시작해야 끝까지 갈 수 있다.",
       "m1": "복음과 청지기 리더십",
-      "m2": "요셉의 창고: 현금과 비축",
-      "m3": "Seedstrap & Bootstrap",
-      "m4": "정렬된 인센티브",
-      "m5": "함께 자라기",
-      "m6": "사업 제안 준비",
+      "m2": "요셉의 창고",
+      "m3": "함께하는 영혼",
+      "m4": "자생적 비즈니스 모델",
+      "m5": "Seedstrap & Bootstrap",
+      "m6": "정렬된 인센티브",
+      "m7": "시스템의 중요성",
+      "mdone": "수료",
+      "m8": "사업 제안",
+      "m9": "모임",
+      "m10": "투자 및 함께 자라기",
+      "v101.p4": "투자",
       "v101.p1": "수강",
       "v101.p2": "수료",
       "v101.p3": "제안",
@@ -1355,11 +1368,17 @@ window.SITE_DATA = {
       "v101.title": "We invest through the classroom, <em>in those who share our values.</em>",
       "v101.lead": "Start facing the same direction, and we can go the distance together.",
       "m1": "The gospel and steward leadership",
-      "m2": "Joseph's storehouse: cash and reserves",
-      "m3": "Seedstrap & Bootstrap",
-      "m4": "Aligned incentives",
-      "m5": "Growing together",
-      "m6": "Preparing your pitch",
+      "m2": "Joseph's storehouse",
+      "m3": "Souls who walk together",
+      "m4": "A self-sustaining business model",
+      "m5": "Seedstrap & Bootstrap",
+      "m6": "Aligned incentives",
+      "m7": "Why systems matter",
+      "mdone": "Completion",
+      "m8": "Pitch",
+      "m9": "Gathering",
+      "m10": "Investment and growing together",
+      "v101.p4": "Invest",
       "v101.p1": "Take",
       "v101.p2": "Complete",
       "v101.p3": "Pitch",
