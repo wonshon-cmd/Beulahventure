@@ -436,7 +436,9 @@
       "auth/invalid-login-credentials": "auth.err.cred",
       "auth/popup-closed-by-user": "auth.err.popup",
       "auth/cancelled-popup-request": "auth.err.popup",
-      "auth/account-exists-with-different-credential": "auth.err.exists"
+      "auth/account-exists-with-different-credential": "auth.err.exists",
+      "auth/operation-not-allowed": "auth.err.other",
+      "auth/unauthorized-domain": "auth.err.other"
     }[e && e.code] || "auth.err.other");
 
     // Email/password accounts must verify; Google, Apple and Microsoft already vouch for the address.

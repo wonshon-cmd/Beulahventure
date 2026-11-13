@@ -7,8 +7,14 @@ window.SITE_DATA = {
   // Sign-up and applications (Firebase). Fill in from Firebase console > Project settings > Your apps > Web app.
   // These values are public by design; access is protected by Firestore rules (see docs/SETUP-signup.md).
   apply: { cohort: "2027", collection: "applications" },
-  firebase: { apiKey: "", authDomain: "", projectId: "", appId: "" },
-  providers: { google: true, apple: true, microsoft: true },
+  firebase: {
+    apiKey: "AIzaSyB73pDqe9vf7EyN5657_vHuW2oImGMobro",
+    authDomain: "beulah-venture.firebaseapp.com",
+    projectId: "beulah-venture",
+    appId: "1:240426405363:web:8912ec8eb5100e7d239686"
+  },
+  // Turn Apple / Microsoft on after enabling them in Firebase > Authentication > Sign-in method
+  providers: { google: true, apple: false, microsoft: false },
 
   portfolio: [],
 
