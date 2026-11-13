@@ -4,11 +4,11 @@
 window.SITE_DATA = {
   // Add portfolio companies here. Leave empty to show the "open slot" card only.
   // Example: { name: "Acme", sector: { ko: "제조", en: "Manufacturing" }, desc: { ko: "...", en: "..." }, url: "https://..." }
-  // Application flow. Leave the URLs empty to run in preview mode (code shown on screen).
-  // sendCodeUrl:   POST {email, name}          -> 200 when a 6-digit code was emailed
-  // verifyCodeUrl: POST {email, code}          -> 200 {token} when the code is right
-  // submitUrl:     POST {token, ...application} -> 200 when saved
-  apply: { cohort: "2027", sendCodeUrl: "", verifyCodeUrl: "", submitUrl: "" },
+  // Sign-up and applications (Firebase). Fill in from Firebase console > Project settings > Your apps > Web app.
+  // These values are public by design; access is protected by Firestore rules (see docs/SETUP-signup.md).
+  apply: { cohort: "2027", collection: "applications" },
+  firebase: { apiKey: "", authDomain: "", projectId: "", appId: "" },
+  providers: { google: true, apple: true, microsoft: true },
 
   portfolio: [],
 
@@ -42,6 +42,39 @@ window.SITE_DATA = {
 
   i18n: {
     ko: {
+      "auth.s1": "가입",
+      "auth.s2": "이메일 인증",
+      "auth.s3": "사업 소개",
+      "auth.google": "Google로 계속",
+      "auth.apple": "Apple로 계속",
+      "auth.microsoft": "Microsoft로 계속",
+      "auth.or": "또는 이메일로",
+      "auth.password": "비밀번호 (8자 이상)",
+      "auth.signup": "가입하기",
+      "auth.login": "로그인",
+      "auth.toLogin": "이미 계정이 있나요? 로그인",
+      "auth.toSignup": "처음이신가요? 가입하기",
+      "auth.forgot": "비밀번호 찾기",
+      "auth.resetSent": "비밀번호 재설정 메일을 보냈습니다.",
+      "auth.verifySent": "인증 메일을 보냈습니다:",
+      "auth.verifyHow": "메일의 링크를 누른 뒤, 아래 버튼을 눌러 주세요.",
+      "auth.check": "인증 확인",
+      "auth.resend": "인증 메일 다시 보내기",
+      "auth.resent": "인증 메일을 다시 보냈습니다.",
+      "auth.notYet": "아직 인증되지 않았습니다. 메일의 링크를 눌렀는지 확인해 주세요.",
+      "auth.signout": "다른 계정으로",
+      "auth.signedIn": "로그인됨",
+      "auth.notReady": "가입 기능을 연결하는 중입니다. 곧 열립니다.",
+      "auth.err.inUse": "이미 가입된 이메일입니다. 로그인해 주세요.",
+      "auth.err.email": "올바른 이메일을 입력해 주세요.",
+      "auth.err.weak": "비밀번호는 8자 이상이어야 합니다.",
+      "auth.err.cred": "이메일 또는 비밀번호가 맞지 않습니다.",
+      "auth.err.name": "이름을 입력해 주세요.",
+      "auth.err.popup": "로그인 창이 닫혔습니다. 다시 시도해 주세요.",
+      "auth.err.other": "문제가 생겼습니다. 다른 방법으로 시도하거나 잠시 후 다시 시도해 주세요.",
+      "auth.err.exists": "이 이메일은 다른 방법으로 가입되어 있습니다. 처음 가입한 방법으로 로그인해 주세요.",
+      "auth.submitted": "접수되었습니다. 2주 안에 이메일로 답합니다.",
+      "auth.already": "이미 신청서를 제출하셨습니다. 수정하려면 다시 제출하면 됩니다.",
       "apply.badge": "FIRST TRACK · 1기",
       "apply.when": "2027년 시작",
       "apply.start": "신청하기",
@@ -274,6 +307,39 @@ window.SITE_DATA = {
       "footer.scripture": "성경 본문: 개역개정"
     },
     en: {
+      "auth.s1": "Sign up",
+      "auth.s2": "Verify email",
+      "auth.s3": "Your business",
+      "auth.google": "Continue with Google",
+      "auth.apple": "Continue with Apple",
+      "auth.microsoft": "Continue with Microsoft",
+      "auth.or": "or with email",
+      "auth.password": "Password (8+ characters)",
+      "auth.signup": "Sign up",
+      "auth.login": "Log in",
+      "auth.toLogin": "Have an account? Log in",
+      "auth.toSignup": "New here? Sign up",
+      "auth.forgot": "Forgot password",
+      "auth.resetSent": "We sent a password reset email.",
+      "auth.verifySent": "We sent a verification email to:",
+      "auth.verifyHow": "Click the link in the email, then press the button below.",
+      "auth.check": "I've verified",
+      "auth.resend": "Resend email",
+      "auth.resent": "Verification email sent again.",
+      "auth.notYet": "Not verified yet. Please click the link in the email.",
+      "auth.signout": "Use another account",
+      "auth.signedIn": "Signed in",
+      "auth.notReady": "Sign-up is being connected. It opens soon.",
+      "auth.err.inUse": "This email is already registered. Please log in.",
+      "auth.err.email": "Please enter a valid email.",
+      "auth.err.weak": "Password must be at least 8 characters.",
+      "auth.err.cred": "Email or password is incorrect.",
+      "auth.err.name": "Please enter your name.",
+      "auth.err.popup": "The sign-in window was closed. Please try again.",
+      "auth.err.other": "Something went wrong. Try another method or try again shortly.",
+      "auth.err.exists": "This email is registered with a different method. Please use that one.",
+      "auth.submitted": "Received. We'll reply by email within two weeks.",
+      "auth.already": "You've already applied. Submit again to update it.",
       "apply.badge": "FIRST TRACK · COHORT 1",
       "apply.when": "Starts 2027",
       "apply.start": "Apply",

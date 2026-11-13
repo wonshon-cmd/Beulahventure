@@ -445,3 +445,20 @@ h3.block-top { padding-top: 56px; margin-bottom: 24px; }
 [hidden] { display: none !important; }
 a.fam-logo { text-decoration: none; width: fit-content; }
 a.fam-logo:hover .fam-word b { text-decoration: underline; text-underline-offset: 4px; }
+
+/* Sign-up */
+.oauth { display: grid; gap: 10px; }
+.oauth-btn {
+  display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%;
+  padding: 14px 18px; border-radius: 999px; border: 1px solid var(--ink); background: #fff; color: var(--ink);
+  font: inherit; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background .2s;
+}
+.oauth-btn:hover:not(:disabled) { background: var(--soft); }
+.oauth-btn:disabled, .pitch-form input:disabled, .pitch-form .btn:disabled { opacity: .45; cursor: not-allowed; }
+.oauth-btn svg { width: 18px; height: 18px; flex: none; }
+.or { display: flex; align-items: center; gap: 14px; margin: 22px 0 14px; color: var(--muted); font-size: .85rem; }
+.or::before, .or::after { content: ""; flex: 1; height: 1px; background: var(--hair); }
+#step-2 .muted { margin: 4px 0 18px; }
+#step-2 .apply-links { margin-top: 14px; }
+.apply-note .link-btn { margin-left: 8px; font-size: .85rem; }
+#auth-not-ready { margin: 0 0 14px; }

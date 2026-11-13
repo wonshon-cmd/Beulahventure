@@ -398,20 +398,18 @@
     }
   });
 
-  // Application: 1) name + email  2) email code  3) the business. Server hooks live in SITE_DATA.apply.
+  // Sign-up and application (Firebase Auth + Firestore).
+  // 1) Google / Apple / Microsoft, or name + email + password  2) email verification  3) the business
   (function initApply() {
-    const cfg = data.apply || {};
-    const preview = !cfg.sendCodeUrl;
     const $ = (id) => document.getElementById(id);
+    const cfg = data.apply || {};
+    const fbCfg = data.firebase || {};
+    const providersOn = data.providers || {};
     const steps = { 1: $("step-1"), 2: $("step-2"), 3: $("pitch-form") };
-    const state = { name: "", email: "", code: "", token: "" };
-    const emailOk = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v || "");
-    const say = (node, key, kind) => { node.textContent = key ? t(key) : ""; node.className = "form-status full" + (kind ? " " + kind : ""); };
-    const post = async (url, body) => {
-      const r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
-      if (!r.ok) throw new Error(String(r.status));
-      return r.json().catch(() => ({}));
-    };
+    const say = (node, key, kind, extra) => { node.textContent = key ? t(key) + (extra || "") : ""; node.className = node.className.replace(/ ?(error|ok)/g, "") + (kind ? " " + kind : ""); };
+    let mode = "signup";
+    let auth = null, db = null;
+
     function show(n) {
       Object.entries(steps).forEach(([k, el]) => (el.hidden = Number(k) !== n));
       document.querySelectorAll("#apply-steps li").forEach((li) => {
@@ -419,74 +417,139 @@
         li.classList.toggle("on", k === n);
         li.classList.toggle("done", k < n);
       });
-      const first = steps[n].querySelector("input, textarea");
-      if (first) first.focus({ preventScroll: true });
     }
-    async function sendCode() {
-      if (preview) {
-        state.code = String(Math.floor(100000 + Math.random() * 900000));
-        const demo = $("ap-demo");
-        demo.textContent = t("apply.demo") + " " + state.code;
-        demo.hidden = false;
-        return;
-      }
-      await post(cfg.sendCodeUrl, { email: state.email, name: state.name, cohort: cfg.cohort });
-    }
-    $("apply-start").addEventListener("click", () => {
-      document.getElementById("apply").classList.add("open");
-      show(1);
-    });
-    steps[1].addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const name = $("ap-name").value.trim(), email = $("ap-email").value.trim();
-      if (!name || !emailOk(email)) return say($("s1-status"), "apply.badEmail", "error");
-      state.name = name; state.email = email;
+    function setMode(m) {
+      mode = m;
+      $("name-row").hidden = m === "login";
+      $("ap-pass").autocomplete = m === "login" ? "current-password" : "new-password";
+      $("ap-submit1").querySelector("span").textContent = t(m === "login" ? "auth.login" : "auth.signup");
+      $("ap-mode").textContent = t(m === "login" ? "auth.toSignup" : "auth.toLogin");
       say($("s1-status"), "");
-      try { await sendCode(); } catch (_) { return say($("s1-status"), "apply.sendFail", "error"); }
-      $("ap-email-show").textContent = email;
-      $("ap-code").value = "";
-      show(2);
-    });
-    steps[2].addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const code = $("ap-code").value.trim();
-      let ok = false;
-      if (preview) ok = code === state.code;
-      else {
-        try { const res = await post(cfg.verifyCodeUrl, { email: state.email, code }); state.token = res.token || ""; ok = true; } catch (_) { ok = false; }
-      }
-      if (!ok) return say($("s2-status"), "apply.badCode", "error");
-      say($("s2-status"), "");
-      $("ap-who").textContent = `${state.name} · ${state.email}`;
+    }
+    const errKey = (e) => ({
+      "auth/email-already-in-use": "auth.err.inUse",
+      "auth/invalid-email": "auth.err.email",
+      "auth/weak-password": "auth.err.weak",
+      "auth/wrong-password": "auth.err.cred",
+      "auth/user-not-found": "auth.err.cred",
+      "auth/invalid-credential": "auth.err.cred",
+      "auth/invalid-login-credentials": "auth.err.cred",
+      "auth/popup-closed-by-user": "auth.err.popup",
+      "auth/cancelled-popup-request": "auth.err.popup",
+      "auth/account-exists-with-different-credential": "auth.err.exists"
+    }[e && e.code] || "auth.err.other");
+
+    // Email/password accounts must verify; Google, Apple and Microsoft already vouch for the address.
+    const isVerified = (u) => u && (u.emailVerified || u.providerData.some((p) => p.providerId !== "password"));
+
+    let lastUid = null;
+    function resetForm() {
+      ["ap-name3", "ap-company", "ap-deck", "ap-desc"].forEach((id) => ($(id).value = ""));
+      say($("form-status"), "");
+    }
+    async function route(u) {
+      if ((u && u.uid) !== lastUid) { resetForm(); lastUid = u ? u.uid : null; }
+      if (!u) return show(1);
+      if (!isVerified(u)) { $("ap-email-show").textContent = u.email || ""; return show(2); }
+      $("ap-who").textContent = u.email || u.displayName || "";
+      if (!$("ap-name3").value) $("ap-name3").value = u.displayName || "";
       show(3);
+      try {
+        const doc = await db.collection(cfg.collection || "applications").doc(u.uid).get();
+        if (doc.exists) {
+          const d = doc.data();
+          ["company", "deck", "desc"].forEach((k) => { if (d[k] && !$("ap-" + k).value) $("ap-" + k).value = d[k]; });
+          if (d.track) $("ap-track").value = d.track;
+          if (d.stage) $("ap-stage").value = d.stage;
+          if (d.name) $("ap-name3").value = d.name;
+          say($("form-status"), "auth.already", "ok");
+        }
+      } catch (_) { /* reading is optional */ }
+    }
+
+    $("apply-start").addEventListener("click", () => {
+      $("apply").classList.add("open");
+      route(auth && auth.currentUser);
+      $("apply").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    $("ap-mode").addEventListener("click", () => setMode(mode === "login" ? "signup" : "login"));
+    setMode("signup");
+
+    // Hide providers that are switched off in config
+    document.querySelectorAll(".oauth-btn").forEach((b) => { if (providersOn[b.dataset.provider] === false) b.hidden = true; });
+
+    const ready = typeof window.firebase !== "undefined" && fbCfg.apiKey && fbCfg.projectId;
+    if (!ready) {
+      $("auth-not-ready").hidden = false;
+      document.querySelectorAll("#step-1 button, #step-1 input").forEach((el) => (el.disabled = true));
+      return;
+    }
+    const app = window.firebase.apps.length ? window.firebase.app() : window.firebase.initializeApp(fbCfg);
+    auth = app.auth();
+    db = app.firestore();
+    auth.useDeviceLanguage();
+    auth.onAuthStateChanged((u) => { if ($("apply").classList.contains("open") || u) { $("apply").classList.add("open"); route(u); } });
+
+    const providerFor = (name) => {
+      if (name === "google") return new window.firebase.auth.GoogleAuthProvider();
+      const p = new window.firebase.auth.OAuthProvider(name === "apple" ? "apple.com" : "microsoft.com");
+      p.addScope("email");
+      if (name === "apple") p.addScope("name");
+      return p;
+    };
+    document.querySelectorAll(".oauth-btn").forEach((b) => b.addEventListener("click", async () => {
+      say($("s1-status"), "");
+      try { await auth.signInWithPopup(providerFor(b.dataset.provider)); }
+      catch (e) { say($("s1-status"), errKey(e), "error"); }
+    }));
+
+    $("email-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = $("ap-name").value.trim(), email = $("ap-email").value.trim(), pass = $("ap-pass").value;
+      if (mode === "signup" && !name) return say($("s1-status"), "auth.err.name", "error");
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return say($("s1-status"), "auth.err.email", "error");
+      if (pass.length < 8) return say($("s1-status"), mode === "login" ? "auth.err.cred" : "auth.err.weak", "error");
+      try {
+        if (mode === "signup") {
+          const cred = await auth.createUserWithEmailAndPassword(email, pass);
+          await cred.user.updateProfile({ displayName: name });
+          await cred.user.sendEmailVerification();
+          route(cred.user);
+        } else {
+          await auth.signInWithEmailAndPassword(email, pass);
+        }
+      } catch (err) { say($("s1-status"), errKey(err), "error"); }
+    });
+    $("ap-forgot").addEventListener("click", async () => {
+      const email = $("ap-email").value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return say($("s1-status"), "auth.err.email", "error");
+      try { await auth.sendPasswordResetEmail(email); say($("s1-status"), "auth.resetSent", "ok"); }
+      catch (err) { say($("s1-status"), errKey(err), "error"); }
+    });
+    $("ap-check").addEventListener("click", async () => {
+      const u = auth.currentUser; if (!u) return show(1);
+      await u.reload();
+      if (isVerified(auth.currentUser)) { await auth.currentUser.getIdToken(true); route(auth.currentUser); }
+      else say($("s2-status"), "auth.notYet", "error");
     });
     $("ap-resend").addEventListener("click", async () => {
-      try { await sendCode(); say($("s2-status"), ""); } catch (_) { say($("s2-status"), "apply.sendFail", "error"); }
+      try { await auth.currentUser.sendEmailVerification(); say($("s2-status"), "auth.resent", "ok"); }
+      catch (err) { say($("s2-status"), errKey(err), "error"); }
     });
-    $("ap-change").addEventListener("click", () => { $("ap-demo").hidden = true; show(1); });
+    document.querySelectorAll(".ap-signout").forEach((b) => b.addEventListener("click", () => auth.signOut()));
 
     steps[3].addEventListener("submit", async (e) => {
       e.preventDefault();
-      const status = $("form-status");
-      const f = { company: $("ap-company").value.trim(), track: $("ap-track").value, stage: $("ap-stage").value, deck: $("ap-deck").value.trim(), desc: $("ap-desc").value.trim() };
-      if (!f.company || !f.desc) return say(status, "form.error", "error");
-      if (cfg.submitUrl) {
-        try { await post(cfg.submitUrl, { token: state.token, name: state.name, email: state.email, cohort: cfg.cohort, ...f }); }
-        catch (_) { return say(status, "apply.submitFail", "error"); }
-        return say(status, "apply.thanks", "ok");
-      }
-      // No server yet: hand the applicant a ready-made email
-      const subject = `[Beulah · First Track ${cfg.cohort || ""}] ${f.company}`;
-      const body = [`Name: ${state.name}`, `Email: ${state.email} (verified)`, `Company: ${f.company}`, `Track: ${f.track}`, `Stage: ${f.stage}`, `Deck: ${f.deck || "-"}`, "", f.desc].join("\n");
-      const full = `Subject: ${subject}\n\n${body}`;
-      const pre = el("pre", { class: "pitch-preview", tabindex: "0", text: full });
-      const mailLink = el("a", { class: "btn btn-ghost", href: `mailto:${PITCH_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, text: t("form.openMail") });
-      const copyBtn = el("button", { type: "button", class: "btn btn-ghost", text: t("form.copy") });
-      copyBtn.addEventListener("click", () => {
-        navigator.clipboard?.writeText(full).then(() => { copyBtn.textContent = t("form.copied"); }, () => { pre.focus(); window.getSelection().selectAllChildren(pre); });
-      });
-      status.replaceChildren(el("span", { text: t("form.ok") + " " }), el("strong", { class: "pitch-email", text: PITCH_EMAIL }), pre, el("span", { class: "pitch-actions" }, [mailLink, copyBtn]));
-      status.className = "form-status full ok";
+      const u = auth.currentUser; if (!u) return show(1);
+      const f = { name: $("ap-name3").value.trim(), company: $("ap-company").value.trim(), track: $("ap-track").value, stage: $("ap-stage").value, deck: $("ap-deck").value.trim(), desc: $("ap-desc").value.trim() };
+      if (!f.name || !f.company || !f.desc) return say($("form-status"), "form.error", "error");
+      try {
+        await db.collection(cfg.collection || "applications").doc(u.uid).set({
+          ...f, email: u.email || "", provider: (u.providerData[0] || {}).providerId || "password",
+          cohort: cfg.cohort || "", lang, updatedAt: window.firebase.firestore.FieldValue.serverTimestamp()
+        }, { merge: true });
+        say($("form-status"), "auth.submitted", "ok");
+      } catch (err) { say($("form-status"), "apply.submitFail", "error"); }
     });
   })();
 
