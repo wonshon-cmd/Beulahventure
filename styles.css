@@ -443,3 +443,5 @@ h3.block-top { padding-top: 56px; margin-bottom: 24px; }
 @media (max-width: 640px) { .apply-steps li { font-size: .85rem; } }
 
 [hidden] { display: none !important; }
+a.fam-logo { text-decoration: none; width: fit-content; }
+a.fam-logo:hover .fam-word b { text-decoration: underline; text-underline-offset: 4px; }
