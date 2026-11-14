@@ -531,7 +531,7 @@ window.SITE_DATA = {
       "fw.d7": "One more, in a new city or field.",
       "structure.return": "Fruit becomes seed, and the next branch grows.",
       "v101.eyebrow": "VENTURE 101 · GOD'S STEWARDSHIP",
-      "v101.title": "We invest through the classroom, <em>in those who share our values.</em>",
+      "v101.title": "We invest in people <em>who share the same values.</em>",
       "v101.lead": "Start facing the same direction, and we can go the distance together.",
       "m1": "The gospel and steward leadership",
       "m2": "Joseph's storehouse",
