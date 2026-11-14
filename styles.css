@@ -466,3 +466,23 @@ a.fam-logo:hover .fam-word b { text-decoration: underline; text-underline-offset
 .modules li.mod-done::before { content: ""; width: 5px; height: 11px; border-radius: 50%; background: var(--water); transform: rotate(28deg); }
 .member .avatar-photo { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 0; display: block; filter: grayscale(100%); transition: filter .4s ease; }
 .member:hover .avatar-photo { filter: none; }
+
+/* Founder letter */
+.member.has-letter { cursor: pointer; }
+.letter-open { margin-top: 14px; padding: 0; background: none; border: 0; font: inherit; font-weight: 800; color: var(--ink); cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
+.letter-open .arrow { color: var(--water); }
+dialog.letter {
+  width: min(720px, calc(100% - 32px)); max-height: min(86vh, 900px); padding: clamp(28px, 5vw, 56px);
+  border: 0; border-radius: 24px; background: #fff; color: var(--ink); overflow: auto;
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,.35);
+}
+dialog.letter::backdrop { background: rgba(17,17,17,.45); backdrop-filter: blur(3px); }
+dialog.letter[open] { animation: rise .45s var(--ease) both; }
+.letter-close { position: sticky; top: 0; float: right; margin: -12px -12px 0 0; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--hair); background: #fff; font-size: 1.4rem; line-height: 1; cursor: pointer; }
+.letter-close:hover { border-color: var(--ink); }
+.letter-head { display: flex; align-items: center; gap: 18px; margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid var(--hair); }
+.letter-photo { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; }
+.letter-head h3 { margin: 0 0 4px; font-size: 1.4rem; }
+.letter-head .role { margin: 0; font-size: .72rem; font-weight: 800; letter-spacing: var(--track); color: var(--muted); }
+.letter-body p { margin: 0 0 1.2em; font-size: 1.05rem; font-weight: 300; line-height: 1.95; letter-spacing: -0.01em; }
+.letter-body p:first-child { font-size: clamp(1.25rem, 2.2vw, 1.5rem); font-weight: 800; line-height: 1.5; letter-spacing: -0.03em; }

@@ -39,17 +39,49 @@
     document.querySelector('[data-i18n="portfolio.note"]').hidden = data.portfolio.length > 0;
   }
 
+  // Team cards. A card with a letter opens it in a dialog.
+  let letterDialog = null;
+  function openLetter(m) {
+    if (!letterDialog) {
+      letterDialog = el("dialog", { class: "letter", "aria-labelledby": "letter-name" });
+      letterDialog.addEventListener("click", (e) => { if (e.target === letterDialog) letterDialog.close(); });
+      document.body.appendChild(letterDialog);
+    }
+    const name = pick(m.name);
+    const close = el("button", { type: "button", class: "letter-close", "aria-label": t("team.close"), text: "×" });
+    close.addEventListener("click", () => letterDialog.close());
+    letterDialog.replaceChildren(
+      close,
+      el("div", { class: "letter-head" }, [
+        m.photo ? el("img", { class: "letter-photo", src: m.photo, alt: name, width: "72", height: "72" }) : el("span"),
+        el("div", {}, [el("h3", { id: "letter-name", text: name }), el("p", { class: "role", text: pick(m.role) })])
+      ]),
+      el("div", { class: "letter-body" }, (m.letter[lang] || m.letter.ko).map((p) => el("p", { text: p })))
+    );
+    letterDialog.showModal();
+    letterDialog.scrollTop = 0;
+  }
   function renderTeam() {
     const grid = document.getElementById("team-grid");
     grid.replaceChildren();
     data.team.forEach((m) => {
       const name = pick(m.name);
-      grid.appendChild(el("article", { class: "member" }, [
+      const parts = [
         m.photo ? el("img", { class: "avatar avatar-photo", src: m.photo, alt: name, width: "96", height: "96", loading: "lazy" }) : el("div", { class: "avatar", text: name.trim().charAt(0) }),
         el("h3", { text: name }),
         el("p", { class: "role", text: pick(m.role) }),
         el("p", { text: pick(m.bio) })
-      ]));
+      ];
+      if (m.letter) {
+        const more = el("button", { type: "button", class: "letter-open" }, [el("span", { text: t("team.read") }), el("span", { class: "arrow", text: " ↗" })]);
+        more.addEventListener("click", () => openLetter(m));
+        parts.push(more);
+        const card = el("article", { class: "member has-letter" }, parts);
+        card.addEventListener("click", (e) => { if (e.target === card || e.target.tagName !== "BUTTON") openLetter(m); });
+        grid.appendChild(card);
+      } else {
+        grid.appendChild(el("article", { class: "member" }, parts));
+      }
     });
   }
 
