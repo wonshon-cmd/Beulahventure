@@ -22,7 +22,7 @@ window.SITE_DATA = {
   team: [
     {
       name: { ko: "손원규", en: "Joseph Shon" },
-      role: { ko: "매니징 파트너", en: "Managing Partner" },
+      role: { ko: "설립자 · 매니징 파트너", en: "Founder & Managing Partner" },
       bio: {
         ko: "청지기 정신으로 창업자를 세우고, Venture 101을 이끕니다.",
         en: "Raises up founders with a steward's heart and leads Venture 101."
