@@ -1475,13 +1475,9 @@ window.SITE_DATA = {
 (function () {
   const data = window.SITE_DATA;
   const PITCH_EMAIL = "hello@beulahventures.com";
-  // English first; a visitor's own choice (the KO/EN button) is remembered on their device.
+  // Always open in English. The KO/EN button switches for this visit only.
   let lang = "en";
-
-  try {
-    const saved = localStorage.getItem("lang");
-    if (saved === "ko" || saved === "en") lang = saved;
-  } catch (_) { /* storage unavailable */ }
+  try { localStorage.removeItem("lang"); } catch (_) { /* storage unavailable */ }
 
   const t = (key) => data.i18n[lang][key] ?? data.i18n.ko[key] ?? key;
   const pick = (obj) => (obj && typeof obj === "object" ? obj[lang] ?? obj.ko : obj);
@@ -1886,7 +1882,6 @@ window.SITE_DATA = {
 
   document.querySelector(".lang-toggle").addEventListener("click", () => {
     lang = lang === "ko" ? "en" : "ko";
-    try { localStorage.setItem("lang", lang); } catch (_) { /* ignore */ }
     applyLang();
   });
 
