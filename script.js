@@ -45,7 +45,7 @@
     data.team.forEach((m) => {
       const name = pick(m.name);
       grid.appendChild(el("article", { class: "member" }, [
-        el("div", { class: "avatar", text: name.trim().charAt(0) }),
+        m.photo ? el("img", { class: "avatar avatar-photo", src: m.photo, alt: name, width: "96", height: "96", loading: "lazy" }) : el("div", { class: "avatar", text: name.trim().charAt(0) }),
         el("h3", { text: name }),
         el("p", { class: "role", text: pick(m.role) }),
         el("p", { text: pick(m.bio) })
