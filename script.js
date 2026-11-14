@@ -1,12 +1,12 @@
 (function () {
   const data = window.SITE_DATA;
   const PITCH_EMAIL = "hello@beulahventures.com";
-  let lang = "ko";
+  // English first; a visitor's own choice (the KO/EN button) is remembered on their device.
+  let lang = "en";
 
   try {
     const saved = localStorage.getItem("lang");
     if (saved === "ko" || saved === "en") lang = saved;
-    else if (!navigator.language.toLowerCase().startsWith("ko")) lang = "en";
   } catch (_) { /* storage unavailable */ }
 
   const t = (key) => data.i18n[lang][key] ?? data.i18n.ko[key] ?? key;
