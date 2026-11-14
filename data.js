@@ -55,6 +55,7 @@ window.SITE_DATA = {
 
   i18n: {
     ko: {
+      "v101.fit": "함께할 수 있는지 알아보기",
       "team.read": "소개 글 읽기",
       "team.close": "닫기",
       "auth.s1": "가입",
@@ -328,6 +329,7 @@ window.SITE_DATA = {
       "footer.scripture": "성경 본문: 개역개정"
     },
     en: {
+      "v101.fit": "See if we're a fit",
       "team.read": "Read my story",
       "team.close": "Close",
       "auth.s1": "Sign up",
