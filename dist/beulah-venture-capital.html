@@ -501,6 +501,8 @@ dialog.letter[open] { animation: rise .45s var(--ease) both; }
 .fit-link { display: inline-flex; align-items: center; gap: 8px; margin: -12px 0 36px; font-size: 1.1rem; font-weight: 800; text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px; color: var(--ink); }
 .fit-link .arrow { color: var(--water); transition: transform .25s var(--ease); }
 .fit-link:hover .arrow { transform: translate(3px, -3px); }
+/* Five tracks: the fifth spans the full row */
+.tracks > li:nth-child(5):last-child { grid-column: 1 / -1; }
 
 </style>
 </head>
@@ -701,6 +703,16 @@ dialog.letter[open] { animation: rise .45s var(--ease) both; }
               <div><dt data-i18n="tracks.form">Structure</dt><dd data-i18n="t4.form">Seed capital + founder equity</dd></div>
             </dl>
           </li>
+          <li class="track">
+            <span class="num">05</span>
+            <h3>Acquire & Transform</h3>
+            <p class="stage-tag" data-i18n="t5.tag">Acquiring traditional businesses</p>
+            <p class="track-desc" data-i18n="t5.d">We reach out to long-running traditional businesses, acquire them, and transform them on gospel values.</p>
+            <dl class="track-meta">
+              <div><dt data-i18n="tracks.role">Role</dt><dd data-i18n="t5.role">Acquisition · Operations · Renewal</dd></div>
+              <div><dt data-i18n="tracks.form">Structure</dt><dd data-i18n="t5.form">Acquisition Equity + Operating Role</dd></div>
+            </dl>
+          </li>
           </ol>
           <div id="venture101" class="block-card">
             <div class="v101-grid">
@@ -842,7 +854,7 @@ dialog.letter[open] { animation: rise .45s var(--ease) both; }
             <p class="full apply-note"><span class="verified-chip" data-i18n="auth.signedIn">로그인됨</span> <strong id="ap-who"></strong> <button type="button" class="link-btn ap-signout" data-i18n="auth.signout">다른 계정으로</button></p>
             <label class="full"><span data-i18n="form.name">이름</span><input id="ap-name3" name="name" required autocomplete="name"></label>
             <label class="full"><span data-i18n="form.company">회사명</span><input id="ap-company" name="company" required></label>
-            <label><span data-i18n="form.track">트랙</span><select id="ap-track" name="track"><option value="Market Bridge" data-i18n="form.track.t1">Market Bridge · 판로 연결</option><option value="Mission Field Ventures" data-i18n="form.track.t2">Mission Field Ventures · 선교지 벤처</option><option value="Business Partnership" data-i18n="form.track.t3">Business Partnership · 사업 투자</option><option value="Idea Launch" data-i18n="form.track.t4">Idea Launch · 아이디어 창업</option></select></label>
+            <label><span data-i18n="form.track">트랙</span><select id="ap-track" name="track"><option value="Market Bridge" data-i18n="form.track.t1">Market Bridge · 판로 연결</option><option value="Mission Field Ventures" data-i18n="form.track.t2">Mission Field Ventures · 선교지 벤처</option><option value="Business Partnership" data-i18n="form.track.t3">Business Partnership · 사업 투자</option><option value="Idea Launch" data-i18n="form.track.t4">Idea Launch · 아이디어 창업</option><option value="Acquire &amp; Transform" data-i18n="form.track.t5">Acquire &amp; Transform</option></select></label>
             <label><span data-i18n="form.stage">단계</span><select id="ap-stage" name="stage"><option value="Idea" data-i18n="form.stage.idea">아이디어</option><option value="Seedstrap">Seedstrap</option><option value="Bootstrap" data-i18n="form.stage.boot">Bootstrap (매출 발생)</option><option value="Growth">Growth</option></select></label>
             <label class="full"><span data-i18n="form.deck">피치 덱 링크</span><input id="ap-deck" name="deck" type="url" placeholder="https://"></label>
             <label class="full"><span data-i18n="form.desc">어떤 가치를 만들고, 누구를 섬기나요?</span><textarea id="ap-desc" name="desc" rows="5" required></textarea></label>
@@ -926,6 +938,11 @@ window.SITE_DATA = {
 
   i18n: {
     ko: {
+      "t5.tag": "전통 사업 인수와 전환",
+      "t5.d": "오래 운영해 온 전통 사업을 찾아가 인수하고, 복음의 가치로 새롭게 세웁니다.",
+      "t5.role": "인수 · 경영 · 혁신",
+      "t5.form": "인수 지분 + 경영 참여",
+      "form.track.t5": "Acquire & Transform · 전통 사업 인수",
       "v101.fit": "함께할 수 있는지 알아보기",
       "team.read": "소개 글 읽기",
       "team.close": "닫기",
@@ -1084,7 +1101,7 @@ window.SITE_DATA = {
       "s4.tag": "비축과 확장",
       "s4.d": "비축하고, 복제하고, 확장한다.",
       "tracks.eyebrow": "INVESTMENT TRACKS",
-      "tracks.title": "선교지에서 미국까지, <em>네 가지 길.</em>",
+      "tracks.title": "선교지에서 미국까지, <em>다섯 가지 길.</em>",
       "tracks.role": "역할",
       "tracks.form": "방식",
       "t1.tag": "선교지 판로 연결",
@@ -1200,6 +1217,11 @@ window.SITE_DATA = {
       "footer.scripture": "성경 본문: 개역개정"
     },
     en: {
+      "t5.tag": "Acquiring traditional businesses",
+      "t5.d": "We reach out to long-running traditional businesses, acquire them, and transform them on gospel values.",
+      "t5.role": "Acquisition · Operations · Renewal",
+      "t5.form": "Acquisition Equity + Operating Role",
+      "form.track.t5": "Acquire & Transform",
       "v101.fit": "See if we're a fit",
       "team.read": "Read my story",
       "team.close": "Close",
@@ -1358,7 +1380,7 @@ window.SITE_DATA = {
       "s4.tag": "Store & scale",
       "s4.d": "Store. Replicate. Scale.",
       "tracks.eyebrow": "INVESTMENT TRACKS",
-      "tracks.title": "Mission field to the US. <em>Four paths.</em>",
+      "tracks.title": "Mission field to the US. <em>Five paths.</em>",
       "tracks.role": "Role",
       "tracks.form": "Structure",
       "t1.tag": "Markets for the mission field",

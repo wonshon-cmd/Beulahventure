@@ -489,3 +489,5 @@ dialog.letter[open] { animation: rise .45s var(--ease) both; }
 .fit-link { display: inline-flex; align-items: center; gap: 8px; margin: -12px 0 36px; font-size: 1.1rem; font-weight: 800; text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px; color: var(--ink); }
 .fit-link .arrow { color: var(--water); transition: transform .25s var(--ease); }
 .fit-link:hover .arrow { transform: translate(3px, -3px); }
+/* Five tracks: the fifth spans the full row */
+.tracks > li:nth-child(5):last-child { grid-column: 1 / -1; }
