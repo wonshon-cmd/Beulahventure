@@ -570,7 +570,7 @@ window.SITE_DATA = {
       "v101.p3": "Pitch",
       "v101.cta": "Apply now",
       "about.eyebrow": "ABOUT",
-      "about.title": "Co-laborers walking <em>toward the same place.</em>",
+      "about.title": "God's fellow workers, <em>walking the same way.</em>",
       "facts.stage": "Stage",
       "facts.support": "Support",
       "facts.supportVal": "Capital · Advice · Help",
