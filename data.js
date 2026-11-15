@@ -56,7 +56,7 @@ window.SITE_DATA = {
   i18n: {
     ko: {
       "t6.tag": "준비된 사업을 맡아 운영",
-      "t6.d": "사업 아이디어와 계획은 Beulah가 준비합니다. 함께 실행하고 키워 갈 운영자를 찾습니다.",
+      "t6.d": "복음의 가치로 현실화하실 분을 구합니다.",
       "t6.role": "아이디어 · 사업 계획 · 자본",
       "t6.form": "Beulah 소유 + 운영자 지분",
       "form.track.t6": "Operator Track · 아이디어와 계획 제공",
@@ -339,7 +339,7 @@ window.SITE_DATA = {
     },
     en: {
       "t6.tag": "Run a business we have prepared",
-      "t6.d": "Beulah prepares the business idea and the plan. We are looking for operators to build and run it.",
+      "t6.d": "We are looking for people to bring it to life with the values of the Gospel.",
       "t6.role": "Idea · Business Plan · Capital",
       "t6.form": "Beulah Ownership + Operator Equity",
       "form.track.t6": "Operator Track",
