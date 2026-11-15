@@ -491,3 +491,14 @@ dialog.letter[open] { animation: rise .45s var(--ease) both; }
 .fit-link:hover .arrow { transform: translate(3px, -3px); }
 /* Five tracks: the fifth spans the full row */
 .tracks > li:nth-child(5):last-child { grid-column: 1 / -1; }
+
+/* Vine on phones: stack the drawing above the list, full width */
+@media (max-width: 900px) {
+  .flywheel { grid-template-columns: 1fr; gap: 28px; }
+  #flywheel.vine { max-height: none; width: 100%; max-width: 520px; margin: 0 auto; }
+}
+@media (max-width: 640px) {
+  #flywheel.vine { width: 92%; }
+  #flywheel.vine .fw-label { font-size: 20px; }
+  #flywheel.vine .fw-num { font-size: 14px; }
+}
