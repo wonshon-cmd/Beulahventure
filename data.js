@@ -55,6 +55,11 @@ window.SITE_DATA = {
 
   i18n: {
     ko: {
+      "t6.tag": "아이디어와 계획은 저희가",
+      "t6.d": "그냥 오세요. 사업 아이디어와 계획은 저희가 드립니다. 당신은 그것을 실현하면 됩니다.",
+      "t6.role": "아이디어 · 사업 계획 · 자본",
+      "t6.form": "Beulah 소유 + 운영자 지분",
+      "form.track.t6": "Operator Track · 아이디어와 계획 제공",
       "t5.tag": "전통 사업 인수와 전환",
       "t5.d": "오래 운영해 온 전통 사업을 찾아가 인수하고, 복음의 가치로 새롭게 세웁니다.",
       "t5.role": "인수 · 경영 · 혁신",
@@ -218,7 +223,7 @@ window.SITE_DATA = {
       "s4.tag": "비축과 확장",
       "s4.d": "비축하고, 복제하고, 확장한다.",
       "tracks.eyebrow": "INVESTMENT TRACKS",
-      "tracks.title": "선교지에서 미국까지, <em>다섯 가지 길.</em>",
+      "tracks.title": "선교지에서 미국까지, <em>여섯 가지 길.</em>",
       "tracks.role": "역할",
       "tracks.form": "방식",
       "t1.tag": "선교지 판로 연결",
@@ -334,6 +339,11 @@ window.SITE_DATA = {
       "footer.scripture": "성경 본문: 개역개정"
     },
     en: {
+      "t6.tag": "We bring the idea and the plan",
+      "t6.d": "Just come. We supply the business idea and the plan. You make it work.",
+      "t6.role": "Idea · Business Plan · Capital",
+      "t6.form": "Beulah Ownership + Operator Equity",
+      "form.track.t6": "Operator Track",
       "t5.tag": "Acquiring traditional businesses",
       "t5.d": "We reach out to long-running traditional businesses, acquire them, and transform them on gospel values.",
       "t5.role": "Acquisition · Operations · Renewal",
@@ -497,7 +507,7 @@ window.SITE_DATA = {
       "s4.tag": "Store & scale",
       "s4.d": "Store. Replicate. Scale.",
       "tracks.eyebrow": "INVESTMENT TRACKS",
-      "tracks.title": "Mission field to the US. <em>Five paths.</em>",
+      "tracks.title": "Mission field to the US. <em>Six paths.</em>",
       "tracks.role": "Role",
       "tracks.form": "Structure",
       "t1.tag": "Markets for the mission field",

@@ -713,6 +713,16 @@ dialog.letter[open] { animation: rise .45s var(--ease) both; }
               <div><dt data-i18n="tracks.form">Structure</dt><dd data-i18n="t5.form">Acquisition Equity + Operating Role</dd></div>
             </dl>
           </li>
+          <li class="track">
+            <span class="num">06</span>
+            <h3>Operator Track</h3>
+            <p class="stage-tag" data-i18n="t6.tag">We bring the idea and the plan</p>
+            <p class="track-desc" data-i18n="t6.d">Just come. We supply the business idea and the plan. You make it work.</p>
+            <dl class="track-meta">
+              <div><dt data-i18n="tracks.role">Role</dt><dd data-i18n="t6.role">Idea · Business Plan · Capital</dd></div>
+              <div><dt data-i18n="tracks.form">Structure</dt><dd data-i18n="t6.form">Beulah Ownership + Operator Equity</dd></div>
+            </dl>
+          </li>
           </ol>
           <div id="venture101" class="block-card">
             <div class="v101-grid">
@@ -854,7 +864,7 @@ dialog.letter[open] { animation: rise .45s var(--ease) both; }
             <p class="full apply-note"><span class="verified-chip" data-i18n="auth.signedIn">로그인됨</span> <strong id="ap-who"></strong> <button type="button" class="link-btn ap-signout" data-i18n="auth.signout">다른 계정으로</button></p>
             <label class="full"><span data-i18n="form.name">이름</span><input id="ap-name3" name="name" required autocomplete="name"></label>
             <label class="full"><span data-i18n="form.company">회사명</span><input id="ap-company" name="company" required></label>
-            <label><span data-i18n="form.track">트랙</span><select id="ap-track" name="track"><option value="Market Bridge" data-i18n="form.track.t1">Market Bridge · 판로 연결</option><option value="Mission Field Ventures" data-i18n="form.track.t2">Mission Field Ventures · 선교지 벤처</option><option value="Business Partnership" data-i18n="form.track.t3">Business Partnership · 사업 투자</option><option value="Idea Launch" data-i18n="form.track.t4">Idea Launch · 아이디어 창업</option><option value="Acquire &amp; Transform" data-i18n="form.track.t5">Acquire &amp; Transform</option></select></label>
+            <label><span data-i18n="form.track">트랙</span><select id="ap-track" name="track"><option value="Market Bridge" data-i18n="form.track.t1">Market Bridge · 판로 연결</option><option value="Mission Field Ventures" data-i18n="form.track.t2">Mission Field Ventures · 선교지 벤처</option><option value="Business Partnership" data-i18n="form.track.t3">Business Partnership · 사업 투자</option><option value="Idea Launch" data-i18n="form.track.t4">Idea Launch · 아이디어 창업</option><option value="Acquire &amp; Transform" data-i18n="form.track.t5">Acquire &amp; Transform</option><option value="Operator Track" data-i18n="form.track.t6">Operator Track</option></select></label>
             <label><span data-i18n="form.stage">단계</span><select id="ap-stage" name="stage"><option value="Idea" data-i18n="form.stage.idea">아이디어</option><option value="Seedstrap">Seedstrap</option><option value="Bootstrap" data-i18n="form.stage.boot">Bootstrap (매출 발생)</option><option value="Growth">Growth</option></select></label>
             <label class="full"><span data-i18n="form.deck">피치 덱 링크</span><input id="ap-deck" name="deck" type="url" placeholder="https://"></label>
             <label class="full"><span data-i18n="form.desc">어떤 가치를 만들고, 누구를 섬기나요?</span><textarea id="ap-desc" name="desc" rows="5" required></textarea></label>
@@ -938,6 +948,11 @@ window.SITE_DATA = {
 
   i18n: {
     ko: {
+      "t6.tag": "아이디어와 계획은 저희가",
+      "t6.d": "그냥 오세요. 사업 아이디어와 계획은 저희가 드립니다. 당신은 그것을 실현하면 됩니다.",
+      "t6.role": "아이디어 · 사업 계획 · 자본",
+      "t6.form": "Beulah 소유 + 운영자 지분",
+      "form.track.t6": "Operator Track · 아이디어와 계획 제공",
       "t5.tag": "전통 사업 인수와 전환",
       "t5.d": "오래 운영해 온 전통 사업을 찾아가 인수하고, 복음의 가치로 새롭게 세웁니다.",
       "t5.role": "인수 · 경영 · 혁신",
@@ -1101,7 +1116,7 @@ window.SITE_DATA = {
       "s4.tag": "비축과 확장",
       "s4.d": "비축하고, 복제하고, 확장한다.",
       "tracks.eyebrow": "INVESTMENT TRACKS",
-      "tracks.title": "선교지에서 미국까지, <em>다섯 가지 길.</em>",
+      "tracks.title": "선교지에서 미국까지, <em>여섯 가지 길.</em>",
       "tracks.role": "역할",
       "tracks.form": "방식",
       "t1.tag": "선교지 판로 연결",
@@ -1217,6 +1232,11 @@ window.SITE_DATA = {
       "footer.scripture": "성경 본문: 개역개정"
     },
     en: {
+      "t6.tag": "We bring the idea and the plan",
+      "t6.d": "Just come. We supply the business idea and the plan. You make it work.",
+      "t6.role": "Idea · Business Plan · Capital",
+      "t6.form": "Beulah Ownership + Operator Equity",
+      "form.track.t6": "Operator Track",
       "t5.tag": "Acquiring traditional businesses",
       "t5.d": "We reach out to long-running traditional businesses, acquire them, and transform them on gospel values.",
       "t5.role": "Acquisition · Operations · Renewal",
@@ -1380,7 +1400,7 @@ window.SITE_DATA = {
       "s4.tag": "Store & scale",
       "s4.d": "Store. Replicate. Scale.",
       "tracks.eyebrow": "INVESTMENT TRACKS",
-      "tracks.title": "Mission field to the US. <em>Five paths.</em>",
+      "tracks.title": "Mission field to the US. <em>Six paths.</em>",
       "tracks.role": "Role",
       "tracks.form": "Structure",
       "t1.tag": "Markets for the mission field",
