@@ -55,8 +55,8 @@ window.SITE_DATA = {
 
   i18n: {
     ko: {
-      "t6.tag": "아이디어와 계획은 저희가",
-      "t6.d": "그냥 오세요. 사업 아이디어와 계획은 저희가 드립니다. 당신은 그것을 실현하면 됩니다.",
+      "t6.tag": "준비된 사업을 맡아 운영",
+      "t6.d": "사업 아이디어와 계획은 Beulah가 준비합니다. 함께 실행하고 키워 갈 운영자를 찾습니다.",
       "t6.role": "아이디어 · 사업 계획 · 자본",
       "t6.form": "Beulah 소유 + 운영자 지분",
       "form.track.t6": "Operator Track · 아이디어와 계획 제공",
@@ -339,8 +339,8 @@ window.SITE_DATA = {
       "footer.scripture": "성경 본문: 개역개정"
     },
     en: {
-      "t6.tag": "We bring the idea and the plan",
-      "t6.d": "Just come. We supply the business idea and the plan. You make it work.",
+      "t6.tag": "Run a business we have prepared",
+      "t6.d": "Beulah prepares the business idea and the plan. We are looking for operators to build and run it.",
       "t6.role": "Idea · Business Plan · Capital",
       "t6.form": "Beulah Ownership + Operator Equity",
       "form.track.t6": "Operator Track",
