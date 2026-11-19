@@ -1,0 +1,222 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@200;400;600;800&display=swap" rel="stylesheet">
+<style>
+@page { size: A4 landscape; margin: 0; }
+* { box-sizing: border-box; }
+body { margin:0; font-family:"Gothic A1",sans-serif; color:#111; -webkit-print-color-adjust:exact; print-color-adjust:exact; word-break:keep-all; }
+.page { width:297mm; height:210mm; padding:11mm 13mm 9mm; position:relative; page-break-after:always; overflow:hidden; display:flex; flex-direction:column; }
+.page:last-child { page-break-after:auto; }
+.top { display:flex; justify-content:space-between; align-items:center; padding-bottom:3.5mm; border-bottom:1px solid #111; }
+.brand { display:flex; align-items:center; gap:8px; }
+.bm { width:17px; height:20px; background:#111; border-radius:2px 7px 7px 2px; position:relative; }
+.bm::before,.bm::after { content:""; position:absolute; left:5px; width:6px; height:4px; background:#fff; }
+.bm::before { top:4px; } .bm::after { bottom:4px; }
+.brand b { font-size:14px; font-weight:800; letter-spacing:-.04em; } .brand small { display:block; font-size:6px; letter-spacing:.24em; color:#707070; }
+.url { font-size:8.5px; font-weight:800; letter-spacing:.12em; }
+h1 { font-size:24px; font-weight:200; letter-spacing:-.05em; margin:5mm 0 1mm; } h1 em { font-style:normal; font-weight:800; }
+.sub { font-size:10px; color:#555; margin:0; }
+svg { display:block; width:100%; height:auto; margin-top:3mm; }
+svg text { font-family:"Gothic A1",sans-serif; }
+.foot { margin-top:auto; display:flex; justify-content:space-between; font-size:7.5px; color:#888; letter-spacing:.06em; padding-top:2mm; border-top:1px solid #e3e6ea; }
+/* page 2 */
+table { width:100%; border-collapse:collapse; margin-top:4mm; font-size:8.6px; line-height:1.45; }
+th { text-align:left; font-size:7px; letter-spacing:.14em; color:#3b8fc4; font-weight:800; padding:0 6px 5px; border-bottom:1px solid #111; }
+td { vertical-align:top; padding:5px 6px; border-bottom:1px solid #e3e6ea; }
+td.n { font-weight:800; width:24px; } td.s { font-weight:800; width:130px; } td.w { width:62px; color:#3b8fc4; font-weight:800; white-space:nowrap; }
+td.o { width:170px; color:#444; }
+tr.gate td.s::after { content:" ◆"; color:#3b8fc4; }
+.cols { display:grid; grid-template-columns:1.1fr 1fr; gap:8mm; margin-top:5mm; }
+.box h3 { margin:0 0 2mm; font-size:8px; letter-spacing:.16em; color:#3b8fc4; font-weight:800; }
+.box ol, .box ul { margin:0; padding-left:14px; font-size:8.8px; line-height:1.6; }
+.box li b { font-weight:800; }
+.note { font-size:7.5px; color:#777; margin-top:2mm; }
+</style></head><body>
+
+<section class="page">
+  <div class="top">
+    <div class="brand"><span class="bm"></span><div><b>Beulah</b><small>VENTURE CAPITAL</small></div></div>
+    <span class="url">BEULAHVENTURE.COM</span>
+  </div>
+  <h1>첫 대회 런칭, <em>한 장의 흐름.</em></h1>
+  <p class="sub">사람을 모으고, 가르치고, 고르고, 함께 자랍니다. 선정되지 않은 분들도 공동체로 남아 다음 대회로 이어집니다.</p>
+
+  <svg viewBox="0 0 1060 520" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#111"/></marker>
+      <marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#3b8fc4"/></marker>
+    </defs>
+
+    <!-- phase labels -->
+    <text x="10" y="18" font-size="10" font-weight="800" letter-spacing="2" fill="#3b8fc4">PHASE 1 · 준비</text>
+    <text x="225" y="18" font-size="10" font-weight="800" letter-spacing="2" fill="#3b8fc4">PHASE 2 · 창업 대회</text>
+    <text x="10" y="316" font-size="10" font-weight="800" letter-spacing="2" fill="#3b8fc4">PHASE 3 · 동행</text>
+    <line x1="10" y1="300" x2="1050" y2="300" stroke="#e3e6ea"/>
+
+    <!-- top row boxes: x=10,225,440,655,870 w=180 h=104 y=34 -->
+    <g font-size="10.5" fill="#111">
+      <rect x="10" y="34" width="180" height="104" rx="14" fill="#111"/>
+      <text x="24" y="58" font-size="11" font-weight="800" fill="#fff">01</text>
+      <text x="24" y="80" font-size="14" font-weight="800" fill="#fff">어드바이저 · 심사위원</text>
+      <text x="24" y="100" fill="#fff">5–7명 구성 · 역할 정리</text>
+      <text x="24" y="116" fill="#fff">심사 기준 · 배점 합의</text>
+
+      <rect x="225" y="34" width="180" height="104" rx="14" fill="#fff" stroke="#111" stroke-width="1.5"/>
+      <text x="239" y="58" font-size="11" font-weight="800">02</text>
+      <text x="239" y="80" font-size="14" font-weight="800">대회 모집 오픈</text>
+      <text x="239" y="100">beulahventure.com 신청</text>
+      <text x="239" y="116">모집 6–8주</text>
+
+      <rect x="440" y="34" width="180" height="104" rx="14" fill="#fff" stroke="#111" stroke-width="1.5"/>
+      <text x="454" y="58" font-size="11" font-weight="800">03</text>
+      <text x="454" y="80" font-size="14" font-weight="800">서류 심사</text>
+      <text x="454" y="100">본선 진출 팀 선정</text>
+      <text x="454" y="116">8–10팀 (제안)</text>
+
+      <rect x="655" y="34" width="180" height="104" rx="14" fill="#111"/>
+      <text x="669" y="58" font-size="11" font-weight="800" fill="#fff">04</text>
+      <text x="669" y="80" font-size="14" font-weight="800" fill="#fff">본선 · 심사</text>
+      <text x="669" y="100" fill="#fff">Pitch Day</text>
+      <text x="669" y="116" fill="#fff">가치 · 문제 · 실행 · 팀</text>
+
+      <rect x="870" y="34" width="180" height="104" rx="14" fill="#fff" stroke="#111" stroke-width="1.5"/>
+      <text x="884" y="58" font-size="11" font-weight="800">05</text>
+      <text x="884" y="80" font-size="14" font-weight="800">결과 발표 · Launch</text>
+      <text x="884" y="100">선정 팀 발표</text>
+      <text x="884" y="116">공개 행사 · 소식 공유</text>
+    </g>
+    <g stroke="#111" stroke-width="1.5" fill="none" marker-end="url(#a)">
+      <line x1="190" y1="86" x2="222" y2="86"/>
+      <line x1="405" y1="86" x2="437" y2="86"/>
+      <line x1="620" y1="86" x2="652" y2="86"/>
+      <line x1="835" y1="86" x2="867" y2="86"/>
+    </g>
+
+    <!-- live sessions band under 02-03 -->
+    <rect x="225" y="176" width="395" height="80" rx="14" fill="#f4f7fa" stroke="#3b8fc4" stroke-width="1.5" stroke-dasharray="5 5"/>
+    <g stroke="#3b8fc4" stroke-width="1.3" stroke-dasharray="3 4"><line x1="315" y1="138" x2="315" y2="176"/><line x1="530" y1="138" x2="530" y2="176"/></g>
+    <text x="239" y="198" font-size="9" font-weight="800" letter-spacing="1.6" fill="#3b8fc4">모집 기간 중 · LIVE INFO SESSION ×3</text>
+    <g font-size="10" fill="#111">
+      <rect x="239" y="208" width="116" height="36" rx="8" fill="#fff" stroke="#d7dde3"/>
+      <text x="249" y="224" font-weight="800">LIVE 1</text><text x="249" y="238">대회 안내 · Q&amp;A</text>
+      <rect x="364" y="208" width="116" height="36" rx="8" fill="#fff" stroke="#d7dde3"/>
+      <text x="374" y="224" font-weight="800">LIVE 2</text><text x="374" y="238">실전: 문제와 고객</text>
+      <rect x="489" y="208" width="118" height="36" rx="8" fill="#fff" stroke="#d7dde3"/>
+      <text x="499" y="224" font-weight="800">LIVE 3</text><text x="499" y="238">실전: 피치 만들기</text>
+    </g>
+    <text x="655" y="200" font-size="9.5" fill="#555">누구나 참여 · 녹화본은 뉴스레터로</text>
+    <text x="655" y="216" font-size="9.5" fill="#555">참석 기록은 서류 심사 참고</text>
+
+    <!-- 05 down: split -->
+    <path d="M960,138 L960,330" stroke="#111" stroke-width="1.5" fill="none" marker-end="url(#a)"/>
+    <text x="968" y="290" font-size="9.5" font-weight="800">선정 팀</text>
+    <path d="M745,138 L745,160 Q745,170 735,170 L640,170" stroke="#3b8fc4" stroke-width="1.5" stroke-dasharray="5 5" fill="none"/>
+    <path d="M640,170 L640,270 Q640,280 630,280 L180,280 Q170,280 170,290 L170,330" stroke="#3b8fc4" stroke-width="1.5" stroke-dasharray="5 5" fill="none" marker-end="url(#b)"/>
+    <text x="660" y="166" font-size="9.5" font-weight="800" fill="#3b8fc4">미선정 팀 · 참가자</text>
+
+    <!-- bottom row y=334 h=104 -->
+    <g font-size="10.5" fill="#111">
+      <!-- community -->
+      <rect x="10" y="334" width="180" height="120" rx="14" fill="#f4f7fa" stroke="#3b8fc4" stroke-width="1.5" stroke-dasharray="5 5"/>
+      <text x="24" y="356" font-size="9" font-weight="800" letter-spacing="1.6" fill="#3b8fc4">COMMUNITY</text>
+      <text x="24" y="378" font-size="14" font-weight="800">뉴스레터 · 라이브</text>
+      <text x="24" y="398">월 1회 뉴스레터</text>
+      <text x="24" y="414">분기 1회 실전 라이브 세션</text>
+      <text x="24" y="436" font-weight="800" fill="#3b8fc4">→ 다음 대회 02로</text>
+
+      <!-- 06 -->
+      <rect x="870" y="334" width="180" height="104" rx="14" fill="#fff" stroke="#111" stroke-width="1.5"/>
+      <text x="884" y="358" font-size="11" font-weight="800">06</text>
+      <text x="884" y="380" font-size="14" font-weight="800">매니징 어드바이저</text>
+      <text x="884" y="399">Venture 101 7주 수료</text>
+      <text x="884" y="414">팀당 1명 · 회사 지분 참여</text>
+      <text x="884" y="429">첫 마일스톤 합의</text>
+
+      <!-- 07 -->
+      <rect x="655" y="334" width="180" height="104" rx="14" fill="#fff" stroke="#111" stroke-width="1.5"/>
+      <text x="669" y="358" font-size="11" font-weight="800">07</text>
+      <text x="669" y="380" font-size="14" font-weight="800">정기 체크업</text>
+      <text x="669" y="400">월 1회 매니징 어드바이저 1:1</text>
+      <text x="669" y="416">분기 1회 어드바이저 리뷰</text>
+
+      <!-- 08 diamond centered x=530 y=386 -->
+      <path d="M530,330 L600,386 L530,442 L460,386 Z" fill="#111"/>
+      <text x="530" y="382" font-size="11" font-weight="800" fill="#fff" text-anchor="middle">08 마일스톤</text>
+      <text x="530" y="398" font-size="11" font-weight="800" fill="#fff" text-anchor="middle">달성?</text>
+
+      <!-- 09 -->
+      <rect x="225" y="334" width="180" height="104" rx="14" fill="#111"/>
+      <text x="239" y="358" font-size="11" font-weight="800" fill="#fff">09</text>
+      <text x="239" y="380" font-size="14" font-weight="800" fill="#fff">다음 라운드 투자</text>
+      <text x="239" y="400" fill="#fff">Seed → Round 1 → Round 2</text>
+      <text x="239" y="416" fill="#fff">새 마일스톤 합의</text>
+    </g>
+    <g stroke="#111" stroke-width="1.5" fill="none" marker-end="url(#a)">
+      <line x1="870" y1="386" x2="838" y2="386"/>
+      <line x1="655" y1="386" x2="603" y2="386"/>
+      <line x1="460" y1="386" x2="408" y2="386"/>
+    </g>
+    <text x="418" y="378" font-size="9.5" font-weight="800">예</text>
+    <!-- No: back to 07 over the top -->
+    <path d="M530,330 L530,318 Q530,312 538,312 L737,312 Q745,312 745,320 L745,331" stroke="#111" stroke-width="1.3" fill="none" stroke-dasharray="4 4" marker-end="url(#a)"/>
+    <text x="560" y="305" font-size="9.5" font-weight="800">아니오 · 보완 후 다음 체크업</text>
+    <!-- loop: 09 back to 07 along the bottom -->
+    <path d="M315,438 L315,478 Q315,490 327,490 L733,490 Q745,490 745,478 L745,441" stroke="#3b8fc4" stroke-width="1.5" fill="none" marker-end="url(#b)"/>
+    <text x="430" y="508" font-size="9.5" font-weight="800" fill="#3b8fc4">계속 라운드 · 다음 마일스톤으로 다시 07</text>
+    <!-- alumni note -->
+    <text x="870" y="458" font-size="9.5" fill="#555">어드바이저도 지분을 가지므로</text>
+    <text x="870" y="473" font-size="9.5" fill="#555">회사와 같은 곳을 바라봅니다.</text>
+    <text x="870" y="493" font-size="9.5" fill="#555">졸업 팀은 다음 기수 어드바이저로 (01)</text>
+  </svg>
+
+  <div class="foot"><span>BEULAH VENTURE CAPITAL · LAUNCH FLOW</span><span>■ 결정 단계 &nbsp; □ 진행 단계 &nbsp; ┅ 공동체 · 반복</span></div>
+</section>
+
+<section class="page">
+  <div class="top">
+    <div class="brand"><span class="bm"></span><div><b>Beulah</b><small>VENTURE CAPITAL</small></div></div>
+    <span class="url">BEULAHVENTURE.COM</span>
+  </div>
+  <h1>런칭 체크리스트 <em>· 단계별 할 일</em></h1>
+  <p class="sub">시기는 예시입니다(첫 대회 약 20주 기준). 시작일을 정하면 주차를 날짜로 바꿔 쓰면 됩니다.</p>
+
+  <table>
+    <tr><th></th><th>단계</th><th>시기</th><th>할 일</th><th>완료 기준</th></tr>
+    <tr class="gate"><td class="n">01</td><td class="s">어드바이저 · 심사위원</td><td class="w">1–4주</td><td>후보 리스트 → 1:1 만남 → 5–7명 확정. 역할(심사위원 / 매니징 어드바이저 / 둘 다)과 이해충돌 원칙 정리. 심사 기준과 배점 합의.</td><td class="o">확정 명단 · 심사표 1장</td></tr>
+    <tr><td class="n">02</td><td class="s">대회 모집 오픈</td><td class="w">5–12주</td><td>모집 공고(KO/EN), 신청 = beulahventure.com 동행 제안. 교회 · 학교 · 헵시바 아카데미 네트워크로 알림. 뉴스레터 구독도 함께 받기.</td><td class="o">신청 30팀+ (목표 예시)</td></tr>
+    <tr><td class="n">·</td><td class="s">LIVE INFO SESSION ×3</td><td class="w">6 · 8 · 10주</td><td>대회 안내 · 실전 클래스(문제와 고객, 피치 만들기). 누구나 참여, 녹화해서 뉴스레터로.</td><td class="o">회당 참석자 · 녹화본</td></tr>
+    <tr><td class="n">03</td><td class="s">서류 심사</td><td class="w">13–14주</td><td>심사표로 1차 평가, 본선 8–10팀 선정. 모든 신청자에게 결과와 짧은 피드백.</td><td class="o">본선 명단 · 전원 회신</td></tr>
+    <tr class="gate"><td class="n">04</td><td class="s">본선 · 심사</td><td class="w">16주</td><td>Pitch Day(팀당 발표 7분 + 질의 8분). 심사위원 개별 채점 후 합의.</td><td class="o">선정 팀 확정</td></tr>
+    <tr><td class="n">05</td><td class="s">결과 발표 · Launch</td><td class="w">17주</td><td>선정 팀 발표 행사, 사이트 · 뉴스레터에 소식 공유. 미선정 팀은 공동체로 초대.</td><td class="o">발표 · 소식 발행</td></tr>
+    <tr><td class="n">06</td><td class="s">매니징 어드바이저 배정</td><td class="w">18주~</td><td>Venture 101 7주 수료. 팀당 매니징 어드바이저 1명이 회사 지분을 받고 함께 책임집니다(마일스톤 연동 베스팅). 첫 마일스톤(3–6개월) 서면 합의.</td><td class="o">수료 · 어드바이저 계약 · 마일스톤 문서</td></tr>
+    <tr><td class="n">07</td><td class="s">정기 체크업</td><td class="w">매월</td><td>매니징 어드바이저 1:1 매월, 어드바이저 전체 리뷰 분기별. 짧은 월간 보고(숫자 3개 + 기도 제목).</td><td class="o">월간 보고 누락 없음</td></tr>
+    <tr class="gate"><td class="n">08–09</td><td class="s">마일스톤 · 다음 라운드</td><td class="w">분기별</td><td>달성 → Seed / 다음 라운드 투자, 새 마일스톤 합의. 미달성 → 보완 계획 후 다음 체크업.</td><td class="o">투자 결정 기록</td></tr>
+  </table>
+
+  <div class="cols">
+    <div class="box">
+      <h3>런칭 전에 먼저 정할 것</h3>
+      <ol>
+        <li><b>심사 기준 · 배점</b> — 제안: 가치 정렬 30 · 문제와 시장 25 · 실행력 25 · 팀 20</li>
+        <li><b>상과 투자 규모</b> — 시상, Seed 금액, 지분 조건의 범위</li>
+        <li><b>어드바이저 지분</b> — 범위(예: 1–3%), 마일스톤 연동 베스팅, 기대 역할과 시간</li>
+        <li><b>대회 일정</b> — 시작일 하나만 정하면 나머지 주차가 정해집니다</li>
+        <li><b>도구</b> — 라이브 세션(Zoom 등), 뉴스레터(Stibee · Substack 등)</li>
+        <li><b>연락처</b> — 공식 이메일 (beulahventure.com 도메인)</li>
+      </ol>
+    </div>
+    <div class="box">
+      <h3>흐름을 더 좋게 하는 장치</h3>
+      <ul>
+        <li>라이브 세션 참석 기록을 서류 심사에 참고 → 참여가 곧 지원 동기</li>
+        <li>미선정 팀도 피드백 + 공동체 초대 → 다음 대회의 가장 좋은 지원자</li>
+        <li>마일스톤은 처음부터 서면 합의 → 다음 라운드 결정이 분명해짐</li>
+        <li>매니징 어드바이저가 지분을 가짐 → 회사와 한곳을 바라보는 인센티브</li>
+        <li>졸업 팀은 다음 기수 어드바이저로 → 01 어드바이저 풀이 매년 자람</li>
+      </ul>
+      <p class="note">숫자(인원, 주차, 배점)는 모두 제안입니다. 상황에 맞게 조정하세요.</p>
+    </div>
+  </div>
+
+  <div class="foot"><span>BEULAH VENTURE CAPITAL · LAUNCH CHECKLIST</span><span>2 / 2</span></div>
+</section>
+</body></html>
