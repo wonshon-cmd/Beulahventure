@@ -5,7 +5,7 @@ import numpy as np
 
 SR = 48000
 BEAT = 14 / 30
-TOTAL_BEATS = 23
+TOTAL_BEATS = 25
 N = int(round(TOTAL_BEATS * BEAT * SR))
 L = np.zeros(N); R = np.zeros(N)
 rng = np.random.default_rng(7)
@@ -95,9 +95,15 @@ for k in range(8):               # 16th hats over 신청하세요
     put(hat(), 19 + k/8, 0.35, pan=-0.3 if k % 2 else 0.3)
 put(riser(1, 400, 10000), 19, 0.8)
 put(boom(2.2, 40, 1.8), FINAL, 1.4); put(clap(), FINAL, 1.0)
-put(pad([D/2, D*0.75, D, D*1.25, D*1.5], 3*BEAT, 0.02, 1.4), FINAL, 0.55)
+put(pad([D/2, D*0.75, D, D*1.25, D*1.5], 2*BEAT, 0.02, 0.5), FINAL, 0.5)
 for i, m in enumerate([1.0, 1.25, 1.5, 2.0]):
     put(pluck(D*m*2, 1.0), FINAL + i*0.25, 0.25, pan=-0.4+i*0.27)
+
+# Logo at beat 22: warm landing, chord rings out
+put(boom(1.6, 42, 2.2), 22, 0.75)
+put(pad([D/2, D*0.75, D, D*1.25, D*1.5], 3*BEAT, 0.03, 1.2), 22, 0.6)
+for i, m in enumerate([1.0, 1.25, 1.5, 2.0, 2.5]):
+    put(pluck(D*m*2, 1.3), 22 + i*0.25, 0.22, pan=-0.4+i*0.2)
 
 def room(x, secs=1.6, wet=0.10):
     ir_t = t_(secs); ir = lp(rng.standard_normal(len(ir_t))*np.exp(-ir_t*3.5), 5000)
