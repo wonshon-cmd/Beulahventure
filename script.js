@@ -1,8 +1,8 @@
 (function () {
   const data = window.SITE_DATA;
   const PITCH_EMAIL = "hello@beulahventures.com";
-  // Always open in English. The KO/EN button switches for this visit only.
-  let lang = "en";
+  // English by default; /kr (any case) or ?lang=ko opens in Korean
+  let lang = /^\/kr(\/|$)/i.test(location.pathname) || /[?&]lang=ko\b/.test(location.search) ? "ko" : "en";
   try { localStorage.removeItem("lang"); } catch (_) { /* storage unavailable */ }
 
   const t = (key) => data.i18n[lang][key] ?? data.i18n.ko[key] ?? key;

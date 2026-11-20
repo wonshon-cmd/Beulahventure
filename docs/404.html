@@ -1,0 +1,7 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Beulah Ventures</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  // /KR, /Kr, /kR (any case) -> /kr/ ; anything else -> home
+  var p = location.pathname;
+  location.replace(/^\/kr(\/|$)/i.test(p) ? "/kr/" + location.hash : "/" + location.hash);
+</script></head><body><p><a href="/">Beulah Ventures</a></p></body></html>

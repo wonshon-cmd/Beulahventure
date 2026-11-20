@@ -1,0 +1,2119 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beulah Venture Capital</title>
+  <meta name="description" content="Beulah Venture Capital — 목적 위에 세우고, 인도하심으로 키웁니다. 돈보다 가치를 만드는 복음 기반 벤처캐피털. A gospel-based venture capital firm. We create value over money.">
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA1NiIgZmlsbD0iIzExMSI+PHBhdGggZD0iTTAgMGgzNGwxMCA5djE0bC02IDUgOCA3djE1bC04IDZIMHogTTE3IDEydjEwaDEydi0xMHogTTE3IDMzdjExaDE0di0xMXoiIGZpbGw9ImN1cnJlbnRDb2xvciIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+Cg==" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@200;300;400;600;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+/* =========================================================
+   Beulah Venture Capital — "Seven Grains" identity
+   Layout: white page, one column of chapters separated by hairlines.
+   Type does the work: Gothic A1 200 for voice, 800 for the word that matters.
+   One graphic language: the grain (an ellipse), seven around a center.
+   ========================================================= */
+:root {
+  --bg: #ffffff;
+  --ink: #111111;
+  --ink-2: #3b3b3b;
+  --muted: #707070;
+  --faint: #bdbdbd;
+  --hair: #ececec;
+  --soft: #f6f6f5;
+  --water: #3b8fc4;
+  --font: "Gothic A1", "Noto Sans KR", system-ui, -apple-system, sans-serif;
+  --track: 0.16em;
+  --gutter: max(16px, env(safe-area-inset-left, 0px));
+  --ease: cubic-bezier(.2, .7, .2, 1);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--font); font-weight: 400; line-height: 1.65;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+html[lang="ko"] body { word-break: keep-all; }
+a { color: inherit; }
+img { max-width: 100%; }
+::selection { background: var(--ink); color: #fff; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+.container { width: min(1240px, 100% - 32px); margin-inline: auto; }
+@media (min-width: 720px) { .container { width: min(1240px, 100% - 96px); } }
+
+/* ---------- Type scale ---------- */
+h1, h2, h3 { margin: 0; color: var(--ink); }
+h1 { font-size: clamp(2.6rem, 6.2vw, 5.8rem); font-weight: 200; line-height: 1.02; letter-spacing: -0.065em; }
+h2 { font-size: clamp(2rem, 4.4vw, 3.6rem); font-weight: 200; line-height: 1.12; letter-spacing: -0.055em; text-wrap: balance; }
+h3 { font-size: 1.15rem; font-weight: 800; letter-spacing: -0.02em; }
+h1 em, h2 em { font-style: normal; font-weight: 800; }
+.eyebrow {
+  display: flex; align-items: center; gap: 10px; margin: 0 0 22px;
+  font-size: .74rem; font-weight: 800; letter-spacing: var(--track); text-transform: uppercase;
+}
+.eyebrow::before { /* a single grain */
+  content: ""; width: 5px; height: 11px; border-radius: 50%; background: currentColor; transform: rotate(28deg);
+}
+.muted, .muted-dark { color: var(--muted); }
+.num { font-size: .78rem; font-weight: 400; letter-spacing: .08em; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: rgba(255,255,255,.88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--hair);
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 21; background: #fff; }
+.nav { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.brand-mark { width: 30px; height: 35px; color: var(--ink); }
+.brand-text { display: flex; flex-direction: column; line-height: 1; }
+.brand-name { font-size: 1.45rem; font-weight: 800; letter-spacing: -0.05em; }
+.brand-sub { font-size: .58rem; font-weight: 400; letter-spacing: .24em; margin-top: 5px; color: var(--muted); }
+.nav-links { display: flex; align-items: center; gap: 34px; }
+.nav-links a { text-decoration: none; font-size: .95rem; font-weight: 400; color: var(--ink-2); transition: color .2s; }
+.nav-links a:hover { color: var(--ink); font-weight: 800; }
+.nav-divider { width: 1px; height: 22px; background: var(--hair); }
+.nav-cta { font-weight: 800 !important; color: var(--ink) !important; }
+.lang-toggle {
+  border: 1px solid var(--ink); background: transparent; color: var(--ink); border-radius: 999px;
+  padding: 4px 12px; font: inherit; font-size: .74rem; font-weight: 800; letter-spacing: .06em; cursor: pointer;
+}
+.lang-toggle:hover { background: var(--ink); color: #fff; }
+.nav-toggle { display: none; width: 40px; height: 40px; background: none; border: 0; cursor: pointer; flex-direction: column; justify-content: center; gap: 7px; padding: 8px; }
+.nav-toggle span { display: block; height: 1.5px; background: var(--ink); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; text-decoration: none; cursor: pointer;
+  font: inherit; font-size: 1rem; font-weight: 800; letter-spacing: -0.01em;
+  padding: 15px 26px; border-radius: 999px; border: 1px solid var(--ink); background: var(--ink); color: #fff;
+  transition: background .25s, color .25s, transform .25s var(--ease);
+}
+.btn:hover { background: #fff; color: var(--ink); }
+.btn .arrow { transition: transform .25s var(--ease); }
+.btn:hover .arrow { transform: translate(3px, -3px); }
+.btn-ghost, .btn-light, .btn-outline-light { background: transparent; color: var(--ink); }
+.btn-ghost:hover, .btn-light:hover, .btn-outline-light:hover { background: var(--ink); color: #fff; }
+
+/* ---------- Hero ---------- */
+.hero { position: relative; padding-top: clamp(56px, 9vw, 120px); }
+.sparkle-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.hero > .container { position: relative; }
+.hero-grid { display: block; }
+.hero-sub { margin: 30px 0 40px; font-size: clamp(1.05rem, 1.7vw, 1.3rem); color: var(--ink-2); max-width: 34ch; }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-mark { display: flex; justify-content: center; }
+.hero-mark-svg { width: min(100%, 440px); height: auto; overflow: visible; }
+.hero-mark-svg .mark-core { fill: var(--ink); }
+.hero-mark-svg .g { fill: var(--bg); stroke: var(--ink); stroke-width: .6; }
+.mark-spin { transform-origin: 50px 50px; transform-box: view-box; animation: spin 90s linear infinite; }
+.hero-mark-svg .g { animation: grainIn .9s var(--ease) both, grainFill 7s linear infinite; animation-delay: calc(var(--i) * 120ms), calc(1.2s + var(--i) * 1s); }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes grainIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes grainFill { 0% { fill: var(--ink); } 14%, 100% { fill: var(--bg); } }
+.pillars {
+  list-style: none; padding: 0; margin: clamp(64px, 9vw, 112px) 0 0;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--ink);
+}
+.pillars li { display: flex; align-items: baseline; gap: 18px; padding: 24px 0 28px; }
+.pillar-name { font-size: clamp(1.4rem, 2.6vw, 2.1rem); font-weight: 200; letter-spacing: -0.05em; transition: font-weight .3s; }
+.pillars li:hover .pillar-name { font-weight: 800; }
+
+/* ---------- Ticker ---------- */
+.marquee { overflow: hidden; border-block: 1px solid var(--hair); }
+.marquee-track { display: flex; width: max-content; animation: marquee 44s linear infinite; }
+.marquee-track span { white-space: pre; padding-block: 18px; font-size: clamp(.95rem, 1.5vw, 1.1rem); font-weight: 200; letter-spacing: .32em; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ---------- Storehouse band ---------- */
+.field-band { margin: 0; }
+.field-band canvas { display: block; width: 100%; height: clamp(300px, 34vw, 480px); }
+.field-cap { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; flex-wrap: wrap; padding-block: 18px 30px; border-top: 1px solid var(--hair); }
+.field-quote { font-size: clamp(1rem, 1.5vw, 1.15rem); font-weight: 300; max-width: 62ch; }
+.field-cap cite, .section-verse cite { font-style: normal; font-size: .72rem; font-weight: 800; letter-spacing: var(--track); color: var(--muted); }
+
+/* ---------- Sections ---------- */
+.section { padding-block: clamp(88px, 11vw, 150px); border-top: 1px solid var(--hair); }
+.section-head { max-width: 820px; margin-bottom: clamp(48px, 6vw, 72px); }
+.section-head > p:last-child { margin: 0; font-size: 1.1rem; color: var(--muted); }
+.section-verse { margin: 26px 0 22px; padding-left: 18px; border-left: 1px solid var(--ink); max-width: 64ch; }
+.section-verse p { margin: 0 0 8px; font-size: 1.02rem; font-weight: 300; line-height: 1.8; color: var(--ink-2); }
+
+/* Values */
+.values { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 32px; }
+.values li { padding: 24px 0 34px; border-top: 1px solid var(--hair); position: relative; }
+.values li::before { content: ""; position: absolute; top: -1px; left: 0; width: 28px; height: 1px; background: var(--ink); transition: width .5s var(--ease); }
+.values li:hover::before { width: 100%; }
+.values h3 { margin: 14px 0 10px; font-size: .7rem; font-weight: 800; letter-spacing: var(--track); text-transform: uppercase; color: var(--muted); }
+.values p { margin: 0; font-size: clamp(1.25rem, 2vw, 1.6rem); font-weight: 200; line-height: 1.3; letter-spacing: -0.045em; transition: font-weight .3s; }
+.values li:hover p { font-weight: 800; }
+
+/* Promise */
+.promise-head { max-width: 820px; margin-bottom: 48px; }
+.promise-head h2 { font-size: clamp(2.3rem, 5.4vw, 4.4rem); }
+.promise-lead { margin: 18px 0 0; color: var(--muted); font-size: 1.1rem; }
+.gifts { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--ink); }
+.gifts li { display: flex; flex-direction: column; gap: 12px; padding: 30px 20px 6px 0; position: relative; }
+.gift-word { font-size: clamp(2.6rem, 6.6vw, 5.6rem); line-height: 1; letter-spacing: -0.06em; font-weight: 200; color: var(--faint); animation: giftword 8s ease-in-out infinite; animation-delay: calc(var(--i) * 2s); }
+.gift-sub { color: var(--muted); font-size: .98rem; }
+.gifts li::before { content: ""; position: absolute; top: -1px; left: 0; height: 3px; width: 0; background: var(--ink); animation: giftline 8s ease-in-out infinite; animation-delay: calc(var(--i) * 2s); }
+@keyframes giftword { 0%, 30%, 100% { font-weight: 200; color: var(--faint); } 6%, 22% { font-weight: 800; color: var(--ink); } }
+@keyframes giftline { 0%, 30%, 100% { width: 0; } 8%, 22% { width: 100%; } }
+
+/* Seven years chart + stages */
+.years { margin: 0 0 64px; }
+.years-scroll { overflow-x: auto; }
+#years-chart { display: block; width: 100%; min-width: 640px; height: auto; }
+.yc-store { fill: var(--soft); }
+.yc-grain { fill: var(--ink); }
+.yc-grain-thin { fill: none; stroke: var(--ink); stroke-width: 1; opacity: .5; }
+.yc-axis { stroke: var(--ink); stroke-width: 1; }
+.yc-divider { stroke: var(--hair); stroke-width: 1; stroke-dasharray: 3 4; }
+.yc-tick, .yc-axis-label, .yc-legend { fill: var(--muted); font-size: 12px; font-family: var(--font); }
+.yc-era { fill: var(--ink); font-size: 13px; font-weight: 800; letter-spacing: .06em; font-family: var(--font); }
+.years-cap { margin-top: 18px; font-size: 1.1rem; font-weight: 300; letter-spacing: -0.02em; max-width: 60ch; }
+.stages { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; }
+.stages li { padding-top: 22px; border-top: 1px solid var(--ink); }
+.stages h3 { margin: 14px 0 4px; font-size: 1.45rem; letter-spacing: -0.04em; }
+.stage-tag { margin: 0 0 10px; font-size: .72rem; font-weight: 800; letter-spacing: var(--track); text-transform: uppercase; color: var(--muted); }
+.stages p:last-child { margin: 0; font-weight: 300; font-size: 1.05rem; }
+
+/* Tracks */
+.tracks { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.track {
+  display: flex; flex-direction: column; padding: 28px 28px 20px; border: 1px solid var(--hair); border-radius: 18px;
+  transition: border-color .3s, transform .35s var(--ease);
+}
+.track:hover { border-color: var(--ink); transform: translateY(-4px); }
+.track h3 { margin: 14px 0 4px; font-size: 1.55rem; letter-spacing: -0.04em; }
+.track-desc { margin: 0 0 22px; font-size: 1.12rem; font-weight: 300; letter-spacing: -0.02em; }
+.track-meta { margin: auto 0 0; }
+.track-meta div { display: grid; grid-template-columns: 72px 1fr; gap: 14px; padding: 12px 0; border-top: 1px solid var(--hair); }
+.track-meta dt { font-size: .72rem; font-weight: 800; letter-spacing: var(--track); color: var(--muted); padding-top: 2px; }
+.track-meta dd { margin: 0; font-weight: 800; }
+
+/* Flywheel */
+.equation-line { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 0 0 40px; }
+.eq-chip { border: 1px solid var(--ink); border-radius: 999px; padding: 8px 16px; font-weight: 300; }
+.eq-result { background: var(--ink); color: #fff; font-weight: 800; }
+.eq-op { font-weight: 200; font-size: 1.3rem; color: var(--muted); }
+.flywheel { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+#flywheel { width: 100%; height: auto; display: block; overflow: visible; }
+.fw-ring { fill: none; stroke: var(--hair); stroke-width: 1; }
+.fw-seed { fill: var(--ink); }
+.fw-node ellipse { fill: var(--bg); stroke: var(--ink); stroke-width: 1.2; animation: fwpulse 14s linear infinite; animation-delay: calc(var(--i) * 2s); }
+@keyframes fwpulse { 0% { fill: var(--ink); } 12%, 100% { fill: var(--bg); } }
+.fw-num { fill: var(--muted); font: 400 12px var(--font); letter-spacing: .1em; }
+.fw-label { fill: var(--ink); font: 800 17px var(--font); letter-spacing: -0.02em; }
+.fw-center { fill: var(--ink); }
+.fw-center-text { fill: #fff; font: 800 26px var(--font); letter-spacing: -0.03em; }
+.fw-center-sub { fill: var(--faint); font: 800 9px var(--font); letter-spacing: .24em; }
+.fw-list { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--ink); }
+.fw-list li { display: flex; gap: 18px; align-items: baseline; padding: 15px 0; border-bottom: 1px solid var(--hair); transition: padding-left .3s var(--ease); }
+.fw-list li:hover { padding-left: 8px; }
+.fw-list h3 { margin: 0 0 2px; font-size: 1.08rem; }
+.fw-list p { margin: 0; color: var(--muted); font-weight: 300; }
+.fw-caption { margin: 48px 0 0; font-size: clamp(1.4rem, 2.6vw, 2rem); font-weight: 200; letter-spacing: -0.05em; }
+
+/* Venture 101 */
+.v101-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 64px; align-items: start; }
+.path-steps { list-style: none; padding: 0; margin: 8px 0 34px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.path-steps li { display: flex; gap: 10px; align-items: baseline; padding: 16px 0; border-top: 1px solid var(--ink); font-weight: 200; font-size: 1.15rem; letter-spacing: -0.03em; }
+.path-steps li + li { padding-left: 12px; }
+.modules { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--ink); }
+.modules li { display: flex; gap: 20px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid var(--hair); font-size: 1.15rem; font-weight: 300; letter-spacing: -0.02em; transition: font-weight .25s; }
+.modules li:hover { font-weight: 800; }
+
+/* About */
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0 0 64px; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--hair); }
+.facts div { padding: 24px 0; }
+.facts dt { font-size: .72rem; font-weight: 800; letter-spacing: var(--track); color: var(--muted); }
+.facts dd { margin: 8px 0 0; font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 200; letter-spacing: -0.04em; }
+.about-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 64px; }
+.sub-head { margin: 0 0 24px; font-size: .72rem; font-weight: 800; letter-spacing: var(--track); text-transform: uppercase; }
+.team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 32px; }
+.member .avatar { width: 56px; height: 56px; border-radius: 50%; border: 1px solid var(--ink); display: grid; place-items: center; font-weight: 800; font-size: 1.2rem; margin-bottom: 16px; }
+.member h3 { font-size: 1.1rem; margin: 0 0 2px; }
+.member .role { margin: 0 0 8px; font-size: .72rem; font-weight: 800; letter-spacing: var(--track); color: var(--muted); }
+.member p { margin: 0; font-weight: 300; }
+#portfolio .muted { margin: 0 0 16px; }
+.portfolio-grid { display: grid; gap: 12px; }
+.portfolio-item { border: 1px dashed var(--faint); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 14px; min-height: 140px; justify-content: space-between; }
+.portfolio-item .tag { font-size: .72rem; font-weight: 800; letter-spacing: var(--track); color: var(--muted); }
+.portfolio-item a, .portfolio-item h3 { font-size: 1.4rem; font-weight: 800; text-decoration: none; letter-spacing: -0.03em; }
+
+/* Pitch */
+.two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: start; }
+.section-pitch h2 { margin-bottom: 18px; }
+.pitch-form { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.pitch-form .full { grid-column: 1 / -1; }
+.pitch-form label { display: flex; flex-direction: column; gap: 6px; font-size: .72rem; font-weight: 800; letter-spacing: var(--track); color: var(--muted); }
+.pitch-form input, .pitch-form select, .pitch-form textarea {
+  font: inherit; font-size: 1rem; font-weight: 400; letter-spacing: normal; color: var(--ink);
+  background: transparent; border: 0; border-bottom: 1px solid var(--faint); border-radius: 0; padding: 10px 0; width: 100%;
+}
+.pitch-form textarea { border: 1px solid var(--faint); border-radius: 12px; padding: 12px; resize: vertical; }
+.pitch-form input:focus, .pitch-form select:focus, .pitch-form textarea:focus { outline: none; border-color: var(--ink); }
+.pitch-form label.check { flex-direction: row; align-items: center; gap: 12px; font-size: 1rem; font-weight: 400; letter-spacing: normal; color: var(--ink); }
+.pitch-form label.check input { width: 18px; height: 18px; accent-color: var(--ink); }
+.pitch-form .btn { justify-content: center; margin-top: 6px; }
+.form-status { margin: 0; min-height: 1.5em; font-size: .95rem; font-weight: 400; letter-spacing: normal; }
+.form-status.error { color: #b42318; }
+.pitch-email { user-select: all; font-weight: 800; }
+.pitch-preview { white-space: pre-wrap; word-break: break-word; font: inherit; font-size: .9rem; background: var(--soft); border-radius: 12px; padding: 14px; margin: 12px 0; max-height: 220px; overflow: auto; }
+.pitch-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.pitch-actions .btn { font-size: .92rem; padding: 10px 18px; }
+
+/* Footer */
+.site-footer { padding-block: 44px 52px; border-top: 1px solid var(--ink); }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+.footer-brand { display: flex; align-items: center; gap: 14px; }
+.footer-mark { width: 24px; height: 28px; color: var(--ink); }
+.tagline { margin: 0; font-weight: 200; font-size: 1.05rem; letter-spacing: -0.02em; }
+.footer-meta { display: flex; gap: 24px; flex-wrap: wrap; margin: 0; font-size: .75rem; color: var(--muted); }
+
+/* Reveal on scroll (content is visible without JS) */
+.is-in { animation: rise .8s var(--ease) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+  .values { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stages { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .flywheel, .v101-grid, .about-grid, .two-col { grid-template-columns: 1fr; gap: 40px; }
+  .nav-links { gap: 22px; }
+}
+@media (max-width: 860px) {
+  .nav { height: 64px; }
+  .nav-toggle { display: flex; }
+  .nav-links {
+    display: none; position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; align-items: flex-start; gap: 18px;
+    background: #fff; padding: 22px var(--gutter) 26px; border-bottom: 1px solid var(--hair);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { font-size: 1.15rem; }
+  .nav-divider { display: none; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-mark { order: -1; justify-content: flex-start; }
+  .hero-mark-svg { width: 120px; }
+  .tracks { grid-template-columns: 1fr; }
+  .gifts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .pillars, .facts, .values, .stages, .path-steps, .pitch-form { grid-template-columns: 1fr; }
+  .pillars li { padding: 16px 0; border-bottom: 1px solid var(--hair); }
+  .path-steps li + li { padding-left: 0; }
+  .facts div { border-bottom: 1px solid var(--hair); }
+  .track-meta div { grid-template-columns: 1fr; gap: 2px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .mark-spin, .hero-mark-svg .g, .marquee-track, .gift-word, .gifts li::before, .fw-node ellipse, .is-in { animation: none !important; }
+  .gift-word { color: var(--ink); }
+}
+
+/* Family: Hephzibah Academy + Beulah Venture Capital (Isaiah 62:4) */
+.fam-grid { display: grid; grid-template-columns: minmax(0, 1fr) 80px minmax(0, 1fr); align-items: stretch; }
+.fam-card { border: 1px solid var(--hair); border-radius: 18px; padding: 34px 32px 28px; display: flex; flex-direction: column; gap: 10px; transition: border-color .3s, transform .35s var(--ease); }
+.fam-card:hover { border-color: var(--ink); transform: translateY(-4px); }
+.fam-logo { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; color: var(--ink); }
+.fam-mark { width: 44px; height: 52px; }
+.fam-word { display: flex; flex-direction: column; line-height: 1; }
+.fam-word b { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.04em; }
+.fam-word small { font-size: .66rem; font-weight: 600; letter-spacing: .24em; margin-top: 6px; }
+.fam-mean { margin: 0; font-size: clamp(1.25rem, 2vw, 1.6rem); font-weight: 200; letter-spacing: -0.04em; line-height: 1.3; }
+.fam-tag { margin: 0; font-weight: 800; letter-spacing: -0.01em; }
+.fam-role { margin: auto 0 0; padding-top: 16px; border-top: 1px solid var(--hair); font-size: .74rem; font-weight: 800; letter-spacing: var(--track); color: var(--muted); }
+.fam-link { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+.fam-link span { flex: 1; width: 1px; background: var(--hair); }
+.fam-link i { font-style: normal; font-size: 1.6rem; font-weight: 200; }
+.fam-bridge { margin: 44px 0 0; font-size: clamp(1.4rem, 2.6vw, 2rem); font-weight: 200; letter-spacing: -0.05em; }
+@media (max-width: 860px) {
+  .fam-grid { grid-template-columns: 1fr; }
+  .fam-link { flex-direction: row; height: 56px; }
+  .fam-link span { height: 1px; width: auto; }
+}
+
+/* Why we started */
+.why-list { list-style: none; padding: 0; margin: 0 0 56px; border-top: 1px solid var(--ink); max-width: 900px; }
+.why-list li { display: flex; gap: 16px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid var(--hair); font-size: clamp(1.05rem, 1.7vw, 1.3rem); font-weight: 300; letter-spacing: -0.02em; }
+.why-list li::before { content: ""; flex: none; width: 14px; height: 1px; background: var(--ink); transform: translateY(-5px); }
+.why-quote { margin: 0 0 40px; max-width: 760px; }
+.why-quote p { margin: 0 0 8px; font-size: clamp(1.3rem, 2.4vw, 1.9rem); font-weight: 200; letter-spacing: -0.04em; line-height: 1.35; }
+.why-quote cite { font-style: normal; font-size: .72rem; font-weight: 800; letter-spacing: var(--track); color: var(--muted); }
+.why-answer { margin: 0 0 72px; max-width: 820px; font-size: clamp(1.3rem, 2.4vw, 1.9rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1.4; }
+.models { list-style: none; padding: 0; margin: 0 0 56px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+.models li { padding-top: 20px; border-top: 1px solid var(--ink); }
+.models h3 { margin: 12px 0 10px; font-size: 1.4rem; letter-spacing: -0.04em; }
+.model-d { margin: 0 0 14px; font-weight: 300; color: var(--ink-2); }
+.model-b { margin: 0; font-weight: 800; }
+.why-close { margin: 0 0 14px; max-width: 760px; font-size: clamp(1.15rem, 2vw, 1.5rem); font-weight: 200; letter-spacing: -0.03em; }
+.why-source { margin: 0; font-size: .72rem; font-weight: 800; letter-spacing: var(--track); color: var(--muted); }
+@media (max-width: 860px) { .models { grid-template-columns: 1fr; gap: 24px; } }
+
+/* Water blue: used sparingly, the same color as the river */
+.eyebrow::before { background: var(--water); }
+.section-verse { border-left-color: var(--water); }
+.gifts li::before { background: var(--water); }
+.fw-seed { fill: var(--water); }
+.why-list li::before { background: var(--water); }
+.values li::before, .values li:hover::before { background: var(--water); }
+.field-cap cite, .section-verse cite { color: var(--water); }
+
+/* =========================================================
+   REDESIGN v2 — chapters with a left rail, river in the hero
+   ========================================================= */
+/* Hero: type first, river scene as its floor */
+.hero { padding-top: clamp(64px, 10vw, 140px); }
+.hero h1 { font-size: clamp(2.8rem, 7.6vw, 7.2rem); }
+.hero-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; margin-top: 36px; }
+.hero-row .hero-sub { margin: 0; }
+.hero .field-band { margin-top: clamp(40px, 6vw, 80px); }
+.hero .field-band canvas { height: clamp(300px, 34vw, 500px); }
+
+/* Chapters */
+.chapter { padding-block: clamp(88px, 11vw, 160px); border-top: 1px solid var(--hair); }
+.chapter-grid { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 56px; }
+.rail { position: sticky; top: 112px; align-self: start; display: flex; flex-direction: column; gap: 10px; }
+.rail-num { font-size: 4.2rem; font-weight: 200; letter-spacing: -0.07em; line-height: .9; }
+.rail-label { display: flex; align-items: center; gap: 8px; font-size: .78rem; font-weight: 800; letter-spacing: .16em; }
+.rail-label::before { content: ""; width: 5px; height: 11px; border-radius: 50%; background: var(--water); transform: rotate(28deg); }
+.chapter-body { min-width: 0; }
+.chapter .section-head { max-width: 760px; }
+.chapter .section-head .eyebrow { display: none; } /* the rail already names the chapter */
+.chapter .promise-head .eyebrow { display: none; }
+
+.sub-title { margin: 72px 0 28px; font-size: clamp(1.5rem, 2.8vw, 2.2rem); font-weight: 200; letter-spacing: -0.05em; }
+.sub-title em { font-style: normal; font-weight: 800; }
+.block-top { margin-top: 96px; padding-top: 64px; border-top: 1px solid var(--hair); }
+h3.block-top { padding-top: 56px; margin-bottom: 24px; }
+.block-card { margin-top: 72px; background: var(--soft); border-radius: 28px; padding: clamp(28px, 4vw, 56px); }
+.block-card .section-head { margin-bottom: 32px; }
+
+/* Denser grids inside the narrower body column */
+.chapter .values { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.chapter .gifts { margin-top: 8px; }
+.chapter .models { margin-bottom: 40px; }
+.why-answer { margin-bottom: 64px; }
+
+/* Pitch closes the page as its own chapter */
+.section-pitch { border-top: 1px solid var(--ink); }
+
+@media (max-width: 1100px) {
+  .chapter .values { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  .chapter-grid { grid-template-columns: 1fr; gap: 24px; }
+  .rail { position: static; flex-direction: row; align-items: baseline; gap: 14px; }
+  .rail-num { font-size: 2.6rem; }
+}
+@media (max-width: 640px) {
+  .chapter .values { grid-template-columns: 1fr; }
+  .hero-row { flex-direction: column; align-items: flex-start; }
+}
+
+/* The vine (replaces the flower flywheel) */
+.flywheel { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+#flywheel.vine { max-height: 760px; }
+.vn-stem { fill: none; stroke: var(--ink); stroke-width: 3.2; stroke-linecap: round; }
+.vn-branch { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linecap: round; }
+.vn-leaf { fill: var(--bg); stroke: var(--ink); stroke-width: 1.1; }
+.vn-grape { fill: var(--bg); stroke: var(--ink); stroke-width: 1.1; animation: grape 14s linear infinite; animation-delay: calc(0.9s + var(--i) * 0.95s); }
+.vn-node .vn-grape { animation-delay: calc(0.9s + var(--i, 0) * 0.95s); }
+@keyframes grape { 0% { fill: var(--ink); } 14%, 100% { fill: var(--bg); } }
+.vn-return { fill: none; stroke: var(--water); stroke-width: 1.2; stroke-dasharray: 4 6; }
+.vn-arrowhead { fill: var(--water); }
+.fw-center-text { font-size: 22px; }
+@media (prefers-reduced-motion: reduce) { .vn-grape { animation: none; } }
+
+/* Application flow */
+.section-pitch { background: var(--bg); }
+.section-pitch .muted { margin: 18px 0 0; font-size: 1.1rem; }
+.cohort-card { margin-top: 40px; padding: 28px; border: 1px solid var(--ink); border-radius: 22px; display: grid; gap: 6px; justify-items: start; }
+.cohort-badge { margin: 0; font-size: .74rem; font-weight: 800; letter-spacing: .16em; color: var(--water); }
+.cohort-when { margin: 0 0 18px; font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 200; letter-spacing: -0.05em; }
+.apply-steps { list-style: none; padding: 0; margin: 0 0 28px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--hair); }
+.apply-steps li { display: flex; gap: 10px; align-items: baseline; padding: 16px 0; font-weight: 300; color: var(--muted); border-top: 2px solid transparent; margin-top: -1px; transition: color .3s, border-color .3s; }
+.apply-steps li.on { color: var(--ink); font-weight: 800; border-top-color: var(--ink); }
+.apply-steps li.done { color: var(--ink); border-top-color: var(--water); }
+.apply-steps li.done .num::after { content: " ✓"; color: var(--water); }
+.apply-panel { animation: rise .5s var(--ease) both; }
+.apply-note { margin: 0; font-size: 1rem; font-weight: 300; letter-spacing: normal; text-transform: none; color: var(--ink); }
+.apply-note strong { font-weight: 800; }
+.apply-demo { margin: 0; padding: 12px 14px; border-radius: 12px; background: var(--soft); font-size: .92rem; font-weight: 400; letter-spacing: normal; color: var(--ink); }
+.apply-links { margin: 0; font-size: .9rem; color: var(--muted); letter-spacing: normal; font-weight: 400; }
+.link-btn { background: none; border: 0; padding: 0; font: inherit; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.verified-chip { display: inline-block; padding: 3px 10px; border-radius: 999px; background: var(--water); color: #fff; font-size: .75rem; font-weight: 800; margin-right: 6px; }
+#ap-code { font-size: 1.6rem; letter-spacing: .4em; font-weight: 300; }
+@media (max-width: 640px) { .apply-steps li { font-size: .85rem; } }
+
+[hidden] { display: none !important; }
+a.fam-logo { text-decoration: none; width: fit-content; }
+a.fam-logo:hover .fam-word b { text-decoration: underline; text-underline-offset: 4px; }
+
+/* Sign-up */
+.oauth { display: grid; gap: 10px; }
+.oauth-btn {
+  display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%;
+  padding: 14px 18px; border-radius: 999px; border: 1px solid var(--ink); background: #fff; color: var(--ink);
+  font: inherit; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background .2s;
+}
+.oauth-btn:hover:not(:disabled) { background: var(--soft); }
+.oauth-btn:disabled, .pitch-form input:disabled, .pitch-form .btn:disabled { opacity: .45; cursor: not-allowed; }
+.oauth-btn svg { width: 18px; height: 18px; flex: none; }
+.or { display: flex; align-items: center; gap: 14px; margin: 22px 0 14px; color: var(--muted); font-size: .85rem; }
+.or::before, .or::after { content: ""; flex: 1; height: 1px; background: var(--hair); }
+#step-2 .muted { margin: 4px 0 18px; }
+#step-2 .apply-links { margin-top: 14px; }
+.apply-note .link-btn { margin-left: 8px; font-size: .85rem; }
+#auth-not-ready { margin: 0 0 14px; }
+.modules li.mod-done { justify-content: flex-start; gap: 12px; font-weight: 800; color: var(--water); border-bottom-color: var(--water); }
+.modules li.mod-done::before { content: ""; width: 5px; height: 11px; border-radius: 50%; background: var(--water); transform: rotate(28deg); }
+.member .avatar-photo { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 0; display: block; filter: grayscale(100%); transition: filter .4s ease; }
+.member:hover .avatar-photo { filter: none; }
+
+/* Founder letter */
+.member.has-letter { cursor: pointer; }
+.letter-open { margin-top: 14px; padding: 0; background: none; border: 0; font: inherit; font-weight: 800; color: var(--ink); cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
+.letter-open .arrow { color: var(--water); }
+dialog.letter {
+  width: min(720px, calc(100% - 32px)); max-height: min(86vh, 900px); padding: clamp(28px, 5vw, 56px);
+  border: 0; border-radius: 24px; background: #fff; color: var(--ink); overflow: auto;
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,.35);
+}
+dialog.letter::backdrop { background: rgba(17,17,17,.45); backdrop-filter: blur(3px); }
+dialog.letter[open] { animation: rise .45s var(--ease) both; }
+.letter-close { position: sticky; top: 0; float: right; margin: -12px -12px 0 0; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--hair); background: #fff; font-size: 1.4rem; line-height: 1; cursor: pointer; }
+.letter-close:hover { border-color: var(--ink); }
+.letter-head { display: flex; align-items: center; gap: 18px; margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid var(--hair); }
+.letter-photo { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; }
+.letter-head h3 { margin: 0 0 4px; font-size: 1.4rem; }
+.letter-head .role { margin: 0; font-size: .72rem; font-weight: 800; letter-spacing: var(--track); color: var(--muted); }
+.letter-body p { margin: 0 0 1.2em; font-size: 1.05rem; font-weight: 300; line-height: 1.95; letter-spacing: -0.01em; }
+.letter-body p:first-child { font-size: clamp(1.25rem, 2.2vw, 1.5rem); font-weight: 800; line-height: 1.5; letter-spacing: -0.03em; }
+.fit-link { display: inline-flex; align-items: center; gap: 8px; margin: -12px 0 36px; font-size: 1.1rem; font-weight: 800; text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px; color: var(--ink); }
+.fit-link .arrow { color: var(--water); transition: transform .25s var(--ease); }
+.fit-link:hover .arrow { transform: translate(3px, -3px); }
+/* Five tracks: the fifth spans the full row */
+.tracks > li:nth-child(5):last-child { grid-column: 1 / -1; }
+
+/* Vine on phones: stack the drawing above the list, full width */
+@media (max-width: 900px) {
+  .flywheel { grid-template-columns: 1fr; gap: 28px; }
+  #flywheel.vine { max-height: none; width: 100%; max-width: 520px; margin: 0 auto; }
+}
+@media (max-width: 640px) {
+  #flywheel.vine { width: 92%; }
+  #flywheel.vine .fw-label { font-size: 20px; }
+  #flywheel.vine .fw-num { font-size: 14px; }
+}
+
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="#top" class="brand" aria-label="Beulah Venture Capital">
+        <svg class="brand-mark" viewBox="0 0 48 56" aria-hidden="true"><path d="M0 0h34l10 9v14l-6 5 8 7v15l-8 6H0z M17 12v10h12v-10z M17 33v11h14v-11z" fill="currentColor" fill-rule="evenodd"/></svg>
+        <span class="brand-text">
+          <span class="brand-name">Beulah</span>
+          <span class="brand-sub">VENTURE CAPITAL</span>
+        </span>
+      </a>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+      <nav class="nav-links">
+        <a href="#why" data-i18n="nav.why">왜</a>
+        <a href="#promise" data-i18n="nav.promise">약속</a>
+        <a href="#stages" data-i18n="nav.grow">성장</a>
+        <a href="#structure" data-i18n="nav.wheel">바퀴</a>
+        <a href="#tracks" data-i18n="nav.paths">길</a>
+        <a href="#about" data-i18n="nav.people">사람</a>
+        <span class="nav-divider" aria-hidden="true"></span>
+        <a href="#pitch" class="nav-cta"><span data-i18n="nav.pitch">사업 제안하기</span> <span class="arrow">↗</span></a>
+        <button class="lang-toggle" type="button" aria-label="Switch language">EN</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">BEULAH VENTURE CAPITAL</p>
+        <h1 data-i18n-html="hero.h1">Built on <em>purpose.</em><br>Grown <em>as He leads.</em></h1>
+        <div class="hero-row">
+          <p class="hero-sub" data-i18n="hero.sub">On the gospel, by the gospel's values.</p>
+          <div class="hero-actions">
+            <a href="#venture101" class="btn"><span data-i18n="hero.cta">Start Venture 101</span> <span class="arrow">↗</span></a>
+            <a href="#why" class="btn btn-ghost"><span data-i18n="hero.cta2">Our story</span></a>
+          </div>
+        </div>
+      </div>
+      <figure class="field-band" aria-labelledby="field-cap">
+        <canvas id="field-canvas" aria-hidden="true"></canvas>
+        <figcaption id="field-cap" class="container field-cap">
+          <span class="field-quote" data-i18n="field.quote">“And he shall be like a tree planted by the rivers of water, that bringeth forth his fruit in his season.”</span>
+          <cite data-i18n="field.ref">Psalm 1:3</cite>
+        </figcaption>
+      </figure>
+    </section>
+
+    <section id="why" class="chapter">
+      <div class="container chapter-grid">
+        <aside class="rail" aria-hidden="true"><span class="rail-num">01</span><span class="rail-label" data-i18n="ch.1">Why</span></aside>
+        <div class="chapter-body">
+        <div class="section-head reveal">
+          <p class="eyebrow" data-i18n="why.eyebrow">WHY WE STARTED</p>
+          <h2 data-i18n-html="why.title">In the middle of Babylon, <em>faithful.</em></h2>
+          <blockquote class="section-verse"><p data-i18n="why.verse">“Ye are the salt of the earth … Ye are the light of the world.”</p><cite data-i18n="why.ref">Matthew 5:13–14</cite></blockquote>
+          <p class="muted" data-i18n="why.lead">Not the world's values. The gospel's.</p>
+        </div>
+          <blockquote class="why-quote"><p data-i18n="why.quote">Do not let Babylon's ways and priorities rule over us.</p><cite data-i18n="why.cite">After Brian Walsh</cite></blockquote>
+          <p class="why-answer" data-i18n="why.answer">So we build a company that works by the gospel's values instead of the world's logic, and raises up values and people that are falling.</p>
+          <h3 class="sub-head" data-i18n="why.models">We learn from three people</h3>
+          <ol class="models">
+          <li><span class="num">01</span><h3 data-i18n="why.m1.t">Jeremiah</h3><p class="model-d" data-i18n="why.m1.d">Not bound by familiar frames, we challenge the abnormal of our day and imagine differently.</p></li>
+          <li><span class="num">02</span><h3 data-i18n="why.m2.t">Paul & Philemon</h3><p class="model-d" data-i18n="why.m2.d">We do not try to change everything in one generation. We focus on the part given to us and pass it on to the next.</p></li>
+          <li><span class="num">03</span><h3 data-i18n="why.m3.t">Joseph</h3><p class="model-d" data-i18n="why.m3.d">What He has given, where He has placed us. We carry it out diligently and faithfully.</p></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="promise" class="chapter">
+      <div class="container chapter-grid">
+        <aside class="rail" aria-hidden="true"><span class="rail-num">02</span><span class="rail-label" data-i18n="ch.2">Promise</span></aside>
+        <div class="chapter-body">
+          <div class="promise-head reveal">
+            <p class="eyebrow" data-i18n="promise.eyebrow">OUR PROMISE</p>
+            <h2 data-i18n-html="promise.title">We create <em>value.</em></h2>
+            <p class="promise-lead" data-i18n="promise.lead">To everyone who walks with us</p>
+          </div>
+          <ul class="gifts">
+          <li style="--i:0"><span class="gift-word" data-i18n="g1.t">Hope</span><span class="gift-sub" data-i18n="g1.d">A tomorrow worth waiting for</span></li>
+          <li style="--i:1"><span class="gift-word" data-i18n="g2.t">Value</span><span class="gift-sub" data-i18n="g2.d">What outlasts money</span></li>
+          <li style="--i:2"><span class="gift-word" data-i18n="g3.t">Love</span><span class="gift-sub" data-i18n="g3.d">Treat people as precious</span></li>
+          <li style="--i:3"><span class="gift-word" data-i18n="g4.t">Gospel</span><span class="gift-sub" data-i18n="g4.d">The foundation of all</span></li>
+          </ul>
+          <h3 class="sub-head block-top" data-i18n="values.head">Eight things we keep</h3>
+          <ol class="values">
+          <li><span class="num">01</span><h3 data-i18n="v1.t">Gospel-Based</h3><p data-i18n="v1.d">Business carries the gospel.</p></li>
+          <li><span class="num">02</span><h3 data-i18n="v2.t">Souls First</h3><p data-i18n="v2.d">People are souls to love.</p></li>
+          <li><span class="num">03</span><h3 data-i18n="v3.t">Value over Money</h3><p data-i18n="v3.d">We focus on creating value that leads to profit.</p></li>
+          <li><span class="num">04</span><h3 data-i18n="v4.t">Sustainable</h3><p data-i18n="v4.d">A system built to last.</p></li>
+          <li><span class="num">05</span><h3 data-i18n="v5.t">Scalable</h3><p data-i18n="v5.d">Fruit from one place, carried to the next.</p></li>
+          <li><span class="num">06</span><h3 data-i18n="v6.t">Stewardship</h3><p data-i18n="v6.d">Remembering it is not ours.</p></li>
+          <li><span class="num">07</span><h3 data-i18n="v7.t">All Aligned</h3><p data-i18n="v7.d">For everyone who works with us.</p></li>
+          <li><span class="num">08</span><h3 data-i18n="v8.t">God, Glorified</h3><p data-i18n="v8.d">All for His glory.</p></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="stages" class="chapter">
+      <div class="container chapter-grid">
+        <aside class="rail" aria-hidden="true"><span class="rail-num">03</span><span class="rail-label" data-i18n="ch.3">Growth</span></aside>
+        <div class="chapter-body">
+        <div class="section-head reveal">
+          <p class="eyebrow" data-i18n="story.eyebrow">OUR STORY</p>
+          <h2 data-i18n-html="story.title">Store in plenty. <em>Prepare for famine.</em></h2>
+          <blockquote class="section-verse"><p data-i18n="story.verse">“Ye thought evil against me; but God meant it unto good, to bring to pass, as it is this day, to save much people alive.”</p><cite data-i18n="story.ref">Genesis 50:20</cite></blockquote>
+          <p class="muted" data-i18n="story.lead">Like Joseph's storehouse: prepare in good years, and keep people safe in hard ones.</p>
+        </div>
+          <h3 class="sub-title" data-i18n-html="grow.title">Plant small. Stand alone. <em>Grow together.</em></h3>
+          <ol class="stages">
+          <li><span class="num">01</span><h3>Seedstrap</h3><p class="stage-tag" data-i18n="s1.tag">Plant</p></li>
+          <li><span class="num">02</span><h3>Bootstrap</h3><p class="stage-tag" data-i18n="s2.tag">Stand</p></li>
+          <li><span class="num">03</span><h3>Grow Together</h3><p class="stage-tag" data-i18n="s3.tag">Join forces</p></li>
+          <li><span class="num">04</span><h3>Storehouse</h3><p class="stage-tag" data-i18n="s4.tag">Store & scale</p></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="structure" class="chapter">
+      <div class="container chapter-grid">
+        <aside class="rail" aria-hidden="true"><span class="rail-num">04</span><span class="rail-label" data-i18n="ch.4">Fruit</span></aside>
+        <div class="chapter-body">
+        <div class="section-head reveal">
+          <p class="eyebrow" data-i18n="structure.eyebrow">THE BEULAH FLYWHEEL</p>
+          <h2 data-i18n-html="structure.title">The vine and <em>the branches.</em></h2>
+          <blockquote class="section-verse"><p data-i18n="structure.verse">“I am the vine, ye are the branches: He that abideth in me, and I in him, the same bringeth forth much fruit.”</p><cite data-i18n="structure.ref">John 15:5</cite></blockquote>
+        </div>
+          <p class="equation-line">
+            <span class="eq-chip eq-lead" data-i18n="eq.leader">A leader grounded in the gospel</span><span class="eq-op">+</span><span class="eq-chip" data-i18n="eq.capital">Capital</span><span class="eq-op">+</span><span class="eq-chip" data-i18n="eq.advice">Advice</span><span class="eq-op">+</span><span class="eq-chip" data-i18n="eq.help">Help</span><span class="eq-op">=</span><span class="eq-chip eq-result" data-i18n="eq.impact">More fruit</span>
+          </p>
+          <div class="flywheel">
+            <svg id="flywheel" class="vine" role="img" aria-labelledby="fw-cap" viewBox="0 0 520 740"></svg>
+            <ol class="fw-list">
+            <li><span class="num">01</span><div><h3 data-i18n="fw.n1">Invest</h3><p data-i18n="fw.d1">Plant in founders grounded in the gospel.</p></div></li>
+            <li><span class="num">02</span><div><h3 data-i18n="fw.n2">Advise</h3><p data-i18n="fw.d2">Wisdom for business and faith.</p></div></li>
+            <li><span class="num">03</span><div><h3 data-i18n="fw.n3">Grow</h3><p data-i18n="fw.d3">Widen the market, together.</p></div></li>
+            <li><span class="num">04</span><div><h3 data-i18n="fw.n4">More jobs</h3><p data-i18n="fw.d4">More jobs, steadier families.</p></div></li>
+            <li><span class="num">05</span><div><h3 data-i18n="fw.n5">More profit</h3><p data-i18n="fw.d5">Earn honestly. Share. Store.</p></div></li>
+            <li><span class="num">06</span><div><h3 data-i18n="fw.n6">More investment</h3><p data-i18n="fw.d6">Fruit returns to the fund.</p></div></li>
+            <li><span class="num">07</span><div><h3 data-i18n="fw.n7">More companies</h3><p data-i18n="fw.d7">One more, in a new city or field.</p></div></li>
+            </ol>
+          </div>
+          <p id="fw-cap" class="fw-caption" data-i18n="structure.return">Fruit becomes seed, for the next branch.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="tracks" class="chapter">
+      <div class="container chapter-grid">
+        <aside class="rail" aria-hidden="true"><span class="rail-num">05</span><span class="rail-label" data-i18n="ch.5">Paths</span></aside>
+        <div class="chapter-body">
+          <ol class="tracks">
+          <li class="track">
+            <span class="num">01</span>
+            <h3>Market Bridge</h3>
+            <p class="stage-tag" data-i18n="t1.tag">Markets for the mission field</p>
+            <p class="track-desc" data-i18n="t1.d">Beulah-owned entities in Korea and the US bring mission-field products to market.</p>
+            <dl class="track-meta">
+              <div><dt data-i18n="tracks.role">Role</dt><dd data-i18n="t1.role">Markets · Network</dd></div>
+              <div><dt data-i18n="tracks.form">Structure</dt><dd data-i18n="t1.form">Korea & US For-profit and Nonprofit Entities · Sales-linked</dd></div>
+            </dl>
+          </li>
+          <li class="track">
+            <span class="num">02</span>
+            <h3>Mission Field Ventures</h3>
+            <p class="stage-tag" data-i18n="t2.tag">Co-owned mission ventures</p>
+            <p class="track-desc" data-i18n="t2.d">We start with very small capital and fund by milestones. Local leaders run it day to day, while Beulah keeps its equity and management rights.</p>
+            <dl class="track-meta">
+              <div><dt data-i18n="tracks.role">Role</dt><dd data-i18n="t2.role">Equity · Co-operation</dd></div>
+              <div><dt data-i18n="tracks.form">Structure</dt><dd data-i18n="t2.form">Minority Stake · Lasting Management Rights</dd></div>
+            </dl>
+          </li>
+          <li class="track">
+            <span class="num">03</span>
+            <h3>Business Partnership</h3>
+            <p class="stage-tag" data-i18n="t3.tag">Investing in businesses</p>
+            <p class="track-desc" data-i18n="t3.d">Capital and operating work, together.</p>
+            <dl class="track-meta">
+              <div><dt data-i18n="tracks.role">Role</dt><dd data-i18n="t3.role">Capital · Operating role</dd></div>
+              <div><dt data-i18n="tracks.form">Structure</dt><dd data-i18n="t3.form">Capital equity + operating equity</dd></div>
+            </dl>
+          </li>
+          <li class="track">
+            <span class="num">04</span>
+            <h3>Idea Launch</h3>
+            <p class="stage-tag" data-i18n="t4.tag">Launching from an idea</p>
+            <p class="track-desc" data-i18n="t4.d">From idea to company, built together.</p>
+            <dl class="track-meta">
+              <div><dt data-i18n="tracks.role">Role</dt><dd data-i18n="t4.role">Co-founding</dd></div>
+              <div><dt data-i18n="tracks.form">Structure</dt><dd data-i18n="t4.form">Seed capital + founder equity</dd></div>
+            </dl>
+          </li>
+          <li class="track">
+            <span class="num">05</span>
+            <h3>Acquire & Transform</h3>
+            <p class="stage-tag" data-i18n="t5.tag">Acquiring traditional businesses</p>
+            <p class="track-desc" data-i18n="t5.d">We reach out to long-running traditional businesses, acquire them, and transform them on gospel values.</p>
+            <dl class="track-meta">
+              <div><dt data-i18n="tracks.role">Role</dt><dd data-i18n="t5.role">Acquisition · Operations · Renewal</dd></div>
+              <div><dt data-i18n="tracks.form">Structure</dt><dd data-i18n="t5.form">Acquisition Equity + Operating Role</dd></div>
+            </dl>
+          </li>
+          <li class="track">
+            <span class="num">06</span>
+            <h3>Operator Track</h3>
+            <p class="stage-tag" data-i18n="t6.tag">Run a business we have prepared</p>
+            <p class="track-desc" data-i18n="t6.d">We are looking for people who will build it with a sense of mission, by the values of the Gospel.</p>
+            <dl class="track-meta">
+              <div><dt data-i18n="tracks.role">Role</dt><dd data-i18n="t6.role">Idea · Business Plan · Capital</dd></div>
+              <div><dt data-i18n="tracks.form">Structure</dt><dd data-i18n="t6.form">Beulah Ownership + Operator Equity</dd></div>
+            </dl>
+          </li>
+          </ol>
+          <div id="venture101" class="block-card">
+            <div class="v101-grid">
+              <div>
+        <div class="section-head reveal">
+          <p class="eyebrow" data-i18n="v101.eyebrow">VENTURE 101 · GOD'S STEWARDSHIP</p>
+          <h2 data-i18n-html="v101.title">We walk with people <em>who share the same values.</em></h2>
+          
+        </div>
+                <a class="fit-link" href="#pitch"><span data-i18n="v101.fit">See if we're a fit</span> <span class="arrow">↗</span></a>
+                <ol class="path-steps">
+                  <li><span class="num">01</span><span data-i18n="v101.p1">Take</span></li>
+                  <li><span class="num">02</span><span data-i18n="v101.p2">Complete</span></li>
+                  <li><span class="num">03</span><span data-i18n="v101.p3">Pitch</span></li>
+                  <li><span class="num">04</span><span data-i18n="v101.p4">Invest</span></li>
+                </ol>
+                <a class="btn" id="v101-apply" href="mailto:hello@beulahventures.com?subject=Venture%20101%20Application"><span data-i18n="v101.cta">Apply now</span> <span class="arrow">↗</span></a>
+              </div>
+              <ol class="modules">
+          <li><span class="num">01</span><span data-i18n="m1">The gospel and steward leadership</span></li>
+          <li><span class="num">02</span><span data-i18n="m2">Joseph's storehouse</span></li>
+          <li><span class="num">03</span><span data-i18n="m3">Souls who walk together</span></li>
+          <li><span class="num">04</span><span data-i18n="m4">A self-sustaining business model</span></li>
+          <li><span class="num">05</span><span data-i18n="m5">Seedstrap & Bootstrap</span></li>
+          <li><span class="num">06</span><span data-i18n="m6">Aligned incentives</span></li>
+          <li><span class="num">07</span><span data-i18n="m7">Why systems matter</span></li>
+          <li class="mod-done"><span data-i18n="mdone">Completion</span></li>
+          <li><span class="num">08</span><span data-i18n="m8">Pitch</span></li>
+          <li><span class="num">09</span><span data-i18n="m9">Gathering</span></li>
+          <li><span class="num">10</span><span data-i18n="m10">Investment and growing together</span></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="chapter">
+      <div class="container chapter-grid">
+        <aside class="rail" aria-hidden="true"><span class="rail-num">06</span><span class="rail-label" data-i18n="ch.6">People</span></aside>
+        <div class="chapter-body">
+        <div class="section-head reveal">
+          <p class="eyebrow" data-i18n="about.eyebrow">ABOUT</p>
+          <h2 data-i18n-html="about.title">God's fellow workers, <em>walking the same way.</em></h2>
+          
+        </div>
+          <dl class="facts">
+            <div><dt data-i18n="facts.stage">Stage</dt><dd>Seedstrap → Growth</dd></div>
+            <div><dt data-i18n="facts.support">Support</dt><dd data-i18n="facts.supportVal">Capital · Advice · Help</dd></div>
+            <div><dt data-i18n="facts.region">Geography</dt><dd data-i18n="facts.regionVal">Mission field · Korea · US</dd></div>
+          </dl>
+          <div class="about-grid">
+            <div>
+              <h3 class="sub-head" data-i18n="about.team">Team</h3>
+              <div class="team-grid" id="team-grid"></div>
+            </div>
+            <div id="portfolio">
+              <h3 class="sub-head" data-i18n="about.portfolio">Portfolio</h3>
+              <p class="muted" data-i18n="portfolio.note">Our first portfolio companies are in preparation.</p>
+              <div class="portfolio-grid" id="portfolio-grid"></div>
+            </div>
+          </div>
+          <div id="family" class="block-top">
+        <div class="section-head reveal">
+          <p class="eyebrow" data-i18n="family.eyebrow">FAMILY</p>
+          <h2 data-i18n-html="family.title">One promise, <em>two names.</em></h2>
+          <blockquote class="section-verse"><p data-i18n="family.verse">“But thou shalt be called Hephzibah, and thy land Beulah: for the LORD delighteth in thee.”</p><cite data-i18n="family.ref">Isaiah 62:4</cite></blockquote>
+          <p class="muted" data-i18n="family.lead">After Babylon, God gave a people who felt forsaken two new names: a promise of restoration and love. Hephzibah raises people. Beulah cultivates the land.</p>
+        </div>
+            <div class="fam-grid">
+              <article class="fam-card">
+                <a class="fam-logo fam-link-out" href="https://hephzibahacademy.org" target="_blank" rel="noopener" aria-label="Hephzibah Academy (opens in a new tab)"><svg class="fam-mark" viewBox="0 0 48 56" aria-hidden="true"><path d="M0 0h12l4 4v18h16V0h16v56H32V34H16v22H0z" fill="currentColor"/></svg><span class="fam-word"><b>Hephzibah</b><small>ACADEMY ↗</small></span></a>
+                <p class="fam-mean" data-i18n="fam.h.mean">Hephzibah · My delight is in her</p>
+                <p class="fam-tag" data-i18n="fam.h.tag">Faith for life. Learning for the world.</p>
+                <p class="fam-role" data-i18n="fam.h.role">Education that raises people</p>
+              </article>
+              <div class="fam-link" aria-hidden="true"><span></span><i>+</i><span></span></div>
+              <article class="fam-card">
+                <div class="fam-logo"><svg class="fam-mark" viewBox="0 0 48 56" aria-hidden="true"><path d="M0 0h34l10 9v14l-6 5 8 7v15l-8 6H0z M17 12v10h12v-10z M17 33v11h14v-11z" fill="currentColor" fill-rule="evenodd"/></svg><span class="fam-word"><b>Beulah</b><small>VENTURE CAPITAL</small></span></div>
+                <p class="fam-mean" data-i18n="fam.b.mean">Beulah · The married land, the abundant land</p>
+                <p class="fam-tag" data-i18n="fam.b.tag">Rooted in purpose. Invested in growth.</p>
+                <p class="fam-role" data-i18n="fam.b.role">Investment that builds businesses</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pitch: apply in three steps -->
+    <section id="pitch" class="section section-pitch">
+      <div class="container two-col">
+        <div>
+          <p class="eyebrow" data-i18n="pitch.eyebrow">PITCH US</p>
+          <h2 data-i18n-html="pitch.title">당신의 사업을 <em>들려주세요.</em></h2>
+          <p class="muted" data-i18n="pitch.lead">Venture 101 수료자만. 2주 안에 답합니다.</p>
+          <div class="cohort-card">
+            <p class="cohort-badge" data-i18n="apply.badge">FIRST TRACK · 1기</p>
+            <p class="cohort-when" data-i18n="apply.when">2027년 시작</p>
+            <button type="button" class="btn" id="apply-start"><span data-i18n="apply.start">신청하기</span> <span class="arrow">↗</span></button>
+          </div>
+        </div>
+        <div class="apply" id="apply">
+          <ol class="apply-steps" id="apply-steps">
+            <li data-step="1"><span class="num">01</span><span data-i18n="auth.s1">가입</span></li>
+            <li data-step="2"><span class="num">02</span><span data-i18n="auth.s2">이메일 인증</span></li>
+            <li data-step="3"><span class="num">03</span><span data-i18n="auth.s3">사업 소개</span></li>
+          </ol>
+
+          <div class="apply-panel" id="step-1" hidden>
+            <p class="apply-demo" id="auth-not-ready" data-i18n="auth.notReady" hidden>가입 기능을 연결하는 중입니다. 곧 열립니다.</p>
+            <div class="oauth">
+              <button type="button" class="oauth-btn" data-provider="google"><svg viewBox="0 0 18 18" aria-hidden="true"><path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.92c1.7-1.57 2.68-3.88 2.68-6.62z"/><path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.92-2.26c-.8.54-1.84.86-3.04.86-2.34 0-4.32-1.58-5.03-3.7H.96v2.33A9 9 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.97 10.72A5.41 5.41 0 0 1 3.68 9c0-.6.1-1.18.29-1.72V4.95H.96A9 9 0 0 0 0 9c0 1.45.35 2.83.96 4.05l3.01-2.33z"/><path fill="#EA4335" d="M9 3.58c1.32 0 2.5.45 3.44 1.35l2.58-2.58A9 9 0 0 0 .96 4.95l3.01 2.33C4.68 5.16 6.66 3.58 9 3.58z"/></svg><span data-i18n="auth.google">Google로 계속</span></button>
+              <button type="button" class="oauth-btn" data-provider="apple"><svg viewBox="0 0 18 18" aria-hidden="true"><path fill="currentColor" d="M14.94 9.56c-.02-2.05 1.67-3.04 1.75-3.09-.95-1.4-2.44-1.59-2.97-1.61-1.26-.13-2.47.74-3.11.74-.65 0-1.63-.73-2.68-.71A3.97 3.97 0 0 0 4.57 6.9c-1.44 2.5-.37 6.19 1.03 8.22.69.99 1.5 2.1 2.57 2.06 1.03-.04 1.42-.66 2.67-.66 1.24 0 1.6.66 2.68.64 1.11-.02 1.81-1 2.48-2a8.6 8.6 0 0 0 1.13-2.31 3.57 3.57 0 0 1-2.19-3.29zM12.9 3.54A3.6 3.6 0 0 0 13.73.95a3.68 3.68 0 0 0-2.38 1.23 3.44 3.44 0 0 0-.85 2.5 3.04 3.04 0 0 0 2.4-1.14z"/></svg><span data-i18n="auth.apple">Apple로 계속</span></button>
+              <button type="button" class="oauth-btn" data-provider="microsoft"><svg viewBox="0 0 18 18" aria-hidden="true"><path fill="#F25022" d="M1 1h7.5v7.5H1z"/><path fill="#7FBA00" d="M9.5 1H17v7.5H9.5z"/><path fill="#00A4EF" d="M1 9.5h7.5V17H1z"/><path fill="#FFB900" d="M9.5 9.5H17V17H9.5z"/></svg><span data-i18n="auth.microsoft">Microsoft로 계속</span></button>
+            </div>
+            <p class="or"><span data-i18n="auth.or">또는 이메일로</span></p>
+            <form class="pitch-form" id="email-form" novalidate>
+              <label class="full" id="name-row"><span data-i18n="form.name">이름</span><input id="ap-name" name="name" autocomplete="name"></label>
+              <label class="full"><span data-i18n="form.email">이메일</span><input id="ap-email" name="email" type="email" autocomplete="email"></label>
+              <label class="full"><span data-i18n="auth.password">비밀번호 (8자 이상)</span><input id="ap-pass" name="password" type="password" autocomplete="new-password" minlength="8"></label>
+              <button type="submit" class="btn full" id="ap-submit1"><span data-i18n="auth.signup">가입하기</span> <span class="arrow">↗</span></button>
+              <p class="full apply-links"><button type="button" class="link-btn" id="ap-mode" data-i18n="auth.toLogin">이미 계정이 있나요? 로그인</button> · <button type="button" class="link-btn" id="ap-forgot" data-i18n="auth.forgot">비밀번호 찾기</button></p>
+              <p class="form-status full" id="s1-status" role="status"></p>
+            </form>
+          </div>
+
+          <div class="apply-panel" id="step-2" hidden>
+            <p class="apply-note"><span data-i18n="auth.verifySent">인증 메일을 보냈습니다:</span> <strong id="ap-email-show"></strong></p>
+            <p class="muted" data-i18n="auth.verifyHow">메일의 링크를 누른 뒤, 아래 버튼을 눌러 주세요.</p>
+            <button type="button" class="btn full" id="ap-check"><span data-i18n="auth.check">인증 확인</span></button>
+            <p class="apply-links"><button type="button" class="link-btn" id="ap-resend" data-i18n="auth.resend">인증 메일 다시 보내기</button> · <button type="button" class="link-btn ap-signout" data-i18n="auth.signout">다른 계정으로</button></p>
+            <p class="form-status" id="s2-status" role="status"></p>
+          </div>
+
+          <form class="apply-panel pitch-form" id="pitch-form" hidden novalidate>
+            <p class="full apply-note"><span class="verified-chip" data-i18n="auth.signedIn">로그인됨</span> <strong id="ap-who"></strong> <button type="button" class="link-btn ap-signout" data-i18n="auth.signout">다른 계정으로</button></p>
+            <label class="full"><span data-i18n="form.name">이름</span><input id="ap-name3" name="name" required autocomplete="name"></label>
+            <label class="full"><span data-i18n="form.company">회사명</span><input id="ap-company" name="company" required></label>
+            <label><span data-i18n="form.track">트랙</span><select id="ap-track" name="track"><option value="Market Bridge" data-i18n="form.track.t1">Market Bridge · 판로 연결</option><option value="Mission Field Ventures" data-i18n="form.track.t2">Mission Field Ventures · 선교지 벤처</option><option value="Business Partnership" data-i18n="form.track.t3">Business Partnership · 사업 투자</option><option value="Idea Launch" data-i18n="form.track.t4">Idea Launch · 아이디어 창업</option><option value="Acquire &amp; Transform" data-i18n="form.track.t5">Acquire &amp; Transform</option><option value="Operator Track" data-i18n="form.track.t6">Operator Track</option></select></label>
+            <label><span data-i18n="form.stage">단계</span><select id="ap-stage" name="stage"><option value="Idea" data-i18n="form.stage.idea">아이디어</option><option value="Seedstrap">Seedstrap</option><option value="Bootstrap" data-i18n="form.stage.boot">Bootstrap (매출 발생)</option><option value="Growth">Growth</option></select></label>
+            <label class="full"><span data-i18n="form.deck">피치 덱 링크</span><input id="ap-deck" name="deck" type="url" placeholder="https://"></label>
+            <label class="full"><span data-i18n="form.desc">어떤 가치를 만들고, 누구를 섬기나요?</span><textarea id="ap-desc" name="desc" rows="5" required></textarea></label>
+            <button type="submit" class="btn full"><span data-i18n="form.submit">제출하기</span> <span class="arrow">↗</span></button>
+            <p class="form-status full" id="form-status" role="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand"><svg class="footer-mark" viewBox="0 0 48 56" aria-hidden="true"><path d="M0 0h34l10 9v14l-6 5 8 7v15l-8 6H0z M17 12v10h12v-10z M17 33v11h14v-11z" fill="currentColor" fill-rule="evenodd"/></svg><p class="tagline" data-i18n="tagline">목적 위에 세우고, 인도하심으로 키웁니다.</p></div>
+      <p class="footer-meta">
+        <a href="mailto:hello@beulahventures.com">hello@beulahventures.com</a>
+        <span data-i18n="footer.scripture">성경 본문: 개역한글</span>
+        <span>© <span id="year"></span> Beulah Venture Capital</span>
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/firebase@10.12.2/firebase-app-compat.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/firebase@10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/firebase@10.12.2/firebase-firestore-compat.js"></script>
+  <script>
+// Site content that changes often: portfolio, team, and all translated strings.
+// Edit this file to update the site — no build step required.
+
+window.SITE_DATA = {
+  // Add portfolio companies here. Leave empty to show the "open slot" card only.
+  // Example: { name: "Acme", sector: { ko: "제조", en: "Manufacturing" }, desc: { ko: "...", en: "..." }, url: "https://..." }
+  // Sign-up and applications (Firebase). Fill in from Firebase console > Project settings > Your apps > Web app.
+  // These values are public by design; access is protected by Firestore rules (see docs/SETUP-signup.md).
+  apply: { cohort: "2027", collection: "applications" },
+  firebase: {
+    apiKey: "AIzaSyB73pDqe9vf7EyN5657_vHuW2oImGMobro",
+    authDomain: "beulah-venture.firebaseapp.com",
+    projectId: "beulah-venture",
+    appId: "1:240426405363:web:8912ec8eb5100e7d239686"
+  },
+  // Turn Apple / Microsoft on after enabling them in Firebase > Authentication > Sign-in method
+  providers: { google: true, apple: false, microsoft: false },
+
+  portfolio: [],
+
+  // Replace placeholders with real team members.
+  team: [
+    {
+      name: { ko: "손원규", en: "Joseph Shon" },
+      role: { ko: "설립자 · 매니징 파트너", en: "Founder & Managing Partner" },
+      bio: {
+        ko: "청지기 정신으로 창업자를 세우고, Venture 101을 이끕니다.",
+        en: "Raises up founders with a steward's heart and leads Venture 101."
+      },
+      // Portrait embedded so it works on every copy of the site (source: assets/joseph-shon.jpg)
+      photo: "data:image/jpeg;base64,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",
+      // Full introduction, shown when the card is opened
+      letter: {
+        ko: ["하나님과 동행하며, 그 동행 가운데 하나님을 알아 간 것이 제 삶의 가장 큰 복입니다.", "돈과 성공이 전부인 세상에서, 그리고 그 세상을 따라가던 제 안에서도, 하나님은 계속해서 제 마음을 보게 하시고, 낮추시고, 회개케 하셨습니다. 지난 10년간 회사를 운영하며 하나님과 동행하는 법을, 물질은 하나님께서 맡겨주신 것임을, 그리고 함께하는 분들의 영혼을 바라보는 법을 배웠습니다. 17년간 케냐를 오가며, 또 10억이 넘는 빚 가운데서도 복음의 기쁨과 풍족함을, 세상 그 무엇보다 복음이 귀하다는 것을 배웠습니다.", "부족함 가운데 홀로 시작한 헬스케어 회사가 제 계획과 능력을 훨씬 넘어 자라는 것을 보았고, 앞이 전혀 보이지 않는 상황 가운데서도 함께하시는 하나님을 보았습니다. 하나님이 하나님 되심을 간증할 수밖에 없는 은혜였고, 제 것도 제 능력도 아님을 인정할 수밖에 없는 동행의 시간이었습니다.", "사업을 시작한 지 10년이 지난 오늘, 차고 넘치게 맡겨주신 물질을 하나님이 원하시는 곳, 하나님이 사랑하시는 영혼이 있는 곳으로 흘려보내기 위해 Beulah Ventures와 Hephzibah Academy를 시작합니다. 두 이름은 모두 이사야 62장 4절에서 왔습니다. 버림받고 황폐했던 백성을 하나님이 '헵시바(나의 기쁨이 그에게 있다)'라 부르시고, 그 땅을 '쁄라(결혼한 자)'라 부르시겠다는 회복의 약속입니다. 그 말씀처럼 Hephzibah Academy는 사람을 세우고, Beulah Ventures는 땅과 회사를 세워 가기를 소망합니다.", "세상의 가치보다 복음의 가치를 앞에 두고, 허락하신 시간과 마음, 물질과 달란트로 맡겨주신 자리에서 성실하고 신실하게 일하실 분들과 함께하고 싶습니다. 좋은 뜻만으로는 부족하기에, 우리 안의 연약함과 죄성을 인정하고 그것을 감안한 지속 가능한 시스템을 함께 세우고, 나누고 동행하며, 세상이 말하는 성공과 실패의 모든 과정 가운데 선하게 일하고 계신 하나님을 함께 알아 가고 하나님의 나라를 세우는 시간이 되기를 원합니다.", "Beulah Ventures를 통해 복음 위에 세워진 사업체들이 영혼을 살리고, 함께하는 파트너와 투자자, 어드바이저, 직원, 고객과 손님 모두가 함께 성장하며 하나님의 선하심과 복음의 기쁨을 자연스럽게 누리게 되게 하실 것을 믿고 감사하며."],
+        en: ["The greatest blessing of my life has been walking with God, and coming to know Him along the way.", "In a world where money and success are everything, and even within my own heart that so easily followed it, God kept showing me who I really was, humbling me, and leading me to repentance. Over ten years of managing a company, He has shown me He has been walking alongside me, that every resource I have is entrusted to me by God, and how to see the souls of the people I work alongside. Over 17 years of visiting Kenya, and even while carrying well over a million dollars in debt, I learned the joy and abundance of the Gospel, and that nothing in this world is more precious.", "I watched a healthcare company I started alone, with so little, grow far beyond my own plans and abilities, and even when I couldn’t see the way forward at all, I saw God right there with me. It was grace that could only testify that God is who He says He is, and a season of walking with Him that left me no choice but to admit that none of it was mine, nor the result of my own ability.", "Today, ten years after starting my business, I’m launching Beulah Ventures and Hephzibah Academy to send what He has so abundantly entrusted to me wherever He desires, to the places where the souls He loves are. Both names come from Isaiah 62:4, God’s promise of restoration: the people once called forsaken will be called Hephzibah, “My delight is in her,” and their land once called desolate will be called Beulah, “Married.” In that same spirit, Hephzibah Academy exists to build up people, and Beulah Ventures to build up land and businesses.", "I want to partner with people who put the values of the Gospel above the values of the world, and who faithfully and diligently use the time, heart, resources, and talents God has given them in the place He has entrusted to them. Good intentions aren’t enough, so I want us to build sustainable systems together, honest about our own weaknesses and sinful nature, and, sharing life and walking together, to come to know the God who is faithfully at work through every season, whether the world calls it success or failure, and to build His Kingdom together.", "My prayer is that through Beulah Ventures, Gospel-centered businesses will bring life to souls, and that partners, investors, advisors, employees, customers, and guests will grow together and naturally experience God’s goodness and the joy of the Gospel."]
+      }
+    },
+    {
+      name: { ko: "어드바이저 네트워크", en: "Advisor Network" },
+      role: { ko: "모집 중", en: "Recruiting" },
+      bio: {
+        ko: "경영, 재무, 법률, 신앙의 지혜를 나눌 어드바이저를 찾고 있습니다.",
+        en: "We're looking for advisors to share wisdom in operations, finance, law, and faith."
+      }
+    },
+    {
+      name: { ko: "그로스 & 마케팅 파트너", en: "Growth & Marketing Partners" },
+      role: { ko: "모집 중", en: "Recruiting" },
+      bio: {
+        ko: "자립한 회사가 시장을 넓히도록 함께 뛸 마케터와 운영 전문가를 찾고 있습니다.",
+        en: "We're looking for marketers and operators to help bootstrapped companies reach more people."
+      }
+    }
+  ],
+
+  i18n: {
+    ko: {
+      "t6.tag": "준비된 사업을 맡아 운영",
+      "t6.d": "복음의 가치로 사명감을 가지고 만들어 내실 분을 구합니다.",
+      "t6.role": "아이디어 · 사업 계획 · 자본",
+      "t6.form": "Beulah 소유 + 운영자 지분",
+      "form.track.t6": "Operator Track · 아이디어와 계획 제공",
+      "t5.tag": "전통 사업 인수와 전환",
+      "t5.d": "오래 운영해 온 전통 사업을 찾아가 인수하고, 복음의 가치로 새롭게 세웁니다.",
+      "t5.role": "인수 · 경영 · 혁신",
+      "t5.form": "인수 지분 + 경영 참여",
+      "form.track.t5": "Acquire & Transform · 전통 사업 인수",
+      "v101.fit": "함께할 수 있는지 알아보기",
+      "team.read": "소개 글 읽기",
+      "team.close": "닫기",
+      "auth.s1": "가입",
+      "auth.s2": "이메일 인증",
+      "auth.s3": "사업 소개",
+      "auth.google": "Google로 계속",
+      "auth.apple": "Apple로 계속",
+      "auth.microsoft": "Microsoft로 계속",
+      "auth.or": "또는 이메일로",
+      "auth.password": "비밀번호 (8자 이상)",
+      "auth.signup": "가입하기",
+      "auth.login": "로그인",
+      "auth.toLogin": "이미 계정이 있나요? 로그인",
+      "auth.toSignup": "처음이신가요? 가입하기",
+      "auth.forgot": "비밀번호 찾기",
+      "auth.resetSent": "비밀번호 재설정 메일을 보냈습니다.",
+      "auth.verifySent": "인증 메일을 보냈습니다:",
+      "auth.verifyHow": "메일의 링크를 누른 뒤, 아래 버튼을 눌러 주세요.",
+      "auth.check": "인증 확인",
+      "auth.resend": "인증 메일 다시 보내기",
+      "auth.resent": "인증 메일을 다시 보냈습니다.",
+      "auth.notYet": "아직 인증되지 않았습니다. 메일의 링크를 눌렀는지 확인해 주세요.",
+      "auth.signout": "다른 계정으로",
+      "auth.signedIn": "로그인됨",
+      "auth.notReady": "가입 기능을 연결하는 중입니다. 곧 열립니다.",
+      "auth.err.inUse": "이미 가입된 이메일입니다. 로그인해 주세요.",
+      "auth.err.email": "올바른 이메일을 입력해 주세요.",
+      "auth.err.weak": "비밀번호는 8자 이상이어야 합니다.",
+      "auth.err.cred": "이메일 또는 비밀번호가 맞지 않습니다.",
+      "auth.err.name": "이름을 입력해 주세요.",
+      "auth.err.popup": "로그인 창이 닫혔습니다. 다시 시도해 주세요.",
+      "auth.err.other": "문제가 생겼습니다. 다른 방법으로 시도하거나 잠시 후 다시 시도해 주세요.",
+      "auth.err.exists": "이 이메일은 다른 방법으로 가입되어 있습니다. 처음 가입한 방법으로 로그인해 주세요.",
+      "auth.submitted": "접수되었습니다. 2주 안에 이메일로 답합니다.",
+      "auth.already": "이미 신청서를 제출하셨습니다. 수정하려면 다시 제출하면 됩니다.",
+      "apply.badge": "FIRST TRACK · 1기",
+      "apply.when": "2027년 시작",
+      "apply.start": "신청하기",
+      "apply.s1": "이름 · 이메일",
+      "apply.s2": "이메일 인증",
+      "apply.s3": "사업 소개",
+      "apply.send": "인증 코드 보내기",
+      "apply.sent": "아래 주소로 6자리 코드를 보냈습니다.",
+      "apply.code": "인증 코드",
+      "apply.verify": "확인",
+      "apply.resend": "다시 보내기",
+      "apply.change": "이메일 바꾸기",
+      "apply.demo": "미리보기: 메일 서버가 아직 연결되지 않아 코드를 여기에 표시합니다.",
+      "apply.badCode": "코드가 맞지 않습니다. 다시 확인해 주세요.",
+      "apply.badEmail": "이름과 올바른 이메일을 입력해 주세요.",
+      "apply.sendFail": "코드를 보내지 못했습니다. 잠시 후 다시 시도해 주세요.",
+      "apply.verified": "인증됨",
+      "apply.next": "다음",
+      "apply.submitFail": "제출하지 못했습니다. 잠시 후 다시 시도해 주세요.",
+      "apply.thanks": "신청이 접수되었습니다. 2주 안에 답합니다.",
+      "ch.1": "왜",
+      "ch.2": "약속",
+      "ch.3": "성장",
+      "ch.4": "열매",
+      "ch.5": "길",
+      "ch.6": "사람",
+      "nav.promise": "약속",
+      "nav.grow": "성장",
+      "nav.wheel": "열매",
+      "nav.paths": "길",
+      "nav.people": "사람",
+      "values.head": "우리가 지키는 여덟 가지",
+      "nav.philosophy": "철학",
+      "nav.why": "왜",
+      "nav.stages": "성장",
+      "nav.tracks": "트랙",
+      "nav.about": "소개",
+      "nav.pitch": "동행 제안",
+      "hero.h1": "<em>목적</em> 위에 세우고,<br><em>인도하심</em>으로 키웁니다.",
+      "hero.sub": "복음 위에, 복음의 가치로.",
+      "hero.cta": "Venture 101 시작",
+      "hero.cta2": "우리의 이야기",
+      "hero.vertical": "복음 / 영혼 / 확장",
+      "pillar.1": "자본",
+      "pillar.2": "동역",
+      "pillar.3": "성장",
+      "tagline": "목적 위에 세우고, 인도하심으로 키웁니다.",
+      "marquee": "복음  ·  가치  ·  희망  ·  사랑  ·  신실  ·  청지기  ·  지속  ·  ",
+      "field.quote": "“그는 시냇물 가에 심은 나무가 철을 따라 열매를 맺으며 그 잎사귀가 마르지 아니함 같으니”",
+      "field.ref": "시편 1:3",
+      "why.eyebrow": "WHY WE STARTED",
+      "why.title": "바벨론 한가운데서, <em>신실하게.</em>",
+      "why.verse": "너희는 세상의 소금이니 … 너희는 세상의 빛이라",
+      "why.ref": "마태복음 5:13–14",
+      "why.lead": "세상의 가치가 아닌 복음의 가치.",
+      "why.n1": "세계 인구의 3분의 2가 가난한데, 일부의 풍요는 당연해졌다.",
+      "why.n2": "과잉 소비와 생태계 파괴가 성장이라는 이름으로 계속된다.",
+      "why.n3": "월급으로 겨우 버티는 삶이 일상이 되었다.",
+      "why.n4": "탐욕이 자원을 빠르게 고갈시킨다.",
+      "why.quote": "바벨론의 방식과 우선순위가 우리를 다스리게 두지 말라.",
+      "why.cite": "Brian Walsh의 말에서",
+      "why.answer": "그래서 회사를 세웁니다. 세상의 논리 대신 복음의 가치로 일하고, 무너져 가는 가치와 사람을 다시 세우는 회사.",
+      "why.models": "세 사람에게 배웁니다",
+      "why.m1.t": "예레미야",
+      "why.m1.d": "익숙한 틀에 갇히지 않고, 시대의 비정상에 도전하며 다르게 상상합니다.",
+      "why.m1.b": "",
+      "why.m2.t": "바울과 빌레몬",
+      "why.m2.d": "한 세대에 모든 것을 바꾸려 하지 않고, 주어진 몫에 집중하며 다음 세대에게 이어 줍니다.",
+      "why.m2.b": "",
+      "why.m3.t": "요셉",
+      "why.m3.d": "허락하신 것들을 허락하신 곳에. 성실히, 그리고 신실하게 이루어 냅니다.",
+      "why.m3.b": "",
+      "why.close": "나에게 주어진 자리와 상황에서 신실하게.",
+      "story.eyebrow": "OUR STORY",
+      "story.title": "풍년에 쌓고 <em>흉년을 대비합니다.</em>",
+      "story.verse": "당신들은 나를 해하려 하였으나 하나님은 그것을 선으로 바꾸사 오늘과 같이 많은 백성의 생명을 구원하게 하시려 하셨나니",
+      "story.ref": "창세기 50:20",
+      "story.lead": "요셉의 창고처럼. 풍년에 준비해, 어려운 때에도 사람을 지키는 회사를 세웁니다.",
+      "v1.t": "Gospel-Based",
+      "v1.d": "사업은 복음의 통로.",
+      "v2.t": "Souls First",
+      "v2.d": "사람은 사랑할 영혼.",
+      "v3.t": "Value over Money",
+      "v3.d": "돈보다 가치를.",
+      "v4.t": "Sustainable",
+      "v4.d": "지속 가능하게 운영.",
+      "v5.t": "Scalable",
+      "v5.d": "한 곳에서 맺은 열매를 다른 곳으로.",
+      "v6.t": "Stewardship",
+      "v6.d": "자본은 맡겨주신 것.",
+      "v7.t": "All Aligned",
+      "v7.d": "함께하는 모든 이들을 위해.",
+      "v8.t": "God, Glorified",
+      "v8.d": "영광받으시는 하나님.",
+      "promise.eyebrow": "우리의 약속",
+      "promise.title": "돈보다는 <em>가치.</em>",
+      "promise.lead": "함께하는 모든 이에게",
+      "g1.t": "희망",
+      "g1.d": "내일을 기대하게",
+      "g2.t": "가치",
+      "g2.d": "돈보다 오래 남는 것",
+      "g3.t": "사랑",
+      "g3.d": "사람을 귀하게",
+      "g4.t": "복음",
+      "g4.d": "모든 것의 기초",
+      "grow.eyebrow": "HOW WE GROW",
+      "grow.title": "작게 심고, 스스로 서고, <em>함께 자랍니다.</em>",
+      "joseph.chartCap": "풍년에 쌓으면, 흉년에도 창고는 비지 않는다.",
+      "joseph.plenty": "풍년 7년",
+      "joseph.famine": "흉년 7년",
+      "joseph.store": "창고",
+      "joseph.harvest": "수확",
+      "joseph.year": "년",
+      "s1.tag": "심기",
+      "s1.d": "작은 자본, 검증된 고객.",
+      "s2.tag": "자립",
+      "s2.d": "매출과 이익으로 선다.",
+      "s3.tag": "동역",
+      "s3.d": "어드바이저 · 팀 · 마케터가 합류.",
+      "s4.tag": "비축과 확장",
+      "s4.d": "비축하고, 복제하고, 확장한다.",
+      "tracks.eyebrow": "INVESTMENT TRACKS",
+      "tracks.title": "선교지에서 미국까지, <em>여섯 가지 길.</em>",
+      "tracks.role": "역할",
+      "tracks.form": "방식",
+      "t1.tag": "선교지 판로 연결",
+      "t1.d": "Beulah가 세운 한국·미국 법인이 선교지 제품을 시장에 연결합니다.",
+      "t1.role": "판로 · 네트워크",
+      "t1.form": "한국·미국 영리·비영리 법인 설립 · 판매 연동",
+      "t2.tag": "선교지 공동 벤처",
+      "t2.d": "아주 작은 자본으로, 마일스톤에 따라 단계적으로 지원. 운영은 현지 리더가 맡고, Beulah는 지분과 경영권을 계속 지닙니다.",
+      "t2.role": "지분 · 공동 운영",
+      "t2.form": "소수 지분 · 경영권 영속 보유",
+      "t3.tag": "사업 투자",
+      "t3.d": "자본과 경영을 함께 지원합니다.",
+      "t3.role": "자본 · 경영 참여",
+      "t3.form": "투자 지분 + 경영 지분",
+      "t4.tag": "아이디어 창업",
+      "t4.d": "아이디어에서 회사까지, 함께 세웁니다.",
+      "t4.role": "공동 창업",
+      "t4.form": "시드 자본 + 창업 지분",
+      "structure.eyebrow": "THE BEULAH FLYWHEEL",
+      "structure.title": "<em>포도나무</em>와 가지.",
+      "structure.verse": "나는 포도나무요 너희는 가지라 그가 내 안에, 내가 그 안에 거하면 사람이 열매를 많이 맺나니",
+      "structure.ref": "요한복음 15:5",
+      "eq.leader": "복음 위에 선 리더",
+      "eq.capital": "자본",
+      "eq.advice": "조언",
+      "eq.help": "실행",
+      "eq.impact": "더 많은 열매",
+      "fw.center": "복음",
+      "fw.centerSub": "GOSPEL",
+      "fw.n1": "투자",
+      "fw.d1": "복음 위에 선 창업자에게 심는다.",
+      "fw.n2": "조언",
+      "fw.d2": "경영과 신앙의 지혜.",
+      "fw.n3": "성장",
+      "fw.d3": "팀과 함께 시장을 넓힌다.",
+      "fw.n4": "더 많은 일자리",
+      "fw.d4": "일자리가 늘고, 가정이 선다.",
+      "fw.n5": "더 많은 이익",
+      "fw.d5": "정직하게 벌고, 나누고, 비축한다.",
+      "fw.n6": "더 많은 투자",
+      "fw.d6": "열매가 다시 펀드로.",
+      "fw.n7": "더 많은 회사",
+      "fw.d7": "새 도시, 새 선교지에 또 하나.",
+      "structure.return": "열매는 다시 씨앗이 되어, 다음 가지로",
+      "v101.eyebrow": "VENTURE 101 · GOD'S STEWARDSHIP",
+      "v101.title": "<em>같은 가치를 공유하는 분</em>과 함께합니다.",
+      "m1": "복음과 청지기 리더십",
+      "m2": "요셉의 창고",
+      "m3": "함께하는 영혼",
+      "m4": "자생적 비즈니스 모델",
+      "m5": "Seedstrap & Bootstrap",
+      "m6": "한곳을 바라보는 인센티브",
+      "m7": "시스템의 중요성",
+      "mdone": "수료",
+      "m8": "동행 제안",
+      "m9": "모임",
+      "m10": "투자 및 함께 자라기",
+      "v101.p4": "투자",
+      "v101.p1": "수강",
+      "v101.p2": "수료",
+      "v101.p3": "제안",
+      "v101.cta": "수강 신청",
+      "about.eyebrow": "ABOUT",
+      "about.title": "함께 같은 곳을 걸어가는 <em>동역자들.</em>",
+      "facts.stage": "단계",
+      "facts.support": "지원",
+      "facts.supportVal": "자본 · 조언 · 실행",
+      "facts.region": "지역",
+      "facts.regionVal": "선교지 · 한국 · 미국",
+      "about.team": "팀",
+      "about.portfolio": "포트폴리오",
+      "portfolio.note": "첫 포트폴리오를 준비하고 있습니다.",
+      "portfolio.open": "NEXT",
+      "portfolio.openCta": "당신의 회사 ↗",
+      "family.eyebrow": "FAMILY",
+      "family.title": "한 약속, <em>두 이름.</em>",
+      "family.verse": "오직 너를 헵시바라 하며 네 땅을 쁄라라 하리니 이는 여호와께서 너를 기뻐하실 것이며 네 땅이 결혼한 것처럼 될 것임이라",
+      "family.ref": "이사야 62:4",
+      "family.lead": "바벨론 이후, 버림받은 듯했던 백성에게 하나님이 주신 두 새 이름. 회복과 사랑의 약속입니다. 헵시바는 사람을 세우고, 쁄라는 땅을 일굽니다.",
+      "fam.h.mean": "헵시바 · 나의 기쁨이 그녀에게 있다",
+      "fam.h.tag": "Faith for life. Learning for the world.",
+      "fam.h.role": "사람을 세우는 교육",
+      "fam.b.mean": "쁄라 · 결혼한 땅, 풍성한 땅",
+      "fam.b.tag": "Rooted in purpose. Invested in growth.",
+      "fam.b.role": "사업을 세우는 투자",
+      "family.bridge": "헵시바에서 배우고, 쁄라에서 세운다.",
+      "pitch.eyebrow": "PITCH US",
+      "pitch.title": "당신에 대해 <em>알려주세요.</em>",
+      "pitch.lead": "세상에는 풀어야 할 문제도, 사업 기회도 넘쳐납니다. 사명과 소명 의식을 가지고 하나님과 동행하며 그 가치를 세상에 실현할 분을 구합니다.",
+      "form.name": "이름",
+      "form.email": "이메일",
+      "form.company": "회사명",
+      "form.track": "트랙",
+      "form.track.t1": "Market Bridge · 판로 연결",
+      "form.track.t2": "Mission Field Ventures · 선교지 벤처",
+      "form.track.t3": "Business Partnership · 사업 투자",
+      "form.track.t4": "Idea Launch · 아이디어 창업",
+      "form.stage": "단계",
+      "form.stage.idea": "아이디어",
+      "form.stage.boot": "Bootstrap (매출 발생)",
+      "form.deck": "피치 덱 링크",
+      "form.desc": "어떤 가치를 만들고, 누구를 섬기나요?",
+      "form.cohort": "Venture 101 수료 기수",
+      "form.completed": "Venture 101을 수료했습니다.",
+      "form.submit": "제출하기",
+      "form.error": "이름, 이메일, 회사명, 소개를 입력해 주세요.",
+      "form.errorV101": "Venture 101 수료 후 제안할 수 있습니다. 기수를 입력하고 확인란을 선택해 주세요.",
+      "form.ok": "준비되었습니다. 아래 내용을 이 주소로 보내 주세요:",
+      "form.openMail": "메일 앱으로 열기",
+      "form.copy": "내용 복사",
+      "form.copied": "복사됨",
+      "footer.scripture": "성경 본문: 개역개정"
+    },
+    en: {
+      "t6.tag": "Run a business we have prepared",
+      "t6.d": "We are looking for people who will build it with a sense of mission, by the values of the Gospel.",
+      "t6.role": "Idea · Business Plan · Capital",
+      "t6.form": "Beulah Ownership + Operator Equity",
+      "form.track.t6": "Operator Track",
+      "t5.tag": "Acquiring traditional businesses",
+      "t5.d": "We reach out to long-running traditional businesses, acquire them, and transform them on gospel values.",
+      "t5.role": "Acquisition · Operations · Renewal",
+      "t5.form": "Acquisition Equity + Operating Role",
+      "form.track.t5": "Acquire & Transform",
+      "v101.fit": "See if we're a fit",
+      "team.read": "Read my story",
+      "team.close": "Close",
+      "auth.s1": "Sign up",
+      "auth.s2": "Verify email",
+      "auth.s3": "Your business",
+      "auth.google": "Continue with Google",
+      "auth.apple": "Continue with Apple",
+      "auth.microsoft": "Continue with Microsoft",
+      "auth.or": "or with email",
+      "auth.password": "Password (8+ characters)",
+      "auth.signup": "Sign up",
+      "auth.login": "Log in",
+      "auth.toLogin": "Have an account? Log in",
+      "auth.toSignup": "New here? Sign up",
+      "auth.forgot": "Forgot password",
+      "auth.resetSent": "We sent a password reset email.",
+      "auth.verifySent": "We sent a verification email to:",
+      "auth.verifyHow": "Click the link in the email, then press the button below.",
+      "auth.check": "I've verified",
+      "auth.resend": "Resend email",
+      "auth.resent": "Verification email sent again.",
+      "auth.notYet": "Not verified yet. Please click the link in the email.",
+      "auth.signout": "Use another account",
+      "auth.signedIn": "Signed in",
+      "auth.notReady": "Sign-up is being connected. It opens soon.",
+      "auth.err.inUse": "This email is already registered. Please log in.",
+      "auth.err.email": "Please enter a valid email.",
+      "auth.err.weak": "Password must be at least 8 characters.",
+      "auth.err.cred": "Email or password is incorrect.",
+      "auth.err.name": "Please enter your name.",
+      "auth.err.popup": "The sign-in window was closed. Please try again.",
+      "auth.err.other": "Something went wrong. Try another method or try again shortly.",
+      "auth.err.exists": "This email is registered with a different method. Please use that one.",
+      "auth.submitted": "Received. We'll reply by email within two weeks.",
+      "auth.already": "You've already applied. Submit again to update it.",
+      "apply.badge": "FIRST TRACK · COHORT 1",
+      "apply.when": "Starts 2027",
+      "apply.start": "Apply",
+      "apply.s1": "Name & email",
+      "apply.s2": "Verify email",
+      "apply.s3": "Your business",
+      "apply.send": "Send code",
+      "apply.sent": "We sent a 6-digit code to:",
+      "apply.code": "Verification code",
+      "apply.verify": "Verify",
+      "apply.resend": "Resend",
+      "apply.change": "Change email",
+      "apply.demo": "Preview: no mail server is connected yet, so the code is shown here.",
+      "apply.badCode": "That code doesn't match. Please check it.",
+      "apply.badEmail": "Enter your name and a valid email.",
+      "apply.sendFail": "Couldn't send the code. Please try again shortly.",
+      "apply.verified": "Verified",
+      "apply.next": "Next",
+      "apply.submitFail": "Couldn't submit. Please try again shortly.",
+      "apply.thanks": "Your application is in. We reply within two weeks.",
+      "ch.1": "Why",
+      "ch.2": "Promise",
+      "ch.3": "Growth",
+      "ch.4": "Fruit",
+      "ch.5": "Paths",
+      "ch.6": "People",
+      "nav.promise": "Promise",
+      "nav.grow": "Growth",
+      "nav.wheel": "Fruit",
+      "nav.paths": "Paths",
+      "nav.people": "People",
+      "values.head": "Eight things we keep",
+      "nav.philosophy": "Philosophy",
+      "nav.why": "Why",
+      "nav.stages": "Growth",
+      "nav.tracks": "Tracks",
+      "nav.about": "About",
+      "nav.pitch": "Pitch us",
+      "hero.h1": "Built on <em>purpose.</em><br>Grown <em>as He leads.</em>",
+      "hero.sub": "On the gospel, by the gospel's values.",
+      "hero.cta": "Start Venture 101",
+      "hero.cta2": "Our story",
+      "hero.vertical": "GOSPEL / SOULS / SCALE",
+      "pillar.1": "Capital",
+      "pillar.2": "Partnership",
+      "pillar.3": "Growth",
+      "tagline": "Built on purpose. Grown as He leads.",
+      "marquee": "GOSPEL  ·  VALUE  ·  HOPE  ·  LOVE  ·  FAITHFUL  ·  STEWARDSHIP  ·  SUSTAIN  ·  ",
+      "field.quote": "“And he shall be like a tree planted by the rivers of water, that bringeth forth his fruit in his season.”",
+      "field.ref": "Psalm 1:3",
+      "why.eyebrow": "WHY WE STARTED",
+      "why.title": "In the middle of Babylon, <em>faithful.</em>",
+      "why.verse": "Ye are the salt of the earth … Ye are the light of the world.",
+      "why.ref": "Matthew 5:13–14",
+      "why.lead": "Not the world's values. The gospel's.",
+      "why.n1": "Two-thirds of the world is poor, while the abundance of a few is taken for granted.",
+      "why.n2": "Overconsumption and ecological damage go on in the name of growth.",
+      "why.n3": "Living paycheck to paycheck has become ordinary.",
+      "why.n4": "Greed is draining the earth's resources fast.",
+      "why.quote": "Do not let Babylon's ways and priorities rule over us.",
+      "why.cite": "After Brian Walsh",
+      "why.answer": "So we build a company that works by the gospel's values instead of the world's logic, and raises up values and people that are falling.",
+      "why.models": "We learn from three people",
+      "why.m1.t": "Jeremiah",
+      "why.m1.d": "Not bound by familiar frames, we challenge the abnormal of our day and imagine differently.",
+      "why.m1.b": "",
+      "why.m2.t": "Paul & Philemon",
+      "why.m2.d": "We do not try to change everything in one generation. We focus on the part given to us and pass it on to the next.",
+      "why.m2.b": "",
+      "why.m3.t": "Joseph",
+      "why.m3.d": "What He has given, where He has placed us. We carry it out diligently and faithfully.",
+      "why.m3.b": "",
+      "why.close": "Faithful in the place and circumstances given to me.",
+      "story.eyebrow": "OUR STORY",
+      "story.title": "Store in plenty. <em>Prepare for famine.</em>",
+      "story.verse": "Ye thought evil against me; but God meant it unto good, to bring to pass, as it is this day, to save much people alive.",
+      "story.ref": "Genesis 50:20",
+      "story.lead": "Like Joseph's storehouse: prepare in good years, and keep people safe in hard ones.",
+      "v1.t": "Gospel-Based",
+      "v1.d": "Business carries the gospel.",
+      "v2.t": "Souls First",
+      "v2.d": "People are souls to love.",
+      "v3.t": "Value over Money",
+      "v3.d": "We focus on creating value that leads to profit.",
+      "v4.t": "Sustainable",
+      "v4.d": "A system built to last.",
+      "v5.t": "Scalable",
+      "v5.d": "Fruit from one place, carried to the next.",
+      "v6.t": "Stewardship",
+      "v6.d": "Remembering it is not ours.",
+      "v7.t": "All Aligned",
+      "v7.d": "For everyone who works with us.",
+      "v8.t": "God, Glorified",
+      "v8.d": "All for His glory.",
+      "promise.eyebrow": "OUR PROMISE",
+      "promise.title": "We create <em>value.</em>",
+      "promise.lead": "To everyone who walks with us",
+      "g1.t": "Hope",
+      "g1.d": "A tomorrow worth waiting for",
+      "g2.t": "Value",
+      "g2.d": "What outlasts money",
+      "g3.t": "Love",
+      "g3.d": "Treat people as precious",
+      "g4.t": "Gospel",
+      "g4.d": "The foundation of all",
+      "grow.eyebrow": "HOW WE GROW",
+      "grow.title": "Plant small. Stand alone. <em>Grow together.</em>",
+      "joseph.chartCap": "Store in plenty, and the storehouse never runs dry.",
+      "joseph.plenty": "7 years of plenty",
+      "joseph.famine": "7 years of famine",
+      "joseph.store": "Storehouse",
+      "joseph.harvest": "Harvest",
+      "joseph.year": "Yr",
+      "s1.tag": "Plant",
+      "s1.d": "Small capital. Proven customers.",
+      "s2.tag": "Stand",
+      "s2.d": "Run on revenue and profit.",
+      "s3.tag": "Join forces",
+      "s3.d": "Advisors, team, marketers join.",
+      "s4.tag": "Store & scale",
+      "s4.d": "Store. Replicate. Scale.",
+      "tracks.eyebrow": "INVESTMENT TRACKS",
+      "tracks.title": "Mission field to the US. <em>Six paths.</em>",
+      "tracks.role": "Role",
+      "tracks.form": "Structure",
+      "t1.tag": "Markets for the mission field",
+      "t1.d": "Beulah-owned entities in Korea and the US bring mission-field products to market.",
+      "t1.role": "Markets · Network",
+      "t1.form": "Korea & US For-profit and Nonprofit Entities · Sales-linked",
+      "t2.tag": "Co-owned mission ventures",
+      "t2.d": "We start with very small capital and fund by milestones. Local leaders run it day to day, while Beulah keeps its equity and management rights.",
+      "t2.role": "Equity · Co-operation",
+      "t2.form": "Minority Stake · Lasting Management Rights",
+      "t3.tag": "Investing in businesses",
+      "t3.d": "Capital and operating work, together.",
+      "t3.role": "Capital · Operating role",
+      "t3.form": "Capital equity + operating equity",
+      "t4.tag": "Launching from an idea",
+      "t4.d": "From idea to company, built together.",
+      "t4.role": "Co-founding",
+      "t4.form": "Seed capital + founder equity",
+      "structure.eyebrow": "THE BEULAH FLYWHEEL",
+      "structure.title": "The vine and <em>the branches.</em>",
+      "structure.verse": "I am the vine, ye are the branches: He that abideth in me, and I in him, the same bringeth forth much fruit.",
+      "structure.ref": "John 15:5",
+      "eq.leader": "A leader grounded in the gospel",
+      "eq.capital": "Capital",
+      "eq.advice": "Advice",
+      "eq.help": "Help",
+      "eq.impact": "More fruit",
+      "fw.center": "Gospel",
+      "fw.centerSub": "FOUNDATION",
+      "fw.n1": "Invest",
+      "fw.d1": "Plant in founders grounded in the gospel.",
+      "fw.n2": "Advise",
+      "fw.d2": "Wisdom for business and faith.",
+      "fw.n3": "Grow",
+      "fw.d3": "Widen the market, together.",
+      "fw.n4": "More jobs",
+      "fw.d4": "More jobs, steadier families.",
+      "fw.n5": "More profit",
+      "fw.d5": "Earn honestly. Share. Store.",
+      "fw.n6": "More investment",
+      "fw.d6": "Fruit returns to the fund.",
+      "fw.n7": "More companies",
+      "fw.d7": "One more, in a new city or field.",
+      "structure.return": "Fruit becomes seed, for the next branch.",
+      "v101.eyebrow": "VENTURE 101 · GOD'S STEWARDSHIP",
+      "v101.title": "We walk with people <em>who share the same values.</em>",
+      "m1": "The gospel and steward leadership",
+      "m2": "Joseph's storehouse",
+      "m3": "Souls who walk together",
+      "m4": "A self-sustaining business model",
+      "m5": "Seedstrap & Bootstrap",
+      "m6": "Aligned incentives",
+      "m7": "Why systems matter",
+      "mdone": "Completion",
+      "m8": "Pitch",
+      "m9": "Gathering",
+      "m10": "Investment and growing together",
+      "v101.p4": "Invest",
+      "v101.p1": "Take",
+      "v101.p2": "Complete",
+      "v101.p3": "Pitch",
+      "v101.cta": "Apply now",
+      "about.eyebrow": "ABOUT",
+      "about.title": "God's fellow workers, <em>walking the same way.</em>",
+      "facts.stage": "Stage",
+      "facts.support": "Support",
+      "facts.supportVal": "Capital · Advice · Help",
+      "facts.region": "Geography",
+      "facts.regionVal": "Mission field · Korea · US",
+      "about.team": "Team",
+      "about.portfolio": "Portfolio",
+      "portfolio.note": "Our first portfolio companies are in preparation.",
+      "portfolio.open": "NEXT",
+      "portfolio.openCta": "Your company ↗",
+      "family.eyebrow": "FAMILY",
+      "family.title": "One promise, <em>two names.</em>",
+      "family.verse": "But thou shalt be called Hephzibah, and thy land Beulah: for the LORD delighteth in thee.",
+      "family.ref": "Isaiah 62:4",
+      "family.lead": "After Babylon, God gave a people who felt forsaken two new names: a promise of restoration and love. Hephzibah raises people. Beulah cultivates the land.",
+      "fam.h.mean": "Hephzibah · My delight is in her",
+      "fam.h.tag": "Faith for life. Learning for the world.",
+      "fam.h.role": "Education that raises people",
+      "fam.b.mean": "Beulah · The married land, the abundant land",
+      "fam.b.tag": "Rooted in purpose. Invested in growth.",
+      "fam.b.role": "Investment that builds businesses",
+      "family.bridge": "Learn at Hephzibah. Build at Beulah.",
+      "pitch.eyebrow": "PITCH US",
+      "pitch.title": "Tell us <em>about you.</em>",
+      "pitch.lead": "The world is full of problems to solve and businesses to build. We are looking for people with a sense of mission and calling, who walk with God and will bring those values to life in the world.",
+      "form.name": "Name",
+      "form.email": "Email",
+      "form.company": "Company",
+      "form.track": "Track",
+      "form.track.t1": "Market Bridge",
+      "form.track.t2": "Mission Field Ventures",
+      "form.track.t3": "Business Partnership",
+      "form.track.t4": "Idea Launch",
+      "form.stage": "Stage",
+      "form.stage.idea": "Idea",
+      "form.stage.boot": "Bootstrap (revenue)",
+      "form.deck": "Pitch deck link",
+      "form.desc": "What value does it create, and whom does it serve?",
+      "form.cohort": "Venture 101 cohort",
+      "form.completed": "I have completed Venture 101.",
+      "form.submit": "Submit",
+      "form.error": "Please enter your name, email, company, and description.",
+      "form.errorV101": "Pitches open after Venture 101. Enter your cohort and check the box.",
+      "form.ok": "Ready. Please send the text below to:",
+      "form.openMail": "Open in mail app",
+      "form.copy": "Copy text",
+      "form.copied": "Copied",
+      "footer.scripture": "Scripture: King James Version"
+    }
+  }
+};
+
+</script>
+  <script>
+(function () {
+  const data = window.SITE_DATA;
+  const PITCH_EMAIL = "hello@beulahventures.com";
+  // English by default; /kr (any case) or ?lang=ko opens in Korean
+  let lang = /^\/kr(\/|$)/i.test(location.pathname) || /[?&]lang=ko\b/.test(location.search) ? "ko" : "en";
+  try { localStorage.removeItem("lang"); } catch (_) { /* storage unavailable */ }
+
+  const t = (key) => data.i18n[lang][key] ?? data.i18n.ko[key] ?? key;
+  const pick = (obj) => (obj && typeof obj === "object" ? obj[lang] ?? obj.ko : obj);
+
+  function el(tag, attrs, children) {
+    const node = document.createElement(tag);
+    Object.entries(attrs || {}).forEach(([k, v]) => {
+      if (k === "text") node.textContent = v;
+      else node.setAttribute(k, v);
+    });
+    (children || []).forEach((c) => node.appendChild(c));
+    return node;
+  }
+
+  function renderPortfolio() {
+    const grid = document.getElementById("portfolio-grid");
+    grid.replaceChildren();
+    data.portfolio.forEach((co) => {
+      const name = el(co.url ? "a" : "h3", co.url ? { class: "name", href: co.url, target: "_blank", rel: "noopener", text: co.name } : { text: co.name });
+      grid.appendChild(el("article", { class: "portfolio-item" }, [
+        el("span", { class: "tag", text: pick(co.sector) }),
+        el("div", {}, [name, el("p", { class: "muted", text: pick(co.desc) })])
+      ]));
+    });
+    grid.appendChild(el("article", { class: "portfolio-item open" }, [
+      el("span", { class: "tag", text: t("portfolio.open") }),
+      el("a", { href: "#pitch", text: t("portfolio.openCta") })
+    ]));
+    document.querySelector('[data-i18n="portfolio.note"]').hidden = data.portfolio.length > 0;
+  }
+
+  // Team cards. A card with a letter opens it in a dialog.
+  let letterDialog = null;
+  function openLetter(m) {
+    if (!letterDialog) {
+      letterDialog = el("dialog", { class: "letter", "aria-labelledby": "letter-name" });
+      letterDialog.addEventListener("click", (e) => { if (e.target === letterDialog) letterDialog.close(); });
+      document.body.appendChild(letterDialog);
+    }
+    const name = pick(m.name);
+    const close = el("button", { type: "button", class: "letter-close", "aria-label": t("team.close"), text: "×" });
+    close.addEventListener("click", () => letterDialog.close());
+    letterDialog.replaceChildren(
+      close,
+      el("div", { class: "letter-head" }, [
+        m.photo ? el("img", { class: "letter-photo", src: m.photo, alt: name, width: "72", height: "72" }) : el("span"),
+        el("div", {}, [el("h3", { id: "letter-name", text: name }), el("p", { class: "role", text: pick(m.role) })])
+      ]),
+      el("div", { class: "letter-body" }, (m.letter[lang] || m.letter.ko).map((p) => el("p", { text: p })))
+    );
+    letterDialog.showModal();
+    letterDialog.scrollTop = 0;
+  }
+  function renderTeam() {
+    const grid = document.getElementById("team-grid");
+    grid.replaceChildren();
+    data.team.forEach((m) => {
+      const name = pick(m.name);
+      const parts = [
+        m.photo ? el("img", { class: "avatar avatar-photo", src: m.photo, alt: name, width: "96", height: "96", loading: "lazy" }) : el("div", { class: "avatar", text: name.trim().charAt(0) }),
+        el("h3", { text: name }),
+        el("p", { class: "role", text: pick(m.role) }),
+        el("p", { text: pick(m.bio) })
+      ];
+      if (m.letter) {
+        const more = el("button", { type: "button", class: "letter-open" }, [el("span", { text: t("team.read") }), el("span", { class: "arrow", text: " ↗" })]);
+        more.addEventListener("click", () => openLetter(m));
+        parts.push(more);
+        const card = el("article", { class: "member has-letter" }, parts);
+        card.addEventListener("click", (e) => { if (e.target === card || e.target.tagName !== "BUTTON") openLetter(m); });
+        grid.appendChild(card);
+      } else {
+        grid.appendChild(el("article", { class: "member" }, parts));
+      }
+    });
+  }
+
+  function applyLang() {
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-i18n]").forEach((node) => {
+      node.textContent = t(node.dataset.i18n);
+    });
+    // Trusted, site-authored strings that carry <em>/<br> emphasis
+    document.querySelectorAll("[data-i18n-html]").forEach((node) => {
+      node.innerHTML = t(node.dataset.i18nHtml);
+    });
+    document.querySelector(".lang-toggle").textContent = lang === "ko" ? "EN" : "한국어";
+    renderPortfolio();
+    renderTeam();
+    renderYears();
+    renderFlywheel();
+    const status = document.getElementById("form-status");
+    status.textContent = "";
+    status.className = "form-status full";
+  }
+
+  // Seven years of plenty and famine, drawn with grains. Same scale for every year.
+  function renderYears() {
+    const svg = document.getElementById("years-chart");
+    if (!svg) return;
+    const NS = "http://www.w3.org/2000/svg";
+    const W = 980, H = 300, left = 40, right = 20, top = 34, base = 230;
+    const cols = 14, colW = (W - left - right) / cols;
+    // Plenty: store 4 units a year. Famine: draw 3.6 a year. Never reaches zero.
+    const store = [];
+    let level = 0;
+    for (let y = 0; y < cols; y++) { level += y < 7 ? 4 : -3.6; store.push(Math.max(level, 0)); }
+    const maxStore = 28;
+    const sy = (v) => base - (v / maxStore) * (base - top - 20);
+    svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+    svg.replaceChildren();
+    const add = (tag, attrs, text) => {
+      const n = document.createElementNS(NS, tag);
+      Object.entries(attrs).forEach(([k, v]) => n.setAttribute(k, v));
+      if (text != null) n.textContent = text;
+      svg.appendChild(n);
+      return n;
+    };
+    add("text", { x: left, y: top - 10, class: "yc-era" }, t("joseph.plenty"));
+    add("text", { x: left + colW * 7, y: top - 10, class: "yc-era" }, t("joseph.famine"));
+    add("line", { x1: left + colW * 7, y1: top - 4, x2: left + colW * 7, y2: base, class: "yc-divider" });
+    let d = `M ${left} ${base}`;
+    store.forEach((v, i) => { d += ` L ${left + colW * i} ${sy(v)} L ${left + colW * (i + 1)} ${sy(v)}`; });
+    d += ` L ${left + colW * cols} ${base} Z`;
+    add("path", { d, class: "yc-store" });
+    for (let i = 0; i < cols; i++) {
+      const cx = left + colW * (i + 0.5);
+      const plenty = i < 7;
+      const n = plenty ? 5 : 2;
+      for (let k = 0; k < n; k++) {
+        const ang = (k - (n - 1) / 2) * (plenty ? 16 : 22);
+        const r = plenty ? 26 : 12;
+        const gx = cx + Math.sin(ang * Math.PI / 180) * r;
+        const gy = base - 16 - Math.cos(ang * Math.PI / 180) * r - (plenty ? 24 : 0);
+        add("ellipse", { cx: gx, cy: gy, rx: plenty ? 4.6 : 3.4, ry: plenty ? 12 : 8, transform: `rotate(${ang} ${gx} ${gy})`, class: plenty ? "yc-grain" : "yc-grain-thin" });
+      }
+      add("text", { x: cx, y: base + 22, class: "yc-tick", "text-anchor": "middle" }, String(i + 1));
+    }
+    add("line", { x1: left, y1: base, x2: W - right, y2: base, class: "yc-axis" });
+    add("text", { x: left, y: base + 46, class: "yc-axis-label" }, t("joseph.year"));
+    add("rect", { x: W - right - 230, y: H - 23, width: 14, height: 10, class: "yc-store" });
+    add("text", { x: W - right - 210, y: H - 14, class: "yc-legend" }, t("joseph.store"));
+    add("ellipse", { cx: W - right - 100, cy: H - 18, rx: 3.2, ry: 7, class: "yc-grain" });
+    add("text", { x: W - right - 90, y: H - 14, class: "yc-legend" }, t("joseph.harvest"));
+  }
+
+  // The vine: the gospel is the root and stem; seven branches bear fruit from bottom to top,
+  // and a dashed return line carries the fruit back to the root as seed.
+  function renderFlywheel() {
+    const svg = document.getElementById("flywheel");
+    if (!svg) return;
+    const NS = "http://www.w3.org/2000/svg";
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    svg.setAttribute("viewBox", "-40 0 600 740");
+    svg.replaceChildren();
+    const add = (parent, tag, attrs, text) => {
+      const n = document.createElementNS(NS, tag);
+      Object.entries(attrs).forEach(([k, v]) => n.setAttribute(k, v));
+      if (text != null) n.textContent = text;
+      parent.appendChild(n);
+      return n;
+    };
+    const defs = add(svg, "defs", {});
+    const mk = add(defs, "marker", { id: "vine-arrow", viewBox: "0 0 10 10", refX: "8", refY: "5", markerWidth: "7", markerHeight: "7", orient: "auto-start-reverse" });
+    add(mk, "path", { d: "M0 0 L10 5 L0 10 z", class: "vn-arrowhead" });
+    const X = 250, rootY = 676, topY = 56;
+    const stem = `M${X} ${rootY} C ${X - 34} 590, ${X + 34} 520, ${X} 440 S ${X - 34} 290, ${X} 210 S ${X + 30} 96, ${X} ${topY}`;
+    const back = `M${X} ${topY} C 560 ${topY - 10}, 560 ${rootY + 40}, ${X + 46} ${rootY + 6}`;
+    add(svg, "path", { d: back, class: "vn-return", "marker-end": "url(#vine-arrow)" });
+    add(svg, "path", { d: stem, class: "vn-stem" });
+    // probe points on the stem for each branch
+    const probe = add(svg, "path", { d: stem, fill: "none", stroke: "none" });
+    const L = probe.getTotalLength();
+    for (let i = 0; i < 7; i++) {
+      const pt = probe.getPointAtLength(L * (0.13 + i * 0.125));
+      const side = i % 2 === 0 ? 1 : -1;
+      const ex = pt.x + side * 96, ey = pt.y - 34;
+      const g = add(svg, "g", { class: "vn-node", style: `--i:${i}` });
+      add(g, "path", { d: `M${pt.x} ${pt.y} Q ${pt.x + side * 46} ${pt.y - 4}, ${ex} ${ey}`, class: "vn-branch" });
+      // leaf: one grain on the branch
+      const lx = pt.x + side * 44, ly = pt.y - 18;
+      add(g, "ellipse", { cx: lx, cy: ly, rx: 7, ry: 15, transform: `rotate(${side * 58} ${lx} ${ly})`, class: "vn-leaf" });
+      // grape cluster hanging from the branch tip
+      const grapes = [[0, 0], [-9, 9], [9, 9], [-4.5, 18], [4.5, 18], [0, 27]];
+      grapes.forEach(([dx, dy]) => add(g, "circle", { cx: ex + dx, cy: ey + 10 + dy, r: 6, class: "vn-grape" }));
+      const tx = ex + side * 24, anchor = side > 0 ? "start" : "end";
+      add(g, "text", { x: tx, y: ey + 14, class: "fw-num", "text-anchor": anchor }, "0" + (i + 1));
+      add(g, "text", { x: tx, y: ey + 34, class: "fw-label", "text-anchor": anchor }, t("fw.n" + (i + 1)));
+    }
+    probe.remove();
+    // root: the gospel
+    add(svg, "ellipse", { cx: X, cy: rootY + 24, rx: 74, ry: 30, class: "fw-center" });
+    add(svg, "text", { x: X, y: rootY + 30, class: "fw-center-text", "text-anchor": "middle" }, t("fw.center"));
+    if (!reduce) {
+      const dot = add(svg, "circle", { r: 5, class: "fw-seed" });
+      add(dot, "animateMotion", { dur: "14s", repeatCount: "indefinite", path: stem + " " + back.replace(/^M[^C]+/, "") });
+    }
+  }
+
+  // River scene: one wide tree stands in the middle by the water.
+  // Its seeds fall and drift to either side, are planted, and grow into new trees and grass.
+  function initField() {
+    const canvas = document.getElementById("field-canvas");
+    if (!canvas || !canvas.getContext) return;
+    const ctx = canvas.getContext("2d");
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const ink = getComputedStyle(document.documentElement).getPropertyValue("--ink").trim() || "#111";
+    const water = getComputedStyle(document.documentElement).getPropertyValue("--water").trim() || "#3b8fc4";
+    let w = 0, h = 0, bankY = 0, mother = null, plants = [], seeds = [], floaters = [], nextSeed = 0, visible = true, raf = 0;
+    const rnd = (a, b) => a + Math.random() * (b - a);
+    const clamp = (v) => Math.max(0, Math.min(1, v));
+    const ease = (v) => 1 - Math.pow(1 - v, 3);
+
+    // Branching tree. `wide` pushes the first forks outward for a broad crown.
+    function makeTree(trunk, maxD, wide) {
+      const segs = [], leaves = [];
+      const grow = (x, y, ang, len, d) => {
+        const x2 = x + Math.cos(ang) * len, y2 = y + Math.sin(ang) * len;
+        segs.push({ x, y, x2, y2, d, wdt: Math.max(0.6, (maxD - d) * (wide ? 0.75 : 0.55)) });
+        if (d === maxD) { leaves.push({ x: x2, y: y2, ang: ang + Math.PI / 2 }); return; }
+        const n = d > 1 && Math.random() < 0.3 ? 3 : 2;
+        for (let i = 0; i < n; i++) {
+          const base = wide && d < 3 ? rnd(0.62, 0.9) : rnd(0.34, 0.56);
+          const spread = (i - (n - 1) / 2) * base;
+          const ratio = wide && d < 2 ? rnd(0.74, 0.82) : rnd(0.68, 0.78);
+          grow(x2, y2, ang + spread + rnd(-0.08, 0.08), len * ratio, d + 1);
+        }
+      };
+      grow(0, 0, -Math.PI / 2 + rnd(-0.03, 0.03), trunk, 0);
+      return { segs, leaves, maxD };
+    }
+    function makeGrass() {
+      const n = Math.round(rnd(3, 6));
+      return Array.from({ length: n }, (_, i) => ({ lean: (i - (n - 1) / 2) * rnd(0.15, 0.3), len: rnd(8, 22), phase: rnd(0, 6) }));
+    }
+    function addPlant(x, now, kind, age) {
+      const tree = kind === "tree";
+      const p = {
+        x, kind, born: now - (age || 0), dur: tree ? rnd(16000, 26000) : rnd(4000, 7000), dying: 0,
+        shape: tree ? makeTree((bankY - 14) / 3.6 * rnd(0.32, 0.6), 5, false) : makeGrass()
+      };
+      plants.push(p);
+      return p;
+    }
+    const childTrees = () => plants.filter((p) => p.kind === "tree" && !p.dying).length;
+    const clearOfMother = (x) => Math.abs(x - w / 2) > Math.max(70, w * 0.13);
+
+    function setup(now) {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.clientWidth; h = canvas.clientHeight;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      bankY = h * 0.68;
+      plants = []; seeds = [];
+      const trunk = (bankY - 14) / (w < 600 ? 4.4 : 3.7);
+      mother = { x: w / 2, born: now - 1e9, dur: 1, shape: makeTree(trunk, 6, true) };
+      // A few offspring already on their way, so the story is visible on the first frame
+      [-1, 1].forEach((side) => {
+        addPlant(w / 2 + side * rnd(w * 0.2, w * 0.3), now, "tree", rnd(9000, 20000));
+        if (w > 700) addPlant(w / 2 + side * rnd(w * 0.34, w * 0.44), now, "tree", rnd(2000, 8000));
+      });
+      const grass = Math.round(w / 55);
+      for (let i = 0; i < grass; i++) { const x = rnd(10, w - 10); if (clearOfMother(x)) addPlant(x, now, "grass", rnd(0, 9000)); }
+      floaters = Array.from({ length: Math.round(w / 80) }, () => ({ x: rnd(0, w), lane: Math.floor(rnd(0, 3)), v: rnd(0.25, 0.6), rot: rnd(0, 6) }));
+    }
+
+    function riverY(x, lane, t) { return bankY + 16 + lane * 13 + Math.sin(x * 0.018 + t / 900 + lane * 1.7) * 3.2; }
+    function drawRiver(t) {
+      // a faint wash of water under the lines
+      const grad = ctx.createLinearGradient(0, bankY, 0, bankY + 64);
+      grad.addColorStop(0, water); grad.addColorStop(1, "rgba(255,255,255,0)");
+      ctx.globalAlpha = 0.1; ctx.fillStyle = grad; ctx.fillRect(0, bankY, w, 64);
+      ctx.strokeStyle = water;
+      for (let lane = 0; lane < 4; lane++) {
+        ctx.globalAlpha = 0.85 - lane * 0.17; ctx.lineWidth = lane === 0 ? 1.4 : 1;
+        ctx.beginPath();
+        for (let x = 0; x <= w; x += 8) { const y = riverY(x, lane, t); x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); }
+        ctx.stroke();
+      }
+      ctx.globalAlpha = 1; ctx.lineWidth = 1; ctx.strokeStyle = ink;
+      ctx.beginPath(); ctx.moveTo(0, bankY); ctx.lineTo(w, bankY); ctx.stroke();
+    }
+    function grain(x, y, rx, ry, rot, fill, alpha) {
+      ctx.save(); ctx.translate(x, y); ctx.rotate(rot); ctx.globalAlpha = alpha;
+      ctx.beginPath(); ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI * 2);
+      if (fill) { ctx.fillStyle = ink; ctx.fill(); } else { ctx.strokeStyle = ink; ctx.stroke(); }
+      ctx.restore();
+    }
+    function drawTree(p, t, leafScale) {
+      const g = ease(clamp((t - p.born) / p.dur));
+      const alpha = p.dying ? clamp(1 - (t - p.dying) / 2000) : 1;
+      if (alpha <= 0) return;
+      const { segs, leaves, maxD } = p.shape;
+      const step = 0.8 / (maxD + 1);
+      const sway = reduce ? 0 : Math.sin(t / 2600 + p.x) * 0.012;
+      ctx.save(); ctx.translate(p.x, bankY); ctx.rotate(sway);
+      ctx.strokeStyle = ink; ctx.globalAlpha = alpha;
+      segs.forEach((sg) => {
+        const f = clamp((g - sg.d * step) / step);
+        if (f <= 0) return;
+        ctx.lineWidth = sg.wdt;
+        ctx.beginPath(); ctx.moveTo(sg.x, sg.y); ctx.lineTo(sg.x + (sg.x2 - sg.x) * f, sg.y + (sg.y2 - sg.y) * f); ctx.stroke();
+      });
+      const lf = clamp((g - 0.8) / 0.2);
+      if (lf > 0) leaves.forEach((l, i) => {
+        const flutter = reduce ? 0 : Math.sin(t / 700 + i) * 0.15;
+        grain(l.x, l.y, 2.4 * lf * leafScale, 5.8 * lf * leafScale, l.ang + flutter, i % 3 !== 0, alpha);
+      });
+      ctx.restore(); ctx.globalAlpha = 1;
+    }
+    function drawGrass(p, t) {
+      const g = ease(clamp((t - p.born) / p.dur));
+      const alpha = p.dying ? clamp(1 - (t - p.dying) / 2000) : 1;
+      if (alpha <= 0) return;
+      ctx.strokeStyle = ink; ctx.globalAlpha = alpha; ctx.lineWidth = 1;
+      p.shape.forEach((b) => {
+        const sway = reduce ? 0 : Math.sin(t / 1300 + b.phase) * 0.12;
+        const len = b.len * g, a = -Math.PI / 2 + b.lean + sway;
+        ctx.beginPath(); ctx.moveTo(p.x, bankY);
+        ctx.quadraticCurveTo(p.x + Math.cos(a) * len * 0.3, bankY - len * 0.6, p.x + Math.cos(a) * len, bankY + Math.sin(a) * len);
+        ctx.stroke();
+      });
+      ctx.globalAlpha = 1;
+    }
+    // A seed leaves a leaf of the big tree and drifts out to one side
+    function spawnSeed(t) {
+      const leaf = mother.shape.leaves[Math.floor(Math.random() * mother.shape.leaves.length)];
+      const x0 = mother.x + leaf.x, y0 = bankY + leaf.y;
+      const side = leaf.x === 0 ? (Math.random() < 0.5 ? -1 : 1) : Math.sign(leaf.x);
+      let x1 = w / 2 + side * rnd(Math.max(70, w * 0.14), w * 0.48);
+      x1 = Math.max(12, Math.min(w - 12, x1));
+      seeds.push({ x0, y0, x1, peak: y0 - rnd(6, 30), start: t, dur: rnd(3200, 5200), spin: rnd(-6, 6) });
+    }
+    function drawSeeds(t) {
+      seeds = seeds.filter((s) => {
+        const u = (t - s.start) / s.dur;
+        if (u >= 1) {
+          const living = plants.filter((p) => !p.dying);
+          if (living.length > w / 22) {
+            const old = living.find((p) => p.kind === "grass") || living.find((p) => p.kind === "tree");
+            if (old) old.dying = t;
+          }
+          const canTree = childTrees() < Math.max(3, Math.round(w / 220));
+          addPlant(s.x1, t, canTree && Math.random() < 0.45 ? "tree" : "grass", 0);
+          return false;
+        }
+        const x = s.x0 + (s.x1 - s.x0) * u + Math.sin(u * Math.PI * 3) * 12;
+        const y = (1 - u) * (1 - u) * s.y0 + 2 * (1 - u) * u * s.peak + u * u * bankY;
+        grain(x, y, 2, 4.6, s.spin * u, true, 0.9);
+        return true;
+      });
+    }
+    function drawFloaters(t) {
+      floaters.forEach((f) => {
+        if (!reduce) { f.x += f.v; f.rot += 0.01; if (f.x > w + 10) f.x = -10; }
+        grain(f.x, riverY(f.x, f.lane, t) - 2, 1.8, 4, Math.PI / 2 + Math.sin(f.rot) * 0.4, false, 0.6);
+      });
+    }
+    function frame(t) {
+      ctx.clearRect(0, 0, w, h);
+      drawRiver(t);
+      plants = plants.filter((p) => !(p.dying && t - p.dying > 2000));
+      plants.forEach((p) => (p.kind === "tree" ? drawTree(p, t, 1) : drawGrass(p, t)));
+      drawTree(mother, t, 1.15);
+      drawFloaters(t);
+      if (!reduce) {
+        if (t > nextSeed) { spawnSeed(t); nextSeed = t + rnd(900, 1700); }
+        drawSeeds(t);
+        if (visible) raf = requestAnimationFrame(frame);
+      }
+    }
+    const now0 = performance.now();
+    setup(reduce ? now0 + 1e6 : now0);
+    frame(reduce ? now0 + 1e6 : now0);
+    if (!reduce && "IntersectionObserver" in window) {
+      new IntersectionObserver((es) => {
+        const v = es.some((e) => e.isIntersecting);
+        if (v && !visible) { visible = true; raf = requestAnimationFrame(frame); }
+        visible = v;
+      }).observe(canvas);
+    }
+    let rz = 0;
+    window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => { cancelAnimationFrame(raf); const n = performance.now(); setup(reduce ? n + 1e6 : n); visible = true; frame(reduce ? n + 1e6 : n); }, 150); });
+  }
+  initField();
+
+  // Reveal on scroll. Content is visible by default; the animation only plays as it enters view.
+  if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const targets = document.querySelectorAll(".reveal, .values > li, .stages > li, .tracks > li, .fw-list > li, .modules > li, .facts > div, .years, .equation-line");
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const idx = el.parentElement ? Array.prototype.indexOf.call(el.parentElement.children, el) : 0;
+        el.style.animationDelay = `${Math.min(idx, 7) * 70}ms`;
+        el.classList.add("is-in");
+        io.unobserve(el);
+      });
+    }, { threshold: 0.12 });
+    targets.forEach((el) => io.observe(el));
+  }
+
+  document.querySelector(".lang-toggle").addEventListener("click", () => {
+    lang = lang === "ko" ? "en" : "ko";
+    applyLang();
+  });
+
+  // Mobile nav
+  const toggle = document.querySelector(".nav-toggle");
+  const links = document.querySelector(".nav-links");
+  toggle.addEventListener("click", () => {
+    const open = links.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", String(open));
+  });
+  links.addEventListener("click", (e) => {
+    if (e.target.tagName === "A") {
+      links.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  // Sign-up and application (Firebase Auth + Firestore).
+  // 1) Google / Apple / Microsoft, or name + email + password  2) email verification  3) the business
+  (function initApply() {
+    const $ = (id) => document.getElementById(id);
+    const cfg = data.apply || {};
+    const fbCfg = data.firebase || {};
+    const providersOn = data.providers || {};
+    const steps = { 1: $("step-1"), 2: $("step-2"), 3: $("pitch-form") };
+    const say = (node, key, kind, extra) => { node.textContent = key ? t(key) + (extra || "") : ""; node.className = node.className.replace(/ ?(error|ok)/g, "") + (kind ? " " + kind : ""); };
+    let mode = "signup";
+    let auth = null, db = null;
+
+    function show(n) {
+      Object.entries(steps).forEach(([k, el]) => (el.hidden = Number(k) !== n));
+      document.querySelectorAll("#apply-steps li").forEach((li) => {
+        const k = Number(li.dataset.step);
+        li.classList.toggle("on", k === n);
+        li.classList.toggle("done", k < n);
+      });
+    }
+    function setMode(m) {
+      mode = m;
+      $("name-row").hidden = m === "login";
+      $("ap-pass").autocomplete = m === "login" ? "current-password" : "new-password";
+      $("ap-submit1").querySelector("span").textContent = t(m === "login" ? "auth.login" : "auth.signup");
+      $("ap-mode").textContent = t(m === "login" ? "auth.toSignup" : "auth.toLogin");
+      say($("s1-status"), "");
+    }
+    const errKey = (e) => ({
+      "auth/email-already-in-use": "auth.err.inUse",
+      "auth/invalid-email": "auth.err.email",
+      "auth/weak-password": "auth.err.weak",
+      "auth/wrong-password": "auth.err.cred",
+      "auth/user-not-found": "auth.err.cred",
+      "auth/invalid-credential": "auth.err.cred",
+      "auth/invalid-login-credentials": "auth.err.cred",
+      "auth/popup-closed-by-user": "auth.err.popup",
+      "auth/cancelled-popup-request": "auth.err.popup",
+      "auth/account-exists-with-different-credential": "auth.err.exists",
+      "auth/operation-not-allowed": "auth.err.other",
+      "auth/unauthorized-domain": "auth.err.other"
+    }[e && e.code] || "auth.err.other");
+
+    // Email/password accounts must verify; Google, Apple and Microsoft already vouch for the address.
+    const isVerified = (u) => u && (u.emailVerified || u.providerData.some((p) => p.providerId !== "password"));
+
+    let lastUid = null;
+    function resetForm() {
+      ["ap-name3", "ap-company", "ap-deck", "ap-desc"].forEach((id) => ($(id).value = ""));
+      say($("form-status"), "");
+    }
+    async function route(u) {
+      if ((u && u.uid) !== lastUid) { resetForm(); lastUid = u ? u.uid : null; }
+      if (!u) return show(1);
+      if (!isVerified(u)) { $("ap-email-show").textContent = u.email || ""; return show(2); }
+      $("ap-who").textContent = u.email || u.displayName || "";
+      if (!$("ap-name3").value) $("ap-name3").value = u.displayName || "";
+      show(3);
+      try {
+        const doc = await db.collection(cfg.collection || "applications").doc(u.uid).get();
+        if (doc.exists) {
+          const d = doc.data();
+          ["company", "deck", "desc"].forEach((k) => { if (d[k] && !$("ap-" + k).value) $("ap-" + k).value = d[k]; });
+          if (d.track) $("ap-track").value = d.track;
+          if (d.stage) $("ap-stage").value = d.stage;
+          if (d.name) $("ap-name3").value = d.name;
+          say($("form-status"), "auth.already", "ok");
+        }
+      } catch (_) { /* reading is optional */ }
+    }
+
+    $("apply-start").addEventListener("click", () => {
+      $("apply").classList.add("open");
+      route(auth && auth.currentUser);
+      $("apply").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    $("ap-mode").addEventListener("click", () => setMode(mode === "login" ? "signup" : "login"));
+    setMode("signup");
+
+    // Hide providers that are switched off in config
+    document.querySelectorAll(".oauth-btn").forEach((b) => { if (providersOn[b.dataset.provider] === false) b.hidden = true; });
+
+    const ready = typeof window.firebase !== "undefined" && fbCfg.apiKey && fbCfg.projectId;
+    if (!ready) {
+      $("auth-not-ready").hidden = false;
+      document.querySelectorAll("#step-1 button, #step-1 input").forEach((el) => (el.disabled = true));
+      return;
+    }
+    const app = window.firebase.apps.length ? window.firebase.app() : window.firebase.initializeApp(fbCfg);
+    auth = app.auth();
+    db = app.firestore();
+    auth.useDeviceLanguage();
+    auth.onAuthStateChanged((u) => { if ($("apply").classList.contains("open") || u) { $("apply").classList.add("open"); route(u); } });
+
+    const providerFor = (name) => {
+      if (name === "google") return new window.firebase.auth.GoogleAuthProvider();
+      const p = new window.firebase.auth.OAuthProvider(name === "apple" ? "apple.com" : "microsoft.com");
+      p.addScope("email");
+      if (name === "apple") p.addScope("name");
+      return p;
+    };
+    document.querySelectorAll(".oauth-btn").forEach((b) => b.addEventListener("click", async () => {
+      say($("s1-status"), "");
+      try { await auth.signInWithPopup(providerFor(b.dataset.provider)); }
+      catch (e) { say($("s1-status"), errKey(e), "error"); }
+    }));
+
+    $("email-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = $("ap-name").value.trim(), email = $("ap-email").value.trim(), pass = $("ap-pass").value;
+      if (mode === "signup" && !name) return say($("s1-status"), "auth.err.name", "error");
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return say($("s1-status"), "auth.err.email", "error");
+      if (pass.length < 8) return say($("s1-status"), mode === "login" ? "auth.err.cred" : "auth.err.weak", "error");
+      try {
+        if (mode === "signup") {
+          const cred = await auth.createUserWithEmailAndPassword(email, pass);
+          await cred.user.updateProfile({ displayName: name });
+          await cred.user.sendEmailVerification();
+          route(cred.user);
+        } else {
+          await auth.signInWithEmailAndPassword(email, pass);
+        }
+      } catch (err) { say($("s1-status"), errKey(err), "error"); }
+    });
+    $("ap-forgot").addEventListener("click", async () => {
+      const email = $("ap-email").value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return say($("s1-status"), "auth.err.email", "error");
+      try { await auth.sendPasswordResetEmail(email); say($("s1-status"), "auth.resetSent", "ok"); }
+      catch (err) { say($("s1-status"), errKey(err), "error"); }
+    });
+    $("ap-check").addEventListener("click", async () => {
+      const u = auth.currentUser; if (!u) return show(1);
+      await u.reload();
+      if (isVerified(auth.currentUser)) { await auth.currentUser.getIdToken(true); route(auth.currentUser); }
+      else say($("s2-status"), "auth.notYet", "error");
+    });
+    $("ap-resend").addEventListener("click", async () => {
+      try { await auth.currentUser.sendEmailVerification(); say($("s2-status"), "auth.resent", "ok"); }
+      catch (err) { say($("s2-status"), errKey(err), "error"); }
+    });
+    document.querySelectorAll(".ap-signout").forEach((b) => b.addEventListener("click", () => auth.signOut()));
+
+    steps[3].addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const u = auth.currentUser; if (!u) return show(1);
+      const f = { name: $("ap-name3").value.trim(), company: $("ap-company").value.trim(), track: $("ap-track").value, stage: $("ap-stage").value, deck: $("ap-deck").value.trim(), desc: $("ap-desc").value.trim() };
+      if (!f.name || !f.company || !f.desc) return say($("form-status"), "form.error", "error");
+      try {
+        await db.collection(cfg.collection || "applications").doc(u.uid).set({
+          ...f, email: u.email || "", provider: (u.providerData[0] || {}).providerId || "password",
+          cohort: cfg.cohort || "", lang, updatedAt: window.firebase.firestore.FieldValue.serverTimestamp()
+        }, { merge: true });
+        say($("form-status"), "auth.submitted", "ok");
+      } catch (err) { say($("form-status"), "apply.submitFail", "error"); }
+    });
+  })();
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+  applyLang();
+})();
+
+</script>
+</body>
+</html>
