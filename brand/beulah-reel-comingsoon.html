@@ -1,0 +1,108 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@200;400;800&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #111; }
+body { font-family: "Gothic A1", sans-serif; word-break: keep-all; }
+.sc { position: absolute; inset: 0; display: none; flex-direction: column; justify-content: center; padding: 0 96px; }
+.w { background: #fff; color: #111; } .k { background: #111; color: #fff; } .b { background: #3b8fc4; color: #fff; }
+.el { display: block; white-space: nowrap; }
+.thin { font-weight: 200; } .bold { font-weight: 800; }
+.c { align-items: center; text-align: center; }
+.blue { color: #3b8fc4; }
+.ch { display: inline-block; will-change: transform, opacity; }
+</style></head><body>
+<!-- Coming-soon teaser. Times in beats; 1 beat = 28 frames at 60 fps (128.6 BPM). -->
+<div class="sc k" data-s="0" data-e="3">
+  <span class="el thin" data-in="0" data-fx="up" style="font-size:150px;line-height:1.2;letter-spacing:-0.06em">가치가</span>
+  <span class="el bold" data-in="1" data-fx="slam" data-break="fall" data-at="2" style="font-size:170px;line-height:1.2;letter-spacing:-0.06em">무너진 사회.</span>
+</div>
+<div class="sc k" data-s="3" data-e="6">
+  <span class="el thin" data-in="3" data-fx="up" style="font-size:150px;line-height:1.2;letter-spacing:-0.06em">복음이</span>
+  <span class="el bold" data-in="4" data-fx="slam" data-break="vanish" data-at="5" style="font-size:170px;line-height:1.2;letter-spacing:-0.06em">사라진 사회.</span>
+</div>
+<div class="sc w c" data-s="6" data-e="7"><span class="el bold" data-in="6" data-fx="slam" style="font-size:240px;letter-spacing:-0.06em">그래서,</span></div>
+<div class="sc w" data-s="7" data-e="9">
+  <span class="el thin" data-in="7" data-fx="up" style="font-size:120px;line-height:1.25;letter-spacing:-0.05em">세상의 논리 대신</span>
+  <span class="el bold" data-in="8" data-fx="slam" style="font-size:170px;line-height:1.15;letter-spacing:-0.05em">복음의 가치로</span>
+  <span class="el bold" data-in="8" data-fx="slam" style="font-size:170px;line-height:1.15;letter-spacing:-0.05em">일하고,</span>
+</div>
+<div class="sc b" data-s="9" data-e="11">
+  <span class="el thin" data-in="9" data-fx="up" style="font-size:112px;line-height:1.2;letter-spacing:-0.05em">무너져 가는</span>
+  <span class="el thin" data-in="9" data-fx="up" style="font-size:112px;line-height:1.2;letter-spacing:-0.05em">가치와 사람을</span>
+  <span class="el bold" data-in="10" data-fx="rise" style="font-size:210px;line-height:1.15;letter-spacing:-0.06em">다시</span>
+  <span class="el bold" data-in="10.5" data-fx="rise" style="font-size:210px;line-height:1.15;letter-spacing:-0.06em">세우는</span>
+</div>
+<div class="sc w c" data-s="11" data-e="12"><span class="el bold" data-in="11" data-fx="slam" style="font-size:330px;letter-spacing:-0.06em">회사.</span></div>
+<div class="sc k" data-s="12" data-e="14">
+  <span class="el thin" data-in="12" data-fx="up" style="font-size:118px;line-height:1.25;letter-spacing:-0.05em">세상에 복음의 가치를</span>
+  <span class="el bold" data-in="13" data-fx="slam" style="font-size:170px;line-height:1.25;letter-spacing:-0.05em">전하는 <span class="blue">회사.</span></span>
+</div>
+<div class="sc k c" data-s="14" data-e="16">
+  <span class="el thin" data-in="14" data-fx="up" style="font-size:200px;line-height:1.05;letter-spacing:-0.06em">Coming</span>
+  <span class="el bold" data-in="15" data-fx="slam" style="font-size:250px;line-height:1.05;letter-spacing:-0.06em">soon.</span>
+</div>
+<div class="sc w c" data-s="16" data-e="99">
+  <div class="el" data-in="16" data-fx="slam" style="display:flex;align-items:center;gap:40px">
+    <svg viewBox="0 0 48 56" style="width:170px;height:198px;display:block"><path d="M0 0h34l10 9v14l-6 5 8 7v15l-8 6H0z M17 12v10h12v-10z M17 33v11h14v-11z" fill="#111" fill-rule="evenodd"/></svg>
+    <div style="display:flex;flex-direction:column;justify-content:space-between;height:198px;text-align:left">
+      <b style="font-size:150px;font-weight:800;letter-spacing:-0.045em;line-height:140px">Beulah</b>
+      <small style="font-size:40px;letter-spacing:0.36em;color:#707070;line-height:40px">VENTURES</small>
+    </div>
+  </div>
+  <span class="el bold" data-in="16.5" data-fx="up" style="margin-top:120px;font-size:34px;letter-spacing:0.16em;color:#3b8fc4">BEULAHVENTURES.COM</span>
+</div>
+
+<script>
+const FPB=28, DRUMS_FROM=6, BUILD=15, END=16;
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+const ease=x=>1-Math.pow(1-x,3);
+// split breakable lines into characters
+document.querySelectorAll('[data-break]').forEach(e=>{
+  e.innerHTML=[...e.textContent].map(c=>c===' '?' ':`<span class="ch">${c}</span>`).join('');
+});
+// shrink any line wider than the safe width
+(function fit(){ const MAX=888;
+  document.querySelectorAll('.sc').forEach(s=>{ const prev=s.style.display; s.style.display='flex';
+    s.querySelectorAll('span.el').forEach(e=>{ let fs=parseFloat(getComputedStyle(e).fontSize);
+      while(e.scrollWidth>MAX && fs>40){ fs-=2; e.style.fontSize=fs+'px'; } });
+    s.style.display=prev; }); })();
+
+window.setFrame=function(f){
+  const bt=f/FPB;
+  let pulse=1;
+  if (bt>=DRUMS_FROM && bt<BUILD){ const ph=(f%FPB)/FPB; pulse=1+0.03*Math.exp(-ph*9); }
+  else if (bt>=BUILD && bt<END){ const q=FPB/4, ph=(f%q)/q; pulse=1+0.025*Math.exp(-ph*5); }
+  else if (bt<DRUMS_FROM){ const ph=(f%(FPB*3))/(FPB*3); pulse=1+0.012*Math.exp(-ph*6); }   // slow heavy pulse in the dark opening
+  document.querySelectorAll('.sc').forEach(s=>{ const on=(bt>=+s.dataset.s && bt<+s.dataset.e);
+    s.style.display=on?'flex':'none'; s.style.transform=on?`scale(${pulse})`:''; });
+  document.querySelectorAll('.el').forEach(e=>{
+    const df=f-Math.round((+e.dataset.in)*FPB), fx=e.dataset.fx;
+    if(df<0){ e.style.opacity=0; return; }
+    e.style.opacity=1;
+    const k=ease(clamp(df/8,0,1));
+    let tr='none';
+    if(fx==='slam') tr=`scale(${1.14-0.14*k})`;
+    if(fx==='up')   tr=`translateY(${(1-k)*24}px)`;
+    if(fx==='rise') tr=`translateY(${(1-ease(clamp(df/10,0,1)))*140}px)`;
+    e.style.transform=tr;
+    e.style.transformOrigin=e.closest('.c')?'center':'left center';
+    // breaking lines
+    if(e.dataset.break){
+      const start=Math.round((+e.dataset.at)*FPB);
+      e.querySelectorAll('.ch').forEach((c,i)=>{
+        const d=f-start-i*3;                      // each letter 3 frames after the previous
+        if(d<0){ c.style.transform=''; c.style.opacity=1; return; }
+        if(e.dataset.break==='fall'){
+          const y=0.9*d*d, rot=(i%2?1:-1)*d*1.6;   // gravity
+          c.style.transform=`translateY(${y}px) rotate(${rot}deg)`; c.style.opacity=clamp(1-d/40,0,1);
+        } else {
+          c.style.transform=`translateY(${-d*1.2}px)`; c.style.opacity=clamp(1-d/12,0,1);
+        }
+      });
+    }
+  });
+};
+setFrame(0);
+</script>
+</body></html>
