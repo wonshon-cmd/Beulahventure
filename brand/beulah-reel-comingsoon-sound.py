@@ -67,56 +67,79 @@ def whoosh(beats):
     dur = beats*BEAT; t = t_(dur); n = rng.standard_normal(len(t))
     return lp(n, 400+2800*np.sin(np.pi*t/dur))*np.sin(np.pi*t/dur)**2*0.8
 
-# Beat map (same as reel3.html) — coming-soon teaser
-D = 293.66
-def fall(beats, f0=420, f1=50):
-    dur = beats*BEAT; t = t_(dur)
-    f = f0*(f1/f0)**(t/dur)
-    tone = np.sin(2*np.pi*np.cumsum(f)/SR)*np.exp(-t*1.2)
-    n = lp(rng.standard_normal(len(t)), 4000*(1-t/dur)+200)*np.exp(-t*2)
-    return (tone*0.7 + n*0.8)*np.minimum(t/0.003,1)
+# Clear, bell-like version — same beat map as reel3.html (no distortion, no saw pads)
+def bell(freq, dur=2.5, vel=1.0):
+    t = t_(dur); s = np.zeros(len(t))
+    for r, a, d in [(1.0,1.0,1.4),(2.0,0.35,2.4),(2.76,0.25,3.2),(5.4,0.08,6.0)]:
+        s += a*np.sin(2*np.pi*freq*r*t)*np.exp(-t*d)
+    return s*vel*np.minimum(t/0.002,1)*0.45
+def glass_pad(freqs, dur, attack, release):
+    t = t_(dur); s = np.zeros(len(t))
+    for f in freqs:
+        for d in (-0.15, 0.15):
+            s += np.sin(2*np.pi*f*(1+d/100)*t) + 0.2*np.sin(4*np.pi*f*(1+d/100)*t)
+    s /= len(freqs)*2.4
+    env = np.clip(np.minimum(t/attack,1)*np.minimum((dur-t)/release,1),0,1)
+    return s*env*(1+0.04*np.sin(2*np.pi*5*t))
+def timp(f=55, dur=1.6):
+    t = t_(dur); f_ = f*(1+0.15*np.exp(-t*30))
+    return np.sin(2*np.pi*np.cumsum(f_)/SR)*np.exp(-t*3.2)*np.minimum(t/0.003,1)
+def softkick():
+    t = t_(0.28); f = 48 + 55*np.exp(-t*40)
+    return np.sin(2*np.pi*np.cumsum(f)/SR)*np.exp(-t*11)
+def shaker():
+    t = t_(0.06); return hp(rng.standard_normal(len(t)), 6000)*np.exp(-t*60)*0.5
+def air(beats, up=True):
+    dur = beats*BEAT; t = t_(dur); n = rng.standard_normal(len(t))
+    c = 800*(10**(t/dur)) if up else 8000*(0.1**(t/dur))
+    env = (t/dur)**2 if up else (1-t/dur)**2
+    return hp(lp(n, c), 500)*env*0.35
 
-# Dark opening (beats 0-6): minor drone, two heavy hits, letters falling / vanishing
-put(pad([D/2, D/2*1.2, D*0.75], 6*BEAT, 1*BEAT, 0.3), 0, 0.45)
-for b in (0, 3):
-    put(clap(), b, 0.3)
-put(boom(1.6, 42, 2.0), 1, 1.0)
-put(fall(1.2), 2, 0.9)                       # 무너진 사회 falls
-put(boom(1.6, 40, 2.0), 4, 0.95)
-put(riser(1, 2000, 300), 5, 0.45)            # 사라진 사회 fades (downward air)
-put(riser(1), 5, 0.55)                       # swell into the drop
+D3, F3, A3, D4, E4, F4, G4, A4 = 146.83, 174.61, 220.0, 293.66, 329.63, 349.23, 392.0, 440.0
+Fs4, B4, Cs5, D5, E5, Fs5, A5, D6 = 369.99, 493.88, 554.37, 587.33, 659.25, 739.99, 880.0, 1174.66
 
-# Drums enter on 그래서 (beat 6)
+# Dark opening (0-6): soft D-minor glass pad, low timpani, bells
+put(glass_pad([D3, F3, A3], 6*BEAT, 1.2*BEAT, 0.3), 0, 0.5)
+put(bell(D4, 3.0, 0.6), 0, 0.5)
+put(timp(55), 1, 0.9); put(bell(A4, 2.5, 0.8), 1, 0.45)
+for i, n in enumerate([A4, G4, F4, E4, D4]):          # letters fall: descending bells
+    put(bell(n, 1.6, 0.7), 2 + i*3/28, 0.38)
+put(bell(F4, 3.0, 0.6), 3, 0.45)
+put(timp(52), 4, 0.85); put(bell(D5, 2.5, 0.8), 4, 0.4)
+put(air(1, up=False), 5, 0.6)                          # letters vanish
+put(air(1, up=True), 5, 0.8)                           # breath in before the turn
+
+# Turn (6): bright D-major bell chord, gentle groove begins
+put(bell(D5, 3.0, 1.0), 6, 0.55); put(bell(Fs5, 3.0, 0.8), 6, 0.4); put(bell(A5, 3.0, 0.7), 6, 0.35)
+put(timp(73), 6, 0.6)
 for b in range(6, 16):
-    put(kick(), b, 0.85)
-    put(hat(), b + 0.5, 0.22, pan=0.3)
-BIG  = [6, 8, 11, 13, 15]
-SOFT = [7, 9, 12, 14]
-for b in BIG:
-    put(boom(), b, 0.95); put(clap(), b, 0.75)
-for b in SOFT:
-    put(clap(), b, 0.35)
-# 다시 세우는: rising plucks as the words rise, major chord opens up
-put(pluck(D), 10, 0.55, pan=-0.3); put(pluck(D*1.5), 10.5, 0.55, pan=0.3)
-put(pad([D/2, D*0.75, D*1.25], 3*BEAT, 0.2, 0.6), 9, 0.32)
-put(riser(1), 7, 0.45); put(riser(1), 12, 0.45)
-for k in range(4):                           # 16th build under soon.
-    put(hat(), 15 + k/4, 0.45, pan=-0.3 if k % 2 else 0.3); put(clap(), 15 + k/4, 0.25 + 0.12*k)
-put(riser(1, 400, 10000), 15, 0.8)
+    put(softkick(), b, 0.55)
+    put(shaker(), b + 0.5, 0.35, pan=0.3)
+    if b % 2: put(shaker(), b, 0.2, pan=-0.3)
+put(glass_pad([D3*2, Fs4, A4], 3*BEAT, 0.3, 0.6), 6, 0.3)
+put(glass_pad([B4/2, D4, Fs4], 3*BEAT, 0.3, 0.6), 9, 0.3)
+put(glass_pad([G4/2, B4/2*2, D4], 3*BEAT, 0.3, 0.6), 12, 0.3)
+for b, n in [(7, A4), (8, D5), (9, B4), (11, D5), (12, A4), (13, Fs5), (14, E5), (15, A5)]:
+    put(bell(n, 2.0, 0.9), b, 0.42)
+for b, n in [(10, D5), (10.5, A5)]:                    # 다시 · 세우는 rise
+    put(bell(n, 2.4, 1.0), b, 0.5); put(bell(n/2, 2.4, 0.6), b, 0.3)
+for k in range(4):                                     # build into the logo
+    put(bell([A4, B4, Cs5, D5][k], 0.9, 0.8), 15 + k/4, 0.35)
+put(air(1, up=True), 15, 0.7)
 
-FINAL = 16                                   # logo lands
-put(boom(2.6, 40, 1.5), FINAL, 1.2); put(clap(), FINAL, 0.7)
-put(pad([D/2, D*0.75, D, D*1.25, D*1.5], 3*BEAT, 0.01, 2.2), FINAL, 0.6)
-for i, m in enumerate([1.0, 1.25, 1.5, 2.0]):
-    put(pluck(D*m*2, 1.4), FINAL + i*0.5, 0.22, pan=-0.4+i*0.27)
+FINAL = 16
+put(timp(37, 2.4), FINAL, 0.75)
+put(glass_pad([D3, A3, D4, Fs4, A4], 3*BEAT, 0.02, 2.4), FINAL, 0.45)
+for i, n in enumerate([D5, Fs5, A5, D6]):
+    put(bell(n, 3.2, 0.9), FINAL + i*0.12, 0.38, pan=-0.3+i*0.2)
 
-def room(x, secs=1.6, wet=0.10):
+def room(x, secs=2.6, wet=0.24):
     ir_t = t_(secs); ir = lp(rng.standard_normal(len(ir_t))*np.exp(-ir_t*3.5), 5000)
     ir /= np.sqrt((ir**2).sum()); n = len(x)+len(ir)
     y = np.fft.irfft(np.fft.rfft(x, n)*np.fft.rfft(ir, n), n)[:len(x)]
     return x*(1-wet) + y*wet*2
 L = room(L); R = room(R)
-mix = np.tanh(np.stack([L, R], 1)*0.9)
+mix = np.stack([L, R], 1)
 fl = int(1.2*SR); mix[-fl:] *= np.linspace(1, 0, fl)[:, None]**2   # slow fade over the logo
 mix /= np.abs(mix).max()/0.75
 with wave.open(sys.argv[1], 'wb') as w:
