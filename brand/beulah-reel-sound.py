@@ -1,10 +1,10 @@
 """Original soundtrack for the Beulah reel, locked to the same beat grid as reel.html.
-1 beat = 16 frames at 30 fps = 0.5333 s (112.5 BPM). Every sound starts exactly on a beat or an 8th/16th of a beat."""
+1 beat = 14 frames at 30 fps = 0.4667 s (128.6 BPM). Every sound starts exactly on a beat or an 8th/16th of a beat."""
 import sys, wave
 import numpy as np
 
 SR = 48000
-BEAT = 16 / 30
+BEAT = 14 / 30
 TOTAL_BEATS = 23
 N = int(round(TOTAL_BEATS * BEAT * SR))
 L = np.zeros(N); R = np.zeros(N)
