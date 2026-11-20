@@ -5,7 +5,7 @@ import numpy as np
 
 SR = 48000
 BEAT = 14 / 30
-TOTAL_BEATS = 23
+TOTAL_BEATS = 25
 N = int(round(TOTAL_BEATS * BEAT * SR))
 L = np.zeros(N); R = np.zeros(N)
 rng = np.random.default_rng(7)
@@ -72,7 +72,7 @@ BIG   = [0, 1, 3, 4, 5, 12, 14, 15, 16, 17, 18, 19]   # slam cuts
 SOFT  = [2, 11, 13]                                  # thin first lines
 FLASH = [6, 6.5, 7, 7.5]                             # 소명 · 정직 · 동행 · 열매
 GROW  = [8.5, 9, 9.5, 10]                            # seed -> tree
-FINAL = 20                                           # !!!
+FINAL = 20                                           # logo lands
 
 for b in range(0, 20):                               # kick on every beat, hat on every off-beat
     put(kick(), b, 0.85)
@@ -95,6 +95,12 @@ for k in range(4):               # 16th-note build over 신청하세요 (matches
     put(hat(), 19 + k/4, 0.45, pan=-0.3 if k % 2 else 0.3); put(clap(), 19 + k/4, 0.25 + 0.12*k)
 put(riser(1, 400, 10000), 19, 0.8)
 
+# Logo lands on beat 20: one deep boom and a warm chord that rings out (no more drums)
+put(boom(2.6, 40, 1.5), FINAL, 1.2); put(clap(), FINAL, 0.7)
+put(pad([D/2, D*0.75, D, D*1.25, D*1.5], 5*BEAT, 0.01, 3.0), FINAL, 0.6)
+for i, m in enumerate([1.0, 1.25, 1.5, 2.0]):
+    put(pluck(D*m*2, 1.6), FINAL + i*0.5, 0.22, pan=-0.4+i*0.27)
+
 def room(x, secs=1.6, wet=0.10):
     ir_t = t_(secs); ir = lp(rng.standard_normal(len(ir_t))*np.exp(-ir_t*3.5), 5000)
     ir /= np.sqrt((ir**2).sum()); n = len(x)+len(ir)
@@ -102,9 +108,7 @@ def room(x, secs=1.6, wet=0.10):
     return x*(1-wet) + y*wet*2
 L = room(L); R = room(R)
 mix = np.tanh(np.stack([L, R], 1)*0.9)
-# The build-up stops dead on beat 20 as the logo appears; logo stays silent
-end = at(20); fl = int(0.008*SR)
-mix[end-fl:end] *= np.linspace(1, 0, fl)[:, None]; mix[end:] = 0
+fl = int(1.2*SR); mix[-fl:] *= np.linspace(1, 0, fl)[:, None]**2   # slow fade over the logo
 mix /= np.abs(mix).max()/0.75
 with wave.open(sys.argv[1], 'wb') as w:
     w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR)
