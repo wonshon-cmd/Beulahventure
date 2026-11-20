@@ -11,7 +11,7 @@ body { font-family: "Gothic A1", sans-serif; word-break: keep-all; }
 .c { align-items: center; text-align: center; }
 .blue { color: #3b8fc4; }
 </style></head><body>
-<!-- All times are in beats. 1 beat = 14 frames at 30 fps (128.6 BPM). -->
+<!-- All times are in beats. 1 beat = 28 frames at 60 fps (128.6 BPM). -->
 <div class="sc k c" data-s="0" data-e="1"><span class="el bold" data-in="0" data-fx="slam" style="font-size:260px;letter-spacing:-0.06em">돈?</span></div>
 <div class="sc w c" data-s="1" data-e="2"><span class="el bold" data-in="1" data-fx="slam" style="font-size:260px;letter-spacing:-0.06em">아니.</span></div>
 <div class="sc w" data-s="2" data-e="4">
@@ -70,19 +70,24 @@ body { font-family: "Gothic A1", sans-serif; word-break: keep-all; }
 </div>
 
 <script>
-const FPB=14; // frames per beat
+const FPB=28; // frames per beat at 60 fps (128.6 BPM)
 const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
 const ease=x=>1-Math.pow(1-x,3);
-// frame index -> beats (16 frames per beat). Each cut happens exactly on the frame where its beat starts.
+// frame index -> beats. Each cut happens exactly on the frame where its beat starts.
 window.setFrame=function(f){
   const bt = f/FPB;
-  document.querySelectorAll('.sc').forEach(s=>{ s.style.display=(bt>=+s.dataset.s && bt<+s.dataset.e)?'flex':'none'; });
+  // beat pulse: the whole screen kicks with every drum hit (quarter notes, 16ths during the final build)
+  let pulse = 1;
+  if (bt < 19) { const ph=(f % FPB)/FPB; pulse = 1 + 0.03*Math.exp(-ph*9); }
+  else if (bt < 20) { const q=FPB/4, ph=(f % q)/q; pulse = 1 + 0.025*Math.exp(-ph*5); }
+  document.querySelectorAll('.sc').forEach(s=>{ const on=(bt>=+s.dataset.s && bt<+s.dataset.e);
+    s.style.display=on?'flex':'none'; s.style.transform=on?`scale(${pulse})`:''; });
   document.querySelectorAll('.el').forEach(e=>{
     const df = f - Math.round((+e.dataset.in)*FPB);
     const fx = e.dataset.fx;
     if (df < 0) { e.style.opacity = 0; return; }
     e.style.opacity = 1;                         // fully visible on the hit frame
-    const k = ease(clamp(df/4,0,1));             // settles within 4 frames
+    const k = ease(clamp(df/8,0,1));             // settles within 8 frames (0.13 s)
     let tr='none';
     if(fx==='slam') tr=`scale(${1.14-0.14*k})`;
     if(fx==='pop')  tr=`scale(${1.10-0.10*k})`;
@@ -92,7 +97,7 @@ window.setFrame=function(f){
   });
   ['river1','river2'].forEach(id=>{const r=document.getElementById(id); const L=r.getTotalLength();
     const p=ease(clamp((bt-8)/0.5,0,1)); r.style.strokeDasharray=L; r.style.strokeDashoffset=L*(1-p);});
-  document.querySelectorAll('.grow').forEach(g=>{const df=f-Math.round((+g.dataset.in)*FPB); const p=df<0?0:ease(clamp((df+1)/4,0,1));
+  document.querySelectorAll('.grow').forEach(g=>{const df=f-Math.round((+g.dataset.in)*FPB); const p=df<0?0:ease(clamp((df+1)/8,0,1));
     g.style.transform=`scale(${p})`; g.style.opacity=p>0?1:0;});
 };
 setFrame(0);

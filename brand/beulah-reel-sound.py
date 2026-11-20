@@ -1,5 +1,5 @@
 """Original soundtrack for the Beulah reel, locked to the same beat grid as reel.html.
-1 beat = 14 frames at 30 fps = 0.4667 s (128.6 BPM). Every sound starts exactly on a beat or an 8th/16th of a beat."""
+1 beat = 28 frames at 60 fps = 0.4667 s (128.6 BPM). Every sound starts exactly on a beat or an 8th/16th of a beat."""
 import sys, wave
 import numpy as np
 
@@ -91,8 +91,8 @@ put(pad([D/2, D*0.75, D*1.25], 3*BEAT, 0.3, 0.4), 8, 0.3)
 put(riser(1), 2, 0.5)            # into 가치.
 put(riser(1), 11, 0.5)           # into 들려주세요.
 put(riser(1), 13, 0.5)           # into 투자까지.
-for k in range(8):               # 16th hats over 신청하세요
-    put(hat(), 19 + k/8, 0.35, pan=-0.3 if k % 2 else 0.3)
+for k in range(4):               # 16th-note build over 신청하세요 (matches the 16th screen pulse)
+    put(hat(), 19 + k/4, 0.45, pan=-0.3 if k % 2 else 0.3); put(clap(), 19 + k/4, 0.25 + 0.12*k)
 put(riser(1, 400, 10000), 19, 0.8)
 put(boom(2.2, 40, 1.8), FINAL, 1.4); put(clap(), FINAL, 1.0)
 put(pad([D/2, D*0.75, D, D*1.25, D*1.5], 2*BEAT, 0.02, 0.5), FINAL, 0.5)
