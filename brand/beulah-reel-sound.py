@@ -2,7 +2,7 @@ import sys, wave
 import numpy as np
 
 SR = 48000
-DUR = 10.5
+DUR = 11.0
 N = int(SR * DUR)
 L = np.zeros(N); R = np.zeros(N)
 rng = np.random.default_rng(7)
@@ -80,7 +80,7 @@ def reverb(x, secs=2.2, wet=0.25):
     return x*(1-wet) + y*wet*2
 
 # --- groove: kick every beat 0-7.5, offbeat hats
-for b in np.arange(0, 7.5, 0.5):
+for b in list(np.arange(0, 7.5, 0.5)) + [7.5, 8.1, 8.6, 9.1]:
     put(kick(), b, 0.9)
     put(hat(), b+0.25, 0.25, pan=0.3)
 # flash words: 16th energy
@@ -107,19 +107,24 @@ for at, mult in [(4.5,1.0),(4.75,1.25),(5.0,1.5),(5.25,2.0)]:
     put(pluck(D*mult), at, 0.45, pan=(mult-1.5)*0.6)
 put(pad([D/2, D*0.75, D*1.25], 1.6, 0.4, 0.5), 4.0, 0.35)
 
-# --- final impact + hopeful chord
-put(boom(2.6, 40), 7.5, 1.3)
-put(clap(), 7.5, 0.9)
-put(pad([D/2, D*0.75, D, D*1.25, D*1.5], 3.0, 0.15, 1.6), 7.5, 0.55)
+# --- closing slides: hit on every card, build-up, final blast
+for at, g in [(7.7,1.0),(8.1,0.95),(8.6,1.0),(9.1,1.05)]:
+    put(boom(1.2), at, g); put(clap(), at, 0.8)
+for b in np.arange(9.1, 9.7, 0.0625):
+    put(hat(), b, 0.35, pan=-0.3 if int(b*16)%2 else 0.3)
+put(riser(0.6, 400, 9000), 9.1, 0.75)
+put(boom(2.2, 40), 9.7, 1.4)
+put(clap(), 9.7, 1.0)
+put(pad([D/2, D*0.75, D, D*1.25, D*1.5], 1.3, 0.05, 0.9), 9.7, 0.55)
 for i, mult in enumerate([1.0, 1.25, 1.5, 2.0]):
-    put(pluck(D*mult*2, 1.4), 7.65 + i*0.12, 0.25, pan=-0.4+i*0.27)
+    put(pluck(D*mult*2, 1.0), 9.75 + i*0.08, 0.25, pan=-0.4+i*0.27)
 
 # --- master
 L = reverb(L, wet=0.12); R = reverb(R, wet=0.12)
 mix = np.stack([L, R], 1)
 mix = onepole_lp(mix[:,0], 16000)[:,None]*0 + mix  # keep simple
 mix = np.tanh(mix*0.9)
-fade = np.ones(N); fl = int(0.8*SR); fade[-fl:] = np.linspace(1, 0, fl)
+fade = np.ones(N); fl = int(0.5*SR); fade[-fl:] = np.linspace(1, 0, fl)
 mix *= fade[:,None]
 mix /= np.abs(mix).max()/0.75
 pcm = (mix*32767).astype(np.int16)
