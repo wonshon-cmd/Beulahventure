@@ -99,12 +99,6 @@ put(pad([D/2, D*0.75, D, D*1.25, D*1.5], 2*BEAT, 0.02, 0.5), FINAL, 0.5)
 for i, m in enumerate([1.0, 1.25, 1.5, 2.0]):
     put(pluck(D*m*2, 1.0), FINAL + i*0.25, 0.25, pan=-0.4+i*0.27)
 
-# Logo at beat 22: warm landing, chord rings out
-put(boom(1.6, 42, 2.2), 22, 0.75)
-put(pad([D/2, D*0.75, D, D*1.25, D*1.5], 3*BEAT, 0.03, 1.2), 22, 0.6)
-for i, m in enumerate([1.0, 1.25, 1.5, 2.0, 2.5]):
-    put(pluck(D*m*2, 1.3), 22 + i*0.25, 0.22, pan=-0.4+i*0.2)
-
 def room(x, secs=1.6, wet=0.10):
     ir_t = t_(secs); ir = lp(rng.standard_normal(len(ir_t))*np.exp(-ir_t*3.5), 5000)
     ir /= np.sqrt((ir**2).sum()); n = len(x)+len(ir)
@@ -112,7 +106,9 @@ def room(x, secs=1.6, wet=0.10):
     return x*(1-wet) + y*wet*2
 L = room(L); R = room(R)
 mix = np.tanh(np.stack([L, R], 1)*0.9)
-fl = int(0.6*SR); mix[-fl:] *= np.linspace(1, 0, fl)[:, None]
+# Logo (beat 22 to the end) stays silent: short fade just before it, then nothing
+end = at(22); fl = int(0.12*SR)
+mix[end-fl:end] *= np.linspace(1, 0, fl)[:, None]; mix[end:] = 0
 mix /= np.abs(mix).max()/0.75
 with wave.open(sys.argv[1], 'wb') as w:
     w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR)
