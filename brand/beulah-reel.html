@@ -6,90 +6,83 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: #fff; 
 body { font-family: "Gothic A1", sans-serif; word-break: keep-all; }
 .sc { position: absolute; inset: 0; display: none; flex-direction: column; justify-content: center; padding: 0 96px; }
 .w { background: #fff; color: #111; } .k { background: #111; color: #fff; } .b { background: #3b8fc4; color: #fff; }
-.el { display: block; will-change: transform, opacity; }
+.el { display: block; white-space: nowrap; }
 .thin { font-weight: 200; } .bold { font-weight: 800; }
-.c { text-align: center; align-items: center; }
+.c { align-items: center; text-align: center; }
 .blue { color: #3b8fc4; }
-.logo { position: absolute; top: 120px; left: 96px; display: flex; align-items: center; gap: 18px; }
-.logo svg { width: 52px; height: 61px; display: block; }
-.logo .wm { display: flex; flex-direction: column; justify-content: space-between; height: 61px; }
-.logo b { font-size: 40px; font-weight: 800; letter-spacing: -0.04em; line-height: 38px; }
-.logo small { font-size: 15px; letter-spacing: 0.34em; color: #707070; line-height: 15px; }
 </style></head><body>
-
-<!-- S1 -->
-<div class="sc k c" data-s="0" data-e="0.5"><span class="el bold" data-in="0" data-fx="slam" style="font-size:260px;letter-spacing:-0.06em">돈?</span></div>
-<!-- S2 -->
-<div class="sc w c" data-s="0.5" data-e="1.0"><span class="el bold" data-in="0.5" data-fx="slam" style="font-size:260px;letter-spacing:-0.06em">아니.</span></div>
-<!-- S3 -->
-<div class="sc w" data-s="1.0" data-e="2.0">
-  <span class="el thin" data-in="1.0" data-fx="up" style="font-size:200px;line-height:1.05;letter-spacing:-0.07em">돈보다</span>
-  <span class="el bold" data-in="1.5" data-fx="slam" style="font-size:300px;line-height:1.05;letter-spacing:-0.07em">가치.</span>
+<!-- All times are in beats. 1 beat = 16 frames at 30 fps (112.5 BPM). -->
+<div class="sc k c" data-s="0" data-e="1"><span class="el bold" data-in="0" data-fx="slam" style="font-size:260px;letter-spacing:-0.06em">돈?</span></div>
+<div class="sc w c" data-s="1" data-e="2"><span class="el bold" data-in="1" data-fx="slam" style="font-size:260px;letter-spacing:-0.06em">아니.</span></div>
+<div class="sc w" data-s="2" data-e="4">
+  <span class="el thin" data-in="2" data-fx="up" style="font-size:200px;line-height:1.05;letter-spacing:-0.07em">돈보다</span>
+  <span class="el bold" data-in="3" data-fx="slam" style="font-size:300px;line-height:1.05;letter-spacing:-0.07em">가치.</span>
 </div>
-<!-- S4 -->
-<div class="sc k c" data-s="2.0" data-e="2.5"><span class="el bold" data-in="2.0" data-fx="slam" style="font-size:120px;letter-spacing:-0.05em">복음의 가치로</span></div>
-<!-- S5 -->
-<div class="sc b c" data-s="2.5" data-e="3.0"><span class="el bold" data-in="2.5" data-fx="slam" style="font-size:150px;letter-spacing:-0.05em">창업할 분,</span></div>
-<!-- S6 flash words -->
-<div class="sc w c" data-s="3.0" data-e="3.25"><span class="el bold" data-in="3.0" data-fx="pop" style="font-size:280px">소명</span></div>
-<div class="sc k c" data-s="3.25" data-e="3.5"><span class="el bold" data-in="3.25" data-fx="pop" style="font-size:280px">정직</span></div>
-<div class="sc w c" data-s="3.5" data-e="3.75"><span class="el bold blue" data-in="3.5" data-fx="pop" style="font-size:280px">동행</span></div>
-<div class="sc k c" data-s="3.75" data-e="4.0"><span class="el bold" data-in="3.75" data-fx="pop" style="font-size:280px">열매</span></div>
-<!-- S7 seed to tree -->
-<div class="sc w" data-s="4.0" data-e="5.5" style="padding:0">
+<div class="sc k c" data-s="4" data-e="5"><span class="el bold" data-in="4" data-fx="slam" style="font-size:120px;letter-spacing:-0.05em">복음의 가치로</span></div>
+<div class="sc b c" data-s="5" data-e="6"><span class="el bold" data-in="5" data-fx="slam" style="font-size:150px;letter-spacing:-0.05em">창업할 분,</span></div>
+<div class="sc w c" data-s="6" data-e="6.5"><span class="el bold" data-in="6" data-fx="pop" style="font-size:280px">소명</span></div>
+<div class="sc k c" data-s="6.5" data-e="7"><span class="el bold" data-in="6.5" data-fx="pop" style="font-size:280px">정직</span></div>
+<div class="sc w c" data-s="7" data-e="7.5"><span class="el bold blue" data-in="7" data-fx="pop" style="font-size:280px">동행</span></div>
+<div class="sc k c" data-s="7.5" data-e="8"><span class="el bold" data-in="7.5" data-fx="pop" style="font-size:280px">열매</span></div>
+<div class="sc w" data-s="8" data-e="11" style="padding:0">
   <svg viewBox="0 0 1080 1920" width="1080" height="1920" style="position:absolute;inset:0">
     <path id="river1" d="M0,1180 C180,1120 320,1260 520,1190 S860,1110 1080,1170" fill="none" stroke="#3b8fc4" stroke-width="6"/>
     <path id="river2" d="M0,1230 C200,1180 340,1300 540,1240 S880,1170 1080,1220" fill="none" stroke="#3b8fc4" stroke-width="3" opacity=".45"/>
     <g stroke="#111" stroke-width="5" fill="#fff" stroke-linecap="round" stroke-linejoin="round">
-      <g class="grow" data-in="4.5" style="transform-origin:240px 1160px"><circle cx="240" cy="1160" r="9" fill="#111" stroke="none"/></g>
-      <g class="grow" data-in="4.75" style="transform-origin:440px 1150px">
+      <g class="grow" data-in="8.5" style="transform-origin:240px 1160px"><circle cx="240" cy="1160" r="9" fill="#111" stroke="none"/></g>
+      <g class="grow" data-in="9" style="transform-origin:440px 1150px">
         <path d="M440,1150 L440,1110" fill="none"/><path d="M440,1118 C424,1094 400,1098 396,1110 C412,1122 428,1122 440,1118 Z"/><path d="M440,1110 C456,1086 480,1090 484,1102 C468,1114 452,1114 440,1110 Z"/>
       </g>
-      <g class="grow" data-in="5.0" style="transform-origin:640px 1135px">
+      <g class="grow" data-in="9.5" style="transform-origin:640px 1135px">
         <path d="M640,1135 L640,1055" fill="none"/><path d="M640,1090 C612,1062 580,1070 576,1086 C600,1102 624,1098 640,1090 Z"/><path d="M640,1070 C668,1042 700,1050 704,1066 C680,1082 656,1078 640,1070 Z"/><path d="M640,1055 C624,1027 632,1007 640,1003 C648,1007 656,1027 640,1055 Z"/>
       </g>
-      <g class="grow" data-in="5.25" style="transform-origin:860px 1145px">
+      <g class="grow" data-in="10" style="transform-origin:860px 1145px">
         <path d="M860,1145 L860,1010" fill="none" stroke-width="7"/><path d="M860,1050 L830,1024 M860,1075 L890,1050" fill="none"/>
         <path d="M860,1040 C796,1044 768,1004 788,968 C772,928 816,896 848,916 C872,888 924,904 920,940 C956,960 944,1016 904,1024 C892,1044 872,1044 860,1040 Z"/>
       </g>
     </g>
   </svg>
 </div>
-<!-- S8 -->
-<div class="sc k" data-s="5.5" data-e="6.5">
-  <span class="el thin" data-in="5.5" data-fx="up" style="font-size:120px;line-height:1.25;letter-spacing:-0.05em">당신의 이야기를</span>
-  <span class="el bold" data-in="6.0" data-fx="slam" style="font-size:150px;line-height:1.25;letter-spacing:-0.05em">들려주세요.</span>
+<div class="sc k" data-s="11" data-e="13">
+  <span class="el thin" data-in="11" data-fx="up" style="font-size:120px;line-height:1.25;letter-spacing:-0.05em">당신의 이야기를</span>
+  <span class="el bold" data-in="12" data-fx="slam" style="font-size:150px;line-height:1.25;letter-spacing:-0.05em">들려주세요.</span>
 </div>
-<!-- S9 -->
-<div class="sc w" data-s="6.5" data-e="7.5">
-  <span class="el thin" data-in="6.5" data-fx="up" style="font-size:130px;line-height:1.2;letter-spacing:-0.05em">창업 지원부터</span>
-  <span class="el bold blue" data-in="7.0" data-fx="slam" style="font-size:210px;line-height:1.2;letter-spacing:-0.06em">투자까지.</span>
+<div class="sc w" data-s="13" data-e="15">
+  <span class="el thin" data-in="13" data-fx="up" style="font-size:130px;line-height:1.2;letter-spacing:-0.05em">창업 지원부터</span>
+  <span class="el bold blue" data-in="14" data-fx="slam" style="font-size:210px;line-height:1.2;letter-spacing:-0.06em">투자까지.</span>
 </div>
-<!-- S10 closing slides -->
-<div class="sc k c" data-s="7.5" data-e="8.1"><span class="el thin" data-in="7.5" data-fx="up" style="font-size:150px;line-height:1.1;letter-spacing:-0.06em">2027년</span><span class="el bold" data-in="7.7" data-fx="slam" style="font-size:210px;line-height:1.1;letter-spacing:-0.06em">첫 기수</span></div>
-<div class="sc b c" data-s="8.1" data-e="8.6"><span class="el bold" data-in="8.1" data-fx="slam" style="font-size:250px;letter-spacing:-0.06em">곧 마감</span></div>
-<div class="sc w c" data-s="8.6" data-e="9.1"><span class="el bold" data-in="8.6" data-fx="slam" style="font-size:200px;letter-spacing:-0.06em;white-space:nowrap">지금 당장</span></div>
-<div class="sc k c" data-s="9.1" data-e="9.7"><span class="el bold" data-in="9.1" data-fx="slam" style="font-size:180px;letter-spacing:-0.06em;white-space:nowrap">신청하세요</span></div>
-<div class="sc b c" data-s="9.7" data-e="99"><span class="el bold" data-in="9.7" data-fx="slam" style="font-size:520px;letter-spacing:-0.02em;line-height:1">!!!</span></div>
+<div class="sc k c" data-s="15" data-e="16"><span class="el bold" data-in="15" data-fx="slam" style="font-size:330px;letter-spacing:-0.06em">2027</span></div>
+<div class="sc w c" data-s="16" data-e="17"><span class="el bold" data-in="16" data-fx="slam" style="font-size:250px;letter-spacing:-0.06em">첫 기수</span></div>
+<div class="sc b c" data-s="17" data-e="18"><span class="el bold" data-in="17" data-fx="slam" style="font-size:250px;letter-spacing:-0.06em">곧 마감</span></div>
+<div class="sc w c" data-s="18" data-e="19"><span class="el bold" data-in="18" data-fx="slam" style="font-size:200px;letter-spacing:-0.06em">지금 당장</span></div>
+<div class="sc k c" data-s="19" data-e="20"><span class="el bold" data-in="19" data-fx="slam" style="font-size:180px;letter-spacing:-0.06em">신청하세요</span></div>
+<div class="sc b c" data-s="20" data-e="99"><span class="el bold" data-in="20" data-fx="slam" style="font-size:520px;letter-spacing:-0.02em;line-height:1">!!!</span></div>
 
 <script>
 const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
 const ease=x=>1-Math.pow(1-x,3);
-window.setT=function(t){
-  document.querySelectorAll('.sc').forEach(s=>{ s.style.display=(t>=+s.dataset.s && t<+s.dataset.e)?'flex':'none'; });
+// frame index -> beats (16 frames per beat). Each cut happens exactly on the frame where its beat starts.
+window.setFrame=function(f){
+  const bt = f/16;
+  document.querySelectorAll('.sc').forEach(s=>{ s.style.display=(bt>=+s.dataset.s && bt<+s.dataset.e)?'flex':'none'; });
   document.querySelectorAll('.el').forEach(e=>{
-    const p=clamp((t-+e.dataset.in)/(e.dataset.fx==='pop'?0.08:0.14),0,1), k=ease(p), fx=e.dataset.fx;
+    const df = f - Math.round((+e.dataset.in)*16);
+    const fx = e.dataset.fx;
+    if (df < 0) { e.style.opacity = 0; return; }
+    e.style.opacity = 1;                         // fully visible on the hit frame
+    const k = ease(clamp(df/4,0,1));             // settles within 4 frames
     let tr='none';
-    if(fx==='slam') tr=`scale(${1.35-0.35*k})`;
-    if(fx==='pop') tr=`scale(${0.7+0.3*k})`;
-    if(fx==='up') tr=`translateY(${(1-k)*60}px)`;
-    e.style.opacity=p; e.style.transform=tr; e.style.transformOrigin=fx==='slam'||fx==='pop'?'left center':'';
-    if(e.closest('.c')) e.style.transformOrigin='center';
+    if(fx==='slam') tr=`scale(${1.14-0.14*k})`;
+    if(fx==='pop')  tr=`scale(${1.10-0.10*k})`;
+    if(fx==='up')   tr=`translateY(${(1-k)*24}px)`;
+    e.style.transform=tr;
+    e.style.transformOrigin = e.closest('.c') ? 'center' : 'left center';
   });
-  // river draw + growth
-  ['river1','river2'].forEach((id,i)=>{const r=document.getElementById(id); const L=r.getTotalLength(); r.style.strokeDasharray=L; r.style.strokeDashoffset=L*(1-ease(clamp((t-4.0-i*0.08)/0.45,0,1)));});
-  document.querySelectorAll('.grow').forEach(g=>{const p=ease(clamp((t-+g.dataset.in)/0.18,0,1)); g.style.transform=`scale(${p})`; g.style.opacity=p>0?1:0;});
+  ['river1','river2'].forEach(id=>{const r=document.getElementById(id); const L=r.getTotalLength();
+    const p=ease(clamp((bt-8)/0.5,0,1)); r.style.strokeDasharray=L; r.style.strokeDashoffset=L*(1-p);});
+  document.querySelectorAll('.grow').forEach(g=>{const df=f-Math.round((+g.dataset.in)*16); const p=df<0?0:ease(clamp((df+1)/4,0,1));
+    g.style.transform=`scale(${p})`; g.style.opacity=p>0?1:0;});
 };
-setT(0);
+setFrame(0);
 </script>
 </body></html>
