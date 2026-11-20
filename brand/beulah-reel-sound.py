@@ -5,7 +5,7 @@ import numpy as np
 
 SR = 48000
 BEAT = 14 / 30
-TOTAL_BEATS = 25
+TOTAL_BEATS = 23
 N = int(round(TOTAL_BEATS * BEAT * SR))
 L = np.zeros(N); R = np.zeros(N)
 rng = np.random.default_rng(7)
@@ -94,10 +94,6 @@ put(riser(1), 13, 0.5)           # into 투자까지.
 for k in range(4):               # 16th-note build over 신청하세요 (matches the 16th screen pulse)
     put(hat(), 19 + k/4, 0.45, pan=-0.3 if k % 2 else 0.3); put(clap(), 19 + k/4, 0.25 + 0.12*k)
 put(riser(1, 400, 10000), 19, 0.8)
-put(boom(2.2, 40, 1.8), FINAL, 1.4); put(clap(), FINAL, 1.0)
-put(pad([D/2, D*0.75, D, D*1.25, D*1.5], 2*BEAT, 0.02, 0.5), FINAL, 0.5)
-for i, m in enumerate([1.0, 1.25, 1.5, 2.0]):
-    put(pluck(D*m*2, 1.0), FINAL + i*0.25, 0.25, pan=-0.4+i*0.27)
 
 def room(x, secs=1.6, wet=0.10):
     ir_t = t_(secs); ir = lp(rng.standard_normal(len(ir_t))*np.exp(-ir_t*3.5), 5000)
@@ -106,8 +102,8 @@ def room(x, secs=1.6, wet=0.10):
     return x*(1-wet) + y*wet*2
 L = room(L); R = room(R)
 mix = np.tanh(np.stack([L, R], 1)*0.9)
-# Logo (beat 22 to the end) stays silent: short fade just before it, then nothing
-end = at(22); fl = int(0.12*SR)
+# The build-up stops dead on beat 20 as the logo appears; logo stays silent
+end = at(20); fl = int(0.008*SR)
 mix[end-fl:end] *= np.linspace(1, 0, fl)[:, None]; mix[end:] = 0
 mix /= np.abs(mix).max()/0.75
 with wave.open(sys.argv[1], 'wb') as w:
