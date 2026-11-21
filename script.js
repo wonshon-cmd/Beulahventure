@@ -419,7 +419,8 @@
     toggle.setAttribute("aria-expanded", String(open));
   });
   links.addEventListener("click", (e) => {
-    if (e.target.tagName === "A") {
+    // Close the menu after following a link or switching language
+    if (e.target.closest("a, .lang-toggle")) {
       links.classList.remove("open");
       toggle.setAttribute("aria-expanded", "false");
     }
