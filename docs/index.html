@@ -852,8 +852,8 @@ dialog.letter[open] { animation: rise .45s var(--ease) both; }
               <button type="button" class="oauth-btn" data-provider="apple"><svg viewBox="0 0 18 18" aria-hidden="true"><path fill="currentColor" d="M14.94 9.56c-.02-2.05 1.67-3.04 1.75-3.09-.95-1.4-2.44-1.59-2.97-1.61-1.26-.13-2.47.74-3.11.74-.65 0-1.63-.73-2.68-.71A3.97 3.97 0 0 0 4.57 6.9c-1.44 2.5-.37 6.19 1.03 8.22.69.99 1.5 2.1 2.57 2.06 1.03-.04 1.42-.66 2.67-.66 1.24 0 1.6.66 2.68.64 1.11-.02 1.81-1 2.48-2a8.6 8.6 0 0 0 1.13-2.31 3.57 3.57 0 0 1-2.19-3.29zM12.9 3.54A3.6 3.6 0 0 0 13.73.95a3.68 3.68 0 0 0-2.38 1.23 3.44 3.44 0 0 0-.85 2.5 3.04 3.04 0 0 0 2.4-1.14z"/></svg><span data-i18n="auth.apple">Apple로 계속</span></button>
               <button type="button" class="oauth-btn" data-provider="microsoft"><svg viewBox="0 0 18 18" aria-hidden="true"><path fill="#F25022" d="M1 1h7.5v7.5H1z"/><path fill="#7FBA00" d="M9.5 1H17v7.5H9.5z"/><path fill="#00A4EF" d="M1 9.5h7.5V17H1z"/><path fill="#FFB900" d="M9.5 9.5H17V17H9.5z"/></svg><span data-i18n="auth.microsoft">Microsoft로 계속</span></button>
             </div>
-            <p class="or"><span data-i18n="auth.or">또는 이메일로</span></p>
-            <form class="pitch-form" id="email-form" novalidate>
+            <p class="or"><button type="button" class="link-btn" id="ap-use-email" data-i18n="auth.useEmail">이메일로 가입 · 로그인</button></p>
+            <form class="pitch-form" id="email-form" novalidate hidden>
               <label class="full" id="name-row"><span data-i18n="form.name">이름</span><input id="ap-name" name="name" autocomplete="name"></label>
               <label class="full"><span data-i18n="form.email">이메일</span><input id="ap-email" name="email" type="email" autocomplete="email"></label>
               <label class="full"><span data-i18n="auth.password">비밀번호 (8자 이상)</span><input id="ap-pass" name="password" type="password" autocomplete="new-password" minlength="8"></label>
@@ -918,7 +918,7 @@ window.SITE_DATA = {
     appId: "1:240426405363:web:8912ec8eb5100e7d239686"
   },
   // Turn Apple / Microsoft on after enabling them in Firebase > Authentication > Sign-in method
-  providers: { google: true, apple: false, microsoft: false },
+  providers: { google: true, apple: true, microsoft: false },
 
   portfolio: [],
 
@@ -979,6 +979,8 @@ window.SITE_DATA = {
       "auth.apple": "Apple로 계속",
       "auth.microsoft": "Microsoft로 계속",
       "auth.or": "또는 이메일로",
+      "auth.useEmail": "이메일로 가입 · 로그인",
+      "auth.err.soon": "Apple 로그인은 곧 열립니다. 지금은 Google 또는 이메일로 가입해 주세요.",
       "auth.password": "비밀번호 (8자 이상)",
       "auth.signup": "가입하기",
       "auth.login": "로그인",
@@ -1262,6 +1264,8 @@ window.SITE_DATA = {
       "auth.apple": "Continue with Apple",
       "auth.microsoft": "Continue with Microsoft",
       "auth.or": "or with email",
+      "auth.useEmail": "Sign up or log in with email",
+      "auth.err.soon": "Sign in with Apple is coming soon. For now, please use Google or email.",
       "auth.password": "Password (8+ characters)",
       "auth.signup": "Sign up",
       "auth.login": "Log in",
@@ -2036,6 +2040,13 @@ window.SITE_DATA = {
     $("ap-mode").addEventListener("click", () => setMode(mode === "login" ? "signup" : "login"));
     setMode("signup");
 
+    // Google / Apple first; the email form opens only when asked for
+    $("ap-use-email").addEventListener("click", () => {
+      $("email-form").hidden = false;
+      $("ap-use-email").closest(".or").hidden = true;
+      $("ap-name").focus();
+    });
+
     // Hide providers that are switched off in config
     document.querySelectorAll(".oauth-btn").forEach((b) => { if (providersOn[b.dataset.provider] === false) b.hidden = true; });
 
@@ -2061,7 +2072,11 @@ window.SITE_DATA = {
     document.querySelectorAll(".oauth-btn").forEach((b) => b.addEventListener("click", async () => {
       say($("s1-status"), "");
       try { await auth.signInWithPopup(providerFor(b.dataset.provider)); }
-      catch (e) { say($("s1-status"), errKey(e), "error"); }
+      catch (e) {
+        // Apple needs its own Firebase setup; until then show a friendly note
+        const soon = b.dataset.provider === "apple" && /operation-not-allowed|invalid-provider|configuration/.test(e.code || "");
+        say($("s1-status"), soon ? "auth.err.soon" : errKey(e), "error");
+      }
     }));
 
     $("email-form").addEventListener("submit", async (e) => {

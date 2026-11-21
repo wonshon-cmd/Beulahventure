@@ -505,6 +505,13 @@
     $("ap-mode").addEventListener("click", () => setMode(mode === "login" ? "signup" : "login"));
     setMode("signup");
 
+    // Google / Apple first; the email form opens only when asked for
+    $("ap-use-email").addEventListener("click", () => {
+      $("email-form").hidden = false;
+      $("ap-use-email").closest(".or").hidden = true;
+      $("ap-name").focus();
+    });
+
     // Hide providers that are switched off in config
     document.querySelectorAll(".oauth-btn").forEach((b) => { if (providersOn[b.dataset.provider] === false) b.hidden = true; });
 
@@ -530,7 +537,11 @@
     document.querySelectorAll(".oauth-btn").forEach((b) => b.addEventListener("click", async () => {
       say($("s1-status"), "");
       try { await auth.signInWithPopup(providerFor(b.dataset.provider)); }
-      catch (e) { say($("s1-status"), errKey(e), "error"); }
+      catch (e) {
+        // Apple needs its own Firebase setup; until then show a friendly note
+        const soon = b.dataset.provider === "apple" && /operation-not-allowed|invalid-provider|configuration/.test(e.code || "");
+        say($("s1-status"), soon ? "auth.err.soon" : errKey(e), "error");
+      }
     }));
 
     $("email-form").addEventListener("submit", async (e) => {

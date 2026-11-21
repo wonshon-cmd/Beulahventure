@@ -14,7 +14,7 @@ window.SITE_DATA = {
     appId: "1:240426405363:web:8912ec8eb5100e7d239686"
   },
   // Turn Apple / Microsoft on after enabling them in Firebase > Authentication > Sign-in method
-  providers: { google: true, apple: false, microsoft: false },
+  providers: { google: true, apple: true, microsoft: false },
 
   portfolio: [],
 
@@ -75,6 +75,8 @@ window.SITE_DATA = {
       "auth.apple": "Apple로 계속",
       "auth.microsoft": "Microsoft로 계속",
       "auth.or": "또는 이메일로",
+      "auth.useEmail": "이메일로 가입 · 로그인",
+      "auth.err.soon": "Apple 로그인은 곧 열립니다. 지금은 Google 또는 이메일로 가입해 주세요.",
       "auth.password": "비밀번호 (8자 이상)",
       "auth.signup": "가입하기",
       "auth.login": "로그인",
@@ -358,6 +360,8 @@ window.SITE_DATA = {
       "auth.apple": "Continue with Apple",
       "auth.microsoft": "Continue with Microsoft",
       "auth.or": "or with email",
+      "auth.useEmail": "Sign up or log in with email",
+      "auth.err.soon": "Sign in with Apple is coming soon. For now, please use Google or email.",
       "auth.password": "Password (8+ characters)",
       "auth.signup": "Sign up",
       "auth.login": "Log in",
